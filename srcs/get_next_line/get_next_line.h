@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:03:02 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/02/28 11:38:30 by hrecolet         ###   ########.fr       */
+/*   Created: 2021/11/23 14:01:56 by hrecolet          #+#    #+#             */
+/*   Updated: 2021/11/30 23:45:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include "../srcs/get_next_line/get_next_line.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
 
-/*	***********************************************	*/
-/*	function in utils_char.c						*/
-/*													*/
-/*	***********************************************	*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
 
+char	*ft_strjoin(char *left_str, char *buff);
+char	*ft_strchr(char *s1, int c);
 int		ft_strlen(char *str);
-void	ft_putstr(char *str);
+char	*get_next_line(const int fd);
 
 #endif

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:03:02 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/02/28 11:38:30 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/02/28 11:34:27 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/02/28 11:40:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#include "../includes/minishell.h"
 
-# include "../srcs/get_next_line/get_next_line.h"
+void	ft_putstr(char *str)
+{
+	int	i;
 
-/*	***********************************************	*/
-/*	function in utils_char.c						*/
-/*													*/
-/*	***********************************************	*/
-
-int		ft_strlen(char *str);
-void	ft_putstr(char *str);
-
-#endif
+	i = ft_strlen(str);
+	write(1, str, i);
+}

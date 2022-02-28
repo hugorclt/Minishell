@@ -6,11 +6,12 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/02/28 11:02:52 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/02/28 11:39:38 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	
+SRCS		=	srcs/main.c srcs/get_next_line/get_next_line.c srcs/get_next_line/get_next_line_utils.c \
+				srcs/utils_char.c
 
 INCL		=	includes/minishell.h
 
