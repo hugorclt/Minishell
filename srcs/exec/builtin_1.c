@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/06 14:49:07 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/06 14:31:09 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/06 14:41:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
+int	ft_env(char **env)
 {
-	(void)ac;
-	(void)av;
-	(void)env;
-	using_history();
-	while (1)
+	int	i;
+
+	i = 0;
+	while (env[i])
 	{
-		char *cmd = readline("minishell>");
-		add_history(cmd);
+		printf("%s\n", env[i]);
+		i++;
 	}
+	return (0);
 }
