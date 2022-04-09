@@ -6,41 +6,105 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/06 14:34:24 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/09 11:22:11 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	srcs/main.c \
-				srcs/parsing/main_parse.c \
-				srcs/utils/utils_char.c \
-				srcs/exec/main_exec.c\
-				srcs/exec/builtin_1.c
+NAME 		=	Minishell
 
-INCL		=	includes/minishell.h
+SRCS 		=	srcs/exec/builtin_1.c		\
+				srcs/exec/main_exec.c		\
+				srcs/parsing/main_parse.c	\
+				srcs/utils/utils_char.c	\
+				srcs/main.c					\
 
-CC			=	gcc
+OBJS		=		$(SRCS:.c=.o)
+INCLUDE		= 		includes/minishell.h
 
-CFLAGS		=	-Wall -Werror -Wextra 
+RM		=		rm -f
+CC		=		clang
+CFLAGS		=	-Wall -Wextra -Werror -pthread -g
 
-RM			=	rm -f
+%.o:				%.c
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
 
-NAME		=	minishell
+all:	$(NAME)
 
-OBJ			=	$(SRCS:.c=.o)
+$(NAME):		$(OBJS)
+	@clear
+	@$(MAKE) -C libft
+	@echo "Minishell : Libft compiled"
+	@echo "\033[1;34m                                                                                                                     "
+	@echo "Project name : $(NAME)"
+	@echo "\n\033[1;32mCompilation Ongoing... ⌛\033[0;m\n"
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a
+	@make wait
+	@make norm
+	@echo "Bonne correction!"
 
-all			:	$(NAME) 
 
+norm:
+	@echo "⚠️ \033[5;1;34m Checking The Norm \033[m⚠️"
+	@if norminette $(SRCS) >/dev/null; then\
+        echo "\033[1;32m    Norminette : OK\033[m";\
+    else\
+        echo "\033[1;31m    Norminette : Error\033[m";\
+    fi
+clean:
+	@$(RM) $(OBJS)
+	@$(MAKE) -C libft clean
+	@echo "\033[1;31m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+	@echo "⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣄⣀⡀⣠⣾⡇⠀⠀⠀⠀"
+	@echo "⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀"
+	@echo "⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⢿⣿⣿⡇⠀⠀⠀⠀"
+	@echo "⠀⣶⣿⣦⣜⣿⣿⣿⡟⠻⣿⣿⣿⣿⣿⣿⣿⡿⢿⡏⣴⣺⣦⣙⣿⣷⣄⠀⠀⠀\033[1;34m Goodbye everyone\033[1;31m"
+	@echo "⠀⣯⡇⣻⣿⣿⣿⣿⣷⣾⣿⣬⣥⣭⣽⣿⣿⣧⣼⡇⣯⣇⣹⣿⣿⣿⣿⣧⠀⠀"
+	@echo "⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠸⣿⣿⣿⣿⣿⣿⣿⣷⠀\033[m"
+	@echo "\033[1;1;32m♻️  Objects have been \033[5;1;31mdeleted\033[m ♻️"
 
-$(NAME)		:	$(OBJ) includes/minishell.h
-				@$(CC) $(CFLAGS) $(OBJ) -lreadline $(INCL) -o $(NAME)
-				@echo -n "'Minishell', vu par la GoatSquad\n"	
-		
-clean		:	
-				@$(RM) $(OBJ) $(OBJ_BONUS)
+fclean:
+	@$(RM) $(OBJS)
+	@$(RM) $(NAME)
+	@$(MAKE) -C libft fclean
+	@echo -n "\033[0;31m⠀"
+	@echo "Uninstalling Minishell"
+	@echo "[##############]"
+	@echo "　╭━╮╭━╮ ╭╮ ╱ "　　
+	@echo "　╰━┫╰━┫ ╰╯╱ ╭╮ "　　
+	@echo "　╰━╯╰━╯　╱　╰╯" 　　　　　
+	@echo "　     COMPLETE"
+	@echo "\033[1;1;32m♻️  Objects and $(NAME) have been \033[5;1;31mdeleted\033[m ♻️"
 
-fclean		:	clean
-				@$(RM) $(NAME) $(BONUS_NAME) $(OBJ_BONUS)
+wait:
+	@echo -n "\r  5%  [\033[0;31m█\033[m.........................]"
+	@sleep 0.1
+	@echo -n "\r 10%  [\033[0;31m███\033[m.......................]"
+	@sleep 0.1
+	@echo -n "\r 15%  [\033[0;31m████\033[m......................]"
+	@sleep 0.1
+	@echo -n "\r 20%  [\033[0;31m██████\033[m....................]"
+	@sleep 0.1
+	@echo -n "\r 27%  [\033[0;31m████████\033[m..................]"
+	@sleep 0.1
+	@echo -n "\r 32%  [\033[0;31m██████████\033[m................]"
+	@sleep 0.1
+	@echo -n "\r 35%  [\033[0;31m███████████\033[m...............]"
+	@sleep 0.1
+	@echo -n "\r 45%  [\033[0;31m█████████████\033[m.............]"
+	@sleep 0.1
+	@echo -n "\r 50%  [\033[0;31m███████████████\033[m...........]"
+	@sleep 0.1
+	@echo -n "\r 65%  [\033[0;31m██████████████████\033[m........]"
+	@sleep 0.1
+	@echo -n "\r 80%  [\033[0;31m█████████████████████\033[m.....]"
+	@sleep 0.1
+	@echo -n "\r 90%  [\033[0;31m████████████████████████\033[m..]"
+	@sleep 0.1
+	@echo -n "\r 95%  [\033[0;31m█████████████████████████\033[m.]"
+	@sleep 0.1
+	@echo -n "\r 99%  [\033[0;31m██████████████████████████\033[m]"
+	@sleep 1
+	@echo -n "\r 100% [\033[0;32m██████████████████████████\033[m]\033[0;32m compilation terminee ✓\n\033[0;m"
+re:		fclean all
 
-re			:	fclean all
-
-.PHONY		:	clean fclean re all
+.PHONY: all clean fclean re
