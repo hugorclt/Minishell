@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/09 11:22:11 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/09 11:36:02 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,9 @@ $(NAME):		$(OBJS)
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mCompilation Ongoing... ⌛\033[0;m\n"
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a -lreadline
 	@make wait
-	@make norm
+	@#@make norm
 	@echo "Bonne correction!"
 
 
