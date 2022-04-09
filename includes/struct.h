@@ -1,44 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_char.c                                       :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:34:27 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/09 11:56:10 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/09 11:53:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef STRUCT_H
+# define STRUCT_H
 
-int		ft_strlen(char *str)
+typedef struct s_garb_col
 {
-	int	i;
+	void				*content;
+	struct s_garb_col	*next;
+}	t_garb;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = ft_strlen(str);
-	write(1, str, i);
-	return (0);
-}
-
-void	ft_print_char_tab(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("%s\n", str[i]);
-	}
-	return (0);
-}
+#endif
