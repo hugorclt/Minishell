@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/09 11:54:02 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/14 12:30:39 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME 		=	Minishell
 SRCS 		=	srcs/exec/main_exec.c		\
 				srcs/parsing/main_parse.c	\
 				srcs/utils/utils_char.c		\
-				srcs/utils/ft_malloc.C		\
 				srcs/main.c					\
 
 OBJS		=		$(SRCS:.c=.o)
@@ -78,32 +77,46 @@ fclean:
 wait:
 	@echo -n "\r  5%  [\033[0;31m█\033[m.........................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 10%  [\033[0;31m███\033[m.......................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 15%  [\033[0;31m████\033[m......................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 20%  [\033[0;31m██████\033[m....................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 27%  [\033[0;31m████████\033[m..................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 32%  [\033[0;31m██████████\033[m................]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 35%  [\033[0;31m███████████\033[m...............]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 45%  [\033[0;31m█████████████\033[m.............]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 50%  [\033[0;31m███████████████\033[m...........]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 65%  [\033[0;31m██████████████████\033[m........]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 80%  [\033[0;31m█████████████████████\033[m.....]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 90%  [\033[0;31m████████████████████████\033[m..]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 95%  [\033[0;31m█████████████████████████\033[m.]"
 	@sleep 0.1
+	@clear
 	@echo -n "\r 99%  [\033[0;31m██████████████████████████\033[m]"
-	@sleep 1
+	@sleep 0.5
+	@clear
 	@echo -n "\r 100% [\033[0;32m██████████████████████████\033[m]\033[0;32m compilation terminee ✓\n\033[0;m"
 re:		fclean all
 

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:43:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/09 11:49:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:32:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	*ft_malloc(void **malloc_collector, size_t size, size_t count)
 	alloc = malloc(size * count);
 	if (!alloc)
 		return (1);
-	ft_lstadd_back(malloc_collector, ft_lstnew(alloc));
+	ft_lstadd_front(malloc_collector, ft_lstnew(alloc));
 	return (alloc);
 }
