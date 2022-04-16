@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:03:02 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/09 12:28:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/16 09:41:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 int		ft_strlen(char *str);
 void	ft_putstr(char *str);
 void	ft_print_char_tab(char **str);
+int		get_pwd();
 
 /*	***********************************************	*/
 /*	function in ft_malloc.c							*/
