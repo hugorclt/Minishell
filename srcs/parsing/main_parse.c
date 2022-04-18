@@ -6,8 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/03/25 16:53:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:02:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+//int	main_parse(char *input, t_cmd **cmd, t_env *var)
+//{
+	
+//}
