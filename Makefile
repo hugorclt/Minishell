@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/16 09:41:41 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/18 11:36:26 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS 		=	srcs/exec/main_exec.c		\
 				srcs/parsing/main_parse.c	\
 				srcs/utils/utils_char.c		\
 				srcs/main.c					\
+				srcs/exec/echo.c			\
 				srcs/exec/directory.c
 
 OBJS		=		$(SRCS:.c=.o)
@@ -39,7 +40,7 @@ $(NAME):		$(OBJS)
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a -lreadline
 	@make wait
-	@#@make norm
+	@#@make norminette
 	@echo "Bonne correction!"
 
 
