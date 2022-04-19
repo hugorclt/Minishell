@@ -6,18 +6,18 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 13:46:12 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/18 14:03:21 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:20:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	init_pwd(t_env *var)
+void	ft_init_pwd(t_env *var)
 {
-	var->current_wdir = get_pwd();
+	var->current_wdir = ft_get_pwd();
 }
 
-void	init_env(t_env *var, char **env)
+void	ft_init_env(t_env *var, char **env)
 {
 	var->env = env;
 }

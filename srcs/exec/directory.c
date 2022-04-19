@@ -6,18 +6,18 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 09:37:26 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/17 16:11:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:19:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_pwd()
+void	ft_print_pwd()
 {
-	printf("%s\n", get_pwd());
+	printf("%s\n", ft_get_pwd());
 }
 
-char	*get_pwd()
+char	*ft_get_pwd()
 {
 	char *buffer;
 

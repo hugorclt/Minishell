@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:34:27 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/18 15:17:16 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/19 11:43:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,37 @@ void	ft_print_char_tab(char **str)
 	}
 }
 
-char	*get_dir(char *str)
+static int	ft_get_last_word(char *str, int len)
 {
-	(void)str;
-	//TODO
-	return (NULL);
+	int	i;
+
+	i = 0;
+	while (str[len] != '/')
+	{
+		len--;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_get_last_dir(char *str)
+{
+	int	i;
+	int	j;
+	char *ret;
+	
+	j = 0;
+	i = ft_strlen(str);
+	ret = malloc(sizeof(char) * ft_get_last_word(str, i) + 3);
+	i = i - ft_get_last_word(str, i) + 1;
+	while (str[i])
+	{
+		ret[j] = str[i];
+		j++;
+		i++;
+	}
+	ret[j] = '$';
+	ret[j + 1] = '>';
+	ret[j + 2] = '\0';
+	return (ret);
 }
