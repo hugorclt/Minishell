@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:03:02 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/19 11:40:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:13:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	ft_echo_n(char *str);
 void	ft_init_pwd(t_env *var);
 void	ft_init_env(t_env *var, char **env);
 char	*ft_get_last_dir(char *str);
+int		ft_main_parse(char *input, t_cmd **cmd, t_env *var);
 
 #endif
