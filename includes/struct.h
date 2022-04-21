@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/18 14:01:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:38:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ typedef struct s_cmd
 	char			**args;
 }	t_cmd;
 
-typedef struct s_env
+typedef struct s_token
 {
 	char	*current_wdir;
+	char	*token;
 	char	**env;
-	char	actual_char;
 	int		nb_quotes;
 	int		nb_dquotes;
-}	t_env;
+	struct s_token *next;
+}	t_token;
 
 #endif

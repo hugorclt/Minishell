@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/20 18:13:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:42:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ char	*ft_strjoin_char(char *cmd, char c)
 	return (ret);
 }
 
-int	ft_main_parse(char *input, t_cmd **cmd, t_env *var)
+int	ft_main_parse(char *input, t_cmd **cmd, t_token **var)
 {
 	(void)cmd;
-	(void)var;
 	int		i;
 	char	*token;
 
@@ -45,6 +44,15 @@ int	ft_main_parse(char *input, t_cmd **cmd, t_env *var)
 	token = NULL;
 	while (input[i])
 	{
+		if (input[i] == '|')
+		{
+			ft_lst_addback(var, ft_lstnew(token));
+			token = NULL;
+		}
+		else if (input[i] = '>')
+		{
+			//TODO etc etc for all operator
+		}
 		token = ft_strjoin_char(token, input[i]);
 		i++;
 	}
