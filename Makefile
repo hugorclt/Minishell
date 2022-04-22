@@ -6,11 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/04/22 12:16:15 by hrecolet         ###   ########.fr        #
-=======
-#    Updated: 2022/04/22 12:14:48 by yobougre         ###   ########.fr        #
->>>>>>> youri
+#    Updated: 2022/04/22 13:01:32 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +15,7 @@ NAME 		=	Minishell
 SRCS 		=	srcs/main.c
 
 OBJS		=		$(SRCS:.c=.o)
+
 INC		= 		includes/minishell.h\
 				includes/struct.h\
 				includes/includes.h
@@ -55,7 +52,6 @@ norm:
 clean:
 	@$(RM) $(OBJS)
 	@$(MAKE) -C libft clean
-	@$(MAKE) -C pipex clean
 	@echo "\033[1;31m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣄⣀⡀⣠⣾⡇⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀"
@@ -69,7 +65,6 @@ fclean:
 	@$(RM) $(OBJS)
 	@$(RM) $(NAME)
 	@$(MAKE) -C libft fclean
-	@$(MAKE) -C pipex fclean
 	@echo -n "\033[0;31m⠀"
 	@echo "Uninstalling Minishell"
 	@echo "[##############]"
