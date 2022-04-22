@@ -6,12 +6,24 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 11:30:18 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:14:47 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+/*
+while (t_list != NULL)
+{
+	if (t_list->content->flag ==  1)
+		ft_get_pwd;
+	
+}
+t_list = void * <- t_token
+next   = -> void * <- t_cmd
+	     
+*/
 
 typedef struct s_garb_col
 {
@@ -26,6 +38,7 @@ typedef struct s_cmd
 	char			**path;
 	char			**option;
 	char			**args;
+	int				flag;
 }	t_cmd;
 
 typedef struct s_token
