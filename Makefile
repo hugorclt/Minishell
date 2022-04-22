@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 09:59:30 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 11:21:21 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,16 @@ SRCS 		=	srcs/exec/main_exec.c		\
 				srcs/expand/env_expand.C	
 
 OBJS		=		$(SRCS:.c=.o)
-INCLUDE		= 		includes/minishell.h
+INC		= 		includes/minishell.h\
+				includes/struct.h\
+				includes/includes.h
 
 RM		=		rm -f
 CC		=		clang
 CFLAGS		=	-Wall -Wextra -Werror -g
 
 %.o:				%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 all:	$(NAME)
 
