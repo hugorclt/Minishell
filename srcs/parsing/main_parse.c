@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 12:14:44 by yobougre         ###   ########.fr       */
+/*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/22 11:59:03 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
+char	*ft_strjoin_char(char *cmd, char c)
 {
-	t_token	*var;
-	t_cmd	*l_cmd;
-	(void)av;
-	if (ac == 1)
+	int		i;
+	char	*ret;
+
+	i = 0;
+	if (!cmd)
 	{
-		using_history();
-		ft_init_env(&var, env);
-		while (1)
+		ret = malloc(sizeof(char) * 2);
+		if (!ret)
+			return (free(cmd), NULL);
+	}
+	else
+	{
+		ret = malloc(sizeof(char) * ft_strlen(cmd) + 2);
+		if (!ret)
+			return (free(cmd), NULL);
+		while (cmd[i])
 		{
-			ft_init_pwd(&var);
-			char *cmd = readline(ft_get_last_dir(var->current_wdir));
-			ft_main_parse(cmd, &l_cmd, &var);
-			add_history(cmd);
+			ret[i] = cmd[i];
+			i++;
 		}
 	}
-	return (0);
+	ret[i] = c;
+	ret[i + 1] = '\0';
+	return (free(cmd), ret);
 }

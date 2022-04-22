@@ -6,7 +6,11 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/04/22 12:16:15 by hrecolet         ###   ########.fr        #
+=======
+#    Updated: 2022/04/22 12:14:48 by yobougre         ###   ########.fr        #
+>>>>>>> youri
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +19,16 @@ NAME 		=	Minishell
 SRCS 		=	srcs/main.c
 
 OBJS		=		$(SRCS:.c=.o)
-INCLUDE		= 		includes/minishell.h
+INC		= 		includes/minishell.h\
+				includes/struct.h\
+				includes/includes.h
 
 RM		=		rm -f
 CC		=		clang
 CFLAGS		=	-Wall -Wextra -Werror -g
 
 %.o:				%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 all:	$(NAME)
 
@@ -30,8 +36,6 @@ $(NAME):		$(OBJS)
 	@clear
 	@$(MAKE) -C libft
 	@echo "Minishell : Libft compiled"
-	@$(MAKE) -C pipex
-	@echo "Minishell : Pipex compiled"
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
