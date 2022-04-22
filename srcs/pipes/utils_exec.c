@@ -6,11 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/10 14:26:57 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:20:36 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/minishell.h"
 
 int	ft_execute(char **av, char **envp)
 {

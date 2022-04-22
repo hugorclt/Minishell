@@ -6,11 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/10 16:22:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:20:24 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/minishell.h"
 
 int	ft_init_pid(t_node *params)
 {

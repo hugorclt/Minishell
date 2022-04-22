@@ -6,11 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/10 13:31:01 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:19:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/minishell.h"
 
 void	ft_free_struct(t_node *params)
 {

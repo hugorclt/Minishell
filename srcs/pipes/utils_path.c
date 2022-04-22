@@ -6,11 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/10 15:55:31 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:20:55 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes/minishell.h"
 
 char	*ft_cmd(char *path, char *cmd)
 {

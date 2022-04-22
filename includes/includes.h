@@ -6,16 +6,22 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 11:28:12 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:24:45 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INCLUDES_H
 # define INCLUDES_H
+# include <stdlib.h>
+# include <stdio.h>
 # include "struct.h"
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include "../pipex/includes/pipex.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
-# include "../pipex/includes/pipex.h"
 
 #endif
