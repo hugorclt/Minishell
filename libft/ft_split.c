@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 11:23:38 by yobougre          #+#    #+#             */
-/*   Updated: 2021/11/25 14:23:37 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:02:48 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,6 @@ static char	*ft_fill(char const *s, int size, int *index)
 	return (output);
 }
 
-static void	*ft_free(char **output, int p)
-{
-	while (p)
-	{
-		free(output[p]);
-		p--;
-	}
-	free(output);
-	return (NULL);
-}
-
 static char	**ft_dfill(char **output, char const *s, char c)
 {
 	int	i;
@@ -80,7 +69,7 @@ static char	**ft_dfill(char **output, char const *s, char c)
 				j++;
 			output[p] = ft_fill(s, j, &i);
 			if (!output[p])
-				return (ft_free(output, p));
+				return (ft_free(output), NULL);
 			p++;
 		}
 		else

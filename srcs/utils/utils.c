@@ -1,28 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   directory.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 09:37:26 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/18 21:36:46 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/22 13:42:32 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_print_pwd()
+char	**ft_dup_tab(char **tab)
 {
-	printf("%s\n", ft_get_pwd());
+	char	**ret;
+	int		i;
+
+	i = 0;
+	ret = malloc(sizeof(char *) * ft_tab_size(tab));
+	if (!ret)
+		return (ft_free(tab), NULL);
+	while (tab[i])
+	{
+		ret[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	return (ret);
 }
 
-char	*ft_get_pwd()
+void	print_pwd()
+{
+	printf("%s\n", get_pwd());
+}
+
+char	*get_pwd()
 {
 	char *buffer;
 
 	buffer = getcwd(NULL, 0);
 	if (!buffer)
 		return (NULL);
+	else
+		printf("%s\n", buffer);
+	return (0);
+		return (NULL);
 	return (buffer);
-}
+} 

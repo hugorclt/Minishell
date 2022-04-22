@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_path.c                                    :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/23 14:06:36 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:44:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/minishell.h"
 
 static int	ft_count(char const *str, char c)
 {
@@ -38,7 +38,7 @@ static char	*ft_fill(char const *s, int size, int *index)
 	char	*output;
 	int		i;
 
-	output = malloc(sizeof(char) * (size + 2));
+	output = malloc(sizeof(char) * (size + 1));
 	if (!output)
 		return (NULL);
 	i = 0;
@@ -48,8 +48,7 @@ static char	*ft_fill(char const *s, int size, int *index)
 		i++;
 		*index += 1;
 	}
-	output[i] = '/';
-	output[i + 1] = 0;
+	output[i] = 0;
 	return (output);
 }
 
@@ -80,7 +79,7 @@ static char	**ft_dfill(char **output, char const *s, char c)
 	return (output);
 }
 
-char	**ft_split_path(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**output;
 

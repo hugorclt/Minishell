@@ -6,22 +6,33 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 13:01:58 by yobougre         ###   ########.fr        #
+#    Updated: 2022/04/22 14:12:05 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	Minishell
 
-SRCS 		=	srcs/exec/main_exec.c		\
-				srcs/parsing/main_parse.c	\
-				srcs/utils/utils_char.c		\
-				srcs/main.c					\
-				srcs/exec/echo.c			\
-				srcs/exec/directory.c		\
-				srcs/parsing/init_struct.c	\
-				srcs/expand/env_expand.C	
+SRCS 		=	srcs/main.c\
+				srcs/utils/utils.c\
+				srcs/pipes/error.c\
+				srcs/pipes/ft_free.c\
+				srcs/pipes/ft_split.c\
+				srcs/pipes/ft_split_path.c\
+				srcs/pipes/join.c\
+				srcs/pipes/utils_both.c\
+				srcs/pipes/utils_exec.c\
+				srcs/pipes/utils_path.c\
+				srcs/pipes/utils_pipe.c\
+				srcs/pipes/utils_str.c\
+				srcs/parsing/init_struct.c\
+				srcs/parsing/main_parse.c\
+				srcs/expand/env_expand.c\
+				srcs/dir/dir_prompt.c
+
+
 
 OBJS		=		$(SRCS:.c=.o)
+
 INC		= 		includes/minishell.h\
 				includes/struct.h\
 				includes/includes.h
@@ -30,19 +41,19 @@ RM		=		rm -f
 CC		=		clang
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-%.o:				%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
+#%.o: %.c
+#	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 all:	$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME): $(INC) $(OBJS)
 	@clear
 	@$(MAKE) -C libft
 	@echo "Minishell : Libft compiled"
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a -lreadline
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -lreadline -o $(NAME) 	
 	@make wait
 	@#@make norminette
 	@echo "Bonne correction!"
@@ -58,7 +69,6 @@ norm:
 clean:
 	@$(RM) $(OBJS)
 	@$(MAKE) -C libft clean
-	@$(MAKE) -C pipex clean
 	@echo "\033[1;31m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣄⣀⡀⣠⣾⡇⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀"
@@ -72,7 +82,6 @@ fclean:
 	@$(RM) $(OBJS)
 	@$(RM) $(NAME)
 	@$(MAKE) -C libft fclean
-	@$(MAKE) -C pipex fclean
 	@echo -n "\033[0;31m⠀"
 	@echo "Uninstalling Minishell"
 	@echo "[##############]"

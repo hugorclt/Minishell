@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 11:18:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:06:09 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../includes/minishell.h"
 # define BUFFER_SIZE 1000000
 
 typedef struct s_list
@@ -24,11 +25,11 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-char		*ft_strdup_pimp(char *s);
-char		*get_next_line(int fd);
-char		*ft_strjoin_pimp(char *s1, char *s2);
-char		*ft_next_line(char *line);
-int			ft_strchr_pimp(char *s, char c);
+//char		*ft_strdup_pimp(char *s);
+//char		*get_next_line(int fd);
+//char		*ft_strjoin_pimp(char *s1, char *s2);
+//char		*ft_next_line(char *line);
+//int			ft_strchr_pimp(char *s, char c);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		*ft_memmove(void *dst, const void *src, size_t len);
@@ -52,7 +53,7 @@ char		*ft_strdup(char const *s1);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_substr(char const *s, int start, unsigned int len);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
