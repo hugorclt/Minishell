@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 13:06:36 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/22 13:17:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
+char	**ft_dup_tab(char **tab)
 {
-	char	*cmd;
-	(void)av;
-	if (ac == 1)
+	char	**ret;
+	int		i;
+
+	i = 0;
+	ret = malloc(sizeof(char *) * ft_tab_size(tab));
+	while (tab[i])
 	{
-		using_history();
-		while (1)
-		{
-			cmd = readline("Minishell");
-			add_history(cmd);
-		}
+		ret[i] = ft_strdup(tab[i]);
+		i++;
 	}
-	return (0);
+	return (ret);
 }

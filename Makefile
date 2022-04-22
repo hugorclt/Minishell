@@ -6,13 +6,14 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 13:01:32 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 13:06:04 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	Minishell
 
-SRCS 		=	srcs/main.c
+SRCS 		=	srcs/main.c\
+				srcs/expand/env_expand.c
 
 OBJS		=		$(SRCS:.c=.o)
 
@@ -23,9 +24,6 @@ INC		= 		includes/minishell.h\
 RM		=		rm -f
 CC		=		clang
 CFLAGS		=	-Wall -Wextra -Werror -g
-
-%.o:				%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 all:	$(NAME)
 

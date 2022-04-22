@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 12:14:47 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:17:36 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ typedef struct s_node
 	int				heredoc;
 	char			*limiter;
 }	t_node;
+
 #endif
