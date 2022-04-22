@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:44 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:15:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,41 +49,12 @@ int	ft_open(t_node *params, char *infile, char *outfile, int flag)
 		params->infile_name = ft_strdup(infile);
 	}
 	else
-		ft_heredoc(params);
+		return (420);
 	params->outfile = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (params->outfile < 0)
 		return (-1);
 	params->outfile_name = ft_strdup(outfile);
 	if (!params->infile_name || !params->outfile_name)
 		return (-1);
-	return (1);
-}
-
-int	ft_heredoc(t_node *params)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(".heredoc_temp", O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (fd < 0)
-		return (perror(".heredoc_temp"), -1);
-	while (1)
-	{
-		ft_putstr_fd("heredoc> ", 1);
-		line = get_next_line(0);
-		if (!line)
-			ft_putstr_fd("\n", 1);
-		if (!ft_strcmp(line, params->limiter) || !line)
-			break ;
-		ft_putstr_fd(line, fd);
-		free(line);
-	}
-	close(fd);
-	ft_heredoc_infile(params);
-	free(params->limiter);
-	if (line)
-		free(line);
-	if (params->infile < 0)
-		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	return (1);
 }
