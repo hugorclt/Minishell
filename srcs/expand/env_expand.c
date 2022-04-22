@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:58:56 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 10:42:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:51:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_env_expand(char *token, char **env)
 	nb_dolls = ft_find_dolls(token);
 	while (token[i])
 	{
-		while (nb_dolls && token[i] == "$")
+		if (nb_dolls && token[i] == "$")
 		{
 			env_line = ft_find_line_env(token + i, env);
 			ret = ft_strjoin(ret, env_line);
