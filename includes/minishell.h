@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:48:16 by hrecolet         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,17 @@
 # include "struct.h"
 # include "includes.h"
 
-# define COMMAND_NOT_FOUND ": command not found\n"
+/* -------------------------------------------------------------------------- */
+/*                         FILE = srcs/utils/utils.c                          */
+/* -------------------------------------------------------------------------- */
+char	**ft_dup_tab(char **tab);
+void	print_pwd();
+char	*get_pwd();
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/dir/dir_prompt.c                        */
+/* -------------------------------------------------------------------------- */
+char	*ft_get_last_dir(char *str);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/ft_split_path.c                      */
@@ -85,11 +95,6 @@ char	*ft_strdup_pimp(char *s);
 int	ft_strchr_pimp(char *s, char c);
 
 /* -------------------------------------------------------------------------- */
-/*                      FILE = srcs/pipes/pipex_bonus.c                       */
-/* -------------------------------------------------------------------------- */
-int	pipex(int ac, char **av, char **envp);
-
-/* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_pipe.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
@@ -97,12 +102,6 @@ int	ft_fork(t_node *params, char **envp, char *av);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
 void	ft_wrong_args(void);
-
-/* -------------------------------------------------------------------------- */
-/*                          FILE = srcs/pipes/gnl.c                           */
-/* -------------------------------------------------------------------------- */
-char	*ft_next_line(char *line);
-char	*get_next_line(int fd);
 
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/expand/env_expand.c                       */
@@ -123,7 +122,4 @@ int	main(int ac, char **av, char **env);
 char	*ft_strjoin_char(char *cmd, char c);
 
 
-char	*ft_get_last_dir(char *str);
-char	*get_pwd();
-void	print_pwd();
 #endif

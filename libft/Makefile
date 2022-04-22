@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:40:19 by yobougre          #+#    #+#              #
-#    Updated: 2022/04/22 11:18:56 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 14:07:06 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,6 @@ SRCS= ft_atoi.c \
 	  ft_memset.c\
 	  ft_strdup.c\
 	  ft_strncmp.c\
-	  get_next_line.c\
-	  get_next_line_utils.c\
 	  ft_lstnew.c\
 	  ft_lstadd_back.c\
 	  ft_lstadd_front.c\
