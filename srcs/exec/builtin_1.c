@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   builtin_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:46:12 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 10:00:15 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/06 14:31:09 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/06 14:41:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_init_pwd(t_token *var)
+int	ft_env(char **env)
 {
-	var->current_wdir = ft_get_pwd();
-}
+	int	i;
 
-void	ft_init_env(t_token *var, char **env)
-{
-	var->env = env;
+	i = 0;
+	while (env[i])
+	{
+		printf("%s\n", env[i]);
+		i++;
+	}
+	return (0);
 }

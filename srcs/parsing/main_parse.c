@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/21 11:53:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 09:58:54 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strjoin_char(char *cmd, char c)
 	return (ret);
 }
 
-int	ft_main_parse(char *input, t_cmd **cmd, t_token **var)
+int	ft_tokenization(char *input, t_cmd **cmd, t_token **var)
 {
 	(void)cmd;
 	int		i;
@@ -84,3 +84,5 @@ int	ft_main_parse(char *input, t_cmd **cmd, t_token **var)
 	}
 	return (0);
 }
+
+

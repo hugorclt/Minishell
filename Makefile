@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/18 18:04:33 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 09:59:30 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS 		=	srcs/exec/main_exec.c		\
 				srcs/main.c					\
 				srcs/exec/echo.c			\
 				srcs/exec/directory.c		\
-				srcs/parsing/init_struct.c
+				srcs/parsing/init_struct.c	\
+				srcs/expand/env_expand.C	
 
 OBJS		=		$(SRCS:.c=.o)
 INCLUDE		= 		includes/minishell.h
