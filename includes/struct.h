@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 11:21:21 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:30:18 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ typedef struct s_token
 	struct s_token *next;
 }	t_token;
 
+typedef struct s_node
+{
+	int				infile;
+	char			*infile_name;
+	char			*outfile_name;
+	int				outfile;
+	pid_t			*pid;
+	int				nb;
+	int				*fd;
+	char			**cmd;
+	char			**cmd_args;
+	int				index;
+	int				heredoc;
+	char			*limiter;
+}	t_node;
 #endif

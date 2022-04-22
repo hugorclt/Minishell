@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 11:21:21 by yobougre         ###   ########.fr        #
+#    Updated: 2022/04/22 11:46:41 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,6 @@ $(NAME):		$(OBJS)
 	@clear
 	@$(MAKE) -C libft
 	@echo "Minishell : Libft compiled"
-	@$(MAKE) -C pipex
-	@echo "Minishell : Pipex compiled"
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"

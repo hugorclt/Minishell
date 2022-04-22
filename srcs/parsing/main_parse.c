@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 11:19:24 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:44:53 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,3 @@ int	ft_tokenization(char *input, t_cmd **cmd, t_token **var)
 	}
 	return (0);
 }
-
-
