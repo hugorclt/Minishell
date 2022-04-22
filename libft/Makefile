@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:40:19 by yobougre          #+#    #+#              #
-#    Updated: 2022/04/09 11:37:41 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 11:18:56 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRCS= ft_atoi.c \
 	  ft_isalpha.c\
 	  ft_memcpy.c\
 	  ft_split.c\
-	  ft_strlen.c\
 	  ft_tolower.c\
 	  ft_isascii.c\
 	  ft_memmove.c\
