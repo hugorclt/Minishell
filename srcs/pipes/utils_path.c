@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:20:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:44:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*ft_cmd(char *path, char *cmd)
 {

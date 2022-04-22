@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:21:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:44:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_close_all(t_node *params)
 {

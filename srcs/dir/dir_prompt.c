@@ -1,50 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   dir_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:07 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/04/22 13:39:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_free_struct(t_node *params)
-{
-	ft_close_all(params);
-	close(params->infile);
-	close(params->outfile);
-	free(params->fd);
-	free(params->pid);
-	if (params->infile_name)
-		free(params->infile_name);
-	if (params->outfile_name)
-		free(params->outfile_name);
-	ft_free(params->cmd);
-}
-
-int	ft_tab_size(char **tab)
+static int	ft_get_last_word(char *str, int len)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i])
-		++i;
+	while (str[len] != '/')
+	{
+		len--;
+		i++;
+	}
 	return (i);
 }
 
-void	ft_free(char **tab)
+char	*ft_get_last_dir(char *str)
 {
 	int	i;
+	int	j;
+	char *ret;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-	tab = NULL;
+	j = 0;
+	i = ft_strlen(str);
+	ret = malloc(sizeof(char) * ft_get_last_word(str, i) + 3);
+	if (!ret)
+		return (NULL);
+	i = i - ft_get_last_word(str, i) + 1;
+	while (str[i])
+	{
+		ret[j] = str[i];
+		j++;
+		i++;
+	}
+	ret[j] = '$';
+	ret[j + 1] = '>';
+	ret[j + 2] = '\0';
+	return (ret);
 }

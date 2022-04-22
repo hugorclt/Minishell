@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:19:40 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:44:12 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static int	ft_count(char const *str, char c)
 {

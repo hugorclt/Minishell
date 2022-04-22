@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:30:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:48:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "struct.h"
 # include "includes.h"
+
+# define COMMAND_NOT_FOUND ": command not found\n"
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/ft_split_path.c                      */
@@ -78,7 +80,7 @@ char	**ft_split(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
 /* -------------------------------------------------------------------------- */
-int	ft_strlen(char *s);
+int	ft_strlen(const char *s);
 char	*ft_strdup_pimp(char *s);
 int	ft_strchr_pimp(char *s, char c);
 
@@ -121,4 +123,7 @@ int	main(int ac, char **av, char **env);
 char	*ft_strjoin_char(char *cmd, char c);
 
 
+char	*ft_get_last_dir(char *str);
+char	*get_pwd();
+void	print_pwd();
 #endif

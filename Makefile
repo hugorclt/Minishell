@@ -6,15 +6,29 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 13:27:05 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 13:40:06 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	Minishell
 
 SRCS 		=	srcs/main.c\
+				srcs/utils/utils.c\
+				srcs/pipes/error.c\
+				srcs/pipes/ft_free.c\
+				srcs/pipes/ft_split.c\
+				srcs/pipes/ft_split_path.c\
+				srcs/pipes/join.c\
+				srcs/pipes/utils_both.c\
+				srcs/pipes/utils_exec.c\
+				srcs/pipes/utils_path.c\
+				srcs/pipes/utils_pipe.c\
+				srcs/parsing/init_struct.c\
+				srcs/parsing/main_parse.c\
 				srcs/expand/env_expand.c\
-				srcs/utils.c\
+				srcs/dir/dir_prompt.c
+
+
 
 OBJS		=		$(SRCS:.c=.o)
 

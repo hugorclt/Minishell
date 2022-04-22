@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:24:45 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:33:53 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# include "../pipex/includes/pipex.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
