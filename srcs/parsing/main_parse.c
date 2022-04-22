@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 09:58:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:19:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	ft_tokenization(char *input, t_cmd **cmd, t_token **var)
 			ft_lst_addback(var, ft_lstnew(token));
 			token = NULL;
 		}
-		else if (input[i] = '>')
+		else if (input[i] == '>')
 		{
-			if (input[i + 1] = '>')
+			if (input[i + 1] == '>')
 			{
 				ft_lst_addback(var, ft_lstnew(token));
 				ft_lst_addback(var, ft_lstnew(">>"));
@@ -64,9 +64,9 @@ int	ft_tokenization(char *input, t_cmd **cmd, t_token **var)
 				token = NULL;
 			}
 		}
-		else if (input[i] = '<')
+		else if (input[i] == '<')
 		{
-			if (input[i + 1] = '<')
+			if (input[i + 1] == '<')
 			{
 				ft_lst_addback(var, ft_lstnew(token));
 				ft_lst_addback(var, ft_lstnew("<<"));
