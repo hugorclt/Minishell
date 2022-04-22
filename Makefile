@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 14:12:05 by yobougre         ###   ########.fr        #
+#    Updated: 2022/04/22 15:42:20 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ INC		= 		includes/minishell.h\
 				includes/includes.h
 
 RM		=		rm -f
-CC		=		clang
+CC		=	gcc	
 CFLAGS		=	-Wall -Wextra -Werror -g
 
 #%.o: %.c
