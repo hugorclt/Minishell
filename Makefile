@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 13:01:32 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/22 13:07:25 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,19 +24,19 @@ RM		=		rm -f
 CC		=		clang
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-%.o:				%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
+#%.o: %.c
+#	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
 
 all:	$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME): $(INC) $(OBJS)
 	@clear
 	@$(MAKE) -C libft
 	@echo "Minishell : Libft compiled"
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a -lreadline
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -lreadline -o $(NAME) 	
 	@make wait
 	@#@make norminette
 	@echo "Bonne correction!"
