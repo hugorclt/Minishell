@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 17:00:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/23 21:31:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCT_H
 # include "includes.h"
 
-addback(t_list, lstnew((void)ft_initialize_token(str[i])))
+/*addback(t_list, lstnew((void)ft_initialize_token(str[i])))
 ft_parcour_ma_putain_de_liste()
 {
 	if ((*tmp)->content->flag < 1)
@@ -22,6 +22,7 @@ ft_parcour_ma_putain_de_liste()
 	else
 		ft_cmd(tmp->content);
 }
+*/
 typedef struct s_node
 {
 	int				infile;
@@ -55,11 +56,13 @@ typedef struct s_cmd
 
 typedef struct s_token
 {
-	char	*current_wdir;
 	char	*token;
 	char	**env;
 	int		nb_quotes;
 	int		nb_dquotes;
 }	t_token;
+
+
+
 
 #endif

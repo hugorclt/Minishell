@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/22 14:12:05 by yobougre         ###   ########.fr        #
+#    Updated: 2022/04/23 23:19:35 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS 		=	srcs/main.c\
 				srcs/pipes/utils_pipe.c\
 				srcs/pipes/utils_str.c\
 				srcs/parsing/init_struct.c\
-				srcs/parsing/main_parse.c\
+				srcs/parsing/cmd_to_token.c\
 				srcs/expand/env_expand.c\
 				srcs/dir/dir_prompt.c
 
@@ -35,7 +35,8 @@ OBJS		=		$(SRCS:.c=.o)
 
 INC		= 		includes/minishell.h\
 				includes/struct.h\
-				includes/includes.h
+				includes/includes.h\
+				libft/libft.h
 
 RM		=		rm -f
 CC		=		clang

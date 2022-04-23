@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 13:42:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/23 23:17:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,33 @@ char	*get_pwd()
 	buffer = getcwd(NULL, 0);
 	if (!buffer)
 		return (NULL);
-	else
-		printf("%s\n", buffer);
-	return (0);
-		return (NULL);
 	return (buffer);
 } 
+
+char	*ft_strjoin_char(char *cmd, char c)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	if (!cmd)
+	{
+		ret = malloc(sizeof(char) * 2);
+		if (!ret)
+			return (free(cmd), NULL);
+	}
+	else
+	{
+		ret = malloc(sizeof(char) * ft_strlen(cmd) + 2);
+		if (!ret)
+			return (free(cmd), NULL);
+		while (cmd[i])
+		{
+			ret[i] = cmd[i];
+			i++;
+		}
+	}
+	ret[i] = c;
+	ret[i + 1] = '\0';
+	return (free(cmd), ret);
+}
