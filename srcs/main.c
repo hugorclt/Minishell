@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 13:52:37 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 14:16:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ void	ft_print_lst(t_list *lst)
 		//printf("%s\n", (char *)lst->content->token);
 		lst = lst->next;
 	}
+}
+
+void	ft_sign_handle(int signo)
+{
+	if (signo == SIGINT)
+	{
+		rl_on_new_line();
+		rl_replace_line("\n", 1);
+		rl_clear_history();
+	}
+	else if (signo == SIGQUIT)
+		return ;
 }
 
 int	main(int ac, char **av, char **env)
@@ -35,7 +47,7 @@ int	main(int ac, char **av, char **env)
 		using_history();
 		while (1)
 		{
-			signal(SIGQUIT, SIG_IGN);
+			signal(SIGINT, ft_sign_handle);
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (0);
