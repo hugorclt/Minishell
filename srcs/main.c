@@ -6,11 +6,20 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/23 21:38:17 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 12:48:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_print_lst(t_list *lst)
+{
+	while (lst)
+	{
+		printf("%s\n", lst->content->token);
+		lst = lst->next;
+	}
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -19,6 +28,8 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 
+	lst = malloc(sizeof(t_list));
+	lst = NULL;
 	if (ac == 1)
 	{
 		using_history();
@@ -26,7 +37,7 @@ int	main(int ac, char **av, char **env)
 		{
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			ft_tokenization(&lst, cmd);
-			//printf("%s\n", (char *)lst->content->token->token);
+			ft_print_lst(lst);
 			add_history(cmd);
 		}
 	}

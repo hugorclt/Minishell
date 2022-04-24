@@ -6,12 +6,18 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/23 23:18:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 12:34:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+typedef struct s_list
+{
+	struct s_token	*content;
+	struct s_list	*next;
+}	t_list;
 
 # include "../libft/libft.h"
 # include "struct.h"
