@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/23 21:31:16 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:08:59 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ ft_parcour_ma_putain_de_liste()
 		ft_cmd(tmp->content);
 }
 */
+
+typedef struct s_token
+{
+	char	*token;
+	char	**env;
+	int		nb_quotes;
+	int		nb_dquotes;
+}	t_token;
+
+typedef struct s_list
+{
+	t_token			*content;
+	struct s_list	*next;
+}	t_list;
+
 typedef struct s_node
 {
 	int				infile;
@@ -53,16 +68,5 @@ typedef struct s_cmd
 	char			**args;
 	int				flag;
 }	t_cmd;
-
-typedef struct s_token
-{
-	char	*token;
-	char	**env;
-	int		nb_quotes;
-	int		nb_dquotes;
-}	t_token;
-
-
-
 
 #endif
