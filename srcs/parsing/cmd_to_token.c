@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 13:07:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:17:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	is_operator(char c)
 
 static t_token	ft_init_token(void)
 {
-	t_token token;
-	
+	t_token	token;
+
 	token.nb_dquotes = 0;
 	token.nb_quotes = 0;
 	token.token = NULL;
@@ -70,8 +70,8 @@ void	ft_tokenization(t_list **lst, char *cmd)
 	while (cmd[i])
 	{
 		ft_count_quotes(cmd[i], &token);
-		if (is_operator(cmd[i]) == 1 && token.nb_dquotes % 2 == 0 &&
-			token.nb_quotes % 2 == 0)
+		if (is_operator(cmd[i]) == 1 && token.nb_dquotes % 2 == 0
+			&& token.nb_quotes % 2 == 0)
 			ft_add_token(lst, cmd, &i, &token);
 		token.token = ft_strjoin_char(token.token, cmd[i]);
 		i++;
