@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/24 12:34:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:47:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_list
 {
-	struct s_token	*content;
+	void			*content;
 	struct s_list	*next;
 }	t_list;
 
