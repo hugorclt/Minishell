@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 13:48:12 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:52:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int ac, char **av, char **env)
 		{
 			signal(SIGQUIT, SIG_IGN);
 			cmd = readline(ft_get_last_dir(get_pwd()));
+			if (!cmd)
+				return (0);
 			ft_tokenization(&lst, cmd);
 			//ft_print_lst(lst);
 			add_history(cmd);
