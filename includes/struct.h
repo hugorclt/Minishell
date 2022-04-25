@@ -6,13 +6,37 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 13:30:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:08:59 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 # include "includes.h"
+
+/*addback(t_list, lstnew((void)ft_initialize_token(str[i])))
+ft_parcour_ma_putain_de_liste()
+{
+	if ((*tmp)->content->flag < 1)
+		ft_token;
+	else
+		ft_cmd(tmp->content);
+}
+*/
+
+typedef struct s_token
+{
+	char	*token;
+	char	**env;
+	int		nb_quotes;
+	int		nb_dquotes;
+}	t_token;
+
+typedef struct s_list
+{
+	t_token			*content;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_node
 {
@@ -38,22 +62,11 @@ typedef struct s_garb_col
 
 typedef struct s_cmd
 {
-	struct s_cmd	*next;
 	char			*cmd;
 	char			**path;
 	char			**option;
 	char			**args;
 	int				flag;
 }	t_cmd;
-
-typedef struct s_token
-{
-	char	*current_wdir;
-	char	*token;
-	char	**env;
-	int		nb_quotes;
-	int		nb_dquotes;
-	struct s_token *next;
-}	t_token;
 
 #endif

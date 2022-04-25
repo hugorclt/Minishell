@@ -6,9 +6,8 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:58:56 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 12:14:46 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:19:44 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 14:06:09 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:15:42 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../includes/struct.h"
 # include "../includes/minishell.h"
 # define BUFFER_SIZE 1000000
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+
 
 //char		*ft_strdup_pimp(char *s);
 //char		*get_next_line(int fd);

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/24 17:08:22 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../libft/libft.h"
 # include "struct.h"
 # include "includes.h"
 
@@ -121,5 +122,7 @@ int	main(int ac, char **av, char **env);
 /* -------------------------------------------------------------------------- */
 char	*ft_strjoin_char(char *cmd, char c);
 
+void	ft_tokenization(t_list **lst, char *cmd);
+char	*ft_strjoin_char(char *cmd, char c);
 
 #endif

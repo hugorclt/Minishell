@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/22 13:39:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:19:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_get_last_word(char *str, int len)
 
 char	*ft_get_last_dir(char *str)
 {
-	int	i;
-	int	j;
-	char *ret;
+	int		i;
+	int		j;
+	char	*ret;
 
 	j = 0;
 	i = ft_strlen(str);
