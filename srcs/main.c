@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/25 10:28:16 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/25 20:30:40 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,64 +35,6 @@ void	ft_sign_handle(int signo)
 	else if (signo == SIGQUIT)
 		return ;
 }*/
-
-static int	is_operator(char c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (-1);
-}
-
-static void	ft_count_quotes(char c, t_token *token)
-{
-	if (c == '"')
-		token->nb_dquotes++;
-	if (c == '\'')
-		token->nb_quotes++;
-}
-
-static void	ft_init_token(t_token *token)
-{
-	token->nb_dquotes = 0;
-	token->nb_quotes = 0;
-	token->token = NULL;
-}
-
-static void	ft_token_count(char *cmd, int *i, int *total)
-{
-	if (cmd[(*i) + 1] && cmd[(*i) + 1] == cmd[(*i)])
-	{
-		(*i) += 2;
-		(*total)++;
-	}
-	else
-	{
-		(*i)++;
-		(*total)++;
-	}
-}
-
-static int	ft_total_token(char *cmd)
-{
-	int		total;
-	int		i;
-	t_token	token;
-
-	total = 0;
-	i = 0;
-	ft_init_token(&token);
-	while (cmd[i])
-	{
-		ft_count_quotes(cmd[i], &token);
-		if (is_operator(cmd[i]) == 1 && token.nb_dquotes % 2 == 0
-			&& token.nb_quotes % 2 == 0)
-			ft_token_count(cmd, &i, &total);
-		i++;
-	}
-	total++;
-	return (total);
-}
-
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
