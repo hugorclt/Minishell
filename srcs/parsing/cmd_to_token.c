@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 17:02:25 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/25 09:37:52 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ static void	ft_count_quotes(char c, t_token *token)
 
 static void	ft_add_token(t_list **lst, char *cmd, int *i, t_token *token)
 {
-//	printf("token in add token : %s\n", token->token);
+	printf("token in add token : %s\n", token->token);
 	ft_lstadd_back(lst, ft_lstnew(token));
 	(*token) = ft_init_token();
 	if (cmd[(*i) + 1] && cmd[(*i) + 1] == cmd[(*i)])
 	{
 		token->token = ft_strjoin_char(token->token, cmd[(*i)]);
 		token->token = ft_strjoin_char(token->token, cmd[(*i)]);
-	//	printf("token in add token : %s\n", token->token);
+		printf("token in add token : %s\n", token->token);
 		ft_lstadd_back(lst, ft_lstnew(token));
 		(*i) += 2;
 	}
 	else
 	{
 		token->token = ft_strjoin_char(token->token, cmd[(*i)]);
-	//	printf("token in add token : %s\n", token->token);
+		printf("token in add token : %s\n", token->token);
 		ft_lstadd_back(lst, ft_lstnew(token));
 		(*i)++;
 	}
@@ -76,6 +76,6 @@ void	ft_tokenization(t_list **lst, char *cmd)
 		token.token = ft_strjoin_char(token.token, cmd[i]);
 		i++;
 	}
-	//printf("token in add token : %s\n", token.token);
+	printf("token in add token : %s\n", token.token);
 	ft_lstadd_back(lst, ft_lstnew(&token));
 }
