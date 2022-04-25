@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/25 09:32:32 by yobougre         ###   ########.fr        #
+#    Updated: 2022/04/25 09:39:45 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,10 @@ INC		= 		includes/minishell.h\
 				libft/libft.h
 
 RM		=		rm -f
-<<<<<<< HEAD
+
 CC		=	gcc	
-CFLAGS		=	-Wall -Wextra -Werror -g
-=======
-CC		=		clang
+
 CFLAGS		=	-Wall -Wextra -Werror -g3
->>>>>>> master
 
 #%.o: %.c
 #	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
