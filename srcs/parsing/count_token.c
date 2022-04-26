@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 19:09:28 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 19:42:27 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ static void	ft_token_count(char *cmd, int *i, int *total)
 	else
 		(*total)++;
 	(*i)++;
-	if (ft_isspace(cmd[(*i)]) && cmd[(*i)])
-	{
-		while (ft_isspace(cmd[(*i)]) && cmd[(*i)])
-			(*i)++;
-	}
+	while (ft_isspace(cmd[(*i)]) && cmd[(*i)])
+		(*i)++;
+	(*i)--;
 }
 
 int  ft_is_quote(char c)
