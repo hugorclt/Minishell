@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_to_token_youri.c                               :+:      :+:    :+:   */
+/*   count_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/25 20:30:36 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 11:29:02 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ static void	ft_token_count(char *cmd, int *i, int *total)
 {
 	if (cmd[(*i) + 1] && cmd[(*i) + 1] == cmd[(*i)])
 	{
-		(*i) += 2;
+		(*i)++;
 		(*total)++;
+		printf("je passe pour un double\n");
 	}
 	else
 	{
-		(*i)++;
+		printf("je passe pour un simple operator\n");
 		(*total)++;
 	}
 }
@@ -75,13 +76,14 @@ int	ft_total_token(char *cmd)
 	{
 		if (is_operator(cmd[i]) == 1 )
 				ft_token_count(cmd, &i, &total);
-		if (is_operator(cmd[i]) == -1)
+		else if (is_operator(cmd[i]) == -1)
 		{
 			ft_sweep(cmd, &i, &total);
+//			if (cmd[i] == ' ' && cmd [i + 1])
+			printf("je passe pour une commande\n");
 			total++;
 		}
 		++i;
 	}
 	return (total);
 }
-
