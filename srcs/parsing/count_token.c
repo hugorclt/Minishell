@@ -6,23 +6,24 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 14:52:36 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 18:18:53 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' || c == ' ')
+		return (1);
+	return (0);
+}
 
 int	is_operator(char c)
 {
 	if (c == '|' || c == '>' || c == '<')
 		return (1);
 	return (-1);
-}
-
-static void	ft_init_token(t_token *token) {
-	token->nb_dquotes = 0;
-	token->nb_quotes = 0;
-	token->token = NULL;
 }
 
 static void	ft_token_count(char *cmd, int *i, int *total)
@@ -34,9 +35,15 @@ static void	ft_token_count(char *cmd, int *i, int *total)
 	}
 	else
 		(*total)++;
+	(*i)++;
+	if (ft_isspace(cmd[(*i)]) && cmd[(*i)])
+	{
+		while (ft_isspace(cmd[(*i)]) && cmd[(*i)])
+			(*i)++;
+	}
 }
 
-static int  ft_is_quote(char c)
+int  ft_is_quote(char c)
 {
 	if (c == '\'' || c == '"')
 		return (1);
@@ -63,11 +70,9 @@ int	ft_total_token(char *cmd)
 {
 	int		total;
 	int		i;
-	t_token	token;
 
 	total = 0;
 	i = 0;
-	ft_init_token(&token);
 	while (cmd[i])
 	{
 		if (is_operator(cmd[i]) == 1 )

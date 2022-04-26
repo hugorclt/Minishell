@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 14:14:33 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 17:39:24 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include "struct.h"
 # include "includes.h"
 
+int	ft_parse_tokens(t_token *token, char *cmd);
 int	is_operator(char c);
 int	ft_total_token(char *cmd);
+int  ft_is_quote(char c);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */

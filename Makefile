@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/25 20:31:16 by yuro4ka          ###   ########.fr        #
+#    Updated: 2022/04/26 17:21:33 by yuro4ka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/cmd_to_token.c\
 				srcs/expand/env_expand.c\
 				srcs/parsing/count_token.c\
+				srcs/parsing/parse_token.c\
 				srcs/dir/dir_prompt.c
 
 
@@ -43,7 +44,7 @@ RM		=		rm -f
 
 CC		=	gcc	
 
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
 
 #%.o: %.c
 #	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
