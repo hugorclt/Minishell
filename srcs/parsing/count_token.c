@@ -6,13 +6,13 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 11:29:02 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 14:52:36 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	is_operator(char c)
+int	is_operator(char c)
 {
 	if (c == '|' || c == '>' || c == '<')
 		return (1);
@@ -31,13 +31,9 @@ static void	ft_token_count(char *cmd, int *i, int *total)
 	{
 		(*i)++;
 		(*total)++;
-		printf("je passe pour un double\n");
 	}
 	else
-	{
-		printf("je passe pour un simple operator\n");
 		(*total)++;
-	}
 }
 
 static int  ft_is_quote(char c)
@@ -75,12 +71,10 @@ int	ft_total_token(char *cmd)
 	while (cmd[i])
 	{
 		if (is_operator(cmd[i]) == 1 )
-				ft_token_count(cmd, &i, &total);
+			ft_token_count(cmd, &i, &total);
 		else if (is_operator(cmd[i]) == -1)
 		{
 			ft_sweep(cmd, &i, &total);
-//			if (cmd[i] == ' ' && cmd [i + 1])
-			printf("je passe pour une commande\n");
 			total++;
 		}
 		++i;
