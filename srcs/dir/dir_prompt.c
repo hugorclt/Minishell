@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 13:19:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:09:15 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,12 @@ char	*ft_get_last_dir(char *str)
 	ret[j + 1] = '>';
 	ret[j + 2] = '\0';
 	return (ret);
+}
+
+void	ft_change_dir(char *path)
+{
+	int	ret;
+	ret = chdir(path);
+	if (ret == -1)
+		printf("bash: cd: %s: Not a directory\n", path);
 }

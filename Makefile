@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/24 12:28:24 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/26 13:59:21 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS 		=	srcs/main.c\
 				srcs/pipes/utils_pipe.c\
 				srcs/pipes/utils_str.c\
 				srcs/parsing/init_struct.c\
-				srcs/parsing/cmd_to_token.c\
 				srcs/expand/env_expand.c\
 				srcs/dir/dir_prompt.c
 
