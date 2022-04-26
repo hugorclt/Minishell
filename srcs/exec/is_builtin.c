@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 15:09:11 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 16:28:22 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,31 @@ int	exec_builtin(char **cmd, char **env)
 	else if (ft_strncmp(cmd[0], "echo", ft_strlen(cmd[0])) == 0)
 		ft_echo(cmd);
 	else if (ft_strncmp(cmd[0], "pwd", ft_strlen(cmd[0])) == 0)
-		print_pwd();
+	{
+		if (print_pwd() == -1);
+			return (-1);
+	}
 	else if (ft_strncmp(cmd[0], "export", ft_strlen(cmd[0]) == 0))
-		ft_export(env, cmd);
+	{
+		//remplacer env par le retour de export main !
+		//t_(NOM DE LA STRUCT)->env = ft_export_main(env, cmd);
+		//if (!t_(NOM_STRUCT)->env)
+		//	return (-1);
+		if (!ft_export_main(env, cmd));
+			return (-1);
+	}
 	else if (ft_strncmp(cmd[0], "unset", ft_strlen(cmd[0]) == 0))
-		ft_unset(env, cmd);
+	{
+		//remplacer env par le retour ft_unset !
+		//t_(NOM DE LA STRUC)->env = ft_unset(env, cmd);
+		//if (!t_(NOM_STRUCT)->env)
+		//	return (-1);
+		if (!ft_unset(env, cmd));
+			return (-1);
+	}
 	else if (ft_strncmp(cmd[0], "env", ft_strlen(cmd[0]) == 0))
 		ft_print_tab(env);
 	else if (ft_strncmp(cmd[0], "exit", ft_strlen(cmd[0]) == 0))
 		ft_exit();
+	return (1);
 }

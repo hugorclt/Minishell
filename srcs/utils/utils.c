@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 15:08:43 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:58:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ char	**ft_dup_tab(char **tab)
 	return (ret);
 }
 
-void	print_pwd(void)
+int	print_pwd(void)
 {
-	printf("%s\n", get_pwd());
+	char	*pwd;
+
+	pwd = get_pwd();
+	if (!pwd)
+		return (-1);
+	printf("%s\n", pwd);
+	return (1);
 }
 
 char	*get_pwd(void)

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 15:09:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:55:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_list
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
 char	**ft_dup_tab(char **tab);
-void	print_pwd();
+int		print_pwd();
 char	*get_pwd();
 
 /* -------------------------------------------------------------------------- */
@@ -131,6 +131,6 @@ char	*ft_strjoin_char(char *cmd, char c);
 void	ft_tokenization(t_list **lst, char *cmd);
 void	ft_change_dir(char *path);
 char	*ft_strjoin_char(char *cmd, char c);
-void	ft_print_tab(char **tab)
+void	ft_print_tab(char **tab);
 
 #endif
