@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 19:08:44 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/26 19:09:28 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	ft_sweep(char *cmd, int *i, int *total)
 		}
 		if (is_operator(cmd[(*i)]) == 1)
 			return (ft_token_count(cmd, i, total));
+		(*i)++;
 	}
 }
 
