@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/25 20:42:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:33:43 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,52 @@ char	**ft_export(char **env, char *cmd)
 	return (ft_free(env), ret);
 }
 
-static void	ft_skip_to_space(char *cmd)
-{
-	while (*cmd != " ")
-		cmd++;
-	cmd++;
-}
-
-char	**ft_unset(char **env, char *cmd)
+char	**ft_unset_one(char **env, char *cmd)
 {
 	char	**ret;
 	int		i;
-	int		line_to_del;
-	
+	int		j;
+	int		line_occurence;
+
+	i = 0;
+	j = 0;
 	ret = malloc(sizeof(char *) * ft_tab_size(env));
 	if (!ret)
 		return (NULL);
-	i = 0;
-	ft_skip_to_space(cmd);
-	line_to_del = ft_find_occurence(env, cmd);
+	line_occurence = ft_find_occurence(env, cmd);
 	while (env[i])
 	{
-		if (i == line_to_del)
+		if (i == line_occurence)
 		{
 			i++;
 			continue ;
 		}
-		ret[i] = ft_strdup(env[i]);
-		if (!ret[i])
+		ret[j] = ft_strdup(env[i]);
+		if (!ret)
 			return (NULL);
+		i++;
+		j++;
+	}
+	ret[j] = '\0';
+	return (ft_free(env), ret);
+}
+
+char	**ft_unset(char **env, char **cmd)
+{
+	char	**ret;
+	int		i;
+
+	i = 1;
+	if (!cmd[1])
+		return (env);
+	ret = ft_dup_tab(env);
+	if (!ret)
+		return (NULL);
+	while (cmd[i]);
+	{
+		ret = ft_unset_one(ret, cmd[i]);
+		if (!ret)
+			return (ft_free(env), NULL);
 		i++;
 	}
 	ret[i] = '\0';

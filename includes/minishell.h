@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 14:10:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:09:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ char	*ft_strjoin_char(char *cmd, char c);
 void	ft_tokenization(t_list **lst, char *cmd);
 void	ft_change_dir(char *path);
 char	*ft_strjoin_char(char *cmd, char c);
+void	ft_print_tab(char **tab)
 
 #endif
