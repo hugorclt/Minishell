@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/27 15:52:52 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:55:31 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_strlen(char *s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -60,4 +60,16 @@ int	ft_strchr_pimp(char *s, char c)
 		++i;
 	}
 	return (0);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (-1);
+	while (s1[i] && s2[i] && (s1[i] == s2[i]))
+		++i;
+	return (s1[i] - s2[i]);
 }

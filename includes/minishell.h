@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/27 15:53:00 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:55:17 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_isspace(char c);
 int	is_operator(char c);
 int	ft_total_token(char *cmd);
 int  ft_is_quote(char c);
+int	ft_strcmp(char *s1, char *s2);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
@@ -96,7 +97,7 @@ char	**ft_split(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
 /* -------------------------------------------------------------------------- */
-int	ft_strlen(char *s);
+int	ft_strlen(const char *s);
 char	*ft_strdup_pimp(char *s);
 int	ft_strchr_pimp(char *s, char c);
 
