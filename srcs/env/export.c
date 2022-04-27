@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 16:46:02 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 13:21:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_find_occurence(char **env, char *cmd)
+int	ft_find_occurence(char **env, char *cmd)
 {
 	int	i;
 
@@ -23,6 +23,7 @@ static int	ft_find_occurence(char **env, char *cmd)
 			return (i);
 		i++;
 	}
+	return (-1);
 }
 
 static char	**ft_export_line(char **env, char *cmd)

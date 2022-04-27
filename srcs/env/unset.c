@@ -6,25 +6,24 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 16:14:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 13:28:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	**ft_unset_one(char **env, char *cmd)
+static char	**ft_unset_one(char **env, char *cmd, int j)
 {
 	char	**ret;
 	int		i;
-	int		j;
 	int		line_occurence;
 
 	i = 0;
 	j = 0;
 	ret = malloc(sizeof(char *) * ft_tab_size(env));
-	if (!ret)
-		return (NULL);
 	line_occurence = ft_find_occurence(env, cmd);
+	if (line_occurence == -1 || !ret)
+		return (NULL);
 	while (env[i])
 	{
 		if (i == line_occurence)
@@ -55,7 +54,7 @@ char	**ft_unset(char **env, char **cmd)
 		return (NULL);
 	while (cmd[i]);
 	{
-		ret = ft_unset_one(ret, cmd[i]);
+		ret = ft_unset_one(ret, cmd[i], 0);
 		if (!ret)
 			return (NULL);
 		i++;

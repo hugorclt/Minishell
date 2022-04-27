@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/23 21:31:16 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:37:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ typedef struct s_cmd
 
 typedef struct s_token
 {
-	char	*token;
+	char	**token;
 	char	**env;
 	int		nb_quotes;
 	int		nb_dquotes;
+	char	first_quotes;
 }	t_token;
 
 

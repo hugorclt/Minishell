@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 16:28:22 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:52:44 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	exec_builtin(char **cmd, char **env)
 	else if (ft_strncmp(cmd[0], "env", ft_strlen(cmd[0]) == 0))
 		ft_print_tab(env);
 	else if (ft_strncmp(cmd[0], "exit", ft_strlen(cmd[0]) == 0))
-		ft_exit();
+		return (-2);
 	return (1);
 }
