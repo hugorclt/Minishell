@@ -6,12 +6,12 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:53:42 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/25 09:37:52 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:34:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 static int	is_operator(char c)
 {
 	if (c == '|' || c == '>' || c == '<')
@@ -78,4 +78,4 @@ void	ft_tokenization(t_list **lst, char *cmd)
 	}
 	printf("token in add token : %s\n", token.token);
 	ft_lstadd_back(lst, ft_lstnew(&token));
-}
+}*/

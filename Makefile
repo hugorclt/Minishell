@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/27 15:26:52 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/27 15:35:00 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,10 @@ SRCS 		=	srcs/main.c\
 				srcs/env/export.c\
 				srcs/env/unset.c\
 				srcs/exec/ft_echo.c\
-				srcs/exec/is_builtin.c
-
-
+				srcs/exec/is_builtin.c\
+				srcs/parsing/count_token.c\
+				srcs/parsing/parse_token.c\
+				srcs/dir/dir_prompt.c
 
 OBJS		=		$(SRCS:.c=.o)
 
@@ -42,8 +43,10 @@ INC		= 		includes/minishell.h\
 				libft/libft.h
 
 RM		=		rm -f
-CC		=		clang
-CFLAGS		=	-Wall -Wextra -Werror -g3
+
+CC		=	gcc	
+
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
 
 #%.o: %.c
 #	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)
