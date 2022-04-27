@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 13:21:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:43:02 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_find_occurence(char **env, char *cmd)
 	}
 	return (-1);
 }
-
+/*
 static char	**ft_export_line(char **env, char *cmd)
 {
 	char	**ret;
@@ -45,7 +45,7 @@ static char	**ft_export_line(char **env, char *cmd)
 	ret[i] = ft_strdup(cmd);
 	if (!ret[i])
 		return (NULL);
-	ret[i] = '\0';
+	ret[i] = NULL;
 	return (ft_free(env), ret);
 }
 
@@ -59,7 +59,6 @@ static void	ft_print_export_alpha(char **tab)
 		printf("declare -x %s\n", tab[i]);
 		i++;
 	}
-	return (0);
 }
 
 static int	ft_export_alph(char **env)
@@ -86,8 +85,8 @@ static int	ft_export_alph(char **env)
 		if (!ret[i])
 			return (-1);
 	}
-	ret[i] = '\0';
-	ft_print_export_alph(ret);
+	ret[i] = NULL;
+	ft_print_export_alpha(ret);
 	free(ret);
 	return (0);
 }
@@ -99,16 +98,16 @@ char	**ft_export_main(char **env, char **cmd)
 	ret = NULL;
 	if (!cmd[1])
 	{
-		if (ft_export_alph(env) == -1);
+		if (ft_export_alph(env) == -1)
 			return (NULL);
 	}
 	else
 	{
-		ret = ft_export_line(env, cmd);
+		ret = ft_export_line(env, cmd[]);
 		if (!ret)
 			return (NULL);
 		return (ret);
 	}
 	return (env);
-}
+}*/
 

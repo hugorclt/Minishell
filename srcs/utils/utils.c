@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 15:58:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:43:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_strjoin_char(char *cmd, char c)
 	return (free(cmd), ret);
 }
 
-void	ft_print_tab(char **tab)
+/*void	ft_print_tab(char **tab)
 {
 	int	i;
 
@@ -88,4 +88,4 @@ void	ft_print_tab(char **tab)
 		printf("%s\n", tab[i]);
 		i++;
 	}
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 13:28:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:39:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**ft_unset_one(char **env, char *cmd, int j)
 		i++;
 		j++;
 	}
-	ret[j] = '\0';
+	ret[j] = 0;
 	return (ft_free(env), ret);
 }
 
@@ -52,13 +52,13 @@ char	**ft_unset(char **env, char **cmd)
 	ret = ft_dup_tab(env);
 	if (!ret)
 		return (NULL);
-	while (cmd[i]);
+	while (cmd[i])
 	{
 		ret = ft_unset_one(ret, cmd[i], 0);
 		if (!ret)
 			return (NULL);
 		i++;
 	}
-	ret[i] = '\0';
+	ret[i] = 0;
 	return (ft_free(env), ret);
 }

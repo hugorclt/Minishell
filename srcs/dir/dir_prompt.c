@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/26 14:09:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:49:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_get_last_word(char *str, int len)
+int	ft_get_last_word(char *str, int len)
 {
 	int	i;
 
@@ -52,6 +52,7 @@ char	*ft_get_last_dir(char *str)
 void	ft_change_dir(char *path)
 {
 	int	ret;
+
 	ret = chdir(path);
 	if (ret == -1)
 		printf("bash: cd: %s: Not a directory\n", path);

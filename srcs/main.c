@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:33:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:56:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (0);
-			printf("total token : %d\n", ft_total_token(cmd));
+			//printf("total token : %d\n", ft_total_token(cmd));
 			ft_parse_tokens(&token, cmd);
+			token.nb_dquotes = 0;
+			token.nb_quotes = 0;
+			ft_expand_var(&token, env);
 			ft_print_tab(token.token);
 //			ft_tokenization(&lst, cmd);
 			//ft_print_lst(lst);

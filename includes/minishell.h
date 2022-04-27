@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/27 15:33:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:53:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	**ft_split(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
 /* -------------------------------------------------------------------------- */
-int	ft_strlen(const char *s);
+int	ft_strlen(char *s);
 char	*ft_strdup_pimp(char *s);
 int	ft_strchr_pimp(char *s, char c);
 
@@ -132,5 +132,7 @@ void	ft_change_dir(char *path);
 char	*ft_strjoin_char(char *cmd, char c);
 void	ft_print_tab(char **tab);
 int	ft_find_occurence(char **env, char *cmd);
+void	ft_echo(char **cmd);
+int	ft_expand_var(t_token *token, char **env);
 
 #endif
