@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:26:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:29:41 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_print_lst(t_list *lst)
+/*void	ft_print_lst(t_list *lst)
 {
 	t_list	*tmp;
 
@@ -22,7 +22,7 @@ void	ft_print_lst(t_list *lst)
 		printf("%s\n", tmp->content->token);
 		tmp = tmp->next;
 	}
-}
+}*/
 
 /*void	ft_sign_handle(int signo)
 {

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:26:02 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:29:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ ft_parcour_ma_putain_de_liste()
 
 typedef struct s_token
 {
-	char	*token;
+	char	**token;
 	char	**env;
 	int		nb_quotes;
 	int		nb_dquotes;
+	char	first_quotes;
 }	t_token;
 
 typedef struct s_list
@@ -68,15 +69,6 @@ typedef struct s_cmd
 	char			**args;
 	int				flag;
 }	t_cmd;
-
-typedef struct s_token
-{
-	char	**token;
-	char	**env;
-	int		nb_quotes;
-	int		nb_dquotes;
-	char	first_quotes;
-}	t_token;
 
 
 

@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:58:56 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:24:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:31:59 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*ft_find_env_var(char *token, char **env)
+static char	*ft_find_env_var(char *token)
 {
 	int		i;
 	char	*env_var;
@@ -37,7 +37,7 @@ static char	*ft_replace(char **env, char *token)
 	int		j;
 
 	i = 0;
-	env_var = ft_find_env_var(token, env);
+	env_var = ft_find_env_var(token);
 	if (!env_var)
 		return (NULL);
 	occ = ft_find_occurence(env, env_var);
@@ -68,14 +68,14 @@ static char	*ft_expand_one(char *token, char **env)
 	ret = malloc(sizeof(char) * ft_strlen(token) + 1);
 	while (token[j])
 	{
-		if (token[j] = '$')
+		if (token[j] == '$')
 		{
 			ret = ft_strjoin(ret, ft_replace(env, token + j + 1));
 			if (!ret)
 				return (NULL);
 			last_j = j;
-			j += ft_strlen(ft_find_env_var(token + j + 1, env));
-			if (j = last_j)
+			j += ft_strlen(ft_find_env_var(token + j + 1));
+			if (j == last_j)
 				return (NULL);
 		}
 		ret[i] = token[j];
@@ -88,9 +88,9 @@ static char	*ft_expand_one(char *token, char **env)
 
 static void	ft_count_quotes(t_token *token, char c)
 {
-	if (c = '\'')
+	if (c == '\'')
 		token->nb_quotes++;
-	else if (c = '"')
+	else if (c == '"')
 		token->nb_dquotes++;
 	if (token->nb_quotes % 2 == 0 && token->nb_dquotes % 2 != 0)
 		token->first_quotes = '"';
@@ -114,7 +114,7 @@ int	ft_expand_var(t_token *token, char **env)
 			{
 				if (token->nb_quotes % 2 != 0 && token->nb_dquotes % 2 != 0)
 				{
-					if (token->first_quotes = '\"')
+					if (token->first_quotes == '\"')
 						token->token[i] = ft_expand_one(token->token[i], env);
 				}
 				else if (token->nb_dquotes % 2 != 0)
