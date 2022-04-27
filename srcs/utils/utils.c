@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/24 13:20:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:58:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ char	**ft_dup_tab(char **tab)
 	return (ret);
 }
 
-void	print_pwd(void)
+int	print_pwd(void)
 {
-	printf("%s\n", get_pwd());
+	char	*pwd;
+
+	pwd = get_pwd();
+	if (!pwd)
+		return (-1);
+	printf("%s\n", pwd);
+	return (1);
 }
 
 char	*get_pwd(void)
@@ -70,4 +76,16 @@ char	*ft_strjoin_char(char *cmd, char c)
 	ret[i] = c;
 	ret[i + 1] = '\0';
 	return (free(cmd), ret);
+}
+
+void	ft_print_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
 }
