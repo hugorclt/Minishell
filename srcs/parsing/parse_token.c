@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/27 13:06:48 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/27 15:29:26 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 	return (0);
 }
 
+static void	ft_pass_quote(char *cmd, int *j)
+{
+	(*j)++;
+	while (ft_is_quote(cmd[(*j)]) != 1 && cmd[(*j)])
+		(*j)++;
+}
+
 static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 {
 	int	new_j;
@@ -30,20 +37,14 @@ static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 	while (cmd[new_j])
 	{
 		if (ft_is_quote(cmd[new_j]) == 1)
+			ft_pass_quote(cmd, &new_j);
+		if (is_operator(cmd[new_j + 1]) == 1 && cmd[new_j + 1])
 		{
-			printf("pas ici non plus\n");
-			new_j++;
-			while (ft_is_quote(cmd[new_j]) != 1)
-				new_j++;
-		}
-		if (is_operator(cmd[new_j]) == 1)
-		{
-			printf("pas ici\n");
-			token->token[(*i)] = ft_substr(cmd, *j - 1, new_j - (*j) - 1);
+			token->token[(*i)] = ft_substr(cmd, *j, new_j - (*j));
 			if (!token->token[(*i)])
 				return (-1);
 			(*i)++;
-			(*j) += new_j - 1;
+			(*j) += new_j - (*j);
 			return (0);
 		}
 		new_j++;
@@ -52,8 +53,14 @@ static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 	if (!token->token[(*i)])
 		return (-1);
 	(*i)++;
-	(*j) += new_j;
+	(*j) += new_j - (*j);
 	return (0);
+}
+
+static void	ft_pass_space(char *cmd, int *j)
+{
+	while (ft_isspace(cmd[(*j)]) == 1 && cmd[(*j)])
+		(*j)++;
 }
 
 static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
@@ -74,6 +81,7 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 		(*i)++;
 		(*j)++;
 	}
+	ft_pass_space(cmd, j);
 	return (0);
 }
 
@@ -86,12 +94,14 @@ int	ft_parse_tokens(t_token *token, char *cmd)
 		return (-1);
 	while (cmd[j])
 	{
-		if (is_operator(cmd[j]) == 1)
+		if (ft_isspace(cmd[j]) == 1)
+			ft_pass_space(cmd, &j);
+		else if (is_operator(cmd[j]) == 1)
 		{
 			if (ft_get_operator(token, cmd, &i, &j) == -1)
 				return (-1);
 		}
-		else
+		else if (is_operator(cmd[j]) != 1 && ft_isspace(cmd[j]) != 1)
 		{
 			if (ft_dup_token(token, cmd, &i, &j) == -1)
 				return (-1);

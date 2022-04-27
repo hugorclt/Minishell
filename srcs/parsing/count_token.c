@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/26 19:42:27 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/27 14:46:06 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int	ft_total_token(char *cmd)
 	i = 0;
 	while (cmd[i])
 	{
+		if (ft_isspace(cmd[i]) == 1)
+		{
+			while (ft_isspace(cmd[i]))
+				++i;
+		}
 		if (is_operator(cmd[i]) == 1 )
 			ft_token_count(cmd, &i, &total);
 		else if (is_operator(cmd[i]) == -1)
