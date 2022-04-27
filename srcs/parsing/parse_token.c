@@ -6,33 +6,11 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/26 19:29:13 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/27 13:06:48 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	ft_add_operator(char ***token_lst, char *cmd, int *i, int *j)
-{
-	if (cmd[(*j)] == '|' && *j == 0)
-		return (-1);
-	if (cmd[(*j) + 1] && cmd[(*j) + 1] == cmd[(*j)])
-	{
-		*token_lst[(*i)] = ft_substr(cmd, *j, 2);
-		if (!*token_lst[(*i)])
-			return (-1);
-		(*i)++;
-		(*j)++;
-	}
-	else
-	{
-		*token_lst[(*i)] = ft_substr(cmd, *j, 1);
-		if (!*token_lst[(*i)])
-			return (-1);
-		(*i)++;
-	}
-	return (0);
-}
 
 static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 {
@@ -44,58 +22,58 @@ static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 	return (0);
 }
 
-static int	ft_add_cmd(char **token_lst, char *cmd, int *i, int *j)
+static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 {
-	int start;
-	int	len;
+	int	new_j;
 
-	start = *i;
-	len = *j;
-	(*token_lst) = ft_substr(cmd, start, len);
-	if (!(*token_lst))
+	new_j = (*j);
+	while (cmd[new_j])
+	{
+		if (ft_is_quote(cmd[new_j]) == 1)
+		{
+			printf("pas ici non plus\n");
+			new_j++;
+			while (ft_is_quote(cmd[new_j]) != 1)
+				new_j++;
+		}
+		if (is_operator(cmd[new_j]) == 1)
+		{
+			printf("pas ici\n");
+			token->token[(*i)] = ft_substr(cmd, *j - 1, new_j - (*j) - 1);
+			if (!token->token[(*i)])
+				return (-1);
+			(*i)++;
+			(*j) += new_j - 1;
+			return (0);
+		}
+		new_j++;
+	}
+	token->token[(*i)] = ft_substr(cmd, *j, new_j - (*j));
+	if (!token->token[(*i)])
 		return (-1);
-	(*i)++; 
+	(*i)++;
+	(*j) += new_j;
 	return (0);
 }
 
-static void	ft_incremente(int *i, int *j)
+static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 {
-	(*i)++;
-	(*j)++;
-}
-
-int	ft_sweep(char **token_lst, char *cmd, int *i, int *j)
-{
-	int	size;
-	int	k;
-
-	size = 0;
-	k = (*j);
-	while (cmd[k])
+	if (cmd[(*j) + 1] && cmd[(*j + 1)] ==  cmd[(*j)])
 	{
-		if (ft_is_quote(cmd[k]))
-		{
-			ft_incremente(&k, &size);
-			while (!ft_is_quote(cmd[k]) && cmd[k])
-				ft_incremente(&k, &size);
-			if (is_operator(cmd[k] == 1))
-			{
-				if (ft_add_cmd(&token_lst[(*i)], cmd, j, &k - 1) == -1)
-					return (-1);
-				if (ft_add_operator(&token_lst, cmd, i, &k) == -1)
-					return (-1);
-				return (0);
-			}
-		}
-		ft_incremente(&k, &size);
+		token->token[(*i)] = ft_substr(cmd, *j, 2);
+		if (!token->token[(*i)])
+			return (-1);
+		(*i)++;
+		(*j) += 2;
 	}
-	if (ft_add_cmd(&token_lst[(*i)], cmd, i, &k) == -1)
-		return (-1);
-	*j += k - 1;
-	printf("je passe bien la\n");
-	printf("i : %d\n", *i);
-	printf("token_total : %d\n", ft_total_token(cmd));
-	printf("token : %s\n", token_lst[(*i) - 1]);
+	else
+	{
+		token->token[(*i)] = ft_substr(cmd, *j, 1);
+		if (!token->token[(*i)])
+			return (-1);
+		(*i)++;
+		(*j)++;
+	}
 	return (0);
 }
 
@@ -106,21 +84,17 @@ int	ft_parse_tokens(t_token *token, char *cmd)
 
 	if (ft_init_n_malloc(token, cmd, &i, &j) == -1)
 		return (-1);
-	while (i < ft_total_token(cmd))
+	while (cmd[j])
 	{
-		while (cmd[j])
+		if (is_operator(cmd[j]) == 1)
 		{
-			if (is_operator(cmd[j]) == 1)
-			{
-				if (ft_add_operator(&token->token, cmd, &i, &j) == -1)
-					return (-1); //TODO return with free everything
-			}
-			else if (is_operator(cmd[j]) == -1)
-			{
-				if (ft_sweep(token->token, cmd, &i, &j) == -1)
-					return (-1);
-			}
-			++j;
+			if (ft_get_operator(token, cmd, &i, &j) == -1)
+				return (-1);
+		}
+		else
+		{
+			if (ft_dup_token(token, cmd, &i, &j) == -1)
+				return (-1);
 		}
 	}
 	token->token[i] = NULL;
