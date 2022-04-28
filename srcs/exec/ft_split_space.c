@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/28 16:32:57 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 21:28:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	ft_count(t_token *token, char *cmd, char c)
 	}
 	return (count);
 }
+<<<<<<< HEAD
 
 static int	ft_strlen_split_space(char *cmd, t_token *token)
 {
@@ -86,3 +87,5 @@ char	**ft_split_space(t_token *token, char *cmd, char c)
 	ret[i] = 0;
 	return (ret);
 }
+=======
+>>>>>>> hugo

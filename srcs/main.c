@@ -6,7 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/28 16:35:12 by hrecolet         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/28 16:23:17 by hrecolet         ###   ########.fr       */
+>>>>>>> hugo
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +39,7 @@ void	ft_sign_handle(int signo)
 	else if (signo == SIGQUIT)
 		return ;
 }*/
+
 void	ft_print_tab(char **tokens)
 {
 	int	i;
@@ -68,16 +73,12 @@ int	main(int ac, char **av, char **env)
 			if (!cmd)
 				return (0);
 			//printf("total token : %d\n", ft_total_token(cmd));
-			if (ft_parse_tokens(&token, cmd) == -1)
-				continue ;
-			if (ft_check_token(&token) == -1)
-			{
-				ft_free(token.token);
-				continue ;
-			}
-			token.nb_dquotes = 0;
-			token.nb_quotes = 0;
+			ft_parse_tokens(&token, cmd);
+			ft_reset_quotes(&token);
 			ft_expand_var(&token, env);
+			ft_reset_quotes(&token);
+			ft_split_space(&token, ' ');
+			//ft_is
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}
