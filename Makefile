@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/04/27 15:49:38 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/04/28 15:18:56 by yuro4ka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS 		=	srcs/main.c\
 				srcs/exec/is_builtin.c\
 				srcs/parsing/count_token.c\
 				srcs/parsing/parse_token.c\
+				srcs/utils/error.c\
+				srcs/parsing/token_check.c\
 				srcs/dir/dir_prompt.c
 
 OBJS		=		$(SRCS:.c=.o)

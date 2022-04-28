@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/28 12:38:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:32:45 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	is_operator(char c);
 int	ft_total_token(char *cmd);
 int  ft_is_quote(char c);
 int	ft_strcmp(char *s1, char *s2);
+void	ft_print_error(char *token);
+int	ft_is_operator(char *token);
+int	ft_check_token(t_token *token);
+void	ft_print_ofpc(void);
+int	ft_check_quote(char *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
