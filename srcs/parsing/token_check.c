@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/28 16:08:51 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/28 16:26:36 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,15 @@ int	ft_check_quote(char *token)
 
 int	ft_is_operator(char *token)
 {
-	if (!ft_strcmp(token, "|"))
+	if (ft_strcmp(token, "|") == 0)
 		return (1);
-	else if (!ft_strcmp(token, "<<"))
+	else if (ft_strcmp(token, "<<") == 0)
 		return (1);
-	else if (!ft_strcmp(token, ">>"))
+	else if (ft_strcmp(token, ">>") == 0)
 		return (1);
-	else if (!ft_strcmp(token, ">"))
+	else if (ft_strcmp(token, ">") == 0)
 		return (1);
-	else if (!ft_strcmp(token, "<"))
+	else if (ft_strcmp(token, "<") == 0)
 		return (1);
 	else
 		return (-1);
@@ -132,14 +132,14 @@ int	ft_check_token(t_token *token)
 
 	i = 0;
 	if (token->token[i + 1] && ft_is_operator(token->token[i]) == 1 &&  
-			ft_is_operator(token->token[i + 1]))
+			ft_is_operator(token->token[i + 1]) == 1)
 		return (ft_print_error(token->token[i + 1]), -1);
 	while (token->token[i])
 	{
 		if (ft_is_operator(token->token[i]) == 1 && token->token[i + 1] && 
-				ft_is_operator(token->token[i + 1]))
+				ft_is_operator(token->token[i + 1]) == 1)
 		{
-			if (ft_strcmp(token->token[i], token->token[i + 1]))
+			if (ft_strcmp(token->token[i], token->token[i + 1]) != 0)
 				return (ft_print_error(token->token[i + 1]), -1);
 		}
 		++i;
