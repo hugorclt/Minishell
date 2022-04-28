@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/28 16:28:22 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:24:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,41 +48,4 @@ static int	ft_count(t_token *token, char *cmd, char c)
 			i++;
 	}
 	return (count);
-}
-
-static int	ft_strlen_split_space(char *cmd, t_token *token)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd)
-		return (0);
-	while (cmd[i] && cmd[i] != ' ' && token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 != 0)
-	{
-		ft_quoted(token);
-		i++;
-	}
-	return (i);
-}
-
-static char	*ft_dfill(t_token *token, char *cmd, char c)
-{
-	
-}
-
-char	**ft_split_space(t_token *token, char *cmd, char c)
-{
-	char	**ret;
-	int		i;
-
-	i = 0;
-	ret = malloc(sizeof(char) * ft_count(token, cmd, c));
-	while (i < ft_count(token, cmd, c))
-	{
-		ft_reset_quotes(token);
-		ret[i] = ft_dfill(token, cmd, c);
-		i++;
-	}
-	ret[i] = 0;
-	return (ret);
 }
