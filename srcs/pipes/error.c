@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:33:01 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:42:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:12:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ void	ft_command_nt_found(char *cmd)
 void	ft_putstr_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (s1[i] == s2[i] && s2[i] && s2[i])
-	{
-		if (s1[i + 1] == '\n')
-			break ;
-		++i;
-	}
-	return (s1[i] - s2[i]);
 }
 
 void	ft_close(void)

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/27 17:55:17 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:12:12 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	**ft_split_path(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 void	ft_command_nt_found(char *cmd);
 void	ft_putstr_fd(char *s, int fd);
-int	ft_strcmp(char *s1, char *s2);
 void	ft_close(void);
 void	ft_heredoc_infile(t_node *params);
 
