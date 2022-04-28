@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/27 17:12:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/28 16:08:51 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,111 @@ if first token is an operator the second can't be one too
 
 */
 //
-static void	ft_print_error(char *token)
-{
-	printf("bash: syntax error near unexpected token `%s'\n", token);
-}
-
 static int	ft_theres_two_types(char *token)
 {
+	int	i;
+	int	sgle;
+	int	dble;
+
+	i = 0;
+	sgle = 0;
+	dble = 0;
+	while (token[i])
+	{
+		if (token[i] == '"')
+			dble++;
+		if (token[i] == '\'')
+			sgle++;
+		i++;
+	}
+	if (!(dble % 2) && !(sgle % 2) && dble && sgle)
+		return (2);
+	if (!(dble % 2) && !(sgle % 2) && (dble || sgle))
+		return (1);
+	return (0);
 }
 
 static int	ft_theres_quotes(char *token)
 {
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (token[i] == '\'' || token[i] == '"')
+			return (1);
+		++i;
+	}
+	return (0);
 }
 
-static int	ft_check_quote(char *token)
+static int	ft_check_end(char *token, int *i, char c, char b)
 {
+	int	count;
+
+	count = 0;
+	while (token[(*i)] != c && token[(*i)])
+	{
+		if (token[(*i)] == b)
+			count++;
+		++(*i);
+	}
+	if (count % 2)
+		return (-1);
+	return (0);
+}
+
+static int	ft_check(char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (token[i] == '"')
+		{
+			if (ft_check_end(token, &i, '"', '\'') == -1)
+				return (-1);
+		}
+		else if (token[i] == '\'')
+		{
+			if (ft_check_end(token, &i, '\'', '"') == -1)
+				return (-1);
+		}
+		++i;
+	}
+	return (0);
+}
+
+int	ft_check_quote(char *token)
+{
+	if (ft_theres_quotes(token))
+	{
+		if (ft_theres_two_types(token) == 2)
+		{
+			if (ft_check(token) == -1)
+				return (-1);
+		}
+		else if (ft_theres_two_types(token) == 0)
+			return (-1);
+	}
+	return (1);
+}
+
+int	ft_is_operator(char *token)
+{
+	if (!ft_strcmp(token, "|"))
+		return (1);
+	else if (!ft_strcmp(token, "<<"))
+		return (1);
+	else if (!ft_strcmp(token, ">>"))
+		return (1);
+	else if (!ft_strcmp(token, ">"))
+		return (1);
+	else if (!ft_strcmp(token, "<"))
+		return (1);
+	else
+		return (-1);
 }
 
 int	ft_check_token(t_token *token)
@@ -41,17 +131,18 @@ int	ft_check_token(t_token *token)
 	int	i;
 
 	i = 0;
-	if (is_operator(token->token[i]) == 1 && token->token[i + 1] && 
-			is_operator(token->token[i + 1]))
+	if (token->token[i + 1] && ft_is_operator(token->token[i]) == 1 &&  
+			ft_is_operator(token->token[i + 1]))
 		return (ft_print_error(token->token[i + 1]), -1);
 	while (token->token[i])
 	{
-		if (is_operator(token->token[i]) == 1 && token->token[i + 1] && 
-				is_operator(token->token[i + 1]))
+		if (ft_is_operator(token->token[i]) == 1 && token->token[i + 1] && 
+				ft_is_operator(token->token[i + 1]))
 		{
 			if (ft_strcmp(token->token[i], token->token[i + 1]))
-				return (ft_print_error(token->token[i + 1]), -1)
+				return (ft_print_error(token->token[i + 1]), -1);
 		}
 		++i;
 	}
+	return (1);
 }

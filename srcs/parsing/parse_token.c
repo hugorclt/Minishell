@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/27 15:29:26 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/04/28 16:07:02 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 {
+	if (ft_total_token(cmd) == -1)
+		return (-1);
 	token->token = malloc(sizeof(char *) * (ft_total_token(cmd) + 1));
 	if (!token->token)
 		return (-1);
