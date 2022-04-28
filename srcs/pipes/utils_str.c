@@ -6,19 +6,19 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/27 17:55:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:41:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
-		return (i);
+		return (0);
 	while (s[i])
 		++i;
 	return (i);
