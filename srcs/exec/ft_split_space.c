@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/28 21:28:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/04/29 19:52:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,43 +49,87 @@ static int	ft_count(t_token *token, char *cmd, char c)
 	}
 	return (count);
 }
-<<<<<<< HEAD
 
-static int	ft_strlen_split_space(char *cmd, t_token *token)
+static int	is_quoted(char *cmd, int i)
 {
-	int	i;
+	int	j;
+	int	count_d;
+	int	count;
 
-	i = 0;
+	count_d = 0;
+	count = 0;
+	j = 0;
 	if (!cmd)
 		return (0);
-	while (cmd[i] && cmd[i] != ' ' && token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 != 0)
+	while (j < i)
 	{
-		ft_quoted(token);
-		i++;
+		if (cmd[j] == '"')
+			count_d++;
+		else if (cmd[j] == '\'')
+			count++;
+		j++;
 	}
-	return (i);
+	if (count_d % 2 != 0 || count % 2 != 0)
+		return (1);
+	else
+		return (0);
 }
 
-static char	*ft_dfill(t_token *token, char *cmd, char c)
+static char	*ft_fill(char *s, int size, int *index)
 {
-	
+	char	*output;
+	int		i;
+
+	output = malloc(sizeof(char) * (size + 1));
+	if (!output)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		output[i] = s[*index];
+		i++;
+		*index += 1;
+	}
+	output[i] = '\0';
+	return (output);
+}
+
+static char	**ft_dfill(char **output, char *s, char c)
+{
+	int	i;
+	int	j;
+	int	p;
+
+	i = 0;
+	p = 0;
+	while (s[i])
+	{
+		if (s[i] != c && s[i])
+		{
+			j = 0;
+			while ((s[i + j] && s[i + j] != c) || (s[i + j] == c && is_quoted(s, i + j) == 1))
+				j++;
+			output[p] = ft_fill(s, j, &i);
+			if (!output[p])
+				return (ft_free(output), NULL);
+			p++;
+		}
+		else
+			i++;
+	}
+	output[p] = NULL;
+	return (output);
 }
 
 char	**ft_split_space(t_token *token, char *cmd, char c)
 {
 	char	**ret;
-	int		i;
 
-	i = 0;
-	ret = malloc(sizeof(char) * ft_count(token, cmd, c));
-	while (i < ft_count(token, cmd, c))
-	{
-		ft_reset_quotes(token);
-		ret[i] = ft_dfill(token, cmd, c);
-		i++;
-	}
-	ret[i] = 0;
-	return (ret);
+	ret = malloc(sizeof(char *) * ft_count(token, cmd, c) + 10);
+	ft_reset_quotes(token);
+	printf("%d\n", ft_count(token, cmd, c));
+	if (!ret)
+		return (NULL);
+	ft_reset_quotes(token);
+	return (ft_dfill(ret, cmd, c));
 }
-=======
->>>>>>> hugo
