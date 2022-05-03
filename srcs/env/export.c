@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/03 15:40:56 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:41:50 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	ft_print_export_alpha(char **tab)
 		i++;
 	}
 }
-*/
+
 static int	ft_find_small(char **export, int cmp)
 {
 	int	i
@@ -83,7 +83,7 @@ int	ft_export_alph(char **env)
 		}
 	}
 }
-/*
+
 char	**ft_export_main(char **env, char **cmd)
 {
 	char	**ret;
