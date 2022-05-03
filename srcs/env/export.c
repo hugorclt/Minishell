@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/28 17:22:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/03 15:40:56 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,30 @@ static void	ft_print_export_alpha(char **tab)
 		i++;
 	}
 }
-
-static int	ft_export_alph(char **env)
+*/
+static int	ft_find_small(char **export, int cmp)
 {
-	char	**ret;
+	int	i
+}
+int	ft_export_alph(char **env)
+{
+	char	**export;
 	int		i;
 	int		j;
-	int		min;
 
-	ret = malloc(sizeof(char *) * ft_tab_size(env) + 1);
-	if (!ret)
+	export = ft_dup_tab(env);
+	if (!export)
 		return (-1);
-	i = -1;
-	while (env[i++])
+	i = 0;
+	while (env[i])
 	{
-		j = i;
-		while (env[j])
+		j = i + 1;
+		while (j < ft_tab_size(env) - 1)
 		{
-			if (ft_strncmp(env[i], env[j], ft_strlen(env[j]) < 0))
-				min = j;
-			j++;
 		}
-		ret[i] = ft_strdup(env[min]);
-		if (!ret[i])
-			return (-1);
 	}
-	ret[i] = NULL;
-	ft_print_export_alpha(ret);
-	free(ret);
-	return (0);
 }
-
+/*
 char	**ft_export_main(char **env, char **cmd)
 {
 	char	**ret;
