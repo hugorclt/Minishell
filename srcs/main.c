@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/04 16:38:16 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:41:09 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,6 @@ void	ft_print_tab(char **tokens)
 		printf("%s\n", tokens[i++]);
 }
 
-static int	ft_export_alph(char **env)
-{
-	int		i;
-	int		j;
-	int		min;
-
-	i = 0;
-	while (env[i])
-	{
-		j = i;
-		while (env[j])
-		{
-			if (ft_strncmp(env[i], env[j], ft_strlen(env[j]) < 0))
-				min = j;
-			j++;
-		}
-		i++;
-		printf("export %s\n", env[min]);
-	}
-	return (0);
-}
 
 int	main(int ac, char **av, char **env)
 {
@@ -75,7 +54,7 @@ int	main(int ac, char **av, char **env)
 	t_list	*lst;
 	t_token token;
 	(void)av;
-//	(void)env;
+	(void)env;
 
 	lst = malloc(sizeof(t_list));
 	lst = NULL;
@@ -90,10 +69,6 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (0);
-<<<<<<< HEAD
-			//printf("total token : %d\n", ft_total_token(cmd));
-			ft_export_alph(env);
-			printf("voila\n");
 			if (ft_parse_tokens(&token, cmd) == -1)
 				continue ;
 			if (ft_check_token(&token) == -1)
@@ -101,19 +76,9 @@ int	main(int ac, char **av, char **env)
 				ft_free(token.token);
 				continue ;
 			}
-			token.nb_dquotes = 0;
-			token.nb_quotes = 0;
-			ft_expand_var(&token, env);
-=======
 			printf("total token : %d\n", ft_total_token(cmd));
 			ft_parse_tokens(&token, cmd);
-			//ft_reset_quotes(&token);
-			//ft_expand_var(&token, env);
-			//ft_reset_quotes(&token);
-			//ft_reset_quotes(&token);
-			//token.token = ft_split_space(&token, token.token[0], ' ');
 			ft_print_tab(token.token);
->>>>>>> master
 			add_history(cmd);
 		}
 	}
