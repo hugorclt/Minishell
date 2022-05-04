@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/28 16:01:42 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:08:13 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_total_token(char *cmd)
 	i = 0;
 	if (ft_check_quote(cmd) == -1)
 		return (ft_print_ofpc(), -1);
-	while (cmd[i])
+	while (i < ft_strlen(cmd))
 	{
 		if (ft_isspace(cmd[i]) == 1)
 		{
