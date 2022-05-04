@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:33:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:48:40 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_token
 	int		nb_quotes;
 	int		nb_dquotes;
 	char	first_quotes;
+	char	old_first_quotes;
 }	t_token;
 
 typedef struct s_list

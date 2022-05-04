@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/29 19:52:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:06:20 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_quoted(t_token *token, char c)
+void	ft_quoted(t_token *token, char c)
 {
 	if (c == '\'')
 		token->nb_quotes++;

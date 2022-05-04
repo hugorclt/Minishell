@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/29 15:13:06 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:23:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	ft_reset_quotes(t_token *token);
 /*                             FILE = srcs/main.c                             */
 /* -------------------------------------------------------------------------- */
 int	main(int ac, char **av, char **env);
+char	*ft_unquoting(t_token *token, char *str);
+void	ft_quoted(t_token *token, char c);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/init_struct.c                      */
