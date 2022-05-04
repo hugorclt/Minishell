@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/28 16:07:02 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:35:03 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 	{
 		if (ft_is_quote(cmd[new_j]) == 1)
 			ft_pass_quote(cmd, &new_j);
-		if (is_operator(cmd[new_j + 1]) == 1 && cmd[new_j + 1])
+		if (is_operator(cmd[new_j]) == 1 && cmd[new_j])
 		{
 			token->token[(*i)] = ft_substr(cmd, *j, new_j - (*j));
 			if (!token->token[(*i)])
@@ -98,7 +98,7 @@ int	ft_parse_tokens(t_token *token, char *cmd)
 	{
 		if (ft_isspace(cmd[j]) == 1)
 			ft_pass_space(cmd, &j);
-		else if (is_operator(cmd[j]) == 1)
+		if (is_operator(cmd[j]) == 1)
 		{
 			if (ft_get_operator(token, cmd, &i, &j) == -1)
 				return (-1);
