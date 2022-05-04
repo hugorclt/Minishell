@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/04 16:39:29 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/04 17:53:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
+int	ft_find_index(char **export, int size);
 int	ft_parse_tokens(t_token *token, char *cmd);
 int	ft_isspace(char c);
 int	is_operator(char c);
@@ -28,6 +29,7 @@ int	ft_is_operator(char *token);
 int	ft_check_token(t_token *token);
 void	ft_print_ofpc(void);
 int	ft_check_quote(char *token);
+int	ft_export_alph(char **env);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */

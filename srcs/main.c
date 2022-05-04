@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/04 16:41:09 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/04 19:03:32 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_print_tab(char **tokens)
 	while (tokens[i])
 		printf("%s\n", tokens[i++]);
 }
-
+/*
+*/
 
 int	main(int ac, char **av, char **env)
 {
@@ -76,8 +77,6 @@ int	main(int ac, char **av, char **env)
 				ft_free(token.token);
 				continue ;
 			}
-			printf("total token : %d\n", ft_total_token(cmd));
-			ft_parse_tokens(&token, cmd);
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}

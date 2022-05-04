@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/03 15:41:50 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:00:48 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,82 +25,69 @@ int	ft_find_occurence(char **env, char *cmd)
 	}
 	return (-1);
 }
-/*
-static char	**ft_export_line(char **env, char *cmd)
-{
-	char	**ret;
-	int		i;
 
-	i = 0;
-	ret = malloc(sizeof(char *) * ft_tab_size(env) + 2);
-	if (!ret)
-		return (NULL);
-	while (ret[i])
-	{
-		ret[i] = ft_strdup(env[i]);
-		if (!ret[i])
-			return (NULL);
-		i++;
-	}
-	ret[i] = ft_strdup(cmd);
-	if (!ret[i])
-		return (NULL);
-	ret[i] = NULL;
-	return (ft_free(env), ret);
+static void	ft_print_free(char **export, int i)
+{
+	printf("declare -x %s\n", export[i]);
+	free(export[i]);
+	export[i] = NULL;
 }
 
-static void	ft_print_export_alpha(char **tab)
+static int	ft_first(char **export, int size)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (i < size)
 	{
-		printf("declare -x %s\n", tab[i]);
-		i++;
+		if (export[i] != NULL)
+			return (i);
+		++i;
 	}
+	return (0);
 }
 
-static int	ft_find_small(char **export, int cmp)
+int	ft_find_index(char **export, int size)
 {
-	int	i
+	int	i;
+	int	j;
+	int	index;
+
+	i = 0;
+	index = ft_first(export, size);
+	while (i < size)
+	{
+		if (export[i])
+		{
+			j = 0;
+			while (j < size)
+			{
+				if (export[j] && i != j && ft_strcmp(export[i], export[j]) < 0)
+				{
+					if (ft_strcmp(export[index], export[i]) > 0)
+						index = i;
+				}
+				j++;
+			}
+		}
+		++i;
+	}
+	return (index);
 }
+
 int	ft_export_alph(char **env)
 {
 	char	**export;
 	int		i;
-	int		j;
 
 	export = ft_dup_tab(env);
 	if (!export)
 		return (-1);
 	i = 0;
-	while (env[i])
+	while (i < ft_tab_size(env) -  1)
 	{
-		j = i + 1;
-		while (j < ft_tab_size(env) - 1)
-		{
-		}
+		ft_print_free(export, ft_find_index(export, ft_tab_size(env)));
+		++i;
 	}
+	return (0);
 }
-
-char	**ft_export_main(char **env, char **cmd)
-{
-	char	**ret;
-	
-	ret = NULL;
-	if (!cmd[1])
-	{
-		if (ft_export_alph(env) == -1)
-			return (NULL);
-	}
-	else
-	{
-		ret = ft_export_line(env, cmd[]);
-		if (!ret)
-			return (NULL);
-		return (ret);
-	}
-	return (env);
-}*/
-
