@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/29 15:55:12 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:07:16 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (0);
-			//printf("total token : %d\n", ft_total_token(cmd));
-			ft_parse_tokens(&token, cmd);
-			ft_reset_quotes(&token);
-			ft_expand_var(&token, env);
-			ft_reset_quotes(&token);
-			ft_reset_quotes(&token);
-			token.token = ft_split_space(&token, token.token[0], ' ');
-			ft_print_tab(token.token);
+			printf("total token : %d\n", ft_total_token(cmd));
+			//ft_parse_tokens(&token, cmd);
+			//ft_reset_quotes(&token);
+			//ft_expand_var(&token, env);
+			//ft_reset_quotes(&token);
+			//ft_reset_quotes(&token);
+			//token.token = ft_split_space(&token, token.token[0], ' ');
+			//ft_print_tab(token.token);
 			add_history(cmd);
 		}
 	}
