@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 17:37:44 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 19:06:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_token
 	int		nb_quotes;
 	int		nb_dquotes;
 	char	first_quotes;
+	char	old_first_quotes;
 }	t_token;
 
 typedef struct s_list
@@ -61,15 +62,6 @@ typedef struct s_garb_col
 	void				*content;
 	struct s_garb_col	*next;
 }	t_garb;
-
-typedef struct s_cmd
-{
-	char			*cmd;
-	char			**path;
-	char			**option;
-	char			**args;
-	int				flag;
-}	t_cmd;
 
 
 

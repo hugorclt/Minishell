@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/04 16:38:40 by yuro4ka          ###   ########.fr        #
+#    Updated: 2022/05/05 19:08:07 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/init_struct.c\
 				srcs/expand/env_expand.c\
 				srcs/env/export.c\
-				srcs/env/unset.c\
 				srcs/exec/ft_echo.c\
 				srcs/exec/is_builtin.c\
 				srcs/parsing/count_token.c\
@@ -36,7 +35,8 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/token_check.c\
 				srcs/exec/ft_split_space.c\
 				srcs/dir/dir_prompt.c\
-				srcs/utils/utils_2.c
+				srcs/utils/utils_2.c\
+				srcs/parsing/ft_unquoting.c
 
 OBJS		=		$(SRCS:.c=.o)
 

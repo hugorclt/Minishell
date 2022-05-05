@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/29 19:52:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/05 18:32:17 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_quoted(t_token *token, char c)
+void	ft_quoted(t_token *token, char c)
 {
 	if (c == '\'')
 		token->nb_quotes++;
@@ -121,15 +121,14 @@ static char	**ft_dfill(char **output, char *s, char c)
 	return (output);
 }
 
-char	**ft_split_space(t_token *token, char *cmd, char c)
+char	**ft_split_space(t_token *token, char *cmd)
 {
 	char	**ret;
 
-	ret = malloc(sizeof(char *) * ft_count(token, cmd, c) + 10);
+	ret = malloc(sizeof(char *) * ft_count(token, cmd, ' ') + 10);
 	ft_reset_quotes(token);
-	printf("%d\n", ft_count(token, cmd, c));
 	if (!ret)
 		return (NULL);
 	ft_reset_quotes(token);
-	return (ft_dfill(ret, cmd, c));
+	return (ft_dfill(ret, cmd, ' '));
 }

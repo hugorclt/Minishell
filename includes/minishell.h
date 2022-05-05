@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/04 17:53:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 19:06:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_close_all(t_node *params);
 int	ft_fork(t_node *params, char **envp, char *av);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
-char	**ft_split_space(t_token *token, char *s, char c);
+char	**ft_split_space(t_token *token, char *s);
 void	ft_wrong_args(void);
 void	ft_reset_quotes(t_token *token);
 
@@ -126,6 +126,8 @@ void	ft_reset_quotes(t_token *token);
 /*                             FILE = srcs/main.c                             */
 /* -------------------------------------------------------------------------- */
 int	main(int ac, char **av, char **env);
+char	*ft_unquoting(t_token *token, char *str);
+void	ft_quoted(t_token *token, char c);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/init_struct.c                      */

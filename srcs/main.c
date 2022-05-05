@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 17:38:12 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 19:07:20 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_print_tab(char **tokens)
 		printf("%s\n", tokens[i++]);
 }
 
-static int	ft_test_export(t_token *token)
+int	ft_test_export(t_token *token)
 {
 	if (token->token[0])
 	{
@@ -71,12 +71,24 @@ static int	ft_init_env(char **env, t_token *token)
 	return (0);
 }
 
+static int	ft_exec_parsing(t_token *token, char *cmd, char **env)
+{
+	if (ft_parse_tokens(token, cmd) == -1)
+		return (ft_free(token->token), -1);
+	if (ft_check_token(token) == -1)
+		return (ft_free(token->token), -1);
+	if (ft_expand_var(token, env) == -1)
+		return (ft_free(token->token), -1);
+	return (0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
 	t_token token;
 	(void)av;
 
+	token.token = NULL;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &token) < 0)
@@ -87,15 +99,11 @@ int	main(int ac, char **av, char **env)
 			//signal(SIGINT, ft_sign_handle);
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
-				return (0);
-			if (ft_parse_tokens(&token, cmd) == -1)
-				continue ;
-			if (ft_check_token(&token) == -1)
-			{
-				ft_free(token.token);
-				continue ;
-			}
-			if ()
+				return (free(cmd), 1);
+			if (ft_exec_parsing(&token, cmd, env) == -1)
+				return (free(cmd), 1);
+			//token.token = ft_split_space(&token, token.token[0], ' ');
+			//token.token[0] = ft_unquoting(&token, token.token[0]);
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}
