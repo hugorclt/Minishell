@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/04 19:03:32 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 12:32:17 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,40 @@ void	ft_print_tab(char **tokens)
 	while (tokens[i])
 		printf("%s\n", tokens[i++]);
 }
-/*
-*/
+
+static int	ft_test_export(t_token *token)
+{
+	if (token->token[0])
+	{
+		if (ft_strcmp(token->token[0], "export") == 0)
+		{
+			if (ft_export_alph(token->env) < 0)
+				return (-1);
+		}
+	}
+	return (0);
+}
+
+static int	ft_init_env(char **env, t_token *token)
+{
+	token->token = NULL;
+	token->env = NULL;
+	token->env = ft_dup_tab(env);
+	if (!token->env)
+		return (-1);
+	return (0);
+}
 
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
-	t_list	*lst;
 	t_token token;
 	(void)av;
-	(void)env;
 
-	lst = malloc(sizeof(t_list));
-	lst = NULL;
-	(void)lst;
-	token.token = NULL;
 	if (ac == 1)
 	{
+		if (ft_init_env(env, &token) < 0)
+			return (1);
 		using_history();
 		while (1)
 		{
@@ -77,6 +94,7 @@ int	main(int ac, char **av, char **env)
 				ft_free(token.token);
 				continue ;
 			}
+			if ()
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}
