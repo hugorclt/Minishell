@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/04 18:37:16 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/05 19:02:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,23 @@ void	ft_print_tab(char **tokens)
 		printf("%s\n", tokens[i++]);
 }
 
+static int	ft_exec_parsing(t_token *token, char *cmd, char **env)
+{
+	if (ft_parse_tokens(token, cmd) == -1)
+		return (ft_free(token->token), -1);
+	if (ft_check_token(token) == -1)
+		return (ft_free(token->token), -1);
+	if (ft_expand_var(token, env) == -1)
+		return (ft_free(token->token), -1);
+	return (0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
-	t_list	*lst;
 	t_token token;
 	(void)av;
-	(void)env;
 
-	lst = malloc(sizeof(t_list));
-	lst = NULL;
-	(void)lst;
 	token.token = NULL;
 	if (ac == 1)
 	{
@@ -67,14 +73,11 @@ int	main(int ac, char **av, char **env)
 			//signal(SIGINT, ft_sign_handle);
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
-				return (0);
-			printf("total token : %d\n", ft_total_token(cmd));
-			ft_parse_tokens(&token, cmd);
-			ft_reset_quotes(&token);
-			ft_expand_var(&token, env);
-			//ft_reset_quotes(&token);
+				return (free(cmd), 1);
+			if (ft_exec_parsing(&token, cmd, env) == -1)
+				return (free(cmd), 1);
 			//token.token = ft_split_space(&token, token.token[0], ' ');
-			token.token[0] = ft_unquoting(&token, token.token[0]);
+			//token.token[0] = ft_unquoting(&token, token.token[0]);
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}
