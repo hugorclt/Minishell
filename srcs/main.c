@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 12:32:17 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 17:38:12 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int	ft_init_env(char **env, t_token *token)
 {
 	token->token = NULL;
 	token->env = NULL;
+	token->tmp_var = NULL;
 	token->env = ft_dup_tab(env);
 	if (!token->env)
 		return (-1);

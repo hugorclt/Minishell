@@ -6,15 +6,11 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/04 19:37:37 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/05 17:39:50 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	**ft_new_env(char **env)
-{
-}
 
 char	**ft_add_var(char *var, char **env)
 {

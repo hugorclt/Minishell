@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/04/27 15:33:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:37:44 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_token
 {
 	char	**token;
 	char	**env;
+	char	**tmp_var;
 	int		nb_quotes;
 	int		nb_dquotes;
 	char	first_quotes;
