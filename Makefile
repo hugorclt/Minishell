@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/05 19:08:07 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/06 18:58:27 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS 		=	srcs/main.c\
 				srcs/exec/ft_split_space.c\
 				srcs/dir/dir_prompt.c\
 				srcs/utils/utils_2.c\
-				srcs/parsing/ft_unquoting.c
+				srcs/parsing/ft_unquoting.c\
+				srcs/exec/create_list.c
 
 OBJS		=		$(SRCS:.c=.o)
 

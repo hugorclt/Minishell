@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:20:16 by yobougre          #+#    #+#             */
-/*   Updated: 2021/11/24 18:06:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/06 15:55:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 		*alst = new;
 		return ;
 	}
-	while (tmp->next)
+	while (tmp->next != NULL)
+	{
 		tmp = tmp->next;
+	}
 	tmp->next = new;
 }

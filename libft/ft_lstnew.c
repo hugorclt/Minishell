@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:20:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/23 21:34:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:53:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_list	*ft_lstnew(void *content)
 	sortie = malloc(sizeof(t_list));
 	if (!sortie)
 		return (NULL);
-	sortie->content = content;
+	sortie->token = content;
 	sortie->next = NULL;
+	sortie->heredoc = 0;
 	return (sortie);
 }

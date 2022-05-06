@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:20:29 by yobougre          #+#    #+#             */
-/*   Updated: 2021/11/25 12:47:04 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:52:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	tmp_00 = *lst;
 	while (tmp_00)
 	{
-		del(tmp_00->content);
+		del(tmp_00->token);
 		tmp_01 = tmp_00->next;
 		free(tmp_00);
 		tmp_00 = tmp_01;

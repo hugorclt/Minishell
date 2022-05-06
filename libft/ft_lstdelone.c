@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:20:37 by yobougre          #+#    #+#             */
-/*   Updated: 2021/11/23 11:24:40 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:53:02 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (lst)
 	{
-		(*del)(lst->content);
+		(*del)(lst->token);
 		free(lst);
 	}
 }

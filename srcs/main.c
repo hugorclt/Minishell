@@ -6,24 +6,31 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 19:07:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:08:21 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-/*
+
 void	ft_print_lst(t_list *lst)
 {
 	t_list	*tmp;
+	int		i;
 
 	tmp = lst;
 	while (tmp)
 	{
-		printf("%s\n", tmp->content->token);
+		i = 0;
+		while (tmp->token[i])
+		{
+			printf("%s ", tmp->token[i]);
+			i++;
+		}
+		printf("\n");
 		tmp = tmp->next;
 	}
 }
-
+/*
 void	ft_sign_handle(int signo)
 {
 	if (signo == SIGINT)
@@ -86,6 +93,7 @@ int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
 	t_token token;
+	t_list *lst;
 	(void)av;
 
 	token.token = NULL;
@@ -102,9 +110,13 @@ int	main(int ac, char **av, char **env)
 				return (free(cmd), 1);
 			if (ft_exec_parsing(&token, cmd, env) == -1)
 				return (free(cmd), 1);
-			//token.token = ft_split_space(&token, token.token[0], ' ');
+			lst = init_lst(&token);
+			if (!lst)
+				return (free(cmd), 1);
+			//ft_main_exec(lst, env);
+			ft_print_lst(lst);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
-			ft_print_tab(token.token);
+			//ft_print_tab(token.token);
 			add_history(cmd);
 		}
 	}

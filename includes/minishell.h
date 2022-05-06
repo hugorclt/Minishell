@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/05 19:06:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:58:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
 char	**ft_split_space(t_token *token, char *s);
 void	ft_wrong_args(void);
 void	ft_reset_quotes(t_token *token);
+t_list	*init_lst(t_token *token);
+int		ft_builtin_exec(t_list *lst, char **env);
 
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/expand/env_expand.c                       */
