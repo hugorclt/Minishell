@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 17:38:12 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/06 17:13:57 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_print_tab(char **tokens)
 		printf("%s\n", tokens[i++]);
 }
 
-static int	ft_test_export(t_token *token)
+int	ft_test_export(t_token *token)
 {
 	if (token->token[0])
 	{
@@ -95,7 +95,6 @@ int	main(int ac, char **av, char **env)
 				ft_free(token.token);
 				continue ;
 			}
-			if ()
 			ft_print_tab(token.token);
 			add_history(cmd);
 		}
