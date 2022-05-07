@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/04/28 16:26:36 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/07 13:57:45 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ int	ft_check_token(t_token *token)
 	int	i;
 
 	i = 0;
+	if (!token->token[i])
+		return (-1);
 	if (token->token[i + 1] && ft_is_operator(token->token[i]) == 1 &&  
 			ft_is_operator(token->token[i + 1]) == 1)
 		return (ft_print_error(token->token[i + 1]), -1);
