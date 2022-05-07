@@ -1,9 +1,0 @@
-
-init_struct.c
-<<<<<<< HEAD
-init_struct.o
-main_parse.c
-main_parse.o
-=======
-main_parse.c
->>>>>>> master

@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/06 18:58:27 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/07 14:18:08 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRCS 		=	srcs/main.c\
 				srcs/dir/dir_prompt.c\
 				srcs/utils/utils_2.c\
 				srcs/parsing/ft_unquoting.c\
-				srcs/exec/create_list.c
+				srcs/exec/create_list.c\
+				srcs/exec/main_exec.c
 
 OBJS		=		$(SRCS:.c=.o)
 
@@ -64,7 +65,7 @@ $(NAME): $(INC) $(OBJS)
 	@echo "\033[1;34m                                                                                                                     "
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
-	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -lreadline -o $(NAME) 	
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -o $(NAME) -lreadline
 	@make wait
 	@#@make norminette
 	@echo "Bonne correction!"
