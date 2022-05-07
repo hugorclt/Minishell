@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 00:24:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:33:40 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ static int	ft_is_pipe(char *cmd)
 static char	*ft_cut_token(char **token, int start, int i)
 {
 	char	*ret;
-	int		len;
 	int		j;
 
-	len = i - start;
 	j = 0;
 	ret = NULL;
 	while (j + start < i)

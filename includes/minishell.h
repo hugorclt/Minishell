@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/07 12:59:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:49:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*check_path(char **path_lst, char *cmd);
 int	ft_init_pid(t_node *params);
 int	ft_norme(t_node *params, char **av, int ac, int j);
 int	ft_fill_cmd_name(t_node *params, char **av, int ac);
-int	ft_child_exec(t_node *params, char **av, char **envp);
+int	ft_child_exec(t_node *params, t_list *av, char **envp);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/pipes/join.c                          */

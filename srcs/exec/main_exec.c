@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 15:27:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:47:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,76 +42,112 @@ void	ft_exec_one(t_list *lst, char **env)
 	(void)env;
 }
 
-int	ft_init_io(t_node *pipe, char **cmd)
+int	ft_count_in(char **cmd)
 {
 	int	i;
+	int	ret;
 
 	i = 0;
+	ret = 0;
+	while (cmd[i])
+	{
+		if (ft_strcmp(cmd[i], "<") == 0)
+			ret++;
+		i++;
+	}
+	return (ret);
+}
+
+int	ft_count_out(char **cmd)
+{
+	int	i;
+	int	ret;
+
+	i = 0;
+	ret = 0;
+	while (cmd[i])
+	{
+		if (ft_strcmp(cmd[i], ">") == 0)
+			ret++;
+		i++;
+	}
+	return (ret);
+}
+
+int	ft_init_in_out(t_list **lst, char **cmd)
+{
+	(*lst)->infile_name = malloc(sizeof(char *) * ft_count_in(cmd));
+	(*lst)->outfile_name = malloc(sizeof(char *) * ft_count_out(cmd));
+	if (!(*lst)->infile_name || !(*lst)->outfile_name)
+		return (-1);
+	return (0);
+}
+
+int	ft_init_io(t_list **lst, char **cmd)
+{
+	t_list	*tmp;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	tmp = (*lst);
+	if (ft_init_in_out(&tmp, cmd) == -1)
+		return (-1);
 	while (cmd[i])
 	{
 		if (ft_strcmp(cmd[i], "<") == 0)
 		{
-			pipe->infile_name = ft_strdup(cmd[i + 1]);
-			if (!pipe->infile_name)
+			tmp->infile_name[j] = ft_strdup(cmd[i + 1]);
+			if (!tmp->infile_name[j])
 				return (-1);
+			j++;
 		}
 		else if (ft_strcmp(cmd[i], ">") == 0)
 		{
-			pipe->outfile_name = ft_strdup(cmd[i + 1]);
-			if (!pipe->outfile_name)
+			tmp->outfile_name[k] = ft_strdup(cmd[i + 1]);
+			if (!tmp->outfile_name[k])
 				return (-1);
+			k++;
 		}
 		i++;
 	}
+	tmp->outfile_name[k] = 0;
+	tmp->infile_name[j] = 0;
 	return (0);
-}
-
-char	*ft_cut(char *cmd, int *i)
-{
-	char	*ret;
-	int		start;
-
-	start = *i;
-	if (cmd[*i] && cmd[*i] == ' ')
-		i++;
-	while (cmd[*i] && cmd[*i] != ' ')
-		i++;
-	ret = ft_strcut(cmd, start, *i);
-	if (!ret)
-		return (NULL);
-	return (ret);
 }
 
 char	*ft_cut_redirect(char *cmd)
 {
 	int		i;
 	char	*ret;
-	int		flag;
+	int		start;
 
-	i = 0;
-	flag = 0;
+	start = 0;
 	while (cmd[i])
 	{
-		if (cmd[i] == '<')
+		//printf("%c\n", cmd[i]);
+		if (cmd[i] == '>')
 		{
-			ret = ft_cut(cmd, &i);
-			if (!ret)
-				return (NULL);
-			flag = 1;
-		}
-		else if (cmd[i] == '>')
-		{
-			ret = ft_cut(cmd, &i);
-			if (!ret)
-				return (NULL);
-			flag = 1;
-		}
-		else
+			ret = ft_strjoin(ret, ft_substr(cmd, start, i));
 			i++;
+			while (cmd[i] && cmd[i] != ' ')
+				i++;
+			start = i + 1;
+		}
+		else if (cmd[i] == '<')
+		{
+			ret = ft_strjoin(ret, ft_substr(cmd, start, i));
+			i++;
+			while (cmd[i] && cmd[i] != ' ')
+				i++;
+			start = i + 1;
+		}
+		i++;
 	}
-	if (flag == 0)
-		ret = ft_strdup(cmd);
-	free(cmd);
+	ret = ft_strjoin(ret, ft_substr(cmd, start, i));
 	return (ret);
 }
 
@@ -130,37 +166,31 @@ void	ft_print_struct_info(t_node params)
 	printf("%d\n", params.nb);
 }
 
-int	ft_main_exec(t_list *lst, char **env)
+void	ft_init_node(t_node *params, int len)
+{
+	params->nb = len;
+	ft_init_pipe(params);
+	ft_init_pid(params);
+}
+
+int	ft_main_exec(t_list **lst, char **env)
 {
 	t_list	*tmp;
 	t_node	params;
 	(void)env;
 	int		i;
 
-	tmp = lst;
-	params.nb = ft_lstsize(lst);
-	params.cmd = malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
-	params.heredoc = 0;
-	params.infile = 0;
-	params.outfile = 1;
-	if (ft_lstsize(lst) == 1)
-		return (ft_exec_one(lst, env), 0);
+	tmp = (*lst);
+	if (ft_lstsize(tmp) == 1)
+		return (ft_exec_one(tmp, env), 0);
 	i = 0;
+	ft_init_node(&params, ft_lstsize(tmp));
 	while (tmp)
 	{
-		if (ft_init_io(&params, ft_split_space(tmp->token)) == -1)
-			return (-1);
+		ft_init_io(&tmp, ft_split_space(tmp->token));
 		tmp->token = ft_cut_redirect(tmp->token);
-		params.cmd[i] = ft_strdup(tmp->token);
-		if (!params.cmd[i])
-			return (-1);
-		ft_init_pipe(&params);
-		ft_init_pid(&params);
-		//ft_open(&params, params.infile_name, params.outfile_name, params.heredoc);
 		tmp = tmp->next;
-		i++;
 	}
-	params.cmd[i] = NULL;
 	//ft_print_struct_info(params);
 	ft_child_exec(&params, params.cmd, env);
 	return (0);

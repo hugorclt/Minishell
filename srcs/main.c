@@ -110,8 +110,8 @@ int	main(int ac, char **av, char **env)
 			ft_main_exec(lst, env);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
 			//ft_print_tab(token.token);
-			rl_replace_line("\n", 1);
 			add_history(cmd);
+
 		}
 	}
 	return (0);

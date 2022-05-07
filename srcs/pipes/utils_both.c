@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/07 13:58:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:50:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,59 @@ int	ft_fill_cmd_name(t_node *params, char **av, int ac)
 	return (1);
 }
 
-int	ft_child_exec(t_node *params, char **av, char **envp)
+int	ft_init_in_file(t_node *params, t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst->infile_name[i])
+	{
+		if (params->infile_name)
+			free(params->infile_name);
+		params->infile_name = ft_strdup(lst->infile_name[i]);
+		params->infile = open(params->infile_name, O_RDONLY, 0644);
+		if (params->infile < 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_init_out_file(t_node *params, t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst->outfile_name[i])
+	{
+		if (params->outfile_name)
+			free(params->outfile_name);
+		params->outfile_name = ft_strdup(lst->outfile_name[i]);
+		params->outfile = open(params->outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (params->outfile < 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+	
+
+int	ft_open_io(t_node *params, t_list *lst)
+{
+	if (ft_init_in_file(params, lst) == -1)
+		return (-1);
+	if (ft_init_out_file(params, lst) == -1)
+		return (-1);
+	return (0);
+}
+
+void	ft_free_io(t_node *params)
+{
+	free(params->outfile_name);
+	free(params->infile_name);
+}
+
+int	ft_child_exec(t_node *params, t_list *lst, char **envp)
 {
 	int	i;
 
@@ -72,12 +124,16 @@ int	ft_child_exec(t_node *params, char **av, char **envp)
 	//	i = 0;
 	while (params->index < params->nb)
 	{
-		if (ft_fork(params, envp, av[i]) < 0)
+		if (ft_open_io(params, lst) == -1)
+			return (-1);
+		if (ft_fork(params, envp, lst->token) < 0)
 		{
 			ft_close();
 			ft_free_struct(params);
 			return (-1);
 		}
+		ft_free_io(params);
+		lst = lst->next;
 		params->index++;
 		i++;
 	}
