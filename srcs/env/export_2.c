@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/07 15:23:46 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/07 16:06:15 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 char	**ft_add_var(char *var, char **env)
 {
-	char **output;
-	int	i;
+	char	**output;
+	int		i;
+	int		size;
 
 	size = ft_tab_size(env);
 	output = malloc(sizeof(char *) * (size + 2));
@@ -111,7 +112,7 @@ char	*ft_quote(char *token)
 {
 	int		i;
 	int		j;
-	char	*output
+	char	*output;
 
 	i = 0;
 	j = 0;
@@ -134,7 +135,7 @@ char	*ft_quote(char *token)
 	return (output);
 }
 
-int	ft_export(t_token *t_token, char *token)
+int	ft_export(t_token **t_token, char *token)
 {
 	char	**tmp;
 	int		i;
@@ -144,20 +145,22 @@ int	ft_export(t_token *t_token, char *token)
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (ft_export_alph(t_token->env));
+		return (ft_export_alph((*t_token)->env));
 	else
 	{
+		printf("tab_size %d\n", ft_tab_size(tmp)); 
 		while (tmp[i])
 		{
-			if (ft_find_occ(tmp[i], t_token->env) == -1)
-				t_token->env = ft_add_var(ft_quote(tmp[i]), t_token->env);
+			if (ft_find_occ((*t_token)->env, tmp[i]) == -1)
+				(*t_token)->env = ft_add_var(ft_quote(tmp[i]), (*t_token)->env);
 			else
-				t_token->env = ft_change_var(t_token->env, tmp[i], 
-					ft_find_occ(tmp[i], t_token->env));
-			if (!t_token->env)
-				return (ft_free_tab(tmp), -1);
+				(*t_token)->env = ft_change_var((*t_token)->env, tmp[i], 
+						ft_find_occ((*t_token)->env, tmp[i]));
+			if (!(*t_token)->env)
+				return (ft_free(tmp), -1);
 			++i;
 		}
 	}
-	return (ft_free_tab(tmp), 0);
+	ft_print_tab((*t_token)->env);
+	return (ft_free(tmp), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:43:27 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_tab_size(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab || !tab[0])
+		return (i);
 	while (tab[i])
 		++i;
 	return (i);
