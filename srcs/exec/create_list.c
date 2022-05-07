@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 19:09:17 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 00:24:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,22 @@ static int	ft_is_pipe(char *cmd)
 	return (0);
 }
 
-static char	**ft_cut_token(char **token, int start, int i)
+static char	*ft_cut_token(char **token, int start, int i)
 {
-	char	**ret;
+	char	*ret;
 	int		len;
 	int		j;
 
 	len = i - start;
-	ret = malloc(sizeof(char *) * (len + 1));
-	if (!ret)
-		return (NULL);
 	j = 0;
+	ret = NULL;
 	while (j + start < i)
 	{
-		ret[j] = ft_strdup(token[start + j]);
-		if (!ret[j])
+		ret = ft_strjoin_pimp(ret, token[start + j]);
+		if (!ret)
 			return (NULL);
 		j++;
 	}
-	ret[j] = NULL;
 	return (ret);
 }
 
@@ -54,7 +51,7 @@ static int	ft_init_var(t_list **lst, int *i, int *start)
 
 static int	ft_to_add(t_list **lst, char **token, int start, int i)
 {
-	char	**to_add;
+	char	*to_add;
 	
 	to_add = ft_cut_token(token, start, i);
 	if (!to_add)
