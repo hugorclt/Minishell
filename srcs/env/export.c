@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 15:49:45 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/09 14:22:35 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_export_alph(char **env)
 	if (!export)
 		return (-1);
 	i = 0;
-	while (i < ft_tab_size(env) -  1)
+	while (i < ft_tab_size(env))
 	{
 		ft_print_free(export, ft_find_index(export, ft_tab_size(env)));
 		++i;

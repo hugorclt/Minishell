@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 16:04:52 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/09 12:04:29 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,11 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (free(cmd), 1);
+			if (!cmd[1])
+			{
+				free(cmd);
+				continue ;
+			}
 			if (ft_exec_parsing(&token, cmd, env) == -1)
 				return (free(cmd), 1);
 			//lst = init_lst(&token);
@@ -123,6 +128,8 @@ int	main(int ac, char **av, char **env)
 		//		return (free(cmd), 1);
 			if (check_export(&token) < 0)
 				return (1);
+			else if (!ft_strcmp(cmd, "env"))
+				ft_print_tab(token.env);
 			//ft_main_exec(lst, env);
 			//ft_print_lst(lst);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
