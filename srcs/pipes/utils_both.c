@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/09 14:58:46 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:45:12 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	ft_child_exec(t_node *params, t_list **lst, char **envp)
 	{
 		if (ft_open_io(params, tmp) == -1)
 			return (-1);
-		printf("%d, %s\n", params->outfile, tmp->token);
+		//printf("%d, %s\n", params->outfile, tmp->token);
 		if (ft_fork(params, envp, tmp->token) < 0)
 		{
 			ft_close();

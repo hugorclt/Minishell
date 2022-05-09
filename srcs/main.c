@@ -101,6 +101,11 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (free(cmd), 1);
+			if (!cmd[1])
+			{
+				free(cmd);
+				continue ;
+			}
 			if (ft_exec_parsing(&token, cmd, env) == -1)
 				return (free(cmd), 1);
 			//ft_print_tab(token.token);

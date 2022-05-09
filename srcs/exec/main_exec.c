@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 14:15:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:45:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,8 @@ int	ft_main_exec(t_list **lst, char **env)
 {
 	t_list	*tmp;
 	t_node	params;
+	//int		i;
+	//int		status;
 
 	tmp = (*lst);
 	if (ft_lstsize(tmp) == 1)
@@ -200,5 +202,8 @@ int	ft_main_exec(t_list **lst, char **env)
 		tmp = tmp->next;
 	}
 	ft_child_exec(&params, lst, env);
+	//i = 0;
+	//while (i < params.nb)
+		//waitpid(params.pid[i++], &status, 0);
 	return (0);
 }
