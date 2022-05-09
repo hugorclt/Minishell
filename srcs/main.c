@@ -71,14 +71,21 @@ static int	ft_init_env(char **env, t_token *token)
 	return (0);
 }
 
-static int	ft_exec_parsing(t_token *token, char *cmd, char **env)
+static int	ft_exec_parsing(t_token *token, char *cmd)
 {
 	if (ft_parse_tokens(token, cmd) == -1)
 		return (ft_free(token->token), -1);
 	if (ft_check_token(token) == -1)
 		return (ft_free(token->token), -1);
-	if (ft_expand_var(token, env) == -1)
+	if (ft_expand_var(token, token->env) == -1)
 		return (ft_free(token->token), -1);
+	return (0);
+}
+
+static int check_export(t_token *token)
+{
+	if (ft_export(&token, token->token[0]) < 0)
+		return (-1);
 	return (0);
 }
 
@@ -90,6 +97,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 
 	token.token = NULL;
+	(void)lst;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &token) < 0)
@@ -106,14 +114,17 @@ int	main(int ac, char **av, char **env)
 				free(cmd);
 				continue ;
 			}
-			if (ft_exec_parsing(&token, cmd, env) == -1)
+			if (ft_exec_parsing(&token, cmd) == -1)
 				return (free(cmd), 1);
-			//ft_print_tab(token.token);
+			if (check_export(&token) < 0)
+				return (1);
+			else if (!ft_strcmp(cmd, "env"))
+				ft_print_tab(token.env);
 			lst = init_lst(&token);
-			//ft_print_lst(lst);
 			if (!lst)
 				return (free(cmd), 1);
 			ft_main_exec(&lst, env);
+			//ft_print_lst(lst);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
 			add_history(cmd);
 

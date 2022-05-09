@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/09 11:26:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:02:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "struct.h"
 # include "includes.h"
 
+void	ft_increm(int *i, int *j);
+int	ft_find_occurence(char **env, char *cmd);
+int	ft_export(t_token **t_token, char *token);
 int	ft_find_index(char **export, int size);
 int	ft_parse_tokens(t_token *token, char *cmd);
 int	ft_isspace(char c);

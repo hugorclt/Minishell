@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 14:04:45 by yuro4ka          ###   ########.fr       */
+/*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
+/*   Updated: 2022/05/06 17:14:14 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_reset_quotes(t_token *token)
+/*
+char	**ft_unset(char **env, char **cmd)
 {
-	token->nb_dquotes = 0;
-	token->nb_quotes = 0;
-	token->old_first_quotes = 0;
-}
+	char	**ret;
+	int		i;
 
-void	ft_increm(int *i, int *j)
-{
-	(*i) += 1;
-	(*j) += 1;
-}
+	i = 1;
+	if (!cmd[1])
+		return (env);
+	ret = ft_dup_tab(env);
+	if (!ret)
+		return (NULL);
+	while (cmd[i])
+	{
+		ret = ft_unset_one(ret, cmd[i], 0);
+		if (!ret)
+			return (NULL);
+		i++;
+	}
+	ret[i] = 0;
+	return (ft_free(env), ret);
+}*/
