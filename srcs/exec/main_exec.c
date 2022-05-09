@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 13:34:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:15:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_count_in(char **cmd)
 	ret = 0;
 	while (cmd[i])
 	{
-		if (ft_strcmp(cmd[i], "<") == 0)
+		if (ft_strcmp(cmd[i], "< ") == 0)
 			ret++;
 		i++;
 	}
@@ -76,10 +76,10 @@ int	ft_count_out(char **cmd)
 
 int	ft_init_in_out(t_list **lst, char **cmd)
 {
-	(*lst)->infile_name = malloc(sizeof(char *) * (ft_count_in(cmd) + 1));
-	(*lst)->outfile_name = malloc(sizeof(char *) * (ft_count_out(cmd) + 1));
 	(*lst)->nb_infile = ft_count_in(cmd);
 	(*lst)->nb_outfile = ft_count_out(cmd);
+	(*lst)->infile_name = malloc(sizeof(char *) * ((*lst)->nb_infile + 1));
+	(*lst)->outfile_name = malloc(sizeof(char *) * ((*lst)->nb_outfile + 1));
 	if (!(*lst)->infile_name || !(*lst)->outfile_name)
 		return (-1);
 	return (0);
@@ -101,14 +101,14 @@ int	ft_init_io(t_list **lst, char **cmd)
 		return (-1);
 	while (cmd[i])
 	{
-		if (ft_strcmp(cmd[i], "< ") == 0)
+		if (ft_strcmp(cmd[i], "<") == 0)
 		{
 			tmp->infile_name[j] = ft_strdup(cmd[i + 1]);
 			if (!tmp->infile_name[j])
 				return (-1);
 			j++;
 		}
-		else if (ft_strcmp(cmd[i], "> ") == 0)
+		else if (ft_strcmp(cmd[i], ">") == 0)
 		{
 			tmp->outfile_name[k] = ft_strdup(cmd[i + 1]);
 			if (!tmp->outfile_name[k])
@@ -150,8 +150,6 @@ char	*ft_cut_redirect(char *cmd)
 			ret = ft_strjoin_pimp(ret, ft_substr(cmd, start, i));
 			i++;
 			while (cmd[i] && cmd[i] == ' ')
-				i++;
-			while (cmd[i] && cmd[i] != ' ')
 				i++;
 			while (cmd[i] && cmd[i] != ' ')
 				i++;
