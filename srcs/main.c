@@ -103,13 +103,13 @@ int	main(int ac, char **av, char **env)
 				return (free(cmd), 1);
 			if (ft_exec_parsing(&token, cmd, env) == -1)
 				return (free(cmd), 1);
+			//ft_print_tab(token.token);
 			lst = init_lst(&token);
+			//ft_print_lst(lst);
 			if (!lst)
 				return (free(cmd), 1);
-			//ft_print_lst(lst);
-			ft_main_exec(lst, env);
+			ft_main_exec(&lst, env);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
-			//ft_print_tab(token.token);
 			add_history(cmd);
 
 		}

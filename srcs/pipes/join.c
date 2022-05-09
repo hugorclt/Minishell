@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/07 15:27:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 10:57:20 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	char	*output;
 	size_t	i;
 	size_t	j;
+
 
 	if (!s1)
 		s1 = ft_strdup_pimp("\0");

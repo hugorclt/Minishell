@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 17:40:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:01:31 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_list
 	char			*token;
 	char			**infile_name;
 	char			**outfile_name;
+	int				nb_infile;
+	int				nb_outfile;
 	int				*infile;
 	int				*outfile;
 	int				heredoc;
