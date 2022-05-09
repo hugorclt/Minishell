@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 14:15:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:13:15 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_count_in(char **cmd)
 	ret = 0;
 	while (cmd[i])
 	{
-		if (ft_strcmp(cmd[i], "< ") == 0)
+		if (ft_strcmp(cmd[i], "<") == 0)
 			ret++;
 		i++;
 	}
