@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 14:48:46 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/06 21:57:03by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,11 @@
 void	ft_print_lst(t_list *lst)
 {
 	t_list	*tmp;
-	int		i;
 
 	tmp = lst;
 	while (tmp)
 	{
-		i = 0;
-		while (tmp->token[i])
-		{
-			printf("%s ", tmp->token[i]);
-			i++;
-		}
-		printf("\n");
+		printf("%s\n", tmp->token);
 		tmp = tmp->next;
 	}
 }
@@ -123,18 +116,18 @@ int	main(int ac, char **av, char **env)
 			}
 			if (ft_exec_parsing(&token, cmd) == -1)
 				return (free(cmd), 1);
-			//lst = init_lst(&token);
-		//	if (!lst)
-		//		return (free(cmd), 1);
 			if (check_export(&token) < 0)
 				return (1);
 			else if (!ft_strcmp(cmd, "env"))
 				ft_print_tab(token.env);
-			//ft_main_exec(lst, env);
+			lst = init_lst(&token);
+			if (!lst)
+				return (free(cmd), 1);
+			ft_main_exec(&lst, env);
 			//ft_print_lst(lst);
 			//token.token[0] = ft_unquoting(&token, token.token[0]);
-			//ft_print_tab(token.token);
 			add_history(cmd);
+
 		}
 	}
 	return (0);

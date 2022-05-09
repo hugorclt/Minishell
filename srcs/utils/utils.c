@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/07 15:50:28 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:03:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,26 @@ char	*ft_strjoin_char(char *cmd, char c)
 	return (free(cmd), ret);
 }
 
-/*void	ft_print_tab(char **tab)
+char	*ft_strcut(char *str, int i_start, int i_end)
 {
-	int	i;
+	char	*ret;
+	int		i;
 
+	ret = malloc(sizeof(char) * ft_strlen(str) - (i_end - i_start) + 1);
+	if (!ret)
+		return (NULL);
 	i = 0;
-	while (tab[i])
+	while (i < i_start)
 	{
-		printf("%s\n", tab[i]);
+		ret[i] = str[i];
 		i++;
 	}
-}*/
+	while (str[i_end])
+	{
+		ret[i] = str[i_end];
+		i_end++;
+		i++;
+	}
+	ret[i] = 0;
+	return (ret);
+}

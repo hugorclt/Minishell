@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 16:52:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:50:36 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,13 @@ typedef struct s_token
 
 typedef struct s_list
 {
-	char			**token;
+	char			*token;
+	char			**infile_name;
+	char			**outfile_name;
+	int				nb_infile;
+	int				nb_outfile;
+	int				*infile;
+	int				*outfile;
 	int				heredoc;
 	struct s_list	*next;
 }	t_list;
@@ -63,7 +69,6 @@ typedef struct s_garb_col
 	void				*content;
 	struct s_garb_col	*next;
 }	t_garb;
-
 
 
 

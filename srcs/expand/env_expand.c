@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/05 18:34:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:08:18by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	ft_expand_var(t_token *token, char **env)
 					token->token[i] = ft_expand_1(token->token[i], env, token);
 				if (token->nb_dquotes % 2 != 0 && token->first_quotes == '"')
 					token->token[i] = ft_expand_1(token->token[i], env, token);
-				if (!token->token[i])
-					return (-1);
+				if (!token->token[i][j])
+					break ;
 			}
 			j++;
 		}

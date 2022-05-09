@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 19:08:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/06 20:44:43 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,6 @@ int	ft_builtin_choice(char **cmd, char **env)
 	return (1);
 }
 
-int	ft_main_exec(t_list *lst, char **env)
-{
-	t_list	*tmp;
-	(void)env;
 
-	tmp = lst;
-	while (tmp->next)
-	{	
-		tmp = tmp->next;
-	}
-	return (0);
-}
 
 
