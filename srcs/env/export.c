@@ -6,11 +6,25 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 10:53:20 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:36:56 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_var_len(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '+' || var[i] == '=')
+			break ;
+		++i;
+	}
+	return (i);
+}
 
 int	ft_find_occurence(char **env, char *cmd)
 {
@@ -19,8 +33,11 @@ int	ft_find_occurence(char **env, char *cmd)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strnstr(env[i], cmd, ft_strlen(env[i])))
+		if (ft_strnstr(env[i], cmd, ft_strlen(cmd)))
+		{
+			printf("why tho \n");
 			return (i);
+		}
 		i++;
 	}
 	return (-1);

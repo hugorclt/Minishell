@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 12:43:05 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:17:45 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
+char	**ft_unset(char **env, char *var);
 int	ft_need_cat(char *var);
 int	ft_size_s2(char *var);
 char	*ft_dup_addon(char *var);

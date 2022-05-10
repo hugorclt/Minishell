@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 12:42:24 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:37:57 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int	ft_find_occ(char **env, char *var)
 	tmp = NULL;
 	if (ft_check_equal(var) > 0)
 	{
-		tmp = ft_split(var, '=');
+		if (ft_need_cat(var))
+			tmp = ft_split(var, '+');
+		else
+			tmp = ft_split(var, '=');
 		if (!tmp)
 			return (-1);
 		if (ft_find_occurence(env, tmp[0]) != -1)

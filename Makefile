@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/09 15:05:16 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/10 15:17:00 by yuro4ka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/ft_unquoting.c\
 				srcs/exec/create_list.c\
 				srcs/env/export_2.c\
+				srcs/env/unset.c\
+				srcs/env/utils_export.c\
 				srcs/exec/main_exec.c
 
 OBJS		=		$(SRCS:.c=.o)
