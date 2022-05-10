@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 16:58:59 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 18:37:23 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	ft_find_occurence(char **env, char *cmd)
 
 static int	ft_print_free(char **export, int i)
 {
-	export[i] = ft_quote(export[i]);
+	if (ft_theres_backslash(export[i]))
+		export[i] = ft_backslash(ft_quote(export[i]));
+	else
+		export[i] = ft_quote(export[i]);
 	if (!export[i])
 		return (-1);
 	printf("declare -x %s\n", export[i]);

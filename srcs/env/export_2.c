@@ -6,13 +6,13 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 16:37:57 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 18:51:38 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_check_equal(char *token)
+int	ft_check_equal(char *token)
 {
 	int	i;
 
@@ -24,6 +24,33 @@ static int	ft_check_equal(char *token)
 		++i;
 	}
 	return (0);
+}
+
+char	*ft_unquote(char *var)
+{
+	char	*output;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	output = malloc(sizeof(char) * (ft_strlen(var)));
+	if (!output)
+		return (NULL);
+	while (var[i])
+	{
+		if (var[i] == '"' )
+		{
+			if (!var[i + 1])
+				break ;
+			++i;
+		}
+		if (var[i] == '\'')
+			++i;
+		output[j++] = var[i++];
+	}
+	output[j] = 0;
+	return (output);
 }
 
 char	**ft_add_var(char *var, char **env)
@@ -44,7 +71,7 @@ char	**ft_add_var(char *var, char **env)
 			return (ft_free(output), NULL);
 		i++;
 	}	
-	output[i] = ft_strdup(var);
+	output[i] = ft_unquote(var);
 	if (!output[i])
 		return (ft_free(output), NULL);
 	output[i + 1] = NULL;
@@ -108,6 +135,50 @@ int	ft_theres_dquotes(char *token)
 		++i;
 	}
 	return (0);
+}
+
+int	ft_theres_backslash(char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i] && token[i] != '=')
+		++i;
+	++i;
+	if (token[i])
+	{
+		while (token[i])
+		{
+			if (token[i] == '$')
+				return (1);
+			++i;
+		}
+	}
+	return (0);
+}
+
+char	*ft_backslash(char *token)
+{
+	int		i;
+	int		j;
+	char	*output;
+
+	i = 0;
+	output = malloc(sizeof(char) * (ft_strlen(token) + 2));
+	if (!output)
+		return (NULL);
+	j = 0;
+	while (token[i])
+	{
+		if (token[i + 1] == '$')
+		{
+			output[j] = '\\';
+			++j;
+		}
+		output[j++] = token[i++];
+	}
+	output[j] = 0;
+	return (free(token), output);
 }
 
 char	*ft_quote(char *token)
