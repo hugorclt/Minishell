@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/09 13:27:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:51:28 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 	if (cmd[(*j) + 1] && cmd[(*j + 1)] ==  cmd[(*j)])
 	{
 		token->token[(*i)] = ft_substr(cmd, *j, 2);
-		token->token[(*i)] = ft_strjoin_pimp(token->token[*i], " ");
 		if (!token->token[(*i)])
 			return (-1);
 		(*i)++;
@@ -79,7 +78,6 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 	else
 	{
 		token->token[(*i)] = ft_substr(cmd, *j, 1);
-		token->token[(*i)] = ft_strjoin_pimp(token->token[*i], " ");
 		if (!token->token[(*i)])
 			return (-1);
 		(*i)++;

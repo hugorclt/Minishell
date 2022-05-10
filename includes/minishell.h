@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/09 15:02:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:43:05 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include "struct.h"
 # include "includes.h"
 
+int	ft_need_cat(char *var);
+int	ft_size_s2(char *var);
+char	*ft_dup_addon(char *var);
+int ft_cat_var(char **env, char *var, int j);
+int	ft_theres_dquotes(char *token);
+char	*ft_quote(char *token);
 void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
 int	ft_export(t_token **t_token, char *token);
