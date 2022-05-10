@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 18:51:38 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 19:12:37 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char	*ft_unquote(char *var)
 				break ;
 			++i;
 		}
-		if (var[i] == '\'')
-			++i;
 		output[j++] = var[i++];
 	}
 	output[j] = 0;
@@ -71,7 +69,7 @@ char	**ft_add_var(char *var, char **env)
 			return (ft_free(output), NULL);
 		i++;
 	}	
-	output[i] = ft_unquote(var);
+	output[i] = ft_strdup(var);
 	if (!output[i])
 		return (ft_free(output), NULL);
 	output[i + 1] = NULL;
