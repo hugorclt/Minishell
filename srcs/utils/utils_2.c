@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 16:33:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:39:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,26 @@ void	ft_pass_space_reverse(char *cmd, int *new_j)
 			(*new_j)++;
 		}
 	}
+}
+
+char	*ft_to_str(char **str)
+{
+	char	*ret;
+	int		i;
+
+	i = 0;
+	ret = ft_strdup("\0");
+	if (!ret)
+		return (NULL);
+	while (str[i])
+	{
+		ret = ft_strjoin_pimp(ret, str[i]);
+		if (!ret)
+			return (NULL);
+		ret = ft_strjoin_pimp(ret, " ");
+		if (!ret)
+			return (NULL);
+		i++;
+	}
+	return (ret);
 }

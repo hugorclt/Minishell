@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 16:32:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:10:01 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,14 @@ int	ft_strchr_pimp(char *s, char c);
 /*                       FILE = srcs/pipes/utils_pipe.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
-int	ft_fork(t_node *params, char **envp, char *av);
+int	ft_fork(t_node *params, char **envp, t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
 char	**ft_split_space(char *s);
 void	ft_wrong_args(void);
 void	ft_reset_quotes(t_token *token);
 t_list	*init_lst(t_token *token);
+char	*ft_to_str(char **str);
 int		ft_builtin_exec(t_list *lst, char **env);
 
 /* -------------------------------------------------------------------------- */

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 16:40:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:48:42 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	ft_count_out(char **cmd)
 
 int	ft_prepare_to_execute(t_list **lst)
 {
+	(*lst)->token = ft_split_space(ft_to_str((*lst)->token));
 	if (ft_get_input(lst, (*lst)->token) == -1)
 		return (-1);
 	(*lst)->token = ft_cut_io(lst);
@@ -117,7 +118,10 @@ int	ft_exec_one(t_list **lst, char **env)
 			return (-1);
 		if (ft_dup_io(&params) == -1)
 			return (-1);
-		if (ft_execute(tmp->token, env) == -1)
+		tmp->cmd = ft_to_str(tmp->token);
+		if (!tmp->cmd)
+			return (-1);
+		if (ft_execute(ft_split_space(tmp->cmd), env) == -1)
 			return (-1);
 		ft_close_total(&params, &tmp);
 	}
@@ -147,16 +151,21 @@ int	ft_main_exec(t_list **lst, char **env)
 	}
 	else
 	{
+		if (ft_fill_params(&params, ft_lstsize(tmp)) == -1)
+			return (-1);
 		while (tmp)
 		{
-			if (ft_fill_params(&params, ft_lstsize(tmp)) == -1)
+			if (ft_init_io(&tmp, &params) == -1)
 				return (-1);
 			if (ft_prepare_to_execute(&tmp) == -1)
 				return (-1);
-			if (ft_child_exec(&params, &tmp, env) == -1)
+			tmp->cmd = ft_to_str(tmp->token);
+			if (!tmp->cmd)
 				return (-1);
 			tmp = tmp->next;
 		}
+		if (ft_child_exec(&params, lst, env) == -1)
+			return (-1);
 	}
 	return (0);
 }
