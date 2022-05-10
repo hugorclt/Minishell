@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 15:29:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_free_struct(t_node *params)
 {
 	ft_close_all(params);
-	close(params->infile);
-	close(params->outfile);
+	//close(params->infile);
+	//close(params->outfile);
 	free(params->fd);
 	free(params->pid);
 	if (params->infile_name)

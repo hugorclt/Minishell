@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:19:55 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/04 19:14:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:33:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,8 @@ char	*ft_strtrim_quoted(t_token *token, char *str, char *set)
 
 char	*ft_unquoting(t_token *token, char *str)
 {
-	int		i;
-	int		j;
 	char	*ret;
 
-	i = 0;
-	j = 0;
 	ft_reset_quotes(token);
 	ret = ft_strtrim_quoted(token, str, "\"'");
 	if (!ret)

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:33:01 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/28 12:12:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 15:29:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_close(void)
 
 void	ft_heredoc_infile(t_node *params)
 {
-	params->infile = open(".heredoc_temp", O_RDONLY, 0644);
-	params->infile_name = ft_strdup(".heredoc_temp");
+	(void)params;
+	//params->infile = open(".heredoc_temp", O_RDONLY, 0644);
+	//params->infile_name = ft_strdup(".heredoc_temp");
 }

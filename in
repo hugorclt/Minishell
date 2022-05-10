@@ -1,11 +1,10 @@
 Makefile
 Minishell
+grep Minishell
+in
 includes
 job.vim
-la
 libft
-ls
-oui
-outfile
+out
+out grep Minishell
 srcs
-test

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:08:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,28 @@ int	ft_fill_cmd_name(t_node *params, char **av, int ac)
 	return (1);
 }
 
-int	ft_child_exec(t_node *params, char **av, char **envp)
-{
-	int	i;
 
-	i = 2;
+
+int	ft_child_exec(t_node *params, t_list **lst, char **envp)
+{
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = (*lst);
 	params->index = 0;
-	if (params->heredoc)
-		i = 3;
+	(void)envp;
+	//if (params->heredoc)
+	//	i = 0;
 	while (params->index < params->nb)
 	{
-		if (ft_fork(params, envp, av[i]) < 0)
-		{
-			ft_close();
-			ft_free_struct(params);
-			return (-1);
-		}
+		//if (ft_fork(params, envp, tmp->token) < 0)
+		//{
+		//	ft_close();
+		//	ft_free_struct(params);
+		//	return (-1);
+		//}
+		tmp = tmp->next;
 		params->index++;
 		i++;
 	}

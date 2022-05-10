@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 16:52:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 14:05:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,31 @@ typedef struct s_token
 	char	old_first_quotes;
 }	t_token;
 
+typedef struct s_files
+{
+	char	*file;
+	int		flag;
+}	t_files;
+
 typedef struct s_list
 {
 	char			**token;
+	t_files			*file_in;
+	t_files			*file_out;
+	int				nb_infile;
+	int				nb_outfile;
 	int				heredoc;
 	struct s_list	*next;
 }	t_list;
 
 typedef struct s_node
 {
-	int				infile;
+	int				last_infile;
+	int				last_outfile;
 	char			*infile_name;
 	char			*outfile_name;
-	int				outfile;
+	int				*infile;
+	int				*outfile;
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
@@ -56,6 +68,8 @@ typedef struct s_node
 	int				index;
 	int				heredoc;
 	char			*limiter;
+	int				fd_stdin;
+	int				fd_stdout;
 }	t_node;
 
 typedef struct s_garb_col
@@ -63,8 +77,6 @@ typedef struct s_garb_col
 	void				*content;
 	struct s_garb_col	*next;
 }	t_garb;
-
-
 
 
 #endif
