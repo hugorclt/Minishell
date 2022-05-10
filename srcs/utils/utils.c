@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 20:40:51 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:30:59 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ char	**ft_dup_tab(char **tab)
 	int		i;
 
 	i = 0;
-	ret = malloc(sizeof(char *) * ft_tab_size(tab));
+	if (!tab)
+		return (NULL);
+	ret = malloc(sizeof(char *) * (ft_tab_size(tab) + 1));
 	if (!ret)
 		return (ft_free(tab), NULL);
 	while (tab[i])
@@ -26,6 +28,7 @@ char	**ft_dup_tab(char **tab)
 		ret[i] = ft_strdup(tab[i]);
 		i++;
 	}
+	ret[i] = NULL;
 	return (ret);
 }
 
