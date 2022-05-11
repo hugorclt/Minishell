@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/06 21:57:03by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:45:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,21 @@ static int check_export(t_token *token)
 	if (ft_export(&token, token->token[0]) < 0)
 		return (-1);
 	return (0);
-}*/
+}
 
+static void	ft_print_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (ft_check_equal(env[i]))
+			printf("%s\n", env[i]);
+		++i;
+	}
+}
+*/
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;

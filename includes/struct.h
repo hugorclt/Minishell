@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 14:42:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:38:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ ft_parcour_ma_putain_de_liste()
 		ft_cmd(tmp->content);
 }
 */
+typedef struct s_help
+{
+	int	i;
+	int	j;
+	int	k;
+	int	p;
+}	t_help;
 
 typedef struct s_token
 {

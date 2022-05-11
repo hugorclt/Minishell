@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 15:35:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:46:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,9 +169,7 @@ int	ft_wait_all_pid(t_node *params, t_list **lst)
 int	ft_exec_bin(t_list **lst, char **env, t_node *params)
 {
 	t_list	*tmp;
-	int		i;
 
-	i = 0;
 	tmp = (*lst);
 	if (ft_lstsize(tmp) == 1)
 	{
@@ -190,10 +188,12 @@ int	ft_exec_bin(t_list **lst, char **env, t_node *params)
 int	ft_main_exec(t_list **lst, char **env, t_node *params)
 {
 	t_list *tmp;
+	int		i;
 
 	tmp = (*lst);
 	if (ft_fill_params(params, ft_lstsize(tmp)) == -1)
 		return (-1);
+	i = 1;
 	while (tmp)
 	{
 		ft_prepare_io(&tmp, params);
@@ -204,6 +204,8 @@ int	ft_main_exec(t_list **lst, char **env, t_node *params)
 				return (-1);
 			else if (ft_exec_builtin(params, tmp->token, env) == -2)
 				return (/*ft_quit(),*/ 0);
+			//if (i == params->nb)
+			//	return (0);
 		}
 		else
 		{
@@ -212,6 +214,7 @@ int	ft_main_exec(t_list **lst, char **env, t_node *params)
 				return (-1);
 		}
 		tmp = tmp->next;
+		i++;
 	}
 	if (ft_lstsize(*lst) != 1)
 		ft_child_exec(params, lst, env);
