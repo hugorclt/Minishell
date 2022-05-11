@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 19:12:37 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/11 12:25:26 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_unquote(char *var)
 
 	i = 0;
 	j = 0;
+	if (!ft_theres_dquotes(var) || !var)
+		return (var);
 	output = malloc(sizeof(char) * (ft_strlen(var)));
 	if (!output)
 		return (NULL);
@@ -69,7 +71,7 @@ char	**ft_add_var(char *var, char **env)
 			return (ft_free(output), NULL);
 		i++;
 	}	
-	output[i] = ft_strdup(var);
+	output[i] = ft_unquote(ft_strdup(var));
 	if (!output[i])
 		return (ft_free(output), NULL);
 	output[i + 1] = NULL;
@@ -105,6 +107,8 @@ int ft_change_var(char **env, char *var, int j)
 	int	i;
 
 	i = 0;
+	if (!var || !env)
+		return (-1);
 	if (ft_need_cat(var))
 		return (ft_cat_var(env, var, j));
 	while (env[i])
@@ -113,6 +117,7 @@ int ft_change_var(char **env, char *var, int j)
 		{
 			free(env[i]);
 			env[i] = ft_strdup(var);
+			env[i] = ft_unquote(env[i]);
 			if (!env[i])
 				return (ft_free(env), -1);
 		}
@@ -140,9 +145,12 @@ int	ft_theres_backslash(char *token)
 	int	i;
 
 	i = 0;
+	if (!token)
+		return (0);
 	while (token[i] && token[i] != '=')
 		++i;
-	++i;
+	if (token[i] == '=')
+		++i;
 	if (token[i])
 	{
 		while (token[i])
@@ -170,10 +178,13 @@ char	*ft_backslash(char *token)
 	{
 		if (token[i + 1] == '$')
 		{
+			output[j] = token[i];
+			ft_increm(&i, &j);
 			output[j] = '\\';
 			++j;
 		}
-		output[j++] = token[i++];
+		output[j] = token[i];
+		ft_increm(&i, &j);
 	}
 	output[j] = 0;
 	return (free(token), output);
@@ -208,6 +219,49 @@ char	*ft_quote(char *token)
 	return (free(token), output);
 }
 
+int	ft_need_unquote(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '"')
+			return (0);
+		if (var[i] == '\'')
+			return (1);
+		++i;
+	}
+	return (0);
+}
+
+char	*ft_simple_unquote(char *var)
+{
+	int		i;
+	int		j;
+	char	*output;
+
+	if (!ft_need_unquote(var))
+		return (var);
+	output = malloc(sizeof(char) * (ft_strlen(var)));
+	if (!output)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (var[i])
+	{
+		if (var[i] == '\'')
+		{
+			if (!var[i + 1])
+				break ;
+			++i;
+		}
+		output[j++] = var[i++];
+	}
+	output[j] = 0;
+	return (output);
+}
+
 int	ft_export(t_token **t_token, char *token)
 {
 	char	**tmp;
@@ -224,9 +278,9 @@ int	ft_export(t_token **t_token, char *token)
 		while (tmp[i])
 		{
 			if (ft_find_occ((*t_token)->env, tmp[i]) == -1)
-				(*t_token)->env = ft_add_var(tmp[i], (*t_token)->env);
+				(*t_token)->env = ft_add_var(ft_simple_unquote(tmp[i]), (*t_token)->env);
 			else
-				ft_change_var((*t_token)->env, tmp[i], 
+				ft_change_var((*t_token)->env, ft_simple_unquote(tmp[i]), 
 						ft_find_occ((*t_token)->env, tmp[i]));
 			if (!(*t_token)->env)
 				return (ft_free(tmp), -1);
