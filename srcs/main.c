@@ -100,7 +100,8 @@ int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
 	t_token token;
-	t_list *lst;
+	t_list	*lst;
+	t_node	params;
 	(void)av;
 
 	token.token = NULL;
@@ -128,7 +129,9 @@ int	main(int ac, char **av, char **env)
 			if (!lst)
 				return (free(cmd), 1);
 			//ft_print_lst(lst);
-			ft_main_exec(&lst, env);
+			ft_main_exec(&lst, env, &params);
+			if (ft_wait_all_pid(&params) == -1)
+				return (-1);
 			rl_on_new_line();
 			rl_redisplay();
 			//token.token[0] = ft_unquoting(&token, token.token[0]);

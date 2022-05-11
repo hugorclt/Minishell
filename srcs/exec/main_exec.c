@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 11:48:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:11:40 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,33 +100,6 @@ int	ft_close_total(t_node *params, t_list **lst)
 	return (0);
 }
 
-int	ft_exec_one(t_list **lst, char **env)
-{
-	int		pid;
-	t_node	params;
-	t_list	*tmp;
-
-	tmp = (*lst);
-	pid = fork();
-	if (ft_init_io(&tmp, &params) == -1)
-		return (-1);
-	if (pid == 0)
-	{
-		if (ft_prepare_to_execute(&tmp) == -1)
-			return (-1);
-		if (ft_open_io(lst, &params) == -1)
-			return (-1);
-		if (ft_dup_io(&params) == -1)
-			return (-1);
-		tmp->cmd = ft_to_str(tmp->token);
-		if (!tmp->cmd)
-			return (-1);
-		if (ft_execute(ft_split_space(tmp->cmd), env) == -1)
-			return (-1);
-		ft_close_total(&params, &tmp);
-	}
-	return (0);
-}
 
 int	ft_fill_params(t_node *params, int size)
 {
@@ -138,13 +111,40 @@ int	ft_fill_params(t_node *params, int size)
 	return (0);
 }
 
+int	ft_exec_one(t_list **lst, char **env, t_node *params)
+{
+	t_list	*tmp;
+
+	tmp = (*lst);
+	ft_fill_params(params, 1);
+	params->pid[0] = fork();
+	if (ft_init_io(&tmp, params) == -1)
+		return (-1);
+	if (params->pid[0] == 0)
+	{
+		if (ft_prepare_to_execute(&tmp) == -1)
+			return (-1);
+		if (ft_open_io(lst, params) == -1)
+			return (-1);
+		if (ft_dup_io(params) == -1)
+			return (-1);
+		tmp->cmd = ft_to_str(tmp->token);
+		if (!tmp->cmd)
+			return (-1);
+		if (ft_execute(ft_split_space(tmp->cmd), env) == -1)
+			return (-1);
+		ft_close_total(params, &tmp);
+	}
+	return (0);
+}
+
 int	ft_wait_all_pid(t_node *params)
 {
 	int	i;
 	int	status;
 
 	i = 0;
-	while (i < params->nb - 1)
+	while (i < params->nb)
 	{
 		if (waitpid(params->pid[i], &status, 0) == -1)
 			return (-1);
@@ -153,26 +153,25 @@ int	ft_wait_all_pid(t_node *params)
 	return (0);
 }
 
-int	ft_main_exec(t_list **lst, char **env)
+int	ft_main_exec(t_list **lst, char **env, t_node *params)
 {
 	t_list	*tmp;
-	t_node	params;
 	int		i;
 
 	i = 0;
 	tmp = (*lst);
 	if (ft_lstsize(tmp) == 1)
 	{
-		if (ft_exec_one(lst, env) == -1)
+		if (ft_exec_one(lst, env, params) == -1)
 			return (-1);
 	}
 	else
 	{
-		if (ft_fill_params(&params, ft_lstsize(tmp)) == -1)
+		if (ft_fill_params(params, ft_lstsize(tmp)) == -1)
 			return (-1);
 		while (tmp)
 		{
-			if (ft_init_io(&tmp, &params) == -1)
+			if (ft_init_io(&tmp, params) == -1)
 				return (-1);
 			if (ft_prepare_to_execute(&tmp) == -1)
 				return (-1);
@@ -181,9 +180,7 @@ int	ft_main_exec(t_list **lst, char **env)
 				return (-1);
 			tmp = tmp->next;
 		}
-		if (ft_child_exec(&params, lst, env) == -1)
-			return (-1);
-		if (ft_wait_all_pid(&params) == -1)
+		if (ft_child_exec(params, lst, env) == -1)
 			return (-1);
 		//ft_close_total(&params, lst);
 	}
