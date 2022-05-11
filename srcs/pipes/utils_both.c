@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 16:59:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 10:32:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	ft_child_exec(t_node *params, t_list **lst, char **envp)
 	i = 0;
 	tmp = (*lst);
 	params->index = 0;
-	(void)envp;
 	//if (params->heredoc)
 	//	i = 0;
 	while (tmp)
@@ -87,5 +86,6 @@ int	ft_child_exec(t_node *params, t_list **lst, char **envp)
 		params->index++;
 		i++;
 	}
+	ft_close_total(params, lst);
 	return (1);
 }

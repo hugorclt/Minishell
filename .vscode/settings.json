@@ -3,6 +3,7 @@
 		"minishell.h": "c",
 		"struct.h": "c",
 		"includes.h": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"chrono": "c"
 	}
 }

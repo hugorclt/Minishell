@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 17:10:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/10 18:19:12 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int	ft_fork(t_node *params, char **envp, t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
 char	**ft_split_space(char *s);
+int	ft_close_total(t_node *params, t_list **lst);
 void	ft_wrong_args(void);
 void	ft_reset_quotes(t_token *token);
 t_list	*init_lst(t_token *token);
