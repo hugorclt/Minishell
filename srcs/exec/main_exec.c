@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 12:44:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:55:55 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,7 @@ int	ft_main_exec(t_list **lst, char **env)
 {
 	t_list	*tmp;
 	t_node	params;
-	int		i;
 
-	i = 0;
 	tmp = (*lst);
 	if (ft_lstsize(tmp) == 1)
 	{
