@@ -67,13 +67,10 @@ int	ft_test_export(t_token *token)
 	return (0);
 }
 
-static int	ft_init_env(char **env, t_token *token)
+static int	ft_init_env(char **env, t_node *params)
 {
-	token->token = NULL;
-	token->env = NULL;
-	token->tmp_var = NULL;
-	token->env = ft_dup_tab(env);
-	if (!token->env)
+	params->env = ft_dup_tab(env);
+	if (!params->env)
 		return (-1);
 	return (0);
 }
@@ -101,14 +98,14 @@ int	main(int ac, char **av, char **env)
 	char	*cmd;
 	t_token token;
 	t_list	*lst;
-	t_node	params;
+	t_node	*params;
 	(void)av;
 
 	token.token = NULL;
 	lst = NULL;
 	if (ac == 1)
 	{
-		if (ft_init_env(env, &token) < 0)
+		if (ft_init_env(env, &params) < 0)
 			return (1);
 		using_history();
 		while (1)
@@ -129,7 +126,7 @@ int	main(int ac, char **av, char **env)
 			if (!lst)
 				return (free(cmd), 1);
 			//ft_print_lst(lst);
-			ft_main_exec(&lst, env, &params);
+			ft_main_exec(&lst, env);
 			if (ft_wait_all_pid(&params) == -1)
 				return (-1);
 			rl_on_new_line();

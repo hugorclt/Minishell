@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 17:09:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 14:08:21 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_list
 	int				nb_outfile;
 	int				heredoc;
 	struct s_list	*next;
+	int				is_builtin;
 }	t_list;
 
 typedef struct s_node
@@ -71,6 +72,7 @@ typedef struct s_node
 	char			*limiter;
 	int				fd_stdin;
 	int				fd_stdout;
+	char			**env
 }	t_node;
 
 typedef struct s_garb_col

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/09 14:23:04 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/11 14:08:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ char	*ft_quote(char *token)
 	return (output);
 }
 
-int	ft_export(t_token **t_token, char *token)
+int	ft_export(t_node *params, char *token)
 {
 	char	**tmp;
 	int		i;
@@ -144,17 +144,17 @@ int	ft_export(t_token **t_token, char *token)
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (ft_export_alph((*t_token)->env));
+		return (ft_export_alph(params->env));
 	else
 	{
 		while (tmp[i])
 		{
-			if (ft_find_occ((*t_token)->env, tmp[i]) == -1)
-				(*t_token)->env = ft_add_var(ft_quote(tmp[i]), (*t_token)->env);
+			if (ft_find_occ(params->env, tmp[i]) == -1)
+				params->env = ft_add_var(ft_quote(tmp[i]), params->env);
 			else
-				ft_change_var((*t_token)->env, ft_quote(tmp[i]), 
-						ft_find_occ((*t_token)->env, tmp[i]));
-			if (!(*t_token)->env)
+				ft_change_var(params->env, ft_quote(tmp[i]), 
+						ft_find_occ(params->env, tmp[i]));
+			if (!params->env)
 				return (ft_free(tmp), -1);
 			++i;
 		}
