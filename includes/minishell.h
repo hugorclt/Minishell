@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/11 15:48:11 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:49:01 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ int		ft_builtin_exec(t_list *lst, char **env);
 int	main(int ac, char **av, char **env);
 char	*ft_unquoting(t_token *token, char *str);
 void	ft_quoted(t_token *token, char c);
-char	**ft_unset(char **env, char *var);
 char	*ft_strcut(char *str, int i_start, int i_end);
 
 /* -------------------------------------------------------------------------- */
