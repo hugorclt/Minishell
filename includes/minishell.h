@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/11 14:05:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 14:50:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
-int	ft_export(t_token **t_token, char *token);
+int	ft_export(t_node *params, char *token);
 int	ft_find_index(char **export, int size);
 int	ft_parse_tokens(t_token *token, char *cmd);
 int	ft_init_io(t_list **lst, t_node *params);
@@ -34,7 +34,7 @@ int	is_operator(char c);
 int	ft_total_token(char *cmd);
 int  ft_is_quote(char c);
 int	ft_strcmp(char *s1, char *s2);
-int	ft_wait_all_pid(t_node *params);
+int	ft_wait_all_pid(t_node *params, t_list **lst);
 void	ft_print_error(char *token);
 int	ft_is_operator(char *token);
 int	ft_check_token(t_token *token);
@@ -73,6 +73,8 @@ int	ft_execute(char **av, char **envp);
 int	ft_init_pipe(t_node *params);
 int	ft_open(t_node *params, char *infile, char *outfile, int flag);
 int	ft_heredoc(t_node *params);
+int	ft_exec_builtin(t_node *params, char **cmd, char **env);
+int	ft_is_builtin(char *cmd);
 int	ft_cut_space(t_list **lst);
 void	ft_pass_space_reverse(char *cmd, int *new_j);
 int	ft_get_input(t_list **lst, char **tab);
@@ -146,6 +148,7 @@ int		ft_builtin_exec(t_list *lst, char **env);
 int	main(int ac, char **av, char **env);
 char	*ft_unquoting(t_token *token, char *str);
 void	ft_quoted(t_token *token, char c);
+char	**ft_unset(char **env, char *var);
 char	*ft_strcut(char *str, int i_start, int i_end);
 
 /* -------------------------------------------------------------------------- */

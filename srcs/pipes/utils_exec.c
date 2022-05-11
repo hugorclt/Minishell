@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 16:58:37 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:33:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_init_pipe(t_node *params)
 	int	i;
 
 	i = 0;
+	printf("test %d\n", params->nb);
 	params->fd = malloc(sizeof(int) * (params->nb - 1) * 2);
 	if (!params->fd)
 		return (-1);

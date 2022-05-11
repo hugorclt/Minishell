@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:14:06 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 11:27:21 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:29:42 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	ft_open_io(t_list **lst, t_node *params)
 
 	i = 0;
 	tmp = (*lst);
+	printf("%d\n", tmp->nb_outfile);
 	while (i < tmp->nb_infile)
 		ft_open_input(&tmp, params, &i);
 	if (tmp->nb_infile >= 1)

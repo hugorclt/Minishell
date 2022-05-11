@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:07:24 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 13:35:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:23:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_get_output(t_list **lst, char **tab, int *k, int i)
 	else if (ft_strcmp(tab[i], ">") == 0)
 	{
 		tmp->file_out[*k].file = ft_strdup(tab[i + 1]);
+		//printf("%s\n", tmp->file_out[*k].file);
 		if (!tmp->file_out[*k].file)
 			return (-1);
 		tmp->file_out[*k].flag = 0;
