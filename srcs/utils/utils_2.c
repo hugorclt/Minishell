@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 18:24:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:47:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ char	*ft_to_str(char **str)
 		i++;
 	}
 	return (ft_free(str), ret);
+}
+
+void	ft_increm(int *i, int *j)
+{
+	(*i)++;
+	(*j)++;
 }

@@ -6,11 +6,25 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/09 14:22:35 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/10 18:37:23 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_var_len(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '+' || var[i] == '=')
+			break ;
+		++i;
+	}
+	return (i);
+}
 
 int	ft_find_occurence(char **env, char *cmd)
 {
@@ -19,18 +33,25 @@ int	ft_find_occurence(char **env, char *cmd)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strnstr(env[i], cmd, ft_strlen(env[i])))
+		if (ft_strnstr(env[i], cmd, ft_strlen(cmd)))
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-static void	ft_print_free(char **export, int i)
+static int	ft_print_free(char **export, int i)
 {
+	if (ft_theres_backslash(export[i]))
+		export[i] = ft_backslash(ft_quote(export[i]));
+	else
+		export[i] = ft_quote(export[i]);
+	if (!export[i])
+		return (-1);
 	printf("declare -x %s\n", export[i]);
 	free(export[i]);
 	export[i] = NULL;
+	return (0);
 }
 
 static int	ft_first(char **export, int size)
@@ -86,7 +107,8 @@ int	ft_export_alph(char **env)
 	i = 0;
 	while (i < ft_tab_size(env))
 	{
-		ft_print_free(export, ft_find_index(export, ft_tab_size(env)));
+		if (ft_print_free(export, ft_find_index(export, ft_tab_size(env))) < 0)
+			return (ft_free(export), -1);
 		++i;
 	}
 	return (0);
