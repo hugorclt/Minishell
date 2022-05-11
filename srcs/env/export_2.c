@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/11 15:38:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:24:24 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ char	*ft_quote(char *token)
 	}
 	output[j] = '"';
 	output[j + 1] = 0;
-	return (free(token), output);
+	return (output);
 }
 
 int	ft_need_unquote(char *var)
@@ -278,9 +278,9 @@ int	ft_export(t_node *params, char *token)
 		while (tmp[i])
 		{
 			if (ft_find_occ(params->env, tmp[i]) == -1)
-				params->env = ft_add_var(ft_quote(tmp[i]), params->env);
+				params->env = ft_add_var(tmp[i], params->env);
 			else
-				ft_change_var(params->env, ft_quote(tmp[i]), 
+				ft_change_var(params->env, tmp[i], 
 						ft_find_occ(params->env, tmp[i]));
 			if (!params->env)
 				return (ft_free(tmp), -1);

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 12:45:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:27:13 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_print_tab(char **tokens)
 	if (!*tokens)
 		return ;
 	while (tokens[i])
-		printf("%st\n", tokens[i++]);
+		printf("%s\n", tokens[i++]);
 }
 
 int	ft_test_export(t_token *token)
