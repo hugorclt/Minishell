@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/11 12:45:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:35:55 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
+int	ft_is_in(char **var_lst, char *var);
 char	*ft_unquote(char *var);
 char	*ft_backslash(char *token);
 int	ft_theres_backslash(char *token);
