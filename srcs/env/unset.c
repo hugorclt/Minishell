@@ -6,7 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/05/11 15:42:04 by hrecolet         ###   ########.fr       */
+=======
+/*   Updated: 2022/05/11 15:45:13 by yuro4ka          ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +30,26 @@ int	ft_is_in(char **var_lst, char *var)
 	return (0);
 }
 
+int	ft_need(char **env, char **var_lst)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (var_lst[i])
+	{
+		j = 0;
+		while (env[j])
+		{
+			if (!ft_strncmp(env[j], var_lst[i], ft_strlen(var_lst[i])))
+				return (1);
+			++j;
+		}
+		++i;
+	}
+	return (0);
+}
+
 char	**ft_unset(char **env, char **var)
 {
 	char	**output;
@@ -34,8 +58,8 @@ char	**ft_unset(char **env, char **var)
 	
 	i = 0;
 	j = 0;
-	if (ft_is_in(env, var) == -1)
-		return (ft_free(env), env);
+	if (!ft_need(env, var))
+		return (env);
 	output = malloc(sizeof(char *) * (ft_tab_size(env)));
 	if (!output)
 		return (NULL);
