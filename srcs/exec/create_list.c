@@ -90,3 +90,4 @@
  	ft_free(token->token);
  	return (lst);
  }
+
