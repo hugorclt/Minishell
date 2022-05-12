@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/11 12:44:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:38:15 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,21 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 	return (0);
 }
 
+void	ft_error_mess(char *token)
+{
+	if (!ft_strcmp(token, "|"))
+		printf("bash: syntax error near unexpected token `|'");
+	else
+		printf("bash: syntax error near unexpected token `newline'");
+}
+
 int	ft_parse_tokens(t_token *token, char *cmd)
 {
 	int		i;
 	int		j;
-
+	
+	if (is_operator(cmd[0]) && ft_strlen(cmd) < 2)
+		return (ft_error_mess(cmd),  0);
 	if (ft_init_n_malloc(token, cmd, &i, &j) == -1)
 		return (-1);
 	while (cmd[j])
@@ -111,5 +121,5 @@ int	ft_parse_tokens(t_token *token, char *cmd)
 		}
 	}
 	token->token[i] = NULL;
-	return (0);
+	return (1);
 }

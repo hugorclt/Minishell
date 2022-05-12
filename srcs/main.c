@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:40:00 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:36:05 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,19 @@ static int	ft_init_env(char **env, t_node *params)
 
 static int	ft_exec_parsing(t_token *token, char *cmd)
 {
-	if (ft_parse_tokens(token, cmd) == -1)
+	int	flag;
+
+
+	flag = ft_parse_tokens(token, cmd);
+	if (flag == -1)
 		return (ft_free(token->token), -1);
-	if (ft_check_token(token) == -1)
-		return (ft_free(token->token), -1);
-	if (ft_expand_var(token, token->env) == -1)
-		return (ft_free(token->token), -1);
+	else if (flag == 0)
+		return (0);
+	else
+	{
+		if (ft_expand_var(token, token->env) == -1)
+			return (ft_free(token->token), -1);
+	}
 	return (0);
 }
 /*
@@ -127,13 +134,20 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(ft_get_last_dir(get_pwd()));
 			if (!cmd)
 				return (free(cmd), 1);
-			if (cmd[1] == '\0')
+			if (cmd[0] == '\0')
 			{
 				free(cmd);
 				continue ;
 			}
 			if (ft_exec_parsing(&token, cmd) == -1)
 				return (free(cmd), 1);
+			if (ft_check_token(&token) == -1)
+			{
+				ft_free(token.token);
+				free(cmd);
+				continue ;
+			}
+			printf("ici\n");
 			lst = init_lst(&token);
 			if (!lst)
 				return (free(cmd), 1);
