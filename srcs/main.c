@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 16:34:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:49:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 {
 	int	flag;
 
-
 	flag = ft_parse_tokens(token, cmd);
 	if (flag == -1)
 		return (ft_free(token->token), -1);
@@ -87,7 +86,6 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 		return (0);
 	else
 	{
-		ft_print_tab(params->env);
 		if (ft_expand_var(token, params->env) == -1)
 			return (ft_free(token->token), -1);
 	}
