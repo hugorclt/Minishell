@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:32:45 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:08:24 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,10 @@ int	ft_wait_all_pid(t_node *params)
 	int	status;
 
 	i = 0;
+	printf("nb : %d\n", params->nb);
 	while (i < params->nb)
 	{
+		printf("ici i : %d\n", i);
 		if (waitpid(params->pid[i], &status, 0) == -1)
 			return (-1);
 		i++;

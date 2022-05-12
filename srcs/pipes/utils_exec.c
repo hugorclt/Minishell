@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 11:40:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:19:16 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_execute(t_node *params, char **av, char **envp)
 
 	if (ft_is_builtin(av[0]) == 1)
 	{
-		if (ft_exec_builtin(params, av, envp) == -1)
+		if (ft_exec_builtin(params, av) == -1)
 			return (-1);
 	}
 	path = check_path(get_path_lst(envp), av[0]);

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:31:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:42:46 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_is_builtin(char *cmd)
 	return (0);
 }
 
-int	ft_exec_builtin(t_node *params, char **cmd, char **env)
+int	ft_exec_builtin(t_node *params, char **cmd)
 {
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		ft_change_dir(cmd[1]);
@@ -44,7 +44,7 @@ int	ft_exec_builtin(t_node *params, char **cmd, char **env)
 	}
 	else if (ft_strcmp(cmd[0], "export") == 0)
 	{
-		if (ft_export(env, ft_to_str(cmd)) == -1)
+		if (ft_export(params, ft_to_str(cmd)) == -1)
 			return (-1);
 	}
 	else if (ft_strcmp(cmd[0], "unset") == 0)
@@ -54,9 +54,7 @@ int	ft_exec_builtin(t_node *params, char **cmd, char **env)
 			return (-1);
 	}
 	else if (ft_strcmp(cmd[0], "env") == 0)
-	{
-		ft_print_env(env);
-	}
+		ft_print_env(params->env);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		return (-2);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/12 15:16:48 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:43:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ char	*ft_simple_unquote(char *var)
 	return (output);
 }
 
-int	ft_export(char **env, char *token)
+int	ft_export(t_node *params, char *token)
 {
 	char	**tmp;
 	int		i;
@@ -273,17 +273,17 @@ int	ft_export(char **env, char *token)
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (ft_export_alph(env));
+		return (ft_export_alph(params->env));
 	else
 	{
 		while (tmp[i])
 		{
-			if (ft_find_occ(env, tmp[i]) == -1)
-				env = ft_add_var(tmp[i], env);
+			if (ft_find_occ(params->env, tmp[i]) == -1)
+				params->env = ft_add_var(tmp[i], params->env);
 			else
-				ft_change_var(env, tmp[i], 
-						ft_find_occ(env, tmp[i]));
-			if (!env)
+				ft_change_var(params->env, tmp[i], 
+						ft_find_occ(params->env, tmp[i]));
+			if (!params->env)
 				return (ft_free(tmp), -1);
 			++i;
 		}

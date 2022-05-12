@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:20:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:22:23 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
 		if (ft_open_io(lst) == -1)
 			return (-1);
 		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
-		if (ft_exec_builtin(params, (*lst)->token, params->env) == -1)
+		if (ft_exec_builtin(params, (*lst)->token) == -1)
 			return (-1);
 	}
 	return (0);
@@ -49,7 +49,7 @@ int	ft_execute_one_builtin(t_node *params, t_list **lst)
 	if (ft_open_io(lst) == -1)
 		return (-1);
 	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
-	if (ft_exec_builtin(params, (*lst)->token, params->env) == -1)
+	if (ft_exec_builtin(params, (*lst)->token) == -1)
 		return (-1);
 	return (0);
 }

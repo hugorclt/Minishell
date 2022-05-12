@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:15:04 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:30:42 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_find_occurence(char **env, char *cmd)
 	int	i;
 
 	i = 0;
+	if (!env)
+		return (-1);
 	while (env[i])
 	{
 		if (ft_strnstr(env[i], cmd, ft_strlen(cmd)))
