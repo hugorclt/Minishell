@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 15:38:51 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:57:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_files
 {
 	char	*file;
 	int		flag;
+	int		fd;
 }	t_files;
 
 typedef struct s_list
@@ -56,6 +57,8 @@ typedef struct s_list
 	t_files			*file_out;
 	int				nb_infile;
 	int				nb_outfile;
+	int				last_infile;
+	int				last_outfile;
 	int				heredoc;
 	struct s_list	*next;
 	int				is_builtin;

@@ -6,16 +6,21 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/11 15:42:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 10:36:29 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_execute(char **av, char **envp)
+int	ft_execute(t_node *params, char **av, char **envp)
 {
 	char	*path;
 
+	if (ft_is_builtin(av[0]) == 1)
+	{
+		if (ft_exec_builtin(params, av, envp) == -1)
+			return (-1);
+	}
 	path = check_path(get_path_lst(envp), av[0]);
 	if (!path)
 		return (ft_free(av), -1);

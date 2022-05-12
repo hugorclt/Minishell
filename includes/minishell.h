@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/11 15:49:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 11:00:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int	ft_is_in(char **var_lst, char *var);
 char	*ft_unquote(char *var);
+int	ft_total_unquote(t_list **lst);
 char	*ft_backslash(char *token);
 int	ft_theres_backslash(char *token);
 int	ft_check_equal(char *token);
@@ -35,11 +36,10 @@ int	ft_export(t_node *params, char *token);
 int	ft_find_index(char **export, int size);
 int	ft_parse_tokens(t_token *token, char *cmd);
 int	ft_init_io(t_list **lst, t_node *params);
-int	ft_count_in(char **cmd);
-int	ft_count_out(char **cmd);
+void	ft_count_in(char **token, t_list **lst);
+void	ft_count_out(char **token, t_list **lst);
 char	**ft_cut_io(t_list **tmp);
-int	ft_open_input(t_list **lst, t_node *params, int *i);
-int	ft_open_io(t_list **lst, t_node *params);
+int	ft_open_io(t_list **lst);
 int	ft_dup_io(t_node *params);
 int	ft_isspace(char c);
 int	is_operator(char c);
@@ -81,7 +81,7 @@ void	ft_heredoc_infile(t_node *params);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
-int	ft_execute(char **av, char **envp);
+int	ft_execute(t_node *params, char **av, char **envp);
 int	ft_init_pipe(t_node *params);
 int	ft_open(t_node *params, char *infile, char *outfile, int flag);
 int	ft_heredoc(t_node *params);
@@ -113,7 +113,7 @@ char	*check_path(char **path_lst, char *cmd);
 int	ft_init_pid(t_node *params);
 int	ft_norme(t_node *params, char **av, int ac, int j);
 int	ft_fill_cmd_name(t_node *params, char **av, int ac);
-int	ft_child_exec(t_node *params, t_list **av, char **envp);
+int	ft_child_exec(t_node *params, t_list **av);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/pipes/join.c                          */
@@ -158,9 +158,11 @@ int		ft_builtin_exec(t_list *lst, char **env);
 /*                             FILE = srcs/main.c                             */
 /* -------------------------------------------------------------------------- */
 int	main(int ac, char **av, char **env);
-char	*ft_unquoting(t_token *token, char *str);
+int	ft_save_file(t_list **lst);
+char	*ft_unquoting(char *str);
 void	ft_quoted(t_token *token, char c);
 char	*ft_strcut(char *str, int i_start, int i_end);
+char	**ft_clean_redirection(t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/init_struct.c                      */
@@ -177,7 +179,7 @@ char	*ft_strjoin_char(char *cmd, char c);
 void	ft_print_tab(char **tab);
 int	ft_find_occurence(char **env, char *cmd);
 void	ft_echo(char **cmd);
-int	ft_main_exec(t_list **lst, char **env, t_node *params);
+int	ft_main_exec(t_node *params, t_list **lst);
 int	ft_expand_var(t_token *token, char **env);
 int	ft_export_alph(char **env);
 
