@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 14:39:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:07:44 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_count_binaries(t_list **lst)
 	ret = 0;
 	while (tmp)
 	{
-		if (ft_is_builtin(tmp->token[0]))
+		if (ft_is_builtin(tmp->token[0]) == 1)
 			ret++;
 		tmp = tmp->next;
 	}
@@ -76,15 +76,15 @@ int	ft_exec_one(t_node *params, t_list **lst)
 		&& ft_strcmp((*lst)->token[0], "cd") != 0
 		&& ft_strcmp((*lst)->token[0], "unset") != 0)
 		{
-		if (ft_execute_one_fork_builtin(params, lst) == -1)
-			return (-1);
+			if (ft_execute_one_fork_builtin(params, lst) == -1)
+				return (-1);
 		}
 	else if (ft_strcmp((*lst)->token[0], "export") == 0
-		&& ft_strcmp((*lst)->token[0], "cd") == 0
-		&& ft_strcmp((*lst)->token[0], "unset") == 0)
+		|| ft_strcmp((*lst)->token[0], "cd") == 0
+		|| ft_strcmp((*lst)->token[0], "unset") == 0)
 		{
-		if (ft_execute_one_builtin(params, lst) == -1)
-			return (-1);
+			if (ft_execute_one_builtin(params, lst) == -1)
+				return (-1);
 		}
 	else
 	{
