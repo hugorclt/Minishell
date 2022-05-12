@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:32:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:34:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	ft_init_env(char **env, t_node *params)
 	return (0);
 }
 
-static int	ft_exec_parsing(t_token *token, char *cmd)
+static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 {
 	int	flag;
 
@@ -87,7 +87,8 @@ static int	ft_exec_parsing(t_token *token, char *cmd)
 		return (0);
 	else
 	{
-		if (ft_expand_var(token, token->env) == -1)
+		ft_print_tab(params->env);
+		if (ft_expand_var(token, params->env) == -1)
 			return (ft_free(token->token), -1);
 	}
 	return (0);
@@ -121,6 +122,7 @@ int	ft_wait_all_pid(t_node *params)
 	i = 0;
 	while (i < params->nb)
 	{
+		dprintf(2, "ici\n");
 		if (waitpid(params->pid[i], &status, 0) == -1)
 			return (-1);
 		i++;
@@ -154,7 +156,7 @@ int	main(int ac, char **av, char **env)
 				free(cmd);
 				continue ;
 			}
-			if (ft_exec_parsing(&token, cmd) == -1)
+			if (ft_exec_parsing(&token, cmd, &params) == -1)
 				return (free(cmd), 1);
 			if (ft_check_token(&token) == -1)
 			{
@@ -162,7 +164,6 @@ int	main(int ac, char **av, char **env)
 				free(cmd);
 				continue ;
 			}
-			printf("ici\n");
 			lst = init_lst(&token);
 			if (!lst)
 				return (free(cmd), 1);
