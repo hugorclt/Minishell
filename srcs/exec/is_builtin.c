@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 16:18:56 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:12:51 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,3 @@ int	ft_exec_builtin(t_node *params, char **cmd, char **env)
 		return (-2);
 	return (1);
 }
-
-
-
-

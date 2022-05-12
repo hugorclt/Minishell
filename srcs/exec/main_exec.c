@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 15:46:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:53:45 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,21 +146,16 @@ int	ft_exec_one(t_list **lst, char **env, t_node *params)
 	return (0);
 }
 
-int	ft_wait_all_pid(t_node *params, t_list **lst)
+int	ft_wait_all_pid(t_node *params)
 {
 	int		i;
-	t_list	*tmp;
 	int		status;
 
 	i = 0;
-	tmp = (*lst);
 	while (i < params->nb)
 	{
-		if (tmp->is_builtin == 0)
-		{
-			if (waitpid(params->pid[i], &status, 0) == -1)
-				return (-1);
-		}
+		if (waitpid(params->pid[i], &status, 0) == -1)
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -204,8 +199,6 @@ int	ft_main_exec(t_list **lst, char **env, t_node *params)
 				return (-1);
 			else if (ft_exec_builtin(params, tmp->token, env) == -2)
 				return (/*ft_quit(),*/ 0);
-			//if (i == params->nb)
-			//	return (0);
 		}
 		else
 		{
