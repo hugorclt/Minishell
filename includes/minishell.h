@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 11:00:24 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:26:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_operator(char c);
 int	ft_total_token(char *cmd);
 int  ft_is_quote(char c);
 int	ft_strcmp(char *s1, char *s2);
-int	ft_wait_all_pid(t_node *params, t_list **lst);
+int	ft_wait_all_pid(t_node *params);
 void	ft_print_error(char *token);
 int	ft_is_operator(char *token);
 int	ft_check_token(t_token *token);

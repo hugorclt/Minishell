@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:48:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:17:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,20 @@ static int	ft_prepare_file(t_list **lst)
 
 static int	ft_save_out(t_list **lst, int *i, int *j)
 {
-	t_list *tmp;
-
-	tmp = (*lst);
-	if (ft_strcmp(tmp->token[*i], ">") == 0)
+	if (ft_strcmp((*lst)->token[*i], ">") == 0)
 	{
-		tmp->file_out[*j].file = ft_strdup(tmp->token[(*i) + 1]);
-		if (!tmp->file_out[*j].file)
+		(*lst)->file_out[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		if (!(*lst)->file_out[*j].file)
 			return (-1);
-		tmp->file_out[*j].flag = 0;
+		(*lst)->file_out[*j].flag = 0;
 		(*j)++;
 	}
-	if (ft_strcmp(tmp->token[*i], ">>") == 0)
+	if (ft_strcmp((*lst)->token[*i], ">>") == 0)
 	{
-		tmp->file_out[*j].file = ft_strdup(tmp->token[(*i) + 1]);
-		if (!tmp->file_out[*j].file)
+		(*lst)->file_out[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		if (!(*lst)->file_out[*j].file)
 			return (-1);
-		tmp->file_out[*j].flag = 1;
+		(*lst)->file_out[*j].flag = 1;
 		(*j)++;
 	}
 	return (0);
@@ -52,23 +49,20 @@ static int	ft_save_out(t_list **lst, int *i, int *j)
 
 static int	ft_save_in(t_list **lst, int *i, int *j)
 {
-	t_list *tmp;
-
-	tmp = (*lst);
-	if (ft_strcmp(tmp->token[*i], "<") == 0)
+	if (ft_strcmp((*lst)->token[*i], "<") == 0)
 	{
-		tmp->file_in[*j].file = ft_strdup(tmp->token[(*i) + 1]);
-		if (!tmp->file_in[*j].file)
+		(*lst)->file_in[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		if (!(*lst)->file_in[*j].file)
 			return (-1);
-		tmp->file_in[*j].flag = 0;
+		(*lst)->file_in[*j].flag = 0;
 		(*j)++;
 	}
-	if (ft_strcmp(tmp->token[*i], "<<") == 0)
+	if (ft_strcmp((*lst)->token[*i], "<<") == 0)
 	{
-		tmp->file_in[*j].file = ft_strdup(tmp->token[(*i) + 1]);
-		if (!tmp->file_in[*j].file)
+		(*lst)->file_in[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		if (!(*lst)->file_in[*j].file)
 			return (-1);
-		tmp->file_in[*j].flag = 1;
+		(*lst)->file_in[*j].flag = 1;
 		(*j)++;
 	}
 	return (0);
@@ -76,7 +70,6 @@ static int	ft_save_in(t_list **lst, int *i, int *j)
 
 int	ft_save_file(t_list **lst)
 {
-	t_list	*tmp;
 	int		i;
 	int		j;
 	int		k;
@@ -84,16 +77,13 @@ int	ft_save_file(t_list **lst)
 	i = 0;
 	j = 0;
 	k = 0;
-	tmp = (*lst);
-	if (ft_prepare_file(&tmp))
+	if (ft_prepare_file(lst))
 		return (-1);
-	while (tmp->token[i])
+	while ((*lst)->token[i])
 	{
-		if (ft_prepare_file(&tmp) == -1)
+		if (ft_save_in(lst, &i, &j) == -1)
 			return (-1);
-		if (ft_save_in(&tmp, &i, &j) == -1)
-			return (-1);
-		if (ft_save_out(&tmp, &i, &k) == -1)
+		if (ft_save_out(lst, &i, &k) == -1)
 			return (-1);
 		i++;	
 	}

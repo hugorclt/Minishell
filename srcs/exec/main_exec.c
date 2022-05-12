@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:48:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:34:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ int	ft_count_binaries(t_list **lst)
 
 int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
+	ft_init_pid(params);
+	params->pid[0] = fork();
+	if (params->pid[0] == 0)
 	{
 		if (ft_open_io(lst) == -1)
 			return (-1);
@@ -46,6 +45,7 @@ int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
 
 int	ft_execute_one_builtin(t_node *params, t_list **lst)
 {
+	params->have_pid = 0;
 	if (ft_open_io(lst) == -1)
 		return (-1);
 	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
@@ -56,10 +56,9 @@ int	ft_execute_one_builtin(t_node *params, t_list **lst)
 
 int	ft_execute_one_binaries(t_node *params, t_list **lst)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
+	ft_init_pid(params);
+	params->pid[0] = fork();
+	if (params->pid[0] == 0)
 	{
 		if (ft_open_io(lst) == -1)
 			return (-1);
@@ -103,7 +102,6 @@ int	ft_prepare_cmd(t_list **lst)
 	if (ft_save_file(&tmp) == -1)
 		return (-1);
 	tmp->token = ft_clean_redirection(&tmp);
-	//printf("%s\n", tmp->file_out[0].file);
 	if (!tmp->token)
 		return (-1);
 	tmp->token = ft_split_space(ft_to_str(tmp->token));

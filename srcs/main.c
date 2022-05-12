@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 10:41:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:37:32 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,23 @@ static void	ft_print_env(char **env)
 	}
 }
 */
+
+
+int	ft_wait_all_pid(t_node *params)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	while (i < params->nb)
+	{
+		if (waitpid(params->pid[i], &status, 0) == -1)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
@@ -140,8 +157,11 @@ int	main(int ac, char **av, char **env)
 				return (free(cmd), 1);
 			//ft_print_lst(lst);
 			ft_main_exec(&params, &lst);
-			//if (ft_wait_all_pid(&params, &lst) == -1)
-			//	return (-1);
+			if (params.have_pid > 0)
+			{
+				if (ft_wait_all_pid(&params) == -1)
+					return (-1);
+			}
 			rl_on_new_line();
 			rl_redisplay();
 			//token.token[0] = ft_unquoting(&token, token.token[0]);

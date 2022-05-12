@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 10:45:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:23:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_init_pid(t_node *params)
 	params->pid = malloc(sizeof(pid_t) * params->nb);
 	if (!params->pid)
 		return (-1);
+	params->have_pid = 1;
 	return (1);
 }
 
