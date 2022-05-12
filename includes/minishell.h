@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 15:28:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:33:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_theres_dquotes(char *token);
 char	*ft_quote(char *token);
 void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
-int	ft_export(t_node *params, char *token);
+int	ft_export(char **env, char *token);
 int	ft_find_index(char **export, int size);
 int	ft_parse_tokens(t_token *token, char *cmd);
 int	ft_init_io(t_list **lst, t_node *params);

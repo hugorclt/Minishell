@@ -1,12 +1,12 @@
 /* ************************************************************************** */
  /*                                                                            */
  /*                                                        :::      ::::::::   */
- /*   create_list.c                                      :+:      :+:    :+:   */
+/*   create_list.c                                      :+:      :+:    :+:   */
  /*                                                    +:+ +:+         +:+     */
  /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
  /*                                                +#+#+#+#+#+   +#+           */
  /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
- /*   Updated: 2022/05/06 19:09:17 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:09:51 by yuro4ka          ###   ########.fr       */
  /*                                                                            */
  /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
  	int		i;
  	int		start;
 
- 	if (ft_init_var(&lst, &i, &start) == -1)
+ 	if (!token->token || ft_init_var(&lst, &i, &start) == -1)
  		return (ft_free(token->token), NULL);
  	while (token->token[i])
  	{

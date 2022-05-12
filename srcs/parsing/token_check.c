@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 16:30:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:25:09 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,15 +131,16 @@ int	ft_check_token(t_token *token)
 	int	i;
 
 	i = 0;
-	if (token->token[i + 1] && ft_is_operator(token->token[i]) == 1 &&  
-			ft_is_operator(token->token[i + 1]) == 1)
-		return (ft_print_error(token->token[i + 1]), -1);
+	if (!token->token)
+		return (-1);
+	if (!ft_strcmp(token->token[i], "|"))
+		return (ft_print_error(token->token[i]), -1);
 	while (token->token[i])
 	{
 		if (ft_is_operator(token->token[i]) == 1 && token->token[i + 1] && 
 				ft_is_operator(token->token[i + 1]) == 1)
 		{
-			if (ft_strcmp(token->token[i], token->token[i + 1]) != 0)
+			if (!ft_strcmp(token->token[i], token->token[i + 1]))
 				return (ft_print_error(token->token[i + 1]), -1);
 		}
 		++i;
