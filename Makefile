@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/11 15:50:01 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/12 10:39:10 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRCS 		=	srcs/main.c\
 				srcs/pipes/utils_str.c\
 				srcs/parsing/init_struct.c\
 				srcs/expand/env_expand.c\
-				srcs/env/export.c\
 				srcs/exec/ft_echo.c\
+				srcs/env/export.c\
 				srcs/exec/is_builtin.c\
 				srcs/parsing/count_token.c\
 				srcs/parsing/parse_token.c\
@@ -43,6 +43,9 @@ SRCS 		=	srcs/main.c\
 				srcs/env/export_2.c\
 				srcs/env/unset.c\
 				srcs/env/utils_export.c\
+				srcs/exec/clean_redirection.c\
+				srcs/exec/open_io.c\
+				srcs/exec/insert_file.c\
 				srcs/exec/main_exec.c
 
 OBJS		=		$(SRCS:.c=.o)

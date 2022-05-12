@@ -6,211 +6,134 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 16:53:45 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 11:39:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**ft_cut_tab(char **tab, int start, int end)
-{
-	char	**ret;
-	int		i;
-
-	ret = malloc(sizeof(char *) * ft_tab_size(tab) - 1);
-	i = 0;
-	if (!ret)
-		return (NULL);
-	while (i < start)
-	{
-		ret[i] = ft_strdup(tab[i]);
-		i++;
-	}
-	while (tab[end])
-	{
-		ret[i] = ft_strdup(tab[end]);
-		i++;
-		end++;
-	}
-	ret[i] = 0;
-	return (ret);
-}
-
-int	ft_count_in(char **cmd)
-{
-	int	i;
-	int	ret;
-
-	i = 0;
-	ret = 0;
-	while (cmd[i])
-	{
-		if (ft_strcmp(cmd[i], "<") == 0 || ft_strcmp(cmd[i], "<<") == 0)
-			ret++;
-		i++;
-	}
-	return (ret);
-}
-
-int	ft_count_out(char **cmd)
-{
-	int	i;
-	int	ret;
-
-	i = 0;
-	ret = 0;
-	while (cmd[i])
-	{
-		if (ft_strcmp(cmd[i], ">") == 0 || ft_strcmp(cmd[i], ">>") == 0)
-			ret++;
-		i++;
-	}
-	return (ret);
-}
-
-int	ft_prepare_to_execute(t_list **lst)
-{
-	(*lst)->token = ft_split_space(ft_to_str((*lst)->token));
-	if (ft_get_input(lst, (*lst)->token) == -1)
-		return (-1);
-	(*lst)->token = ft_cut_io(lst);
-	if (!(*lst)->token)
-		return (-1);
-	return (0);
-}
-
-int	ft_close_total(t_node *params, t_list **lst)
+int	ft_count_binaries(t_list **lst)
 {
 	t_list	*tmp;
-	int		i;
+	int		ret;
 
-	i = 0;
 	tmp = (*lst);
-	while (i < tmp->nb_infile)
+	ret = 0;
+	while (tmp)
 	{
-		close(params->infile[i]);
-		i++;
+		if (ft_is_builtin(tmp->token[0]))
+			ret++;
+		tmp = tmp->next;
 	}
-	i = 0;
-	while (i < tmp->nb_outfile)
-	{
-		close(params->outfile[i]);
-		i++;
-	}
-	return (0);
+	return (ret);
 }
 
-int	ft_fill_params(t_node *params, int size)
+int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
 {
-	params->nb = size;
-	if (ft_init_pipe(params) == -1)
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (ft_open_io(lst) == -1)
+			return (-1);
+		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
+		if (ft_exec_builtin(params, (*lst)->token, params->env) == -1)
+			return (-1);
+	}
+	return (0);
+}
+
+int	ft_execute_one_builtin(t_node *params, t_list **lst)
+{
+	if (ft_open_io(lst) == -1)
 		return (-1);
-	if (ft_init_pid(params) == -1)
+	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
+	if (ft_exec_builtin(params, (*lst)->token, params->env) == -1)
 		return (-1);
 	return (0);
 }
 
-int	ft_prepare_io(t_list **lst, t_node *params)
+int	ft_execute_one_binaries(t_node *params, t_list **lst)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (ft_open_io(lst) == -1)
+			return (-1);
+		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
+		if (ft_execute(params, (*lst)->token, params->env) == -1)
+			return (-1);
+	}
+	return (0);
+}
+
+int	ft_exec_one(t_node *params, t_list **lst)
+{
+	if (ft_is_builtin((*lst)->token[0]) == 1
+		&& ft_strcmp((*lst)->token[0], "export") != 0
+		&& ft_strcmp((*lst)->token[0], "cd") != 0
+		&& ft_strcmp((*lst)->token[0], "unset") != 0)
+		{
+		if (ft_execute_one_fork_builtin(params, lst) == -1)
+			return (-1);
+		}
+	else if (ft_strcmp((*lst)->token[0], "export") == 0
+		&& ft_strcmp((*lst)->token[0], "cd") == 0
+		&& ft_strcmp((*lst)->token[0], "unset") == 0)
+		{
+		if (ft_execute_one_builtin(params, lst) == -1)
+			return (-1);
+		}
+	else
+	{
+		if (ft_execute_one_binaries(params, lst) == -1)
+			return (-1);
+	}
+	return (0);
+}
+
+int	ft_prepare_cmd(t_list **lst)
 {
 	t_list *tmp;
 
 	tmp = (*lst);
-	if (ft_init_io(&tmp, params) == -1)
+	if (ft_save_file(&tmp) == -1)
 		return (-1);
-	if (ft_prepare_to_execute(&tmp) == -1)
+	tmp->token = ft_clean_redirection(&tmp);
+	//printf("%s\n", tmp->file_out[0].file);
+	if (!tmp->token)
+		return (-1);
+	tmp->token = ft_split_space(ft_to_str(tmp->token));
+	if (!tmp->token)
+		return (-1);
+	if (ft_total_unquote(&tmp) == -1)
 		return (-1);
 	return (0);
 }
 
-int	ft_exec_one(t_list **lst, char **env, t_node *params)
+int	ft_main_exec(t_node *params, t_list **lst)
 {
 	t_list	*tmp;
+	int		i;
 
 	tmp = (*lst);
-	//ft_fill_params(params, 1);
-	params->pid[0] = fork();
-	if (params->pid[0] == 0)
-	{
-		if (ft_open_io(lst, params) == -1)
-			return (-1);
-		if (ft_dup_io(params) == -1)
-			return (-1);
-		//dprintf(2, "%d\n", params->last_outfile);
-		tmp->cmd = ft_to_str(tmp->token);
-		if (!tmp->cmd)
-			return (-1);
-		if (ft_execute(ft_split_space(tmp->cmd), env) == -1)
-			return (-1);
-		ft_close_total(params, &tmp);
-	}
-	return (0);
-}
-
-int	ft_wait_all_pid(t_node *params)
-{
-	int		i;
-	int		status;
-
+	params->nb = ft_lstsize(tmp);
+	if (params->nb == 0)
+		return (-1);
 	i = 0;
 	while (i < params->nb)
 	{
-		if (waitpid(params->pid[i], &status, 0) == -1)
+		if (ft_prepare_cmd(&tmp) == -1)
 			return (-1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_exec_bin(t_list **lst, char **env, t_node *params)
-{
-	t_list	*tmp;
-
-	tmp = (*lst);
-	if (ft_lstsize(tmp) == 1)
-	{
-		if (ft_exec_one(lst, env, params) == -1)
-			return (-1);
-	}
-	else
-	{
-		tmp->cmd = ft_to_str(tmp->token);
-		if (!tmp->cmd)
-			return (-1);
-	}
-	return (0);
-}
-
-int	ft_main_exec(t_list **lst, char **env, t_node *params)
-{
-	t_list *tmp;
-	int		i;
-
-	tmp = (*lst);
-	if (ft_fill_params(params, ft_lstsize(tmp)) == -1)
-		return (-1);
-	i = 1;
-	while (tmp)
-	{
-		ft_prepare_io(&tmp, params);
-		if (ft_is_builtin(tmp->token[0]) == 1)
-		{
-			tmp->is_builtin = 1;
-			if (ft_exec_builtin(params, tmp->token, env) == -1)
-				return (-1);
-			else if (ft_exec_builtin(params, tmp->token, env) == -2)
-				return (/*ft_quit(),*/ 0);
-		}
-		else
-		{
-			tmp->is_builtin = 0;
-			if (ft_exec_bin(&tmp, env, params) == -1)
-				return (-1);
-		}
 		tmp = tmp->next;
 		i++;
 	}
-	if (ft_lstsize(*lst) != 1)
-		ft_child_exec(params, lst, env);
-	//ft_close_total(&params, lst);
+	if (params->nb == 1)
+		ft_exec_one(params, lst);
+	else if (ft_child_exec(params, lst) == -1)
+		return (-1);
 	return (0);
 }
