@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 14:40:19 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:31:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 int	ft_is_in(char **var_lst, char *var);
 char	*ft_unquote(char *var);
 int	ft_total_unquote(t_list **lst);
+void	ft_print_env(char **env);
 char	*ft_backslash(char *token);
 int	ft_theres_backslash(char *token);
 int	ft_check_equal(char *token);

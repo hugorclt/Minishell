@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:12:09 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:32:45 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ static int	ft_exec_parsing(t_token *token, char *cmd)
 	return (0);
 }
 /*
-static int check_export(t_token *token)
+int check_export(t_token *token)
 {
-	if (ft_export(&token, token->token[0]) < 0)
+	if (ft_export(token, token->token[0]) < 0)
 		return (-1);
 	return (0);
-}
+}*/
 
-static void	ft_print_env(char **env)
+void	ft_print_env(char **env)
 {
 	int	i;
 
@@ -112,8 +112,6 @@ static void	ft_print_env(char **env)
 		++i;
 	}
 }
-*/
-
 
 int	ft_wait_all_pid(t_node *params)
 {
