@@ -37,7 +37,6 @@ static char	*ft_strjoin_expand(char *token, char **env, t_token *t_token)
 	var_env = ft_substr(token, 0, len_var);
 	if (!var_env)
 		return (NULL);
-	ft_print_tab(env);
 	printf("%s\n", var_env);
 	occ = ft_find_occurence(env, var_env);
 	if (occ == -1)
