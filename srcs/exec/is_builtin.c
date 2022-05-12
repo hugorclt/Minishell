@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:50:44 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:04:22 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_exec_builtin(t_node *params, char **cmd, char **env)
 	}
 	else if (ft_strcmp(cmd[0], "export") == 0)
 	{
-		if (!ft_export(params, ft_to_str(cmd)))
+		if (ft_export(params, ft_to_str(cmd)) == -1)
 			return (-1);
 	}
 	else if (ft_strcmp(cmd[0], "unset") == 0)
