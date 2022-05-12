@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/11 17:07:31 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:16:48 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	**ft_add_var(char *var, char **env)
 	if (!output[i])
 		return (ft_free(output), NULL);
 	output[i + 1] = NULL;
+	printf("je passe ici\n");
 	return (ft_free(env), output);
 }
 

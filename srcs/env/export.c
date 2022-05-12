@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 18:37:23 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:15:04 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int	ft_export_alph(char **env)
 	char	**export;
 	int		i;
 
+	if (!env)
+		return (-1);
 	export = ft_dup_tab(env);
 	if (!export)
 		return (-1);
