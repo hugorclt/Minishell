@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:18:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 11:38:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	ft_prepare_cmd(t_list **lst)
 	if (ft_save_file(&tmp) == -1)
 		return (-1);
 	tmp->token = ft_clean_redirection(&tmp);
+	//printf("%s\n", tmp->file_out[0].file);
 	if (!tmp->token)
 		return (-1);
 	tmp->token = ft_split_space(ft_to_str(tmp->token));
