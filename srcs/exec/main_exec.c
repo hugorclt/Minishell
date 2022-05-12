@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 20:44:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 15:07:44 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:20:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	ft_exec_one(t_node *params, t_list **lst)
 {
 	if (ft_is_builtin((*lst)->token[0]) == 1
 		&& ft_strcmp((*lst)->token[0], "export") != 0
+		&& ft_strcmp((*lst)->token[0], "env") != 0
 		&& ft_strcmp((*lst)->token[0], "cd") != 0
 		&& ft_strcmp((*lst)->token[0], "unset") != 0)
 		{
@@ -81,6 +82,7 @@ int	ft_exec_one(t_node *params, t_list **lst)
 		}
 	else if (ft_strcmp((*lst)->token[0], "export") == 0
 		|| ft_strcmp((*lst)->token[0], "cd") == 0
+		|| ft_strcmp((*lst)->token[0], "env") == 0
 		|| ft_strcmp((*lst)->token[0], "unset") == 0)
 		{
 			if (ft_execute_one_builtin(params, lst) == -1)
