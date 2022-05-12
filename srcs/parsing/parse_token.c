@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/12 14:38:15 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/12 14:50:01 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 void	ft_error_mess(char *token)
 {
 	if (!ft_strcmp(token, "|"))
-		printf("bash: syntax error near unexpected token `|'");
+		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
 	else
-		printf("bash: syntax error near unexpected token `newline'");
+		ft_putstr_fd("bash: syntax error near unexpected token `newline'\n", 2);
 }
 
 int	ft_parse_tokens(t_token *token, char *cmd)
@@ -101,7 +101,7 @@ int	ft_parse_tokens(t_token *token, char *cmd)
 	int		i;
 	int		j;
 	
-	if (is_operator(cmd[0]) && ft_strlen(cmd) < 2)
+	if (is_operator(cmd[0]) == 1 && ft_strlen(cmd) < 3)
 		return (ft_error_mess(cmd),  0);
 	if (ft_init_n_malloc(token, cmd, &i, &j) == -1)
 		return (-1);

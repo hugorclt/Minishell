@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 14:40:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:50:24 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,9 +162,9 @@ int	main(int ac, char **av, char **env)
 			{
 				ft_free(token.token);
 				free(cmd);
+				rl_on_new_line();
 				continue ;
 			}
-			printf("ici\n");
 			lst = init_lst(&token);
 			if (!lst)
 				return (free(cmd), 1);
