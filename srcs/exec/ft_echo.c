@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:41:39 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:48:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:50:22 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_echo_n(char **cmd)
 	int	len_cmd;
 
 	i = 2;
-	len_cmd = ft_tab_size(cmd) - 2;
+	len_cmd = ft_tab_size(cmd);
 	while (i < len_cmd - 1)
 	{
 		printf("%s ", cmd[i]);
@@ -30,21 +30,21 @@ static void	ft_echo_n(char **cmd)
 void	ft_echo(char **cmd)
 {
 	int	i;
-	int	len_cmd;
-
+	
 	i = 1;
-	len_cmd = ft_tab_size(cmd) - 1;
-	if (ft_strncmp(cmd[1], "-n", 2))
+	if (!cmd[1])
+		return ;
+	if (ft_strcmp(cmd[1], "-n") == 0)
 	{
 		ft_echo_n(cmd);
 	}
 	else
 	{
-		while (i < len_cmd - 1)
+		while (cmd[i])
 		{
 			printf("%s ", cmd[i]);
 			i++;
 		}
-		printf("%s\n", cmd[i]);
+		printf("\n");
 	}
 }
