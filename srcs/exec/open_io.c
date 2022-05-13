@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 16:19:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:37:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ static int	ft_open_input(t_list **lst)
 		if ((*lst)->file_in[i].flag == 0)
 			(*lst)->file_in[i].fd = open((*lst)->file_in[i].file, O_RDONLY, 0644);
 		else if ((*lst)->file_in[i].flag == 1)
-			(*lst)->file_in[i].fd = open((*lst)->file_in[i].file, O_CREAT | O_RDONLY, 0644);
+		{
+			(*lst)->limiter = ft_strdup((*lst)->file_in[i].file);
+			(*lst)->limiter = ft_strjoin_char((*lst)->limiter, '\n');
+			if (!(*lst)->limiter)
+				return (-1);
+			ft_heredoc(lst, &i);
+		}
 		if ((*lst)->file_in[i].fd == -1)
 			return (-1);
 		i++;

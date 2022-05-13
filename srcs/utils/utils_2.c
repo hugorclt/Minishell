@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 11:09:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:32:55 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,11 @@ int		ft_close_redirect(t_list **lst)
 	{
 		if (tmp->nb_infile > 0)
 		{
-			if (close(tmp->file_in[i++].fd) == -1)
+			if (close(tmp->file_in[i].fd) == -1)
 				return (-1);
+			if (tmp->file_in[i].flag == 1)
+				unlink(tmp->file_in[i].file);
+			i++;
 		}
 		i = 0;
 		if (tmp->nb_outfile > 0)
