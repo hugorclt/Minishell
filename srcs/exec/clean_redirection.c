@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 11:33:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:39:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**ft_clean_redirection(t_list **lst)
 		if (is_redirect(&(*lst), &i) == 0)
 		{
 			ret[j] = ft_strdup((*lst)->token[i]);
-			printf("%s\n", ret[j]);
 			j++;
 			i++;
 		}
