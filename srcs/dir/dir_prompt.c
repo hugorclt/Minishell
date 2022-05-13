@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:49:10 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 17:07:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,50 @@ char	*ft_get_last_dir(char *str)
 	return (ret);
 }
 
-void	ft_change_dir(t_node *params, char *path)
+static char	*ft_cat_path(char *var, char *path)
 {
-	int	ret;
+	int		i;
+	int		j;
+	char	*output;
+	
+	if (!path)
+		return (NULL);
+	output = malloc(sizeof(char) * (ft_strlen(var) + ft_strlen(path) + 1));
+	if (!output || !var)
+		return (free(path), NULL);
+	i = 0;
+	while (var[i])
+	{
+		output[i] = var[i];
+		++i;
+	}
+	j = 0;
+	while (path[j])
+	{
+		output[i + j] = path[j];
+		++j;
+	}
+	output[i + j] = 0;
+	return (free(path), output);
+}
 
+int	ft_change_dir(t_node *params, char *path)
+{
+	int		ret;
+	char	*save_old;
+
+	save_old = ft_cat_path("OLDPWD=", get_pwd()); 
+	if (!save_old)
+		return (-1);
 	ret = chdir(path);
 	if (ret == -1)
-		printf("bash: cd: %s: Not a directory\n", path);
+		return (free(save_old), printf("bash: cd: %s: Not a directory\n", path), 0);
+	ft_change_var(params->env, save_old, ft_find_occ(params->env, "OLDPWD"));
+	if (!params->env)
+		return (free(save_old), -1);
+	ft_change_var(params->env, ft_cat_path("PWD=", get_pwd()), 
+		ft_find_occ(params->env, "PWD"));
+	if (!params->env)
+		return (free(save_old), -1);
+	return (free(save_old), 0);
 }
