@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 11:26:25 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:41:07 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_get_last_dir(char *str)
 	return (ret);
 }
 
-void	ft_change_dir(t_node *params, char *path)
+void	ft_change_dir(char *path)
 {
 	int	ret;
 
