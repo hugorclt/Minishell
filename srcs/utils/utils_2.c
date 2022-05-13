@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 15:39:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:09:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,31 @@ void	ft_increm(int *i, int *j)
 {
 	(*i)++;
 	(*j)++;
+}
+
+int		ft_close_redirect(t_list **lst)
+{
+	t_list	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	tmp = (*lst);
+	while (tmp)
+	{
+		if (tmp->nb_infile > 0)
+		{
+			if (close(tmp->file_in[i++].fd) == -1)
+				return (-1);
+		}
+		i = 0;
+		if (tmp->nb_outfile > 0)
+		{
+			if (close(tmp->file_out[i++].fd) == -1)
+				return (-1);	
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }
