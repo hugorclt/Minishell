@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 14:17:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:12:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_prepare_file(t_list **lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst);
 	ft_count_in(tmp->token, &tmp);
@@ -85,7 +85,7 @@ int	ft_save_file(t_list **lst)
 			return (-1);
 		if (ft_save_out(lst, &i, &k) == -1)
 			return (-1);
-		i++;	
+		i++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/12 16:20:57 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/13 15:17:05 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ SRCS 		=	srcs/main.c\
 				srcs/pipes/utils_path.c\
 				srcs/pipes/utils_pipe.c\
 				srcs/pipes/utils_str.c\
-				srcs/parsing/init_struct.c\
 				srcs/expand/env_expand.c\
+				srcs/exec/exec_utils.c\
 				srcs/exec/ft_echo.c\
 				srcs/env/export.c\
 				srcs/exec/is_builtin.c\

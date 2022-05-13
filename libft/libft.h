@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/24 17:15:42 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:58:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 
 //char		*ft_strdup_pimp(char *s);
-//char		*get_next_line(int fd);
+char		*get_next_line(int fd);
 //char		*ft_strjoin_pimp(char *s1, char *s2);
-//char		*ft_next_line(char *line);
-//int			ft_strchr_pimp(char *s, char c);
+char		*ft_next_line(char *line);
+int			ft_strchr_pimp(char *s, char c);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		*ft_memmove(void *dst, const void *src, size_t len);

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 11:40:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 15:15:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int	ft_execute(t_node *params, char **av, char **envp)
 		if (ft_exec_builtin(params, av) == -1)
 			return (-1);
 	}
-	path = check_path(get_path_lst(envp), av[0]);
-	if (!path)
-		return (ft_free(av), -1);
-	if (execve(path, av, envp) == -1)
-		return (ft_free(av), free(path), -1);
+	else
+	{
+		path = check_path(get_path_lst(envp), av[0]);
+		if (!path)
+			return (ft_free(av), -1);
+		if (execve(path, av, envp) == -1)
+			return (ft_free(av), free(path), -1);
+	}
 	return (1);
 }
 
@@ -65,5 +68,34 @@ int	ft_open(t_node *params, char *infile, char *outfile, int flag)
 	//params->outfile_name = ft_strdup(outfile);
 	//if (!params->infile_name || !params->outfile_name)
 		//return (-1);
+	return (1);
+}
+
+int	ft_heredoc(t_list **lst, int *i)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(".heredoc_temp", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	if (fd < 0)
+		return (perror(".heredoc_temp"), -1);
+	while (1)
+	{
+		ft_putstr_fd("heredoc$>", 1);
+		line = get_next_line(0);
+		if (!line)
+			ft_putstr_fd("\n", 1);
+		if (!ft_strcmp(line, (*lst)->limiter) || !line)
+			break ;
+		ft_putstr_fd(line, fd);
+		free(line);
+	}
+	close(fd);
+	ft_heredoc_infile(lst, i);
+	free((*lst)->limiter);
+	if (line)
+		free(line);
+	if ((*lst)->file_in[*i].fd < 0)
+		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	return (1);
 }

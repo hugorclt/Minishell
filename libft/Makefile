@@ -6,11 +6,12 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:40:19 by yobougre          #+#    #+#              #
-#    Updated: 2022/04/22 14:07:06 by yobougre         ###   ########.fr        #
+#    Updated: 2022/05/13 12:28:31 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS= ft_atoi.c \
+	  get_next_line.c\
 	  ft_isprint.c\
 	  ft_putchar_fd.c\
 	  ft_striteri.c\

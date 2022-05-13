@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:49:21 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 15:52:15 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_list
 	char			*cmd;
 	t_files			*file_in;
 	t_files			*file_out;
+	char			*limiter;
 	int				nb_infile;
 	int				nb_outfile;
 	int				last_infile;
