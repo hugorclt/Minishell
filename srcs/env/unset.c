@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/11 15:49:11 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:07:39 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_is_in(char **var_lst, char *var)
 	i = 1;
 	while (var_lst[i])
 	{
-		if (!ft_strncmp(var_lst[i], var, ft_strlen(var)))
+		if (!ft_strncmp(var_lst[i], var, ft_strlen(var_lst[i])))
 			return (1);
 		++i;
 	}
@@ -37,13 +37,23 @@ int	ft_need(char **env, char **var_lst)
 		j = 0;
 		while (env[j])
 		{
-			if (!ft_strncmp(env[j], var_lst[i], ft_strlen(var_lst[i])))
+			if (ft_strncmp(env[j], var_lst[i], ft_strlen(var_lst[i])) == 0)
 				return (1);
 			++j;
 		}
 		++i;
 	}
 	return (0);
+}
+
+static char	**ft_lil_malloc(int	size)
+{
+	char	**output;
+
+	output = malloc(sizeof(char *) * size); 
+	if (!output)
+		return (NULL);
+	return (output);
 }
 
 char	**ft_unset(char **env, char **var)
@@ -56,12 +66,12 @@ char	**ft_unset(char **env, char **var)
 	j = 0;
 	if (!ft_need(env, var))
 		return (env);
-	output = malloc(sizeof(char *) * (ft_tab_size(env)));
+	output = ft_lil_malloc(ft_tab_size(env) + 1 - (ft_tab_size(var) - 1));
 	if (!output)
 		return (NULL);
 	while (env[i])
 	{
-		if (ft_is_in(var, env[i]))
+		if (ft_is_in(var, env[i]) == 1)
 			++i;
 		else
 		{

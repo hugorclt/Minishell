@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 11:10:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:36:55 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	ft_wait_all_pid(t_node *params)
 	i = 0;
 	while (i < params->nb)
 	{
-		//printf("test\n");
-		waitpid(params->pid[i], &status, 0);
+		if (waitpid(params->pid[i], &status, 0) == -1)
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -159,6 +159,7 @@ int	main(int ac, char **av, char **env)
 			{
 				ft_free(token.token);
 				free(cmd);
+				rl_on_new_line();
 				continue ;
 			}
 			lst = init_lst(&token);

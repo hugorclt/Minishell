@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 14:51:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:16:43 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,8 @@ int		ft_close_redirect(t_list **lst)
 {
 	t_list	*tmp;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	tmp = (*lst);
 	while (tmp)
 	{
