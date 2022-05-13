@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/12 15:43:19 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:40:07 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ int	ft_strchr_pimp(char *s, char c);
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
 int	ft_fork(t_node *params, char **envp, t_list **lst);
+int		ft_close_redirect(t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
 char	**ft_split_space(char *s);

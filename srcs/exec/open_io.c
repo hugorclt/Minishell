@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 14:17:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/12 16:19:15 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static int	ft_open_output(t_list **lst)
 	if (i == 0)
 		(*lst)->last_outfile = 1;
 	else
+	{
 		(*lst)->last_outfile = (*lst)->file_out[i - 1].fd;
+	}
 	return (0);
 }
 
