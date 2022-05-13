@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:12:44 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:12:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	ft_quoted_expand(t_token *token, char c)
 		token->first_quotes = ' ';
 }
 
-int	ft_expand_var(t_token *token, char **env)
+int	ft_expand_var(t_token *token, char **env, t_node *params)
 {
 	int	i;
 	int	j;
@@ -98,6 +98,8 @@ int	ft_expand_var(t_token *token, char **env)
 			ft_quoted_expand(token, token->token[i][j]);
 			if (token->token[i][j] == '$')
 			{
+				if (token->token[i][j + 1] == '?')
+					token->token[i] = ft_strdup(ft_itoa(params->last_status));
 				if (token->nb_dquotes == 0 && token->nb_quotes == 0)
 					token->token[i] = ft_expand_1(token->token[i], env, token);
 				if (token->nb_dquotes % 2 != 0 && token->first_quotes == '"')

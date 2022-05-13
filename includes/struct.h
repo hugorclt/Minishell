@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 12:07:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 16:44:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_list
 
 typedef struct s_node
 {
+	int				last_status;
 	int				last_infile;
 	int				last_outfile;
 	char			*infile_name;
