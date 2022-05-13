@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 12:32:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:51:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,16 @@ int		ft_close_redirect(t_list **lst)
 		tmp = tmp->next;
 	}
 	return (0);
+}
+
+void	ft_quoted(t_token *token, char c)
+{
+	if (c == '\'')
+		token->nb_quotes++;
+	else if (c == '"')
+		token->nb_dquotes++;
+	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 != 0)
+		token->first_quotes = '\'';
+	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
+		token->first_quotes = '"';
 }

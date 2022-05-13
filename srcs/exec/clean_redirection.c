@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 11:39:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:02:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	skip_io_filename(t_list **lst, int *i)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst);
 	if (ft_strcmp(tmp->token[*i], ">") == 0
@@ -27,7 +27,7 @@ static int	skip_io_filename(t_list **lst, int *i)
 
 static int	is_redirect(t_list **lst, int *i)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst);
 	if (ft_strcmp(tmp->token[*i], ">") == 0
@@ -46,18 +46,18 @@ char	**ft_clean_redirection(t_list **lst)
 
 	i = 0;
 	j = 0;
-	ret = malloc(sizeof(char *) * (ft_tab_size((*lst)->token) - (((*lst)->nb_infile + (*lst)->nb_outfile) * 2) + 1));
+	ret = malloc(sizeof(char *) * (ft_tab_size((*lst)->token)
+				- (((*lst)->nb_infile + (*lst)->nb_outfile) * 2) + 1));
 	if (!ret)
 		return (NULL);
 	while ((*lst)->token[i])
 	{
 		skip_io_filename(lst, &i);
 		if (!(*lst)->token[i])
-			break;
+			break ;
 		if (is_redirect(&(*lst), &i) == 0)
 		{
-			ret[j] = ft_strdup((*lst)->token[i]);
-			j++;
+			ret[j++] = ft_strdup((*lst)->token[i]);
 			i++;
 		}
 		else

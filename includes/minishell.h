@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 12:27:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:07:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void	ft_heredoc_infile(t_list **lst, int *i);
 /* -------------------------------------------------------------------------- */
 int	ft_execute(t_node *params, char **av, char **envp);
 char		*get_next_line(int fd);
+int	ft_prepare_cmd(t_list **lst);
+int	ft_execute_one_fork_builtin(t_node *params, t_list **lst);
+int	ft_execute_one_builtin(t_node *params, t_list **lst);
+int	ft_execute_one_binaries(t_node *params, t_list **lst);
+int	ft_exec_one(t_node *params, t_list **lst);
 int	ft_init_pipe(t_node *params);
 int	ft_open(t_node *params, char *infile, char *outfile, int flag);
 int	ft_heredoc(t_list **lst, int *i);

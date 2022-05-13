@@ -6,23 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 11:48:26 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:53:36 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_quoted(t_token *token, char c)
-{
-	if (c == '\'')
-		token->nb_quotes++;
-	else if (c == '"')
-		token->nb_dquotes++;
-	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 != 0)
-		token->first_quotes = '\'';
-	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
-		token->first_quotes = '"';
-}
 
 static int	ft_count(t_token *token, char *cmd, char c)
 {
@@ -107,8 +95,9 @@ static char	**ft_dfill(char **output, char *s, char c)
 		if (s[i] != c && s[i])
 		{
 			j = 0;
-			while ((s[i + j] && s[i + j] != c) || (s[i + j] == c && is_quoted(s, i + j) == 1))
-				j++;
+			while ((s[i + j] && s[i + j] != c) || (s[i + j] == c
+					&& is_quoted(s, i + j) == 1))
+					j++;
 			output[p] = ft_fill(s, j, &i);
 			if (!output[p])
 				return (ft_free(output), NULL);
@@ -117,7 +106,7 @@ static char	**ft_dfill(char **output, char *s, char c)
 		else
 			i++;
 	}
-	output[p] = NULL;
+	output[p] = 0;
 	return (output);
 }
 
@@ -127,11 +116,10 @@ char	**ft_split_space(char *cmd)
 	t_token	token;
 
 	ft_reset_quotes(&token);
-	ret = malloc(sizeof(char *) * ft_count(&token, cmd, ' ') + 10);
+	ret = malloc(sizeof(char *) * (ft_count(&token, cmd, ' ') + 1));
 	ft_reset_quotes(&token);
 	if (!ret)
 		return (NULL);
 	ft_reset_quotes(&token);
 	return (ft_dfill(ret, cmd, ' '));
 }
-
