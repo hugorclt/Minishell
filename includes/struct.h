@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:52:15 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 10:32:19 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_token
 {
 	char	**token;
 	char	**env;
-	char	**tmp_var;
 	int		nb_quotes;
 	int		nb_dquotes;
 	char	first_quotes;
@@ -81,6 +80,7 @@ typedef struct s_node
 typedef struct s_garb_col
 {
 	void				*content;
+	int					flag;
 	struct s_garb_col	*next;
 }	t_garb;
 
