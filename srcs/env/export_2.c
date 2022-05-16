@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/13 11:39:46 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 17:12:58 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ char	*ft_backslash(char *token)
 	j = 0;
 	while (token[i])
 	{
-		if (token[i + 1] == '$')
+		if (token[i + 1] == '$' || token[i + 1] == '"')
 		{
 			output[j] = token[i];
 			ft_increm(&i, &j);
