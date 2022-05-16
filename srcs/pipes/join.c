@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 15:15:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:38:42 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	output[i + j] = 0;
 	return (free(s1), output);
 }
-
+/*
 int	ft_initialisation(t_node *params, char **av, int ac, int i)
 {
 	params->infile_name = NULL;
@@ -55,7 +55,7 @@ int	ft_initialisation(t_node *params, char **av, int ac, int i)
 	if (ft_init_pipe(params) < 0 || ft_open(params, av[1], av[ac - 1], i) < 0)
 		return (-1);
 	return (1);
-}
+}*/
 
 int	ft_args(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 16:10:59 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 16:39:07 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
-void	ft_exit(t_node *params, t_list *start, int errno);
+void	ft_exit(t_node *params, t_list **start, int errno);
 int ft_change_var(char **env, char *var, int j);
 int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);
@@ -93,7 +93,6 @@ int	ft_execute_one_builtin(t_node *params, t_list **lst);
 int	ft_execute_one_binaries(t_node *params, t_list **lst);
 int	ft_exec_one(t_node *params, t_list **lst);
 int	ft_init_pipe(t_node *params);
-int	ft_open(t_node *params, char *infile, char *outfile, int flag);
 int	ft_heredoc(t_list **lst, int *i);
 int	ft_exec_builtin(t_node *params, char **cmd);
 int	ft_is_builtin(char *cmd);
@@ -129,7 +128,6 @@ int	ft_child_exec(t_node *params, t_list **av);
 /*                          FILE = srcs/pipes/join.c                          */
 /* -------------------------------------------------------------------------- */
 char	*ft_strjoin_pimp(char *s1, char *s2);
-int	ft_initialisation(t_node *params, char **av, int ac, int i);
 int	ft_args(int ac, char **av);
 int	ft_chk_cmd(char *cmd);
 
