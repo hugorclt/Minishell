@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 16:39:07 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 16:58:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
 int	ft_export(t_node *params, char *token);
 int	ft_find_index(char **export, int size);
-int	ft_parse_tokens(t_token *token, char *cmd);
+int	ft_parse_tokens(t_token *token, char *cmd, int flag);
 int	ft_init_io(t_list **lst, t_node *params);
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
@@ -190,8 +190,10 @@ int	ft_find_occurence(char **env, char *cmd);
 void	ft_echo(char **cmd);
 int	ft_main_exec(t_node *params, t_list **lst);
 char	**ft_expand(t_token *token, t_node *params);
-int	ft_find_len_env(char *str, t_token *token);
-char	*ft_strjoin_expand(char *token, char **env, t_token *t_token);
+int	ft_find_len_env(char *str);
+char	*ft_strjoin_expand(char *token, char **env);
+int	ft_expand_utils(char **ret, t_node *par, int *i);
+int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p);
 int	ft_export_alph(char **env);
 
 #endif

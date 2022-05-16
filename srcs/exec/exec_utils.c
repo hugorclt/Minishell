@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 16:34:41 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 16:58:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	ft_exec_one(t_node *params, t_list **lst)
 		&& ft_strcmp((*lst)->token[0], "export") != 0
 		&& ft_strcmp((*lst)->token[0], "env") != 0
 		&& ft_strcmp((*lst)->token[0], "cd") != 0
+		&& ft_strcmp((*lst)->token[0], "exit") != 0
 		&& ft_strcmp((*lst)->token[0], "unset") != 0)
 	{
 		if (ft_execute_one_fork_builtin(params, lst) == -1)
@@ -90,7 +91,8 @@ int	ft_exec_one(t_node *params, t_list **lst)
 	else if (ft_strcmp((*lst)->token[0], "export") == 0
 		|| ft_strcmp((*lst)->token[0], "cd") == 0
 		|| ft_strcmp((*lst)->token[0], "env") == 0
-		|| ft_strcmp((*lst)->token[0], "unset") == 0)
+		|| ft_strcmp((*lst)->token[0], "unset") == 0
+		|| ft_strcmp((*lst)->token[0], "exit") == 0)
 	{
 		if (ft_execute_one_builtin(params, lst) == -1)
 			return (-1);
