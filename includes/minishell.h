@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 16:58:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:26:52 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
-void	ft_exit(t_node *params, t_list **start, int errno);
+void	ft_exit(t_node *params, t_list **start);
 int ft_change_var(char **env, char *var, int j);
 int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);
@@ -103,7 +103,6 @@ int	ft_get_input(t_list **lst, char **tab);
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/pipes/ft_free.c                         */
 /* -------------------------------------------------------------------------- */
-void	ft_free_struct(t_node *params);
 int	ft_tab_size(char **tab);
 void	ft_free(char **tab);
 
@@ -120,8 +119,6 @@ char	*check_path(char **path_lst, char *cmd);
 /*                       FILE = srcs/pipes/utils_both.c                       */
 /* -------------------------------------------------------------------------- */
 int	ft_init_pid(t_node *params);
-int	ft_norme(t_node *params, char **av, int ac, int j);
-int	ft_fill_cmd_name(t_node *params, char **av, int ac);
 int	ft_child_exec(t_node *params, t_list **av);
 
 /* -------------------------------------------------------------------------- */

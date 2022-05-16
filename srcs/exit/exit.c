@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/16 16:40:00 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 17:29:04 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@ static void	ft_free_params(t_node *params)
 {
 	if (params->env)
 		ft_free(params->env);
-	if (params->infile_name)
-		free(params->infile_name);
-	if (params->outfile_name)
-		free(params->outfile_name);
-	if (params->cmd)
-		ft_free(params->cmd);
-	if (params->cmd_args)
-		ft_free(params->cmd_args);
 	if (params->pid)
 		free(params->pid);
 	if (params->limiter)
@@ -64,7 +56,7 @@ static void	ft_free_lst(t_list **start)
 	free((*start));
 }
 
-void	ft_exit(t_node *params, t_list **start, int errno)
+void	ft_exit(t_node *params, t_list **start)
 {
 	ft_free_params(params);
 	if (*start)

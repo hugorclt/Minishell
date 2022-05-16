@@ -6,25 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/10 16:30:26 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:22:11 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_free_struct(t_node *params)
-{
-	ft_close_all(params);
-	//close(params->infile);
-	//close(params->outfile);
-	free(params->fd);
-	free(params->pid);
-	if (params->infile_name)
-		free(params->infile_name);
-	if (params->outfile_name)
-		free(params->outfile_name);
-	ft_free(params->cmd);
-}
 
 int	ft_tab_size(char **tab)
 {

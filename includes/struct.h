@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 15:22:49 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 17:28:46 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,9 @@ typedef struct s_node
 	int				last_status;
 	int				last_infile;
 	int				last_outfile;
-	char			*infile_name;
-	char			*outfile_name;
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
-	char			**cmd;
-	char			**cmd_args;
 	int				index;
 	int				heredoc;
 	char			*limiter;

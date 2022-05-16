@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 10:13:02 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:28:28 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,6 @@ int	ft_init_pid(t_node *params)
 	if (!params->pid)
 		return (-1);
 	params->have_pid = 1;
-	return (1);
-}
-
-int	ft_norme(t_node *params, char **av, int ac, int j)
-{
-	char	**tmp;
-	int		i;
-
-	i = 0;
-	while (i < ac - 3 - params->heredoc)
-	{
-		if (!av[j])
-		{
-			params->cmd[i] = NULL;
-			return (-1);
-		}
-		tmp = ft_split(av[j], ' ');
-		if (!tmp)
-			return (-1);
-		params->cmd[i] = ft_strdup(tmp[0]);
-		if (!params->cmd[i])
-			return (ft_free(tmp), -1);
-		ft_free(tmp);
-		++i;
-		++j;
-	}
-	params->cmd[i] = NULL;
-	return (1);
-}
-
-int	ft_fill_cmd_name(t_node *params, char **av, int ac)
-{
-	int		j;
-
-	j = 2;
-	if (params->heredoc)
-		j = 3;
-	params->cmd = malloc(sizeof(char *) * ((ac - 3 - params->heredoc) + 1));
-	if (!params->cmd)
-		return (-1);
-	if (ft_norme(params, av, ac, j) < 0)
-		return (-1);
 	return (1);
 }
 
@@ -80,8 +38,7 @@ int	ft_child_exec(t_node *params, t_list **lst)
 		if (ft_fork(params, params->env, &tmp) < 0)
 		{
 			ft_close();
-			ft_free_struct(params);
-			return (-1);
+			ft_exit(params, lst);
 		}
 		params->index++;
 		i++;
