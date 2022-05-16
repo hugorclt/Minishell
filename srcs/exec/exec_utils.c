@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:09:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:24:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
 		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 		if (ft_exec_builtin(params, (*lst)->token) == -1)
 			return (-1);
+		exit(0);
 	}
 	return (0);
 }

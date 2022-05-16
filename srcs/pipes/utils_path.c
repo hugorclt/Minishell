@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:25:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ char	*check_path(char **path_lst, char *cmd)
 		return (ft_free(path_lst), output);
 	free(output);
 	ft_free(path_lst);
-	return (ft_command_nt_found(cmd), NULL);
+	ft_command_nt_found(cmd);
+	exit(127);
+	//TODO : exit en cascade
 }

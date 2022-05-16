@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 16:45:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:04:47 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,9 @@ void	ft_print_tab(char **tab);
 int	ft_find_occurence(char **env, char *cmd);
 void	ft_echo(char **cmd);
 int	ft_main_exec(t_node *params, t_list **lst);
-int	ft_expand_var(t_token *token, char **env, t_node *params);
+char	**ft_expand(t_token *token, t_node *params);
+int	ft_find_len_env(char *str, t_token *token);
+char	*ft_strjoin_expand(char *token, char **env, t_token *t_token);
 int	ft_export_alph(char **env);
 
 #endif

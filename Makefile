@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/13 15:17:05 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/16 11:06:55 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS 		=	srcs/main.c\
 				srcs/exec/clean_redirection.c\
 				srcs/exec/open_io.c\
 				srcs/exec/insert_file.c\
-				srcs/exec/main_exec.c
+				srcs/exec/main_exec.c\
+				srcs/expand/expand_utils.c
 
 OBJS		=		$(SRCS:.c=.o)
 

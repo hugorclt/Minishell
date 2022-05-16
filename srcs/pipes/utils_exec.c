@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 15:15:11 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:26:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_execute(t_node *params, char **av, char **envp)
 	{
 		if (ft_exec_builtin(params, av) == -1)
 			return (-1);
+		//TODO: exit en cascade
 	}
 	else
 	{
@@ -28,6 +29,7 @@ int	ft_execute(t_node *params, char **av, char **envp)
 			return (ft_free(av), -1);
 		if (execve(path, av, envp) == -1)
 			return (ft_free(av), free(path), -1);
+		//TODO exit en cascade	
 	}
 	return (1);
 }

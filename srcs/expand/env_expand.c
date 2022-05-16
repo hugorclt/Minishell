@@ -6,68 +6,46 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 17:12:52 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:05:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_find_len_env(char *str, t_token *token)
+static int	ft_expand_ext(char **ret, char *token, int *i)
+{
+	(*ret) = ft_strjoin_char((*ret), token[*i]);
+	(*i)++;
+	return (0);
+}
+
+static char	*ft_expand_1(char **ret, char *token, t_token *t_token, t_node *par)
 {
 	int	i;
 
 	i = 0;
-	(void)token;
-	if (!str[i])
-		return (0);
-	while (str[i] && (str[i] != '\'' && str[i] != ' '
-			&& str[i] != '"' && str[i] != '$'))
-		i++;
-	return (i);
-}
-
-static char	*ft_strjoin_expand(char *token, char **env, t_token *t_token)
-{
-	char	*ret;
-	char	*var_env;
-	int		occ;
-	int		len_var;
-
-	len_var = ft_find_len_env(token, t_token);
-	var_env = ft_substr(token, 0, len_var);
-	if (!var_env)
-		return (NULL);
-	occ = ft_find_occurence(env, var_env);
-	if (occ == -1)
-		return (NULL);
-	ret = ft_strdup(env[occ] + len_var + 1);
-	if (!ret)
-		return (NULL);
-	return (ret);
-}
-
-static char	*ft_expand_1(char *token, char **env, t_token *t_token)
-{
-	char	*ret;
-	int		i;
-
-	i = 0;
-	ret = NULL;
+	(*ret) = NULL;
 	while (token[i])
 	{
 		if (token[i] == '$')
 		{
-			ret = ft_strjoin_pimp(ret,
-					ft_strjoin_expand(token + i + 1, env, t_token));
-			i += ft_find_len_env(token + i + 1, t_token) + 1;
+			if (token[i + 1] == '?')
+			{
+				(*ret) = ft_strjoin_pimp((*ret), ft_itoa(par->last_status));
+				i += 2;
+				continue ;
+			}
+			else
+			{
+				(*ret) = ft_strjoin_pimp((*ret),
+						ft_strjoin_expand(token + i + 1, par->env, t_token));
+				i += ft_find_len_env(token + i + 1, t_token) + 1;
+			}
 		}
 		else
-		{
-			ret = ft_strjoin_char(ret, token[i]);
-			i++;
-		}
+			ft_expand_ext(ret, token, &i);
 	}
-	return (free(token), ret);
+	return ((*ret));
 }
 
 static void	ft_quoted_expand(t_token *token, char c)
@@ -84,33 +62,50 @@ static void	ft_quoted_expand(t_token *token, char c)
 		token->first_quotes = ' ';
 }
 
-int	ft_expand_var(t_token *token, char **env, t_node *params)
+static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 {
-	int	i;
-	int	j;
+	int		i;
+	t_token	token;
+	int		flag;
 
 	i = 0;
-	while (token->token[i])
+	flag = 0;
+	ft_reset_quotes(&token);
+	while (cmd[i])
 	{
-		j = 0;
-		while (token->token[i][j])
+		ft_quoted_expand(&token, cmd[i]);
+		if (cmd[i] == '$')
 		{
-			ft_quoted_expand(token, token->token[i][j]);
-			if (token->token[i][j] == '$')
+			if ((token.nb_dquotes == 0 && token.nb_quotes == 0)
+				|| (token.nb_dquotes % 2 != 0 && token.first_quotes == '"'))
 			{
-				if (token->token[i][j + 1] == '?')
-					token->token[i] = ft_strdup(ft_itoa(params->last_status));
-				if (token->nb_dquotes == 0 && token->nb_quotes == 0)
-					token->token[i] = ft_expand_1(token->token[i], env, token);
-				if (token->nb_dquotes % 2 != 0 && token->first_quotes == '"')
-					token->token[i] = ft_expand_1(token->token[i], env, token);
-				if (!token->token[i][j])
-					break ;
+				ft_expand_1(ret, cmd, &token, params);
+				flag = 1;
 			}
-			j++;
 		}
 		i++;
 	}
-	ft_reset_quotes(token);
+	if (flag == 0)
+		(*ret) = ft_strdup(cmd);
+	free(cmd);
 	return (0);
+}
+
+char	**ft_expand(t_token *token, t_node *params)
+{
+	int		i;
+	char	**ret;
+
+	i = 0;
+	ret = malloc(sizeof(char *) * (ft_tab_size(token->token) + 1));
+	if (!ret)
+		return (NULL);
+	while (token->token[i])
+	{
+		if (ft_verif_dollars(&ret[i], token->token[i], params) == -1)
+			return (NULL);
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
 }
