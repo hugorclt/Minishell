@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 16:44:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:14:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 # define STRUCT_H
 # include "includes.h"
 
-/*addback(t_list, lstnew((void)ft_initialize_token(str[i])))
-ft_parcour_ma_putain_de_liste()
-{
-	if ((*tmp)->content->flag < 1)
-		ft_token;
-	else
-		ft_cmd(tmp->content);
-}
-*/
 typedef struct s_help
 {
 	int	i;
@@ -35,7 +26,6 @@ typedef struct s_token
 {
 	char	**token;
 	char	**env;
-	char	**tmp_var;
 	int		nb_quotes;
 	int		nb_dquotes;
 	char	first_quotes;
@@ -91,6 +81,7 @@ typedef struct s_node
 typedef struct s_garb_col
 {
 	void				*content;
+	int					flag;
 	struct s_garb_col	*next;
 }	t_garb;
 

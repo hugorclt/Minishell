@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 11:04:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:14:22 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "struct.h"
 # include "includes.h"
 
+int ft_change_var(char **env, char *var, int j);
+int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);
 char	*ft_unquote(char *var);
 int	ft_total_unquote(t_list **lst);
@@ -182,7 +184,7 @@ char	**ft_clean_redirection(t_list **lst);
 char	*ft_strjoin_char(char *cmd, char c);
 
 void	ft_tokenization(t_list **lst, char *cmd);
-void	ft_change_dir(char *path);
+int		ft_change_dir(t_node *params, char *path);
 char	*ft_strjoin_char(char *cmd, char c);
 void	ft_print_tab(char **tab);
 int	ft_find_occurence(char **env, char *cmd);
