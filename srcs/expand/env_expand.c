@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 16:21:06 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:42:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,6 @@ static int	ft_expand_ext(char **ret, char *token, int *i)
 	if (!(*ret))
 		return (-1);
 	(*i)++;
-	return (0);
-}
-
-int	ft_expand_utils(char **ret, t_node *par, int *i)
-{
-	(*ret) = ft_strjoin_pimp((*ret), ft_itoa(par->last_status));
-	if (!(*ret))
-		return (-1);
-	(*i) += 2;
-	return (0);
-}
-
-int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p)
-{
-	(*ret) = ft_strjoin_pimp((*ret), ft_strjoin_expand(token + (*i) + 1, p->env));
-	if (!(*ret))
-		return (-1);
-	(*i) += ft_find_len_env(token + (*i) + 1) + 1;
 	return (0);
 }
 
@@ -90,6 +72,18 @@ static void	ft_quoted_expand(t_token *token, char c)
 		token->first_quotes = ' ';
 }
 
+int	ft_quote_expand(t_token *token, char **ret, t_node *params, char *cmd)
+{
+	if ((token->nb_dquotes == 0 && token->nb_quotes == 0)
+		|| (token->nb_dquotes % 2 != 0 && token->first_quotes == '"'))
+	{
+		if (ft_expand_1(ret, cmd, params) == -1)
+			return (-1);
+		return (1);
+	}
+	return (0);
+}
+
 static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 {
 	int		i;
@@ -104,13 +98,9 @@ static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 		ft_quoted_expand(&token, cmd[i]);
 		if (cmd[i] == '$')
 		{
-			if ((token.nb_dquotes == 0 && token.nb_quotes == 0)
-				|| (token.nb_dquotes % 2 != 0 && token.first_quotes == '"'))
-			{
-				if (ft_expand_1(ret, cmd, params) == -1)
-					return (-1);
-				flag = 1;
-			}
+			flag = ft_quote_expand(&token, ret, params, cmd);
+			if (flag == -1)
+				return (-1);
 		}
 		i++;
 	}

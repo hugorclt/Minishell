@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 12:26:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:34:05 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	ft_open(t_node *params, char *infile, char *outfile, int flag)
 	else
 		return (420);
 	//params->outfile = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (params->outfile < 0)
-		return (-1);
+	//if (params->outfile < 0)
+	//	return (-1);
 	//params->outfile_name = ft_strdup(outfile);
 	//if (!params->infile_name || !params->outfile_name)
 		//return (-1);

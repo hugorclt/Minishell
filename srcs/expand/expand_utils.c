@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 11:03:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 16:06:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:35:47 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ char	*ft_strjoin_expand(char *token, char **env)
 	if (!ret)
 		return (NULL);
 	return (ret);
+}
+
+int	ft_expand_utils(char **ret, t_node *par, int *i)
+{
+	(*ret) = ft_strjoin_pimp((*ret), ft_itoa(par->last_status));
+	if (!(*ret))
+		return (-1);
+	(*i) += 2;
+	return (0);
+}
+
+int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p)
+{
+	(*ret) = ft_strjoin_pimp((*ret), ft_strjoin_expand(token + (*i) + 1, p->env));
+	if (!(*ret))
+		return (-1);
+	(*i) += ft_find_len_env(token + (*i) + 1) + 1;
+	return (0);
 }
