@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/12 14:50:01 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 15:54:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 {
-	if (ft_total_token(cmd) == -1)
+	int	flag;
+
+	flag = ft_total_token(cmd);
+	if (flag == -1)
 		return (-1);
+	if (flag == -2)
+		return (-2);
 	token->token = malloc(sizeof(char *) * (ft_total_token(cmd) + 1));
 	if (!token->token)
 		return (-1);
@@ -96,15 +101,16 @@ void	ft_error_mess(char *token)
 		ft_putstr_fd("bash: syntax error near unexpected token `newline'\n", 2);
 }
 
-int	ft_parse_tokens(t_token *token, char *cmd)
+int	ft_parse_tokens(t_token *token, char *cmd, int flag)
 {
 	int		i;
 	int		j;
 	
-	if (is_operator(cmd[0]) == 1 && ft_strlen(cmd) < 3)
+	if (is_operator(cmd[0]) == 1 && ft_isspace(cmd[1]) && ft_strlen(cmd) < 3)
 		return (ft_error_mess(cmd),  0);
-	if (ft_init_n_malloc(token, cmd, &i, &j) == -1)
-		return (-1);
+	flag = ft_init_n_malloc(token, cmd, &i, &j);
+	if (flag < 0)
+		return (flag);
 	while (cmd[j])
 	{
 		if (ft_isspace(cmd[j]) == 1)
