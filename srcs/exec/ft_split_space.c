@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 14:53:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:10:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_count(t_token *token, char *cmd, char c)
 				i++;
 				ft_quoted(token, cmd[i]);
 			}
-			if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 == 0)
+			if (token->nb_dquotes % 2 == 0 || token->nb_quotes % 2 == 0)
 				count++;
 		}
 		else
