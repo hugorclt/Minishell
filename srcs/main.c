@@ -6,11 +6,19 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 10:36:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:41:42 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_init_node(t_node *params)
+{
+	params->pid = NULL;
+	params->fd = NULL;
+	params->limiter = NULL;
+	params->env = NULL;
+}
 
 void	ft_print_lst(t_list *lst)
  {
@@ -69,6 +77,7 @@ int	ft_test_export(t_token *token)
 
 static int	ft_init_env(char **env, t_node *params)
 {
+	ft_init_node(params);
 	params->env = ft_dup_tab(env);
 	if (!params->env)
 		return (-1);
@@ -130,6 +139,7 @@ int	ft_wait_all_pid(t_node *params)
 	params->last_status = WEXITSTATUS(status);
 	return (0);
 }
+
 
 int	main(int ac, char **av, char **env)
 {
