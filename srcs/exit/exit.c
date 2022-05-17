@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 10:00:53 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 10:17:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_free_params(t_node *params)
 		free(params->pid);
 	if (params->limiter)
 		free(params->limiter);
-	if (params->fd)
-		free(params->fd);
+/*	if (params->fd)
+		free(params->fd);*/
 }
 
 void	ft_free_list(t_list **start)

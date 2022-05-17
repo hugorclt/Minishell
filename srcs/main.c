@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 15:54:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:21:33 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,14 @@ int	ft_wait_all_pid(t_node *params)
 	return (0);
 }
 
+void	ft_init_node(t_node *params)
+{
+	params->pid = NULL;
+	params->fd = NULL;
+	params->limiter = NULL;
+	params->env = NULL;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
@@ -156,6 +164,7 @@ int	main(int ac, char **av, char **env)
 				free(cmd);
 				continue ;
 			}
+			ft_init_node(&params);
 			if (ft_exec_parsing(&token, cmd, &params) == -1)
 				return (free(cmd), 1);
 			if (ft_check_token(&token) == -1)
