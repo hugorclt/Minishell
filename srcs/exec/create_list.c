@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 15:48:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:27:54 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	**ft_cut_token(char **token, int start, int i)
 
 static int	ft_init_var(t_list **lst, int *i, int *start)
 {
-	*lst = malloc(sizeof(t_list));
+	*lst = malloc(sizeof(t_list *));
 	if (!*lst)
 		return (-1);
 	*i = 0;
