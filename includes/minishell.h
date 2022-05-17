@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 10:14:48 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:53:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		ft_heredoc_infile(t_list **lst, int *i);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
-int	ft_execute(t_node *params, char **av, char **envp);
+int	ft_execute(t_node *params, char **av, char **envp, t_list **lst);
 char		*get_next_line(int fd);
 int	ft_prepare_cmd(t_list **lst);
 int	ft_execute_one_fork_builtin(t_node *params, t_list **lst);
@@ -95,7 +95,7 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst);
 int	ft_exec_one(t_node *params, t_list **lst);
 int	ft_init_pipe(t_node *params);
 int	ft_heredoc(t_list **lst, int *i);
-int	ft_exec_builtin(t_node *params, char **cmd);
+int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst);
 int	ft_is_builtin(char *cmd);
 int	ft_cut_space(t_list **lst);
 void	ft_pass_space_reverse(char *cmd, int *new_j);
@@ -145,7 +145,7 @@ int	ft_strchr_pimp(char *s, char c);
 /*                       FILE = srcs/pipes/utils_pipe.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
-int	ft_fork(t_node *params, char **envp, t_list **lst);
+int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free);
 int		ft_close_redirect(t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
