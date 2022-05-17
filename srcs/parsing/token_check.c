@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 10:08:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:31:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,22 @@ static int	ft_check(char *token)
 int	ft_check_quote(char *token)
 {
 	int		i;
-	t_token	qt_helper;
+	char	c;
 
 	i = 0;
 	while (token[i])
 	{
-		ft_quoted_expand(&qt_helper, token[i]);
+		if (token[i] == '\'' || token[i] == '"')
+		{
+			c = token[i];
+			i++;
+			while (token[i] != c)
+			{
+				if (!token[i])
+					return (-1);
+				i++;
+			}
+		}
 		i++;
 	}
 	return (0);
