@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 15:56:19 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:57:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,6 @@ void	ft_free_lst(t_list **start)
 		(*start) = (*start)->next;
 		free(tmp);
 	}
-	tmp = (*start);
-	*start = (*start)->next;
-	free(tmp);
 	free(start);
 }
 

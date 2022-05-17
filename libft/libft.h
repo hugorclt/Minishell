@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/13 11:58:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:38:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_strdup(char const *s1);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strtrim(char *s1, char *set);
 char		*ft_substr(char const *s, int start, unsigned int len);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
