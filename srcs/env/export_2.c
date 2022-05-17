@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 14:45:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:39:42 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_unquote(char *var)
 		return (NULL);
 	while (var[i])
 	{
-		if (var[i] == '"' )
+		if (var[i] == '"')
 		{
 			if (!var[i + 1])
 				break ;
@@ -71,7 +71,7 @@ char	**ft_add_var(char *var, char **env)
 			return (ft_free(output), NULL);
 		i++;
 	}	
-	output[i] = ft_unquote(ft_strdup(var));
+	output[i] = ft_strdup(var);
 	if (!output[i])
 		return (ft_free(output), NULL);
 	output[i + 1] = NULL;
@@ -117,7 +117,7 @@ int ft_change_var(char **env, char *var, int j)
 		{
 			free(env[i]);
 			env[i] = ft_strdup(var);
-			env[i] = ft_unquote(env[i]);
+			//env[i] = ft_unquote(env[i]);
 			if (!env[i])
 				return (ft_free(env), -1);
 		}
@@ -140,29 +140,6 @@ int	ft_theres_dquotes(char *token)
 	return (0);
 }
 
-int	ft_theres_backslash(char *token)
-{
-	int	i;
-
-	i = 0;
-	if (!token)
-		return (0);
-	while (token[i] && token[i] != '=')
-		++i;
-	if (token[i] == '=')
-		++i;
-	if (token[i])
-	{
-		while (token[i])
-		{
-			if (token[i] == '$')
-				return (1);
-			++i;
-		}
-	}
-	return (0);
-}
-
 char	*ft_quote(char *token)
 {
 	int		i;
@@ -171,7 +148,7 @@ char	*ft_quote(char *token)
 
 	i = 0;
 	j = 0;
-	if (!ft_check_equal(token) || ft_theres_dquotes(token))
+	if (!ft_check_equal(token))
 		return (token);
 	output = malloc(sizeof(char) * (ft_strlen(token) + 3));
 	if (!output)
@@ -241,7 +218,7 @@ int	ft_export(t_node *params, char *token)
 	int		i;
 
 	i = 1;
-	tmp = ft_split_space(token);
+	tmp = ft_split_space(ft_strtrim(token," "));
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
