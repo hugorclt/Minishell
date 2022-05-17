@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 17:27:57 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 10:07:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ int	ft_init_pipe(t_node *params)
 	return (1);
 }
 
+int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
+{
+	close(*fd);
+	if (ft_heredoc_infile(lst, i) == -1)
+		return (-1);
+	free((*lst)->limiter);
+	(*lst)->limiter = NULL;
+	return (0);
+}
+
 int	ft_heredoc(t_list **lst, int *i)
 {
 	int		fd;
@@ -69,9 +79,8 @@ int	ft_heredoc(t_list **lst, int *i)
 		ft_putstr_fd(line, fd);
 		free(line);
 	}
-	close(fd);
-	ft_heredoc_infile(lst, i);
-	free((*lst)->limiter);
+	if (ft_heredoc_help(&fd, lst, i) == -1)
+		return (free(line), -1);
 	if (line)
 		free(line);
 	if ((*lst)->file_in[*i].fd < 0)

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 16:42:46 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 09:56:27 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_expand_1(char **ret, char *token, t_node *par)
 	return (0);
 }
 
-static void	ft_quoted_expand(t_token *token, char c)
+void	ft_quoted_expand(t_token *token, char c)
 {
 	if (c == '\'')
 		token->nb_quotes++;
