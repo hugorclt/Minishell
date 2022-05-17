@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 17:10:19 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 14:56:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*ft_fill(char *s, int size, int *index)
 	return (output);
 }
 
-static char	**ft_dfill(char **output, char *s, char c)
+static char	**ft_dfill(char ***output, char *s, char c)
 {
 	int	i;
 	int	j;
@@ -98,16 +98,16 @@ static char	**ft_dfill(char **output, char *s, char c)
 			while ((s[i + j] && s[i + j] != c) || (s[i + j] == c
 					&& is_quoted(s, i + j) == 1))
 					j++;
-			output[p] = ft_fill(s, j, &i);
-			if (!output[p])
-				return (ft_free(output), NULL);
+			(*output)[p] = ft_fill(s, j, &i);
+			if (!(*output)[p])
+				return (ft_free(*output), NULL);
 			p++;
 		}
 		else
 			i++;
 	}
-	output[p] = 0;
-	return (output);
+	(*output)[p] = 0;
+	return (*output);
 }
 
 char	**ft_split_space(char *cmd)
@@ -121,5 +121,6 @@ char	**ft_split_space(char *cmd)
 	if (!ret)
 		return (NULL);
 	ft_reset_quotes(&token);
-	return (ft_dfill(ret, cmd, ' '));
+	ft_dfill(&ret, cmd, ' ');
+	return (free(cmd), ret);
 }

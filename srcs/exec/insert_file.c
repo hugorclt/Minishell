@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 09:50:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 14:52:32 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,20 @@ static int	ft_prepare_file(t_list **lst)
 	tmp = (*lst);
 	ft_count_in(tmp->token, &tmp);
 	ft_count_out(tmp->token, &tmp);
-	tmp->file_in = malloc(sizeof(t_files) * tmp->nb_infile);
-	tmp->file_out = malloc(sizeof(t_files) * tmp->nb_outfile);
-	if (!tmp->file_in || !tmp->file_out)
-		return (-1);
+	tmp->file_in = NULL;
+	tmp->file_out = NULL;
+	if (tmp->nb_infile)
+	{
+		tmp->file_in = malloc(sizeof(t_files) * tmp->nb_infile);
+		if (!tmp->file_in)
+			return (-1);
+	}
+	if (tmp->nb_outfile)
+	{
+		tmp->file_out = malloc(sizeof(t_files) * tmp->nb_outfile);
+		if (!tmp->file_out)
+			return (-1);
+	}
 	return (0);
 }
 
@@ -77,7 +87,7 @@ int	ft_save_file(t_list **lst)
 	i = 0;
 	j = 0;
 	k = 0;
-	if (ft_prepare_file(lst))
+	if (ft_prepare_file(lst) == -1)
 		return (-1);
 	while ((*lst)->token[i])
 	{

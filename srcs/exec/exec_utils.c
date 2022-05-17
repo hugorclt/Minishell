@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 17:27:30 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:53:43 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,6 @@ int	ft_prepare_cmd(t_list **lst)
 	if (ft_total_unquote(&tmp) == -1)
 		return (-1);
 	
-	return (0);
-}
-
-int	ft_execute_one_fork_builtin(t_node *params, t_list **lst)
-{
-	ft_init_pid(params);
-	params->pid[0] = fork();
-	if (params->pid[0] == 0)
-	{
-		if (ft_open_io(lst) == -1)
-			return (-1);
-		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
-		if (ft_exec_builtin(params, (*lst)->token) == -1)
-			return (-1);
-		ft_exit(params, lst);
-	}
 	return (0);
 }
 
