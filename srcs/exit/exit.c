@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 10:27:13 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:30:53 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ void	ft_free_params(t_node *params)
 		free(params->fd);
 }
 
+void	ft_free_infile(t_list *tmp)
+{
+	int	i;
+
+	i = 0;
+	while (i < tmp->nb_infile)
+		free(tmp->file_in[i++].file);
+}
+
+void	ft_free_outfile(t_list *tmp)
+{
+	int	i;
+
+	i = 0;
+	while (i < tmp->nb_outfile)
+		free(tmp->file_out[i++].file);
+}
+
 void	ft_free_list(t_list **start)
 {
 	t_list	*tmp;
@@ -36,9 +54,15 @@ void	ft_free_list(t_list **start)
 		if (tmp->cmd)
 			free(tmp->cmd);
 		if (tmp->file_in)
+		{
+			ft_free_infile(tmp);
 			free(tmp->file_in);
+		}
 		if (tmp->file_out)
+		{
+			ft_free_outfile(tmp);
 			free(tmp->file_out);
+		}
 		tmp = tmp->next;
 	}
 }
