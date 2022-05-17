@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/17 14:58:34 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/17 15:07:16 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ RM		=		rm -f
 
 CC		=	gcc	
 
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #%.o: %.c
 #	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC)

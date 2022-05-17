@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 17:07:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:07:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_get_last_dir(char *str)
 	ret[j] = '$';
 	ret[j + 1] = '>';
 	ret[j + 2] = '\0';
-	return (ret);
+	return (free(str), ret);
 }
 
 static char	*ft_cat_path(char *var, char *path)
