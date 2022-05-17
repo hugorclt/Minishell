@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/12 14:25:09 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 10:08:01 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ if first token is an operator the second can't be one too
 
 */
 //
+/*
 static int	ft_theres_two_types(char *token)
 {
 	int	i;
@@ -43,7 +44,7 @@ static int	ft_theres_two_types(char *token)
 	return (0);
 }
 
-static int	ft_theres_quotes(char *token)
+int	ft_theres_quotes(char *token)
 {
 	int	i;
 
@@ -93,8 +94,23 @@ static int	ft_check(char *token)
 		++i;
 	}
 	return (0);
+}*/
+
+int	ft_check_quote(char *token)
+{
+	int		i;
+	t_token	qt_helper;
+
+	i = 0;
+	while (token[i])
+	{
+		ft_quoted_expand(&qt_helper, token[i]);
+		i++;
+	}
+	return (0);
 }
 
+/*
 int	ft_check_quote(char *token)
 {
 	if (ft_theres_quotes(token))
@@ -109,7 +125,7 @@ int	ft_check_quote(char *token)
 	}
 	return (1);
 }
-
+*/
 int	ft_is_operator(char *token)
 {
 	if (ft_strcmp(token, "|") == 0)

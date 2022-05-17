@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 17:28:46 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/16 17:35:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_node
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
-	int				index;
+ 	int				index;
 	int				heredoc;
 	char			*limiter;
 	int				fd_stdin;

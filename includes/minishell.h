@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 17:26:52 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 10:05:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_size_s2(char *var);
 char	*ft_dup_addon(char *var);
 int ft_cat_var(char **env, char *var, int j);
 int	ft_theres_dquotes(char *token);
+void	ft_quoted_expand(t_token *token, char c);
 char	*ft_quote(char *token);
 void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
@@ -80,7 +81,7 @@ char	**ft_split_path(char const *s, char c);
 void	ft_command_nt_found(char *cmd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_close(void);
-void	ft_heredoc_infile(t_list **lst, int *i);
+int		ft_heredoc_infile(t_list **lst, int *i);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
