@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/16 17:12:58 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:45:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,33 +161,6 @@ int	ft_theres_backslash(char *token)
 		}
 	}
 	return (0);
-}
-
-char	*ft_backslash(char *token)
-{
-	int		i;
-	int		j;
-	char	*output;
-
-	i = 0;
-	output = malloc(sizeof(char) * (ft_strlen(token) + 2));
-	if (!output)
-		return (NULL);
-	j = 0;
-	while (token[i])
-	{
-		if (token[i + 1] == '$' || token[i + 1] == '"')
-		{
-			output[j] = token[i];
-			ft_increm(&i, &j);
-			output[j] = '\\';
-			++j;
-		}
-		output[j] = token[i];
-		ft_increm(&i, &j);
-	}
-	output[j] = 0;
-	return (free(token), output);
 }
 
 char	*ft_quote(char *token)
