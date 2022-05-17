@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 16:19:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:44:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_print_tab(char **tokens)
 	if (!*tokens)
 		return ;
 	while (tokens[i])
-		printf("|%s|\n", tokens[i++]);
+		printf("%s|\n", tokens[i++]);
 }
 
 int	ft_test_export(t_token *token)
@@ -150,17 +150,16 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	int		flag;
 
-	token.token = NULL;
-	lst = NULL;
-	params.prompt = NULL;
-	params.last_status = 0;
 	if (ac == 1)
 	{
-		if (ft_init_env(env, &params) < 0)
-			return (1);
 		using_history();
 		while (1)
 		{
+			if (ft_init_env(env, &params) < 0)
+				return (1);
+			token.token = NULL;
+			lst = NULL;
+			params.last_status = 0;
 			params.prompt = ft_get_last_dir(get_pwd());
 			if (!params.prompt)
 				return (free(cmd), free(params.prompt), 1);
@@ -199,6 +198,7 @@ int	main(int ac, char **av, char **env)
 				if (ft_wait_all_pid(&params) == -1)
 					return (-1);
 			}
+			ft_free_after_cmd(&params, &lst);
 			rl_redisplay();
 			add_history(cmd);
 		}
