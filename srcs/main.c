@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 21:47:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:52:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,11 @@ int	main(int ac, char **av, char **env)
 
 	if (ac == 1)
 	{
+		if (ft_init_env(env, &params) < 0)
+				return (1);
 		using_history();
 		while (1)
 		{
-			if (ft_init_env(env, &params) < 0)
-				return (1);
 			token.token = NULL;
 			lst = NULL;
 			params.last_status = 0;

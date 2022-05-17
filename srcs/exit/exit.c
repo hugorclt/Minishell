@@ -6,18 +6,24 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 21:45:08 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:55:47 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_free_params(t_node *params)
+void	ft_free_params(t_node *params, int flag)
 {
-	if (params->env)
-		ft_free(params->env);
+	if (flag == 0)
+	{
+		if (params->env)
+			ft_free(params->env);
+	}
 	if (params->pid)
+	{
 		free(params->pid);
+		params->pid = NULL;
+	}
 	if (params->limiter)
 		free(params->limiter);
 	if (params->fd)
@@ -84,7 +90,7 @@ void	ft_free_lst(t_list **start)
 
 void	ft_exit(t_node *params, t_list **start)
 {
-	ft_free_params(params);
+	ft_free_params(params, 0);
 	if (start)
 	{
 		ft_free_list(start);
@@ -95,7 +101,7 @@ void	ft_exit(t_node *params, t_list **start)
 
 void	ft_free_after_cmd(t_node *params, t_list **start)
 {
-	ft_free_params(params);
+	ft_free_params(params, 1);
 	if (start)
 	{
 		ft_free_list(start);
