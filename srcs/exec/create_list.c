@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 14:59:51 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:38:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ t_list	*init_lst(t_token *token)
 		if (ft_to_add(&lst, token->token, start, i) == -1)
 			return (ft_free(token->token), NULL);
 	}
-	ft_free(token->token);
-	return (lst);
+	return (ft_free(token->token), lst);
 }

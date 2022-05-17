@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 15:17:00 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:46:44 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ void	ft_free_list(t_list **start)
 void	ft_free_lst(t_list **start)
 {
 	t_list	*tmp;
-
+	
 	while ((*start))
 	{
 		tmp = (*start);
 		(*start) = (*start)->next;
 		free(tmp);
 	}
-	free((*start));
+	free(start);
 }
 
 void	ft_exit(t_node *params, t_list **start)

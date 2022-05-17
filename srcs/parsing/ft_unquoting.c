@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:19:55 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/16 17:37:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:28:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	ft_is_trimeable(t_token *token, char c, char *set)
 	int			i;
 
 	i = 0;
-	(void)token;
 	while (set[i])
 	{
 		if (c == set[i])
