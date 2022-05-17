@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 14:47:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:17:31 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int	main(int ac, char **av, char **env)
 
 	token.token = NULL;
 	lst = NULL;
+	params.prompt = NULL;
 	params.last_status = 0;
 	if (ac == 1)
 	{
@@ -160,8 +161,11 @@ int	main(int ac, char **av, char **env)
 		using_history();
 		while (1)
 		{
+			params.prompt = ft_get_last_dir(get_pwd());
+			if (!params.prompt)
+				return (free(cmd), free(params.prompt), 1);
 			//signal(SIGINT, ft_sign_handle);
-			cmd = readline(ft_get_last_dir(get_pwd()));
+			cmd = readline(params.prompt);
 			if (!cmd)
 				return (free(cmd), 1);
 			if (cmd[0] == '\0')

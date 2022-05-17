@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 14:30:53 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:17:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_free_params(t_node *params)
 		free(params->limiter);
 	if (params->fd)
 		free(params->fd);
+	if (params->prompt)
+		free(params->prompt);
 }
 
 void	ft_free_infile(t_list *tmp)
