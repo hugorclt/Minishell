@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 16:25:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 16:29:32 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ int	ft_change_dir(t_node *params, char *path)
 	save_old = ft_cat_path("OLDPWD=", get_pwd()); 
 	if (!save_old)
 		return (-1);
-	if (!path)
-		ret = chdir("/");
-	else
-		ret = chdir(path);
+	ret = chdir(path);
 	if (ret == -1)
 		return (free(save_old), printf("bash: cd: %s: Not a directory\n", path), 0);
 	ft_change_var(params->env, save_old, ft_find_occ(params->env, "OLDPWD"));
