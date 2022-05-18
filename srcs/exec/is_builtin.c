@@ -6,11 +6,19 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 14:14:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:27:19 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_exit_choice(t_node *params, t_list **start, char *args)
+{
+	if (!args)
+		ft_exit(params, start, errno);
+	else
+		ft_exit(params, start, ft_atoi(args));
+}
 
 int	ft_is_builtin(char *cmd)
 {
@@ -56,6 +64,6 @@ int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst)
 	else if (ft_strcmp(cmd[0], "env") == 0)
 		ft_print_env(params->env);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		return (ft_exit(params, lst, ft_atoi(cmd[1])), -1);
+		return (ft_exit_choice(params, lst, cmd[1]), -1);
 	return (1);
 }

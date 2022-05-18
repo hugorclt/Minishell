@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 15:15:11 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:33:10 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@
 # include <signal.h>
 # include <errno.h>
 # define COMMAND_NOT_FOUND ": command not found\n"
+# define PROG_NAME "Minishell"
+# define PERM_DENIED ": permission denied"
 
 #endif
