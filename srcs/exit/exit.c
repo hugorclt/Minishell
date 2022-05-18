@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 14:30:53 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:35:18 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_free_lst(t_list **start)
 	free((*start));
 }
 
-void	ft_exit(t_node *params, t_list **start)
+void	ft_exit(t_node *params, t_list **start, int value)
 {
 	ft_free_params(params);
 	if (start)
@@ -88,5 +88,8 @@ void	ft_exit(t_node *params, t_list **start)
 		ft_free_list(start);
 		ft_free_lst(start);
 	}
-	exit(errno);
+	if (value != -1)
+		exit(value);
+	else
+		exit(errno);
 }
