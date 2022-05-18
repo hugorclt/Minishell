@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 16:38:42 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:09:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	ft_args(int ac, char **av)
 
 int	ft_chk_cmd(char *cmd)
 {
+	if (!cmd)
+		return (-2);
 	if (*cmd == '/' || *cmd == '.')
 	{
 		if (access(cmd, 0) != 0)

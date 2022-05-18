@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 16:07:51 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:13:52 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,9 @@ int	main(int ac, char **av, char **env)
 			}
 			flag = ft_exec_parsing(&token, cmd, &params);
 			if (flag == -1)
+			{
 				return (free(cmd), 1);
+			}
 			else if (flag == -2)
 			{
 				free(cmd);
