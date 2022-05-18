@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 15:34:26 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 10:41:56 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ int	ft_find_occurence(char **env, char *cmd)
 static int	ft_print_free(char **export, int i)
 {
 	if (ft_theres_backslash(export[i]))
-	{
 		export[i] = ft_quote(ft_backslash(export[i]));
-	}
 	else
 		export[i] = ft_quote(export[i]);
 	if (!export[i])
@@ -117,5 +115,5 @@ int	ft_export_alph(char **env)
 			return (ft_free(export), -1);
 		++i;
 	}
-	return (0);
+	return (free(export), 0);
 }

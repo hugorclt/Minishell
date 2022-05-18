@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 14:45:28 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 16:51:32 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 10:55:31 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,6 @@ int	ft_nb_bs(char *token)
 	return (nb);
 }
 
-void	ft_add_backslash(char *output, char *token, int *i, int *j)
-{
-	output[*j] = token[*i];
-	ft_increm(i, j);
-	output[*j] = '\\';
-	++*j;
-	if (token[*i] == '$' || token[*i] == '"')
-	{
-
-	}
-}
-
 char	*ft_backslash(char *token)
 {
 	int		i;
@@ -78,9 +66,16 @@ char	*ft_backslash(char *token)
 	{
 		if (token[i + 1] == '$' || token[i + 1] == '"')
 		{
+			output[j] = token[i];
+			ft_increm(&i, &j);
+			output[j] = '\\';
+			++j;
 		}
-		output[j] = token[i];
-		ft_increm(&i, &j);
+		else
+		{
+			output[j] = token[i];
+			ft_increm(&i, &j);
+		}
 	}
 	output[j] = 0;
 	return (free(token), output);
