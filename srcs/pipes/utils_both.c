@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 16:53:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:14:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_child_exec(t_node *params, t_list **lst)
 		if (ft_fork(params, params->env, &tmp, lst) < 0)
 		{
 			ft_close();
-			ft_exit(params, lst);
+			ft_exit(params, lst, 0);
 		}
 		params->index++;
 		i++;

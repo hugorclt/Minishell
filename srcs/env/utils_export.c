@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:12:36 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/10 19:08:48 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:04:13 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,8 @@ char	*ft_dup_addon(char *var)
 	while (var[i] != '=')
 		++i;
 	++i;
-	if (var[i] == '"')
-	{
-		++i;
-		while (var[i] != '"')
-			output[j++] = var[i++];
-	}
-	else
-	{
-		while (var[i])
-			output[j++] = var[i++];
-	}
+	while (var[i])
+		output[j++] = var[i++];
 	output[j] = 0;
 	return (output);
 }

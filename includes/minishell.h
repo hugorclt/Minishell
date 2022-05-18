@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 21:54:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:16:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
-void	ft_exit(t_node *params, t_list **start);
+void	ft_exit(t_node *params, t_list **start, int value);
 int ft_change_var(char **env, char *var, int j);
 int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);

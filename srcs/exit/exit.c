@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/18 10:24:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:14:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_free_lst(t_list **start)
 	free(*start);
 }
 
-void	ft_exit(t_node *params, t_list **start)
+void	ft_exit(t_node *params, t_list **start, int value)
 {
 	ft_free_params(params, 0);
 	if (start)
@@ -103,7 +103,10 @@ void	ft_exit(t_node *params, t_list **start)
 		ft_free_list(start);
 		ft_free_lst(start);
 	}
-	exit(errno);
+	if (value != -1)
+		exit(value);
+	else
+		exit(errno);
 }
 
 void	ft_free_after_cmd(t_node *params, t_list **start)
