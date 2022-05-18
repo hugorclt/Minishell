@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:20:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 10:19:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:01:40 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_list	*ft_lstnew(void *content)
 	sortie->next = NULL;
 	sortie->file_in = NULL;
 	sortie->file_out = NULL;
-	sortie->cmd = NULL;
 	sortie->heredoc = 0;
 	return (sortie);
 }

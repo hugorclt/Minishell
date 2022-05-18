@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 16:54:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:07:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_prepare_cmd(t_list **lst)
 	if (!tmp->token)
 		return (-1);
 	if (ft_total_unquote(&tmp) == -1)
-		return (-1);	
+		return (-1);
 	return (0);
 }
 
