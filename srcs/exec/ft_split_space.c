@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 21:30:12 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:23:43 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static char	**ft_dfill(char ***output, char *s, char c)
 		else
 			i++;
 	}
-	(*output)[p] = 0;
+	(*output)[p] = NULL;
 	return (free(s), *output);
 }
 

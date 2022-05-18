@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 21:36:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:29:31 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static char	**ft_cut_token(char **token, int start, int i)
 
 static int	ft_init_var(t_list **lst, int *i, int *start)
 {
+	*lst = NULL;
 	*i = 0;
 	*start = 0;
-	*lst = NULL;
 	return (0);
 }
 

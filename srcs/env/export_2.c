@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 14:45:47 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 10:10:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ int	ft_export(t_node *params, char *token)
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (ft_export_alph(params->env));
+		return (ft_free(tmp), ft_export_alph(params->env));
 	else
 	{
 		while (tmp[i])

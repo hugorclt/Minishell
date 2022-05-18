@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/12 16:30:42 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 10:13:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,5 @@ int	ft_export_alph(char **env)
 			return (ft_free(export), -1);
 		++i;
 	}
-	return (0);
+	return (ft_free(export), 0);
 }

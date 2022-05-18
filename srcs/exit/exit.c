@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 21:55:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:24:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,20 @@ void	ft_free_params(t_node *params, int flag)
 		params->pid = NULL;
 	}
 	if (params->limiter)
+	{
 		free(params->limiter);
+		params->limiter = NULL;
+	}
 	if (params->fd)
+	{
 		free(params->fd);
+		params->fd = NULL;
+	}
 	if (params->prompt)
+	{
 		free(params->prompt);
+		params->prompt = NULL;
+	}
 }
 
 void	ft_free_infile(t_list *tmp)
@@ -59,8 +68,6 @@ void	ft_free_list(t_list **start)
 	{
 		if (tmp->token)
 			ft_free(tmp->token);
-		if (tmp->cmd)
-			free(tmp->cmd);
 		if (tmp->file_in)
 		{
 			ft_free_infile(tmp);

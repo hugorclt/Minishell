@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 15:16:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:21:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_files
 typedef struct s_list
 {
 	char			**token;
-	char			*cmd;
 	t_files			*file_in;
 	t_files			*file_out;
 	char			*limiter;
