@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 13:26:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:39:28 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int		ft_close_redirect(t_list **lst)
 		i = 0;
 		if (tmp->nb_outfile > 0)
 		{
-			dprintf(2, "test\n");
 			if (close(tmp->file_out[i++].fd) == -1)
 				return (-1);	
 		}
