@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:16:43 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:33:04 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*ft_to_str(char **str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	ret = ft_strdup("\0");
 	if (!ret)
 		return (NULL);
@@ -52,7 +54,7 @@ char	*ft_to_str(char **str)
 			return (NULL);
 		i++;
 	}
-	return (ft_free(str), ret);
+	return (ret);
 }
 
 void	ft_increm(int *i, int *j)

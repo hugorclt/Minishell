@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/18 14:16:06 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:46:18 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);
 char	*ft_unquote(char *var);
 int	ft_total_unquote(t_list **lst);
-void	ft_print_env(char **env);
+void	ft_print_env(t_node *params, char **env);
 char	*ft_backslash(char *token);
 int	ft_theres_backslash(char *token);
 int	ft_check_equal(char *token);
-char	**ft_unset(char **env, char **var);
+char	**ft_unset(t_node *params, char **env, char **var);
 int	ft_need_cat(char *var);
 int	ft_size_s2(char *var);
 char	*ft_dup_addon(char *var);
@@ -39,6 +39,7 @@ void	ft_increm(int *i, int *j);
 int	ft_find_occurence(char **env, char *cmd);
 int	ft_export(t_node *params, char *token);
 int	ft_find_index(char **export, int size);
+void	ft_exit_choice(t_node *params, t_list **lst, char *cmd);
 int	ft_parse_tokens(t_token *token, char *cmd, int flag);
 int	ft_init_io(t_list **lst, t_node *params);
 void	ft_count_in(char **token, t_list **lst);
@@ -62,7 +63,7 @@ int	ft_export_alph(char **env);
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
 char	**ft_dup_tab(char **tab);
-int		print_pwd();
+int		print_pwd(t_node *params);
 char	*get_pwd();
 
 /* -------------------------------------------------------------------------- */
@@ -186,7 +187,7 @@ int		ft_change_dir(t_node *params, char *path);
 char	*ft_strjoin_char(char *cmd, char c);
 void	ft_print_tab(char **tab);
 int	ft_find_occurence(char **env, char *cmd);
-void	ft_echo(char **cmd);
+void	ft_echo(t_node *params, char **cmd);
 int	ft_main_exec(t_node *params, t_list **lst);
 char	**ft_expand(t_token *token, t_node *params);
 int	ft_find_len_env(char *str);
