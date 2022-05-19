@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 14:16:39 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:57:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,17 @@ int	ft_prepare_cmd(t_list **lst)
 
 int	ft_execute_one_builtin(t_node *params, t_list **lst)
 {
-	int	save_in;
-	int	save_out;
-
-	save_in = dup(0);
-	save_out = dup(1);
+	params->save_in = dup(0);
+	params->save_out = dup(1);
 	params->have_pid = 0;
 	if (ft_open_io(lst) == -1)
 		return (-1);
 	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 	if (ft_exec_builtin(params, (*lst)->token, lst) == -1)
 		return (-1);
-	ft_dup2(save_in, save_out);
-	close(save_in);
-	close(save_out);
+	ft_dup2(params->save_in, params->save_out);
+	close(params->save_in);
+	close(params->save_out);
 	ft_close_redirect(lst);
 	return (0);
 }
