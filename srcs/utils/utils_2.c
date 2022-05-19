@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 14:25:39 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 18:28:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,22 @@ int		ft_close_redirect(t_list **lst)
 
 	i = 0;
 	tmp = (*lst);
-	while (tmp)
+	//dprintf(2, "%d, %d\n", tmp->nb_infile, tmp->nb_outfile);
+	if (tmp->nb_infile > 0)
 	{
-		if (tmp->nb_infile > 0)
-		{
-			if (close(tmp->file_in[i].fd) == -1)
-				return (-1);
-			if (tmp->file_in[i].flag == 1)
-				unlink(tmp->file_in[i].file);
-			i++;
-		}
-		i = 0;
-		if (tmp->nb_outfile > 0)
-		{
-			if (close(tmp->file_out[i++].fd) == -1)
-				return (-1);	
-		}
-		tmp = tmp->next;
+		if (close(tmp->file_in[i].fd) == -1)
+			return (-1);
+		if (tmp->file_in[i].flag == 1)
+			unlink(tmp->file_in[i].file);
+		i++;
 	}
+	i = 0;
+	if (tmp->nb_outfile > 0)
+	{
+		if (close(tmp->file_out[i++].fd) == -1)
+			return (-1);	
+	}
+	tmp = tmp->next;
 	return (0);
 }
 
