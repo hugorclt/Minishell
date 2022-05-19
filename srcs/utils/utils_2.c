@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 12:33:04 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 12:37:37 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ char	*ft_to_str(char **str)
 
 	i = 0;
 	if (!str)
-		return (NULL);
-	ret = ft_strdup("\0");
-	if (!ret)
 		return (NULL);
 	while (str[i])
 	{
