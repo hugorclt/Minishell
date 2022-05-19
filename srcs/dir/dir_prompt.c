@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 11:28:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:39:57 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ static char	*ft_cat_path(char *var, char *path)
 	return (free(path), output);
 }
 
+static void	ft_attrib_path(t_node *params, char *path, int *ret)
+{
+	if (!path)
+		*ret = chdir(params->root);
+	else
+		*ret = chdir(path);
+}
+
 int	ft_change_dir(t_node *params, char *path)
 {
 	int		ret;
@@ -84,7 +92,7 @@ int	ft_change_dir(t_node *params, char *path)
 	save_old = ft_cat_path("OLDPWD=", get_pwd()); 
 	if (!save_old)
 		return (-1);
-	ret = chdir(path);
+	ft_attrib_path(params, path, &ret);
 	if (ret == -1)
 	{
 		params->last_status = 1;

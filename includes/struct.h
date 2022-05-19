@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 10:21:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:36:08 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_node
 	char			**env;
 	int				have_pid;
 	char			*prompt;
+	char			*root;
 }	t_node;
 
 typedef struct s_garb_col

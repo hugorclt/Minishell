@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 12:37:37 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 14:25:39 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,54 @@ void	ft_pass_space_reverse(char *cmd, int *new_j)
 	}
 }
 
+char	*ft_to_str_without_free(char **str)
+{
+	char	*ret;
+	int		i;
+
+	i = 0;
+	ret = NULL;
+	if (ft_tab_size(str) == 1)
+		ret = ft_strdup(str[0]);
+	else
+	{
+		while (str[i])
+		{
+			ret = ft_strjoin_pimp(ret, str[i]);
+			if (!ret)
+				return (NULL);
+			if (i < ft_tab_size(str) - 1)
+				ret = ft_strjoin_pimp(ret, " ");
+			if (!ret)
+				return (NULL);
+			i++;
+		}
+	}
+	return (ret);
+}
+
 char	*ft_to_str(char **str)
 {
 	char	*ret;
 	int		i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
+	ret = NULL;
+	if (ft_tab_size(str) == 1)
+		ret = ft_strdup(str[0]);
+	else
 	{
-		ret = ft_strjoin_pimp(ret, str[i]);
-		if (!ret)
-			return (NULL);
-		ret = ft_strjoin_pimp(ret, " ");
-		if (!ret)
-			return (NULL);
-		i++;
+		while (str[i])
+		{
+			ret = ft_strjoin_pimp(ret, str[i]);
+			if (!ret)
+				return (NULL);
+			if (i < ft_tab_size(str) - 1)
+				ret = ft_strjoin_pimp(ret, " ");
+			if (!ret)
+				return (NULL);
+			i++;
+		}
 	}
 	return (ret);
 }
