@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 16:13:52 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:25:01 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int	main(int ac, char **av, char **env)
 			cmd = readline(params.prompt);
 		//	printf("fuck\n");
 			if (!cmd)
-				return (printf("ouais ?\n"), free(cmd), 1);
+				return (printf("ouais ? cmd : %s\n", cmd), free(cmd), 1);
 			if (cmd[0] == '\0')
 			{
 				free(cmd);
