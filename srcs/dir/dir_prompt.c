@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 14:39:57 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 18:14:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	ft_change_dir(t_node *params, char *path)
 {
 	int		ret;
 	char	*save_old;
+	char	*path_cat;
 
 	save_old = ft_cat_path("OLDPWD=", get_pwd()); 
 	if (!save_old)
@@ -101,8 +102,9 @@ int	ft_change_dir(t_node *params, char *path)
 	ft_change_var(params->env, save_old, ft_find_occ(params->env, "OLDPWD"));
 	if (!params->env)
 		return (free(save_old), -1);
-	ft_change_var(params->env, ft_cat_path("PWD=", get_pwd()), 
-		ft_find_occ(params->env, "PWD"));
+	path_cat = ft_cat_path("PWD=", get_pwd());
+	ft_change_var(params->env, path_cat, ft_find_occ(params->env, "PWD"));
+	free(path_cat);
 	if (!params->env)
 		return (free(save_old), -1);
 	params->last_status = 0;
