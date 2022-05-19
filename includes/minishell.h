@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/19 11:06:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:31:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "includes.h"
 
 void	ft_exit(t_node *params, t_list **start, int value);
+char	*ft_to_str_pimp(char **str);
 int ft_change_var(char **env, char *var, int j);
 int	ft_find_occ(char **env, char *var);
 int	ft_is_in(char **var_lst, char *var);

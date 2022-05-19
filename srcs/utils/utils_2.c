@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:16:43 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:32:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,47 @@ char	*ft_to_str(char **str)
 	int		i;
 
 	i = 0;
-	ret = ft_strdup("\0");
-	if (!ret)
-		return (NULL);
-	while (str[i])
+	if (ft_tab_size(str) == 1)
+		ret = ft_strdup(str[0]);
+	else
 	{
-		ret = ft_strjoin_pimp(ret, str[i]);
-		if (!ret)
-			return (NULL);
-		ret = ft_strjoin_pimp(ret, " ");
-		if (!ret)
-			return (NULL);
-		i++;
+		while (str[i])
+		{
+			ret = ft_strjoin_pimp(ret, str[i]);
+			if (!ret)
+				return (NULL);
+			ret = ft_strjoin_pimp(ret, " ");
+			if (!ret)
+				return (NULL);
+			i++;
+		}
 	}
 	return (ft_free(str), ret);
+}
+
+
+char	*ft_to_str_pimp(char **str)
+{
+	char	*ret;
+	int		i;
+
+	i = 0;
+	if (ft_tab_size(str) == 1)
+		ret = ft_strdup(str[0]);
+	else
+	{
+		while (str[i])
+		{
+			ret = ft_strjoin_pimp(ret, str[i]);
+			if (!ret)
+				return (NULL);
+			ret = ft_strjoin_pimp(ret, " ");
+			if (!ret)
+				return (NULL);
+			i++;
+		}
+	}
+	return (ret);
 }
 
 void	ft_increm(int *i, int *j)
@@ -81,6 +108,7 @@ int		ft_close_redirect(t_list **lst)
 		i = 0;
 		if (tmp->nb_outfile > 0)
 		{
+			dprintf(2, "test\n");
 			if (close(tmp->file_out[i++].fd) == -1)
 				return (-1);	
 		}
