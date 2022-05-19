@@ -82,7 +82,7 @@ char	*ft_to_str(char **str)
 			i++;
 		}
 	}
-	return (ret);
+	return (ft_free(str), ret);
 }
 
 void	ft_increm(int *i, int *j)
