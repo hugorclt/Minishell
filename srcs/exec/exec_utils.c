@@ -44,10 +44,12 @@ int	ft_execute_one_builtin(t_node *params, t_list **lst)
 	if (ft_open_io(lst) == -1)
 		return (-1);
 	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
-	ft_close_redirect(lst);
 	if (ft_exec_builtin(params, (*lst)->token, lst) == -1)
 		return (-1);
 	ft_dup2(save_in, save_out);
+	close(save_in);
+	close(save_out);
+	ft_close_redirect(lst);
 	return (0);
 }
 
