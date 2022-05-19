@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:13:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 11:01:02 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 17:49:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	print_pwd(t_node *params)
 		return (-1);
 	printf("%s\n", pwd);
 	params->last_status = 0;
-	return (1);
+	return (free(pwd), 1);
 }
 
 char	*get_pwd(void)

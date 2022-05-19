@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 16:14:07 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 16:40:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ static int	ft_open_output(t_list **lst)
 	return (0);
 }
 
+void	ft_print_file_not_found(char *str)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+}
+
 static int	ft_open_input(t_list **lst)
 {
 	int	i;
@@ -55,7 +62,7 @@ static int	ft_open_input(t_list **lst)
 			ft_heredoc(lst, &i);
 		}
 		if ((*lst)->file_in[i].fd == -1)
-			return (-1);
+			return (ft_print_file_not_found((*lst)->file_in[i].file), -1);
 		i++;
 	}
 	if (i == 0)
