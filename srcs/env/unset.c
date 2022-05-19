@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:07:39 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/19 10:58:54 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	**ft_lil_malloc(int	size)
 	return (output);
 }
 
-char	**ft_unset(char **env, char **var)
+char	**ft_unset(t_node *params, char **env, char **var)
 {
 	char	**output;
 	int		i;
@@ -82,5 +82,6 @@ char	**ft_unset(char **env, char **var)
 		}
 	}
 	output[j] = NULL;
+	params->last_status = 0;
 	return (ft_free(env), output);
 }

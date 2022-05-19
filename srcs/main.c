@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 16:06:52 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:58:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int check_export(t_token *token)
 	return (0);
 }*/
 
-void	ft_print_env(char **env)
+void	ft_print_env(t_node *params, char **env)
 {
 	int	i;
 
@@ -122,6 +122,7 @@ void	ft_print_env(char **env)
 			printf("%s\n", env[i]);
 		++i;
 	}
+	params->last_status = 0;
 }
 
 int	ft_wait_all_pid(t_node *params)
@@ -150,6 +151,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	int		flag;
 
+	params.last_status = 0;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &params) < 0)
@@ -159,7 +161,6 @@ int	main(int ac, char **av, char **env)
 		{
 			token.token = NULL;
 			lst = NULL;
-			params.last_status = 0;
 			params.prompt = ft_get_last_dir(get_pwd());
 			if (!params.prompt)
 				return (free(cmd), free(params.prompt), 1);

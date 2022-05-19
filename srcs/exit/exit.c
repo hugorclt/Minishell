@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/18 14:14:18 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:06:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,13 @@ void	ft_free_after_cmd(t_node *params, t_list **start)
 		ft_free_list(start);
 		ft_free_lst(start);
 	}
+}
+
+int	ft_exit_choice(t_node *params, t_list **lst, char **cmd)
+{
+	if (cmd[1])
+		ft_exit(params, lst, ft_atoi(cmd[1]));
+	else
+		ft_exit(params, lst, errno);
+	return (0);
 }
