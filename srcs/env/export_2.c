@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/19 14:26:28 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 10:43:44 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int ft_change_var(char **env, char *var, int j)
 		{
 			free(env[i]);
 			env[i] = ft_strdup(var);
-			//env[i] = ft_unquote(env[i]);
 			if (!env[i])
 				return (ft_free(env), -1);
 		}
