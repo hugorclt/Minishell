@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/19 14:18:35 by yuro4ka          ###   ########.fr        #
+#    Updated: 2022/05/20 11:12:27 by yuro4ka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS 		=	srcs/main.c\
 				srcs/exec/insert_file.c\
 				srcs/exec/main_exec.c\
 				srcs/expand/expand_utils.c\
+				srcs/env/utils_error.c\
 				srcs/env/utils_backslash.c\
 				srcs/exit/exit.c
 
