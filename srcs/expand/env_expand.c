@@ -84,14 +84,34 @@ int	ft_quote_expand(t_token *token, char **ret, t_node *params, char *cmd)
 	return (0);
 }
 
+int	ft_count_dollar(char *cmd)
+{
+	int	i;
+	int	dollar;
+
+	i = 0;
+	dollar = 0;
+	if (!cmd)
+		return (0);
+	while (cmd[i])
+	{
+		if (cmd[i] == '$')
+			dollar++;
+		i++;
+	}
+	return (dollar);
+}
+
 static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 {
 	int		i;
 	t_token	token;
 	int		flag;
+	int		nb_dollars;
 
 	i = 0;
 	flag = 0;
+	nb_dollars = ft_count_dollar(cmd);
 	ft_reset_quotes(&token);
 	while (cmd[i])
 	{
@@ -101,6 +121,11 @@ static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 			flag = ft_quote_expand(&token, ret, params, cmd);
 			if (flag == -1)
 				return (-1);
+			if (nb_dollars > 1)
+			{
+				free(*ret);
+				nb_dollars--;
+			}
 		}
 		i++;
 	}

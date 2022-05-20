@@ -105,6 +105,7 @@ void	ft_exit(t_node *params, t_list **start, int value)
 		ft_free_list(start);
 		ft_free_lst(start);
 	}
+	write(1, "exit\n", 6);
 	exit(value);
 }
 
