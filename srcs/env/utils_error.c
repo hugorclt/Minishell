@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/20 16:44:32 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:51:13 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_strcmp_exp(char *s1, char *s2)
 		size = ft_strlen_exp(s1);
 	else
 		size = ft_strlen_exp(s2);
-	while (s1[i] && s2[i] && size)
+	while (s1[i] && s2[i] && size - 1)
 	{
 		--size;
 		++i;
