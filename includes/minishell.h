@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/20 16:22:52 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:41:44 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "struct.h"
 # include "includes.h"
 
+int	ft_strlen_exp(char *s);
 int	ft_strcmp_exp(char *s1, char *s2);
 void	ft_exit(t_node *params, t_list **start, int value);
 char	*ft_to_str_without_free(char **str);
