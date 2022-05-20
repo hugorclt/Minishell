@@ -26,10 +26,11 @@ int	ft_prepare_cmd(t_list **lst)
 	if (!tmp->token)
 		return (-1);
 	tmp->token = ft_split_space(ft_to_str(tmp->token));
-	if (!tmp->token)
-		return (-1);
-	if (ft_total_unquote(&tmp) == -1)
-		return (-1);
+	if (tmp->token != NULL)
+	{
+		if (ft_total_unquote(&tmp) == -1)
+			return (-1);
+	}
 	return (0);
 }
 
@@ -69,7 +70,12 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 
 int	ft_exec_one(t_node *params, t_list **lst)
 {
-	if (ft_is_builtin((*lst)->token[0]))
+	if (!(*lst)->token && ((*lst)->nb_infile || (*lst)->nb_outfile))
+	{
+		if (ft_open_io(lst) == -1)
+			return (-1);
+	}
+	else if (ft_is_builtin((*lst)->token[0]))
 	{
 		if (ft_execute_one_builtin(params, lst) == -1)
 			return (-1);

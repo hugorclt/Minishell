@@ -85,7 +85,7 @@ static int	ft_init_env(char **env, t_node *params)
 	params->env = ft_dup_tab(env);
 	if (!params->env)
 		return (-1);
-	index = ft_find_occ(env, "USER");
+	index = ft_find_occ(env, "USER=");
 	if (index > -1)
 	{
 		tmp = ft_strdup(env[index] + ft_strlen("USER="));
@@ -174,6 +174,7 @@ int	main(int ac, char **av, char **env)
 		using_history();
 		while (1)
 		{
+			params.have_pid = 0;
 			token.token = NULL;
 			lst = NULL;
 			params.prompt = ft_get_last_dir(get_pwd());
