@@ -37,7 +37,6 @@ char	*ft_strjoin_expand(char *token, char **env)
 	if (!var_env)
 		return (NULL);
 	occ = ft_find_occurence(env, var_env);
-	printf("%d\n", occ);
 	if (occ == -1)
 		return (free(var_env), "\0");
 	ret = ft_strdup(env[occ] + len_var + 1);
@@ -48,11 +47,14 @@ char	*ft_strjoin_expand(char *token, char **env)
 
 int	ft_expand_utils(char **ret, t_node *par, int *i)
 {
-	(*ret) = ft_strjoin_pimp((*ret), ft_itoa(par->last_status));
+	char	*itoa;
+
+	itoa = ft_itoa(par->last_status);
+	(*ret) = ft_strjoin_pimp((*ret), itoa);
 	if (!(*ret))
-		return (-1);
+		return (free(itoa), -1);
 	(*i) += 2;
-	return (0);
+	return (free(itoa), 0);
 }
 
 int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p)
