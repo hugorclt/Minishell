@@ -114,9 +114,16 @@ char	**ft_split_space(char *cmd)
 {
 	char	**ret;
 	t_token	token;
+	int		count;
 	
 	ft_reset_quotes(&token);
-	ret = malloc(sizeof(char *) * (ft_count(&token, cmd, ' ') + 1));
+	if (!cmd)
+		return (NULL);
+	count = ft_count(&token, cmd, ' ');
+	if (count <= 0)
+		return (NULL);
+	ft_reset_quotes(&token);
+	ret = malloc(sizeof(char *) * (count + 1));
 	ft_reset_quotes(&token);
 	if (!ret)
 		return (NULL);

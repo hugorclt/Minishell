@@ -168,6 +168,7 @@ int	main(int ac, char **av, char **env)
 		using_history();
 		while (1)
 		{
+			params.have_pid = 0;
 			token.token = NULL;
 			lst = NULL;
 			params.prompt = ft_get_last_dir(get_pwd());

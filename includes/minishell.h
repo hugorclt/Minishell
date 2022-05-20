@@ -187,7 +187,6 @@ void	ft_tokenization(t_list **lst, char *cmd);
 int		ft_change_dir(t_node *params, char *path);
 char	*ft_strjoin_char(char *cmd, char c);
 void	ft_print_tab(char **tab);
-int	ft_find_occurence(char **env, char *cmd);
 void	ft_echo(t_node *params, char **cmd);
 int	ft_main_exec(t_node *params, t_list **lst);
 char	**ft_expand(t_token *token, t_node *params);
