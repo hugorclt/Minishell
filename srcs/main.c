@@ -17,7 +17,6 @@ void	ft_init_node(t_node *params)
 	params->pid = NULL;
 	params->fd = NULL;
 	params->limiter = NULL;
-	params->env = NULL;
 }
 
 void	ft_print_lst(t_list *lst)
@@ -75,15 +74,47 @@ int	ft_test_export(t_token *token)
 	return (0);
 }
 
+int	ft_find_occ_free(char **env, char *var)
+{
+	char	**tmp;
+	int		ret;
+
+	tmp = NULL;
+	if (ft_check_equal(var) > 0)
+	{
+		if (ft_need_cat(var))
+			tmp = ft_split(var, '+');
+		else
+			tmp = ft_split(var, '=');
+		if (!tmp)
+			return (-1);
+		if (ft_find_occurence(env, tmp[0]) != -1)
+		{
+			ret = ft_find_occurence(env, tmp[0]);
+			return (ft_free(tmp), ret);
+		}
+	}
+	else
+	{
+		if (ft_find_occurence(env, var) != -1)
+		{
+			ret = ft_find_occurence(env, var);
+			return (ft_free(tmp), ret);
+		}
+	}
+	return (ft_free(tmp), -1);
+}
+
 static int	ft_init_env(char **env, t_node *params)
 {
 	int		index;
 
 	ft_init_node(params);
-	params->env = ft_dup_tab(env);
+	if (!params->env)
+		params->env = ft_dup_tab(env);
 	if (!params->env)
 		return (-1);
-	index = ft_find_occ(env, "HOME=");
+	index = ft_find_occ_free(env, "HOME=");
 	if (index > -1)
 	{
 		params->root = ft_strdup(env[index] + ft_strlen("HOME="));
@@ -189,6 +220,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	int		flag;
 
+	params.env = NULL;
 	params.last_status = 0;
 	if (ac == 1)
 	{
