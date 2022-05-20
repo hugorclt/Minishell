@@ -38,14 +38,14 @@ void	ft_print_lst(t_list *lst)
  		tmp = tmp->next;
  	}
  }
-/*
-void	ft_sign_handle(int signo)
+
+/*void	ft_sign_handle(int signo)
 {
 	if (signo == SIGINT)
 	{
 		rl_on_new_line();
-		rl_replace_line("\n", 1);
-		rl_clear_history();
+		rl_replace_line("\n", 0);
+		rl_redisplay();
 	}
 	else if (signo == SIGQUIT)
 		return ;
@@ -150,6 +150,35 @@ int	ft_wait_all_pid(t_node *params)
 	return (0);
 }
 
+int	ft_start(t_node *params, t_token *token, char **env, t_list **lst)
+{
+	*lst = NULL;
+	params->have_pid = 0;
+	token->token = NULL;
+	params->prompt = ft_get_last_dir(get_pwd());
+	if (!params->prompt)
+		return (free(params->prompt), -1);
+	if (ft_init_env(env, params) < 0)
+		return (free(params->prompt), -1);
+	return (0);
+}
+
+int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
+{
+	*lst = init_lst(token);
+	if (!lst)
+		return (free(cmd), 1);
+	if (ft_main_exec(params, lst) == -1)
+		return (-1);
+	ft_close_all(params);
+	if (params->have_pid > 0)
+	{
+		if (ft_wait_all_pid(params) == -1)
+			return (-1);
+	}
+	ft_free_after_cmd(params, lst, 1);
+	return (0);
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -163,22 +192,15 @@ int	main(int ac, char **av, char **env)
 	params.last_status = 0;
 	if (ac == 1)
 	{
-		if (ft_init_env(env, &params) < 0)
-				return (1);
 		using_history();
 		while (1)
 		{
-			params.have_pid = 0;
-			token.token = NULL;
-			lst = NULL;
-			params.prompt = ft_get_last_dir(get_pwd());
-			if (!params.prompt)
-				return (free(cmd), free(params.prompt), 1);
+			if (ft_start(&params, &token, env, &lst) == -1)
+				return (1);
 			//signal(SIGINT, ft_sign_handle);
 			cmd = readline(params.prompt);
-		//	printf("fuck\n");
 			if (!cmd)
-				return (printf("ouais ? cmd : %s\n", cmd), free(cmd), 1);
+				return (ft_free_after_cmd(&params, &lst, 0), free(cmd), 1);
 			if (cmd[0] == '\0')
 			{
 				free(cmd);
@@ -186,31 +208,16 @@ int	main(int ac, char **av, char **env)
 			}
 			flag = ft_exec_parsing(&token, cmd, &params);
 			if (flag == -1)
-			{
 				return (free(cmd), 1);
-			}
-			else if (flag == -2)
+			else if (flag == -2 || ft_check_token(&token) == -1)
 			{
+				if (flag != -2)
+					ft_free(token.token);
 				free(cmd);
 				continue ;
 			}
-			if (ft_check_token(&token) == -1)
-			{
-				ft_free(token.token);
-				free(cmd);
-				continue ;
-			}
-			lst = init_lst(&token);
-			if (!lst)
-				return (free(cmd), 1);
-			ft_main_exec(&params, &lst);
-			ft_close_all(&params);
-			if (params.have_pid > 0)
-			{
-				if (ft_wait_all_pid(&params) == -1)
-					return (-1);
-			}
-			ft_free_after_cmd(&params, &lst);
+			if (ft_launch_exec(&params, &lst, &token, cmd) == -1)
+				return (1);
 			rl_redisplay();
 			add_history(cmd);
 			free(cmd);

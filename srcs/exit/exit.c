@@ -39,6 +39,11 @@ void	ft_free_params(t_node *params, int flag)
 		free(params->prompt);
 		params->prompt = NULL;
 	}
+	if (params->root)
+	{
+		free(params->root);
+		params->root = NULL;
+	}
 }
 
 void	ft_free_infile(t_list *tmp)
@@ -109,9 +114,9 @@ void	ft_exit(t_node *params, t_list **start, int value)
 	exit(value);
 }
 
-void	ft_free_after_cmd(t_node *params, t_list **start)
+void	ft_free_after_cmd(t_node *params, t_list **start, int flag)
 {
-	ft_free_params(params, 1);
+	ft_free_params(params, flag);
 	if (start)
 	{
 		ft_free_list(start);
