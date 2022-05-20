@@ -20,7 +20,8 @@ int	ft_find_len_env(char *str)
 	if (!str[i])
 		return (0);
 	while (str[i] && (str[i] != '\'' && str[i] != ' '
-			&& str[i] != '"' && str[i] != '$'))
+			&& str[i] != '"' && str[i] != '$'
+			&& (str[i] != '=')))
 		i++;
 	return (i);
 }
