@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 15:07:37 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 11:04:17 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,18 @@ int	ft_test_export(t_token *token)
 
 static int	ft_init_env(char **env, t_node *params)
 {
-	char	*tmp;
 	int		index;
 
 	ft_init_node(params);
-	tmp = NULL;
 	params->env = ft_dup_tab(env);
 	if (!params->env)
 		return (-1);
-	index = ft_find_occ(env, "USER");
+	index = ft_find_occ(env, "HOME=");
 	if (index > -1)
 	{
-		tmp = ft_strdup(env[index] + ft_strlen("USER="));
-		if (!tmp)
-			return (-1);
-		params->root = ft_strjoin("/Users/", tmp);
+		params->root = ft_strdup(env[index] + ft_strlen("HOME="));
 		if (!params->root)
-			return (free(tmp), -1);
-		free(tmp);
+			return (-1);
 	}
 	return (0);
 }
