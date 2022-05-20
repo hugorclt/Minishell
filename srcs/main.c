@@ -184,6 +184,7 @@ int	ft_wait_all_pid(t_node *params)
 int	ft_start(t_node *params, t_token *token, char **env, t_list **lst)
 {
 	*lst = NULL;
+	params->root = 0;
 	params->have_pid = 0;
 	token->token = NULL;
 	params->prompt = ft_get_last_dir(get_pwd());
