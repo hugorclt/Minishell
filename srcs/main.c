@@ -187,6 +187,8 @@ int	ft_start(t_node *params, t_token *token, char **env, t_list **lst)
 	params->root = 0;
 	params->have_pid = 0;
 	token->token = NULL;
+	params->save_in = dup(0);
+	params->save_out = dup(1);
 	params->prompt = ft_get_last_dir(get_pwd());
 	if (!params->prompt)
 		return (free(params->prompt), -1);

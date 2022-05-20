@@ -102,8 +102,10 @@ void	ft_free_lst(t_list **start)
 
 void	ft_exit(t_node *params, t_list **start, int value)
 {
-	close(params->save_in);
-	close(params->save_out);
+	if (params->save_in)
+		close(params->save_in);
+	if (params->save_out)
+		close(params->save_out);
 	ft_free_params(params, 0);
 	if (start)
 	{
