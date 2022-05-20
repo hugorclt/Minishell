@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/20 16:51:13 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 18:12:31 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strlen_exp(char *s)
 			break ;
 		++i;
 	}
-	return (i);
+	return (i - 1);
 }
 
 int	ft_strcmp_exp(char *s1, char *s2)
@@ -40,7 +40,7 @@ int	ft_strcmp_exp(char *s1, char *s2)
 		size = ft_strlen_exp(s1);
 	else
 		size = ft_strlen_exp(s2);
-	while (s1[i] && s2[i] && size - 1)
+	while (s1[i] && s2[i] && size)
 	{
 		--size;
 		++i;
@@ -48,4 +48,34 @@ int	ft_strcmp_exp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
+int	ft_is_charset(char cara, char *charset)
+{
+	int	i;
 
+	i = 0;
+	while (charset[i])
+	{
+		if (charset[i] ==  cara)
+			return (0);
+		++i;
+	}
+	return (1);
+}
+
+int	ft_vld(char *var)
+{
+	int	i;
+
+	i = 0;
+	if (!ft_is_charset(var[i], SPEC_CHAR))
+		return (ft_print_error(var), -1);
+	while (var[i] && i < ft_strlen_exp(var))
+	{
+		if (var[i] == '+' && var[i + 1] && var[i + 1] == '=')
+			break ;
+		if (!ft_is_charset(var[i], SPEC_CHAR))
+			return (ft_print_error(var), -1);
+		++i;
+	}
+	return (0);
+}

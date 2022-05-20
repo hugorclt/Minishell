@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/20 10:43:44 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 18:13:03 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,9 +226,9 @@ int	ft_export(t_node *params, char *token)
 	{
 		while (tmp[i])
 		{
-			if (ft_find_occ(params->env, tmp[i]) == -1)
+			if (ft_find_occ(params->env, tmp[i]) == -1 && !ft_vld(tmp[i]))
 				params->env = ft_add_var(tmp[i], params->env);
-			else
+			else if (!ft_vld(tmp[i]))
 				ft_change_var(params->env, tmp[i], 
 						ft_find_occ(params->env, tmp[i]));
 			if (!params->env)

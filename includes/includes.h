@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/20 11:29:21 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/20 18:11:47 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@
 # define COMMAND_NOT_FOUND ": command not found\n"
 # define PROG_NAME "Minishell"
 # define PERM_DENIED ": permission denied"
-# define SPEC_CHAR "~`!@#$%^&*(){}[]"
+# define SPEC_CHAR "~`!@#$%^&*(){}[]="
 
 #endif
