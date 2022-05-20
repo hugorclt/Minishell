@@ -52,7 +52,7 @@ int	ft_initialisation(t_node *params, char **av, int ac, int i)
 		return (-1);
 	if (ft_fill_cmd_name(params, av, ac) < 0)
 		return (-1);
-	if (ft_init_pipe(params) < 0 || ft_open(params, av[1], av[ac - 1], i) < 0)
+	if (ft_init_pipe(params) < 0 || n(params, av[1], av[ac - 1], i) < 0)
 		return (-1);
 	return (1);
 }*/

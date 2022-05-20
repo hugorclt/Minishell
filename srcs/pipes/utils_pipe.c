@@ -50,7 +50,7 @@ int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free)
 	params->pid[params->index] = fork();
 	if (params->pid[params->index] == 0)
 	{
-		if (ft_open_io(lst) == -1)
+		if (ft_open_io(lst, params) == -1)
 			return (-1);
 		if (ft_help(params, lst) == -1)
 			return (-1);

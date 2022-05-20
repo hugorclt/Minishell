@@ -46,7 +46,10 @@ int	ft_main_exec(t_node *params, t_list **lst)
 		i++;
 	}
 	if (params->nb == 1)
-		ft_exec_one(params, lst);
+	{
+		if (ft_exec_one(params, lst) == -1)
+			return (-1);
+	}
 	else if (ft_child_exec(params, lst) == -1)
 		return (-1);
 	return (0);

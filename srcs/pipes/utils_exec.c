@@ -33,8 +33,9 @@ int	ft_execute(t_node *params, char **av, char **envp, t_list **lst)
 			return (ft_free(av), -1);
 		}
 		free(params->prompt);
+		params->prompt = NULL;
 		if (execve(path, av, envp) == -1)
-			return (ft_free(av), free(path), -1);
+			return (ft_exit(params, lst, 0), -1);
 	}
 	return (1);
 }

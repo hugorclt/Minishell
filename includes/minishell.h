@@ -48,7 +48,7 @@ int	ft_init_io(t_list **lst, t_node *params);
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
 char	**ft_cut_io(t_list **tmp);
-int	ft_open_io(t_list **lst);
+int	ft_open_io(t_list **lst, t_node *params);
 int	ft_dup_io(t_node *params);
 int	ft_isspace(char c);
 int	is_operator(char c);
