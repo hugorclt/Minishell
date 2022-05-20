@@ -198,9 +198,9 @@ int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 {
 	*lst = init_lst(token);
 	if (!lst)
-		return (free(cmd), 1);
+		return (free(cmd), -1);
 	if (ft_main_exec(params, lst) == -1)
-		return (-1);
+		return (-2);
 	ft_close_all(params);
 	if (params->have_pid > 0)
 	{
@@ -248,8 +248,11 @@ int	main(int ac, char **av, char **env)
 				free(cmd);
 				continue ;
 			}
-			if (ft_launch_exec(&params, &lst, &token, cmd) == -1)
+			flag = ft_launch_exec(&params, &lst, &token, cmd);
+			if (flag == -1)
 				return (1);
+			else if (flag == -2)
+				ft_free_after_cmd(&params, &lst, 1);
 			rl_redisplay();
 			add_history(cmd);
 			free(cmd);

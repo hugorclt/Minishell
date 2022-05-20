@@ -32,6 +32,7 @@ int	ft_execute(t_node *params, char **av, char **envp, t_list **lst)
 			params->last_status = 127;
 			return (ft_free(av), -1);
 		}
+		free(params->prompt);
 		if (execve(path, av, envp) == -1)
 			return (ft_free(av), free(path), -1);
 	}
