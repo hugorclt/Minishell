@@ -124,6 +124,20 @@ static int	ft_init_env(char **env, t_node *params)
 	return (0);
 }
 
+int	is_dpipe(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token->token[i])
+	{
+		if (ft_strcmp(token->token[i], "||") == 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 {
 	int	flag;
@@ -131,16 +145,15 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 	flag = ft_parse_tokens(token, cmd, 0);
 	if (flag == -1)
 		return (ft_free(token->token), -1);
-	if (flag == -2)
+	else if (flag == -2)
 		return (-2);
 	else if (flag == 0)
 		return (0);
-	else
-	{
-		token->token = ft_expand(token, params);
-		if (!token->token)
-			return (ft_free(token->token), -1);
-	}
+	if (is_dpipe(token) == -1)
+		return (ft_putstr_fd("omg no a '||' too difficult for me\n", 2), ft_free(token->token), -2);
+	token->token = ft_expand(token, params);
+	if (!token->token)
+		return (ft_free(token->token), -1);
 	return (0);
 }
 /*
@@ -248,6 +261,7 @@ int	main(int ac, char **av, char **env)
 			{
 				if (flag != -2)
 					ft_free(token.token);
+				ft_free_after_cmd(&params, &lst, 1);
 				free(cmd);
 				continue ;
 			}
