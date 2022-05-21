@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/20 16:41:44 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/21 10:10:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 
 int	ft_strlen_exp(char *s);
 int	ft_strcmp_exp(char *s1, char *s2);
+int	ft_init_expand(int	*i, int *flag, char *cmd, t_token *token);
+int	ft_count_dollar(char *cmd);
+int	ft_expand_1(char **ret, char *token, t_node *par);
+int	ft_quote_expand(t_token *token, char **ret, t_node *params, char *cmd);
+void	ft_quoted_expand(t_token *token, char c);
+int	ft_no_dollars(int flag, char **ret, char *cmd);
+void	ft_print_io_error_choice(t_node *params, char *str);
 void	ft_exit(t_node *params, t_list **start, int value);
 char	*ft_to_str_without_free(char **str);
 int ft_change_var(char **env, char *var, int j);

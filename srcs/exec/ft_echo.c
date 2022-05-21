@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:41:39 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 11:01:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:57:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_echo_n(char **cmd)
 void	ft_echo(t_node *params, char **cmd)
 {
 	int	i;
-	
+
 	i = 1;
 	if (!cmd[1])
 		return ;

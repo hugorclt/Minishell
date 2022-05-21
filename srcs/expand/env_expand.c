@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 09:56:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:10:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_expand_line(char *token, char **ret, int *i, t_node *par)
 	return (0);
 }
 
-static int	ft_expand_1(char **ret, char *token, t_node *par)
+int	ft_expand_1(char **ret, char *token, t_node *par)
 {
 	int	i;
 
@@ -58,50 +58,6 @@ static int	ft_expand_1(char **ret, char *token, t_node *par)
 	return (0);
 }
 
-void	ft_quoted_expand(t_token *token, char c)
-{
-	if (c == '\'')
-		token->nb_quotes++;
-	else if (c == '"')
-		token->nb_dquotes++;
-	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 != 0)
-		token->first_quotes = '\'';
-	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
-		token->first_quotes = '"';
-	else if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 == 0)
-		token->first_quotes = ' ';
-}
-
-int	ft_quote_expand(t_token *token, char **ret, t_node *params, char *cmd)
-{
-	if ((token->nb_dquotes == 0 && token->nb_quotes == 0)
-		|| (token->nb_dquotes % 2 != 0 && token->first_quotes == '"'))
-	{
-		if (ft_expand_1(ret, cmd, params) == -1)
-			return (-1);
-		return (1);
-	}
-	return (0);
-}
-
-int	ft_count_dollar(char *cmd)
-{
-	int	i;
-	int	dollar;
-
-	i = 0;
-	dollar = 0;
-	if (!cmd)
-		return (0);
-	while (cmd[i])
-	{
-		if (cmd[i] == '$')
-			dollar++;
-		i++;
-	}
-	return (dollar);
-}
-
 static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 {
 	int		i;
@@ -109,10 +65,7 @@ static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 	int		flag;
 	int		nb_dollars;
 
-	i = 0;
-	flag = 0;
-	nb_dollars = ft_count_dollar(cmd);
-	ft_reset_quotes(&token);
+	nb_dollars = ft_init_expand(&i, &flag, cmd, &token);
 	while (cmd[i])
 	{
 		ft_quoted_expand(&token, cmd[i]);
@@ -129,12 +82,8 @@ static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 		}
 		i++;
 	}
-	if (flag == 0)
-	{
-		(*ret) = ft_strdup(cmd);
-		if (!(*ret))
-			return (-1);
-	}
+	if (ft_no_dollars(flag, ret, cmd) == -1)
+		return (-1);
 	return (0);
 }
 

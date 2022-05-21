@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 16:40:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:54:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ static int	ft_open_output(t_list **lst)
 	return (0);
 }
 
-void	ft_print_file_access(char *str)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd("permission denied: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("\n", 2);
-}
-
-void	ft_print_file_not_found(char *str)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
-}
-
 static int	ft_open_input(t_list **lst, t_node *params)
 {
 	int	i;
@@ -70,13 +55,7 @@ static int	ft_open_input(t_list **lst, t_node *params)
 			ft_heredoc(lst, &i);
 		}
 		if ((*lst)->file_in[i].fd == -1)
-		{
-			params->last_status = 1;
-			if (errno == 13)
-				return (ft_print_file_access((*lst)->file_in[i].file), -1);
-			else
-				return (ft_print_file_not_found((*lst)->file_in[i].file), -1);
-		}
+			ft_print_io_error_choice(params, (*lst)->file_in[i].file);
 		i++;
 	}
 	if (i == 0)

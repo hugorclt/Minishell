@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 10:23:43 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:57:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	**ft_split_space(char *cmd)
 	char	**ret;
 	t_token	token;
 	int		count;
-	
+
 	ft_reset_quotes(&token);
 	if (!cmd)
 		return (NULL);
