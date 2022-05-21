@@ -1,0 +1,6 @@
+				srcs/exec/ft_echo.c\
+				srcs/exec/ft_get_output.c\
+				srcs/exec/utils_io.c\
+				srcs/exec/clean_redirection.c\
+				srcs/exec/open_io.c\
+				srcs/exec/open_io_utils.c\

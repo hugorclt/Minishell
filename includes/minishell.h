@@ -97,7 +97,7 @@ int		ft_heredoc_infile(t_list **lst, int *i);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
-int	ft_execute(t_node *params, char **av, char **envp, t_list **lst);
+int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 char		*get_next_line(int fd);
 int	ft_prepare_cmd(t_list **lst);
 int	ft_execute_one_fork_builtin(t_node *params, t_list **lst);
@@ -156,7 +156,7 @@ int	ft_strchr_pimp(char *s, char c);
 /*                       FILE = srcs/pipes/utils_pipe.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
-int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free);
+int	ft_fork(t_node *params, t_list **lst, t_list **lst_to_free);
 int		ft_close_redirect(t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);

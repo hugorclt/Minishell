@@ -45,7 +45,7 @@ static int	ft_help(t_node *params, t_list **lst)
 	return (0);
 }
 
-int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free)
+int	ft_fork(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	params->pid[params->index] = fork();
 	if (params->pid[params->index] == 0)
@@ -55,7 +55,7 @@ int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free)
 		if (ft_help(params, lst) == -1)
 			return (-1);
 		ft_close_all(params);
-		if (ft_execute(params, (*lst)->token, envp, lst_to_free) < 0)
+		if (ft_execute(params, lst, lst_to_free) < 0)
 			return (-1);
 	}
 	return (1);

@@ -12,30 +12,30 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_execute(t_node *params, char **av, char **envp, t_list **lst)
+int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	char	*path;
 
-	if (ft_is_builtin(av[0]) == 1)
+	if (ft_is_builtin((*lst)->token[0]) == 1)
 	{
 		ft_close_redirect(lst);
-		if (ft_exec_builtin(params, av, lst) == -1)
+		if (ft_exec_builtin(params, (*lst)->token, lst) == -1)
 			return (-1);
-		ft_exit(params, lst, 0);
+		ft_exit(params, lst_to_free, 0);
 	}
 	else
 	{
-		path = check_path(get_path_lst(envp), av[0]);
+		path = check_path(get_path_lst(params->env), (*lst)->token[0]);
 		ft_close_redirect(lst);
 		if (!path)
 		{
 			params->last_status = 127;
-			return (ft_free(av), -1);
+			return (ft_free((*lst)->token), -1);
 		}
 		free(params->prompt);
 		params->prompt = NULL;
-		if (execve(path, av, envp) == -1)
-			return (ft_exit(params, lst, 0), -1);
+		if (execve(path, (*lst)->token, params->env) == -1)
+			return (ft_exit(params, lst_to_free, 0), -1);
 	}
 	return (1);
 }

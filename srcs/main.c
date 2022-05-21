@@ -58,7 +58,7 @@ void	ft_print_tab(char **tokens)
 	if (!*tokens)
 		return ;
 	while (tokens[i])
-		printf("|%s|\n", tokens[i++]);
+		dprintf(2, "|%s|\n", tokens[i++]);
 }
 
 int	ft_test_export(t_token *token)
