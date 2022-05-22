@@ -36,8 +36,8 @@ int	ft_prepare_cmd(t_list **lst)
 
 int	ft_execute_one_builtin(t_node *params, t_list **lst)
 {
-	params->save_in = dup(0);
-	params->save_out = dup(1);
+	//params->save_in = dup(0);
+	//params->save_out = dup(1);
 	params->have_pid = 0;
 	if (ft_open_io(lst, params) == -1)
 		return (-1);
