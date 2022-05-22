@@ -31,7 +31,7 @@ void	ft_free(char **tab)
 	i = 0;
 	if (!tab)
 		return ;
-	while (tab[i])
+	while (i < ft_tab_size(tab))
 		free(tab[i++]);
 	free(tab);
 	tab = NULL;

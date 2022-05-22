@@ -23,9 +23,11 @@ char	**ft_dup_tab(char **tab)
 	ret = malloc(sizeof(char *) * (ft_tab_size(tab) + 1));
 	if (!ret)
 		return (ft_free(tab), NULL);
-	while (tab[i])
+	while (i < ft_tab_size(tab))
 	{
 		ret[i] = ft_strdup(tab[i]);
+		if (!ret[i])
+			return (NULL);
 		i++;
 	}
 	ret[i] = NULL;

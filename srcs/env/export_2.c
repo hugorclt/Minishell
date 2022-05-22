@@ -165,7 +165,7 @@ char	*ft_quote(char *token)
 	}
 	output[j] = '"';
 	output[j + 1] = 0;
-	return (output);
+	return (free(token), output);
 }
 
 int	ft_need_unquote(char *var)
@@ -226,11 +226,11 @@ int	ft_export(t_node *params, char *token)
 	{
 		while (tmp[i])
 		{
-			if (ft_find_occ(params->env, tmp[i]) == -1)
+			if (ft_find_occ_free(params->env, tmp[i]) == -1)
 				params->env = ft_add_var(tmp[i], params->env);
 			else
 				ft_change_var(params->env, tmp[i], 
-						ft_find_occ(params->env, tmp[i]));
+						ft_find_occ_free(params->env, tmp[i]));
 			if (!params->env)
 				return (ft_free(tmp), -1);
 			++i;
