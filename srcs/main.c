@@ -154,6 +154,8 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 	token->token = ft_expand(token, params);
 	if (!token->token)
 		return (ft_free(token->token), -1);
+	if (ft_main_check_quote(token->token) == -1)
+		return (ft_free(token->token), -2);
 	return (0);
 }
 /*

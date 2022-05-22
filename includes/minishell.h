@@ -104,6 +104,7 @@ int	ft_execute_one_fork_builtin(t_node *params, t_list **lst);
 int	ft_execute_one_builtin(t_node *params, t_list **lst);
 int	ft_execute_one_binaries(t_node *params, t_list **lst);
 int	ft_exec_one(t_node *params, t_list **lst);
+int	ft_main_check_quote(char **token);
 char	*ft_cut_tail(char *str);
 int	ft_init_pipe(t_node *params);
 int	ft_heredoc(t_list **lst, int *i, t_node *params);
