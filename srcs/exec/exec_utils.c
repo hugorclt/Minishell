@@ -58,7 +58,7 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 	if (params->pid[0] == 0)
 	{
 		if (ft_open_io(lst, params) == -1)
-			return (-1);
+			return (ft_exit(params, lst, 0), -1);
 		if (!(*lst)->token[0])
 			return (ft_exit(params, lst, 0), -1);
 		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);

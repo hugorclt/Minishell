@@ -21,7 +21,7 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		ft_close_redirect(lst);
 		if (ft_exec_builtin(params, (*lst)->token, lst) == -1)
 			return (-1);
-		ft_exit(params, lst_to_free, 0);
+		ft_exit(params, lst_to_free, 1);
 	}
 	else
 	{
@@ -30,7 +30,8 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		if (!path)
 		{
 			params->last_status = 127;
-			return (ft_free((*lst)->token), -1);
+			ft_exit(params, lst_to_free, 0);
+			return (-1);
 		}
 		free(params->prompt);
 		params->prompt = NULL;
