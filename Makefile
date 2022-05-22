@@ -52,7 +52,8 @@ SRCS 		=	srcs/main.c\
 				srcs/env/utils_backslash.c\
 				srcs/exit/exit.c\
 				srcs/exec/open_io_utils.c\
-				srcs/expand/expand_utils_2.c
+				srcs/expand/expand_utils_2.c\
+				srcs/utils/utils_3.c
 
 OBJS		=		$(SRCS:.c=.o)
 

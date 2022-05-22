@@ -120,6 +120,10 @@ void	ft_exit(t_node *params, t_list **start, int value)
 
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag)
 {
+	if (params->save_in)
+		close(params->save_in);
+	if (params->save_out)
+		close(params->save_out);
 	ft_free_params(params, flag);
 	if (start)
 	{

@@ -49,10 +49,9 @@ static int	ft_open_input(t_list **lst, t_node *params)
 		else if ((*lst)->file_in[i].flag == 1)
 		{
 			(*lst)->limiter = ft_strdup((*lst)->file_in[i].file);
-			(*lst)->limiter = ft_strjoin_char((*lst)->limiter, '\n');
 			if (!(*lst)->limiter)
 				return (-1);
-			ft_heredoc(lst, &i);
+			ft_heredoc(lst, &i, params);
 		}
 		if ((*lst)->file_in[i].fd == -1)
 			ft_print_io_error_choice(params, (*lst)->file_in[i].file);

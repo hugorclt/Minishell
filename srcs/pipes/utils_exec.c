@@ -34,6 +34,8 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		}
 		free(params->prompt);
 		params->prompt = NULL;
+		close(params->save_in);
+		close(params->save_out);
 		if (execve(path, (*lst)->token, params->env) == -1)
 			return (ft_exit(params, lst_to_free, 0), -1);
 	}
@@ -67,10 +69,11 @@ int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
 	return (0);
 }
 
-int	ft_heredoc(t_list **lst, int *i)
+int	ft_heredoc(t_list **lst, int *i, t_node *params)
 {
 	int		fd;
 	char	*line;
+	char	*line_after_expand;
 
 	fd = open(".heredoc_temp", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd < 0)
@@ -79,17 +82,25 @@ int	ft_heredoc(t_list **lst, int *i)
 	{
 		ft_putstr_fd("heredoc$>", 1);
 		line = get_next_line(0);
-		if (!line)
+		line = ft_cut_tail(line);
+		ft_verif_dollars(&line_after_expand, line, params);
+		if (!line_after_expand)
 			ft_putstr_fd("\n", 1);
-		if (!ft_strcmp(line, (*lst)->limiter) || !line)
+		if (!ft_strcmp(line_after_expand, (*lst)->limiter) || !line_after_expand)
 			break ;
-		ft_putstr_fd(line, fd);
+		line_after_expand = ft_strjoin_char(line_after_expand, '\n');
+		if (!line_after_expand)
+			return (free(line), -1);
+		ft_putstr_fd(line_after_expand, fd);
 		free(line);
+		free(line_after_expand);
 	}
 	if (ft_heredoc_help(&fd, lst, i) == -1)
-		return (free(line), -1);
+		return (free(line), free(line_after_expand), -1);
 	if (line)
 		free(line);
+	if (line_after_expand)
+		free(line_after_expand);
 	if ((*lst)->file_in[*i].fd < 0)
 		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	return (1);

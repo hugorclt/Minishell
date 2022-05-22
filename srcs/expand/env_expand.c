@@ -58,7 +58,7 @@ int	ft_expand_1(char **ret, char *token, t_node *par)
 	return (0);
 }
 
-static int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
+int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 {
 	int		i;
 	t_token	token;
