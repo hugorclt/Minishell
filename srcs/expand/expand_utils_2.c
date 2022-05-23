@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 10:07:29 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 11:39:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:50:42 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ int	ft_count_dollar(char *cmd)
 
 	i = 0;
 	dollar = 0;
+	ft_reset_quotes(&token);
 	if (!cmd)
 		return (0);
 	while (cmd[i])
 	{
 		ft_quoted_expand(&token, cmd[i]);
 		if (cmd[i] == '$'
-			/*&& (token.nb_dquotes == 0 && token.nb_quotes == 0) || (token.first_quotes == '"' && token.nb_quotes % 2 != 0)*/)
+			&& ((token.nb_dquotes % 2 == 0 && token.nb_quotes % 2 == 0) || (token.first_quotes == '"' && token.nb_quotes % 2 != 0)))
 			dollar++;
 		i++;
 	}
