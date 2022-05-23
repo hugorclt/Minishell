@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 20:00:53 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 20:14:24 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_free_params(t_node *params, int flag)
 	{
 		if (params->env)
 			ft_free(params->env);
-		printf("je passe bien la\n");
 	}
 	if (params->pid)
 	{
@@ -40,7 +39,7 @@ void	ft_free_params(t_node *params, int flag)
 		free(params->prompt);
 		params->prompt = NULL;
 	}
-	if (params->root)
+	if (params->root && flag == 0)
 	{
 		free(params->root);
 		params->root = NULL;

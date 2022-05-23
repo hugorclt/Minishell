@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 16:04:21 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:24:23 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		params->prompt = NULL;
 		close(params->save_in);
 		close(params->save_out);
-		ft_print_tab(params->env);
 		if (execve(path, (*lst)->token, params->env) == -1)
 			return (ft_exit(params, lst_to_free, 0), -1);
 	}
