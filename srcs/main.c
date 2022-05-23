@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 14:33:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:56:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int	ft_wait_all_pid(t_node *params)
 	return (0);
 }
 
-int	ft_start(t_node *params, t_token *token, char **env, t_list **lst)
+int	ft_start(t_node *params, t_token *token, t_list **lst)
 {
 	*lst = NULL;
 	params->root = 0;
@@ -206,8 +206,6 @@ int	ft_start(t_node *params, t_token *token, char **env, t_list **lst)
 	params->save_out = dup(1);
 	params->prompt = ft_get_last_dir(get_pwd());
 	if (!params->prompt)
-		return (free(params->prompt), -1);
-	if (ft_init_env(env, params) < 0)
 		return (free(params->prompt), -1);
 	return (0);
 }
@@ -240,12 +238,15 @@ int	main(int ac, char **av, char **env)
 
 	params.env = NULL;
 	params.last_status = 0;
+	params.prompt = NULL;
 	if (ac == 1)
 	{
+		if (ft_init_env(env, &params) < 0)
+			return (free(params.prompt), -1);
 		using_history();
 		while (1)
 		{
-			if (ft_start(&params, &token, env, &lst) == -1)
+			if (ft_start(&params, &token, &lst) == -1)
 				return (1);
 			//signal(SIGINT, ft_sign_handle);
 			cmd = readline(params.prompt);

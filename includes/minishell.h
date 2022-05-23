@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 12:00:57 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:56:36 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_dpipe(t_token *token);
 int check_export(t_token *token);
 void	ft_print_env(t_node *params, char **env);
 int	ft_wait_all_pid(t_node *params);
-int	ft_start(t_node *params, t_token *token, char **env, t_list **lst);
+int	ft_start(t_node *params, t_token *token, t_list **lst);
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 int	main(int ac, char **av, char **env);
 
