@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 11:30:15 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:31:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static int	ft_expand_ext(char **ret, char *token, int *i)
 
 static int	ft_expand_line(char *token, char **ret, int *i, t_node *par)
 {
-	if (token[*i] == '$')
+	if (token[*i] == '$'
+		&& ((par->quoter->nb_dquotes % 2 == 0 && par->quoter->nb_quotes % 2 == 0)
+		|| (par->quoter->nb_dquotes % 2 != 0 && par->quoter->first_quotes == '"')))
 	{
 		if (token[(*i) + 1] == '?')
 		{
@@ -46,12 +48,16 @@ static int	ft_expand_line(char *token, char **ret, int *i, t_node *par)
 
 int	ft_expand_1(char **ret, char *token, t_node *par)
 {
-	int	i;
+	int		i;
+	t_token	quoter;
 
 	i = 0;
 	(*ret) = NULL;
+	ft_reset_quotes(&quoter);
+	par->quoter = &quoter;
 	while (token[i])
 	{
+		ft_quoted_expand(&quoter, token[i]);
 		if (ft_expand_line(token, ret, &i, par) == -1)
 			return (-1);
 	}

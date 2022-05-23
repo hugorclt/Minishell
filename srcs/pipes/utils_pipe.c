@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/19 18:19:46 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 12:12:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ static int	ft_help(t_node *params, t_list **lst)
 			ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 	}
 	else if (params->index == params->nb - 1)
-		ft_dup2(params->fd[2 * params->index - 2], (*lst)->last_outfile);
+	{
+		if ((*lst)->last_infile == 0)
+			ft_dup2(params->fd[2 * params->index - 2], (*lst)->last_outfile);
+		else
+			ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
+	}
 	else
 	{
 		if ((*lst)->last_outfile == 1)
