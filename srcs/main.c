@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 11:51:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:33:29 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ int	main(int ac, char **av, char **env)
 			if (cmd[0] == '\0')
 			{
 				free(cmd);
+				add_history(cmd);
 				continue ;
 			}
 			flag = ft_exec_parsing(&token, cmd, &params);
@@ -264,6 +265,7 @@ int	main(int ac, char **av, char **env)
 				if (flag != -2)
 					ft_free(token.token);
 				ft_free_after_cmd(&params, &lst, 1);
+				add_history(cmd);
 				free(cmd);
 				continue ;
 			}

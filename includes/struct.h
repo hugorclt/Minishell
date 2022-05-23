@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 17:57:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:29:21 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_node
 	char			*root;
 	int				save_in;
 	int				save_out;
+	t_token			*quoter;
 }	t_node;
 
 typedef struct s_garb_col
