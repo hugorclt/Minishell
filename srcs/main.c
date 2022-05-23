@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 16:35:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:10:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ void	ft_sign_handle(int signo)
 {
 	if (signo == SIGINT)
 	{
-		rl_on_new_line();
 		rl_replace_line("\n", 0);
-		rl_redisplay();
+		write(1, "\nMinishell $>", 14);
 	}
-	else if (signo == SIGQUIT)
-		return ;
 }
 
 void	ft_print_tab(char **tokens)
@@ -204,9 +201,6 @@ int	ft_start(t_node *params, t_token *token, t_list **lst)
 	token->token = NULL;
 	params->save_in = dup(0);
 	params->save_out = dup(1);
-	params->prompt = ft_get_last_dir(get_pwd());
-	if (!params->prompt)
-		return (free(params->prompt), -1);
 	return (0);
 }
 
@@ -227,6 +221,12 @@ int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 	return (0);
 }
 
+void	sig_choice()
+{
+	signal(SIGQUIT, ft_sign_handle);
+	signal(SIGINT, SIG_IGN);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*cmd;
@@ -238,18 +238,17 @@ int	main(int ac, char **av, char **env)
 
 	params.env = NULL;
 	params.last_status = 0;
-	params.prompt = NULL;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &params) < 0)
-			return (free(params.prompt), -1);
+			return (-1);
 		using_history();
 		while (1)
 		{
 			if (ft_start(&params, &token, &lst) == -1)
 				return (1);
-			signal(SIGINT, ft_sign_handle);
-			cmd = readline(params.prompt);
+			sig_choice();
+			cmd = readline("Minishell $>");
 			if (!cmd)
 				return (ft_free_after_cmd(&params, &lst, 0), free(cmd), 1);
 			if (cmd[0] == '\0')
