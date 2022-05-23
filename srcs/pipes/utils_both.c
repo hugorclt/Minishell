@@ -35,7 +35,7 @@ int	ft_child_exec(t_node *params, t_list **lst)
 	//	i = 0;
 	while (tmp)
 	{
-		if (ft_fork(params, params->env, &tmp, lst) < 0)
+		if (ft_fork(params, &tmp, lst) < 0)
 		{
 			ft_close();
 			ft_exit(params, lst, 0);
@@ -44,6 +44,5 @@ int	ft_child_exec(t_node *params, t_list **lst)
 		i++;
 		tmp = tmp->next;
 	}
-	//ft_close_total(params, lst);
 	return (1);
 }

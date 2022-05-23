@@ -112,12 +112,18 @@ void	ft_exit(t_node *params, t_list **start, int value)
 		ft_free_list(start);
 		ft_free_lst(start);
 	}
-	write(1, "exit\n", 6);
+	if (params->have_pid == 0)
+		write(1, "exit\n", 6);
+	params->last_status = value;
 	exit(value);
 }
 
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag)
 {
+	if (params->save_in)
+		close(params->save_in);
+	if (params->save_out)
+		close(params->save_out);
 	ft_free_params(params, flag);
 	if (start)
 	{

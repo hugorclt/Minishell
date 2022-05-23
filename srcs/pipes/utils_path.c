@@ -83,6 +83,5 @@ char	*check_path(char **path_lst, char *cmd)
 	free(output);
 	ft_free(path_lst);
 	ft_command_nt_found(cmd);
-	exit(127);
-	//TODO : exit en cascade
+	return (NULL);
 }

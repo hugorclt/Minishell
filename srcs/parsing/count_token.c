@@ -71,8 +71,8 @@ int	ft_total_token(char *cmd)
 
 	total = 0;
 	i = 0;
-	if (ft_check_quote(cmd) == -1)
-		return (ft_print_ofpc(), -2);
+	//if (ft_check_quote(cmd) == -1)
+	//	return (ft_print_ofpc(), -2);
 	while (i < ft_strlen(cmd))
 	{
 		if (ft_isspace(cmd[i]) == 1)

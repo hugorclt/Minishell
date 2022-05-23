@@ -96,6 +96,20 @@ static int	ft_check(char *token)
 	return (0);
 }*/
 
+int	ft_main_check_quote(char **token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (ft_check_quote(token[i]) == -1)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_check_quote(char *token)
 {
 	int		i;

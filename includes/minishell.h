@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/20 18:12:41 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/23 11:40:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int	ft_vld(char *var);
 int	ft_is_charset(char cara, char *charset);
 int	ft_strlen_exp(char *s);
 int	ft_strcmp_exp(char *s1, char *s2);
+int	ft_init_expand(int	*i, int *flag, char *cmd, t_token *token);
+int	ft_count_dollar(char *cmd);
+int	ft_expand_1(char **ret, char *token, t_node *par);
+int	ft_quote_expand(t_token *token, char **ret, t_node *params, char *cmd);
+void	ft_quoted_expand(t_token *token, char c);
+int	ft_no_dollars(int flag, char **ret, char *cmd);
+void	ft_print_io_error_choice(t_node *params, char *str);
 void	ft_exit(t_node *params, t_list **start, int value);
 char	*ft_to_str_without_free(char **str);
 int ft_change_var(char **env, char *var, int j);
@@ -50,7 +57,7 @@ int	ft_init_io(t_list **lst, t_node *params);
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
 char	**ft_cut_io(t_list **tmp);
-int	ft_open_io(t_list **lst);
+int	ft_open_io(t_list **lst, t_node *params);
 int	ft_dup_io(t_node *params);
 int	ft_isspace(char c);
 int	is_operator(char c);
@@ -92,15 +99,18 @@ int		ft_heredoc_infile(t_list **lst, int *i);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
-int	ft_execute(t_node *params, char **av, char **envp, t_list **lst);
+int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 char		*get_next_line(int fd);
 int	ft_prepare_cmd(t_list **lst);
 int	ft_execute_one_fork_builtin(t_node *params, t_list **lst);
 int	ft_execute_one_builtin(t_node *params, t_list **lst);
 int	ft_execute_one_binaries(t_node *params, t_list **lst);
 int	ft_exec_one(t_node *params, t_list **lst);
+int	ft_main_check_quote(char **token);
+char	*ft_cut_tail(char *str);
 int	ft_init_pipe(t_node *params);
-int	ft_heredoc(t_list **lst, int *i);
+int	ft_find_occ_free(char **env, char *var);
+int	ft_heredoc(t_list **lst, int *i, t_node *params);
 int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst);
 int	ft_is_builtin(char *cmd);
 int	ft_cut_space(t_list **lst);
@@ -151,10 +161,11 @@ int	ft_strchr_pimp(char *s, char c);
 /*                       FILE = srcs/pipes/utils_pipe.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
-int	ft_fork(t_node *params, char **envp, t_list **lst, t_list **lst_to_free);
+int	ft_fork(t_node *params, t_list **lst, t_list **lst_to_free);
 int		ft_close_redirect(t_list **lst);
 void	ft_dup2(int in, int out);
 int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
+int	ft_verif_dollars(char **ret, char *cmd, t_node *params);
 char	**ft_split_space(char *s);
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 int	ft_close_total(t_node *params, t_list **lst);

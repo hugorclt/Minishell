@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/20 11:12:27 by yuro4ka          ###   ########.fr        #
+#    Updated: 2022/05/21 10:10:33 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,10 @@ SRCS 		=	srcs/main.c\
 				srcs/expand/expand_utils.c\
 				srcs/env/utils_error.c\
 				srcs/env/utils_backslash.c\
-				srcs/exit/exit.c
+				srcs/exit/exit.c\
+				srcs/exec/open_io_utils.c\
+				srcs/expand/expand_utils_2.c\
+				srcs/utils/utils_3.c
 
 OBJS		=		$(SRCS:.c=.o)
 

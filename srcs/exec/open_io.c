@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 16:40:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:54:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@ static int	ft_open_output(t_list **lst)
 	return (0);
 }
 
-void	ft_print_file_not_found(char *str)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
-}
-
-static int	ft_open_input(t_list **lst)
+static int	ft_open_input(t_list **lst, t_node *params)
 {
 	int	i;
 
@@ -56,13 +49,12 @@ static int	ft_open_input(t_list **lst)
 		else if ((*lst)->file_in[i].flag == 1)
 		{
 			(*lst)->limiter = ft_strdup((*lst)->file_in[i].file);
-			(*lst)->limiter = ft_strjoin_char((*lst)->limiter, '\n');
 			if (!(*lst)->limiter)
 				return (-1);
-			ft_heredoc(lst, &i);
+			ft_heredoc(lst, &i, params);
 		}
 		if ((*lst)->file_in[i].fd == -1)
-			return (ft_print_file_not_found((*lst)->file_in[i].file), -1);
+			ft_print_io_error_choice(params, (*lst)->file_in[i].file);
 		i++;
 	}
 	if (i == 0)
@@ -72,9 +64,9 @@ static int	ft_open_input(t_list **lst)
 	return (0);
 }
 
-int	ft_open_io(t_list **lst)
+int	ft_open_io(t_list **lst, t_node *params)
 {
-	if (ft_open_input(lst) == -1)
+	if (ft_open_input(lst, params) == -1)
 		return (-1);
 	if (ft_open_output(lst) == -1)
 		return (-1);
