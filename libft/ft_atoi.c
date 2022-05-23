@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:03:59 by yobougre          #+#    #+#             */
-/*   Updated: 2021/11/24 18:46:18 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:52:32 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_space(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *nbr)
+int	ft_atoi(char *nbr)
 {
 	int			nega;
 	long long	output;

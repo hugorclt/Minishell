@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 16:38:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:48:59 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		ft_lstadd_back(t_list **first, t_list *new);
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **alst, t_list *new);
 int			ft_lstsize(t_list *lst);
-int			ft_atoi(const char *nbr);
+int			ft_atoi(char *nbr);
 int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
