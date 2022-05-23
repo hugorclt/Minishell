@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 11:42:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:34:18 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ int	ft_export(t_node *params, char *token)
 	int		i;
 
 	i = 1;
+	printf("token : %s\n", token);
 	tmp = ft_split_space(token);
 	if (!tmp || !token)
 		return (-1);
