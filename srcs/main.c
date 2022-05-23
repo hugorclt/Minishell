@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 16:23:40 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:35:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_print_lst(t_list *lst)
  	}
  }
 
-/*void	ft_sign_handle(int signo)
+void	ft_sign_handle(int signo)
 {
 	if (signo == SIGINT)
 	{
@@ -49,7 +49,7 @@ void	ft_print_lst(t_list *lst)
 	}
 	else if (signo == SIGQUIT)
 		return ;
-}*/
+}
 
 void	ft_print_tab(char **tokens)
 {
@@ -248,7 +248,7 @@ int	main(int ac, char **av, char **env)
 		{
 			if (ft_start(&params, &token, &lst) == -1)
 				return (1);
-			//signal(SIGINT, ft_sign_handle);
+			signal(SIGINT, ft_sign_handle);
 			cmd = readline(params.prompt);
 			if (!cmd)
 				return (ft_free_after_cmd(&params, &lst, 0), free(cmd), 1);
