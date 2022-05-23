@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 11:03:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 10:57:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:44:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*ft_strjoin_expand(char *token, char **env)
 	var_env = ft_substr(token, 0, len_var);
 	if (!var_env)
 		return (NULL);
-	printf("%s\n", var_env);
 	occ = ft_find_occurence(env, var_env);
 	if (occ == -1)
 		return (free(var_env), "\0");
