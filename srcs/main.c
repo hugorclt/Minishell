@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 14:56:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:20:27 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_init_node(t_node *params)
 	params->pid = NULL;
 	params->fd = NULL;
 	params->limiter = NULL;
+	params->root = NULL;
 }
 
 void	ft_print_lst(t_list *lst)
@@ -199,7 +200,6 @@ int	ft_wait_all_pid(t_node *params)
 int	ft_start(t_node *params, t_token *token, t_list **lst)
 {
 	*lst = NULL;
-	params->root = 0;
 	params->have_pid = 0;
 	token->token = NULL;
 	params->save_in = dup(0);
@@ -254,10 +254,11 @@ int	main(int ac, char **av, char **env)
 				return (ft_free_after_cmd(&params, &lst, 0), free(cmd), 1);
 			if (cmd[0] == '\0')
 			{
+				ft_free_after_cmd(&params, &lst, 1);
 				free(cmd);
-				add_history(cmd);
 				continue ;
 			}
+			add_history(cmd);
 			flag = ft_exec_parsing(&token, cmd, &params);
 			if (flag == -1)
 				return (free(cmd), 1);
@@ -266,7 +267,6 @@ int	main(int ac, char **av, char **env)
 				if (flag != -2)
 					ft_free(token.token);
 				ft_free_after_cmd(&params, &lst, 1);
-				add_history(cmd);
 				free(cmd);
 				continue ;
 			}
@@ -276,7 +276,6 @@ int	main(int ac, char **av, char **env)
 			else if (flag == -2)
 				ft_free_after_cmd(&params, &lst, 1);
 			rl_redisplay();
-			add_history(cmd);
 			free(cmd);
 		}
 	}
