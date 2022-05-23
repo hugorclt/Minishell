@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 18:10:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:25:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_exit(t_node *params, t_list **start, int value)
 	}
 	if (params->have_pid == 0)
 		write(1, "exit\n", 6);
-	params->last_status = value;
+	g_last_status = value;
 	exit(value);
 }
 

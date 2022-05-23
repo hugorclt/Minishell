@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 14:16:25 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/23 18:29:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst)
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		ft_change_dir(params, cmd[1]);
 	else if (ft_strcmp(cmd[0], "echo") == 0)
-		ft_echo(params, cmd);
+		ft_echo(cmd);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
 	{
-		if (print_pwd(params) == -1)
+		if (print_pwd() == -1)
 			return (-1);
 	}
 	else if (ft_strcmp(cmd[0], "export") == 0)
@@ -57,12 +57,12 @@ int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst)
 	}
 	else if (ft_strcmp(cmd[0], "unset") == 0)
 	{
-		params->env = ft_unset(params, params->env, cmd);
+		params->env = ft_unset(params->env, cmd);
 		if (!params->env)
 			return (-1);
 	}
 	else if (ft_strcmp(cmd[0], "env") == 0)
-		ft_print_env(params, params->env);
+		ft_print_env(params->env);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		return (ft_exit_choice(params, lst, cmd[1]), -1);
 	return (1);

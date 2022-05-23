@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:41:39 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/21 20:33:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:28:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	ft_echo_n(char **cmd)
 	printf("%s", cmd[i]);
 }
 
-void	ft_echo(t_node *params, char **cmd)
+void	ft_echo(char **cmd)
 {
 	int	i;
 
@@ -70,5 +70,5 @@ void	ft_echo(t_node *params, char **cmd)
 		}
 		printf("\n");
 	}
-	params->last_status = 0;
+	g_last_status = 0;
 }

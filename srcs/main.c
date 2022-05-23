@@ -6,11 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 18:10:08 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:43:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int g_last_status = 0;
 
 void	ft_init_node(t_node *params)
 {
@@ -45,6 +47,7 @@ void	ft_sign_handle(int signo)
 	{
 		rl_replace_line("\n", 0);
 		write(1, "\nMinishell $>", 14);
+		g_last_status = 131;
 	}
 }
 
@@ -164,7 +167,7 @@ int check_export(t_token *token)
 	return (0);
 }*/
 
-void	ft_print_env(t_node *params, char **env)
+void	ft_print_env(char **env)
 {
 	int	i;
 
@@ -175,7 +178,7 @@ void	ft_print_env(t_node *params, char **env)
 			printf("%s\n", env[i]);
 		++i;
 	}
-	params->last_status = 0;
+	g_last_status = 0;
 }
 
 int	ft_wait_all_pid(t_node *params)
@@ -190,7 +193,7 @@ int	ft_wait_all_pid(t_node *params)
 			return (-1);
 		i++;
 	}
-	params->last_status = WEXITSTATUS(status);
+	g_last_status = WEXITSTATUS(status);
 	return (0);
 }
 
@@ -237,7 +240,6 @@ int	main(int ac, char **av, char **env)
 	int		flag;
 
 	params.env = NULL;
-	params.last_status = 0;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &params) < 0)

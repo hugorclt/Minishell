@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:54:40 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/21 09:55:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:29:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	ft_print_file_not_found(char *str)
 	ft_putstr_fd(": No such file or directory\n", 2);
 }
 
-void	ft_print_io_error_choice(t_node *params, char *str)
+void	ft_print_io_error_choice(char *str)
 {
-	params->last_status = 1;
+	g_last_status = 1;
 	if (errno == 13)
 		ft_print_file_access(str);
 	else

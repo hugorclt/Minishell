@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 18:10:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:25:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		if (!path)
 		{
 			free(path);
-			params->last_status = 127;
+			g_last_status = 127;
 			ft_exit(params, lst_to_free, 0);
 			return (-1);
 		}

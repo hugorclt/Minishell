@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 14:58:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:34:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_quoted(t_token *token, char c);
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
 char	**ft_dup_tab(char **tab);
-int	print_pwd(t_node *params);
+int	print_pwd(void);
 char	*get_pwd(void);
 char	*ft_strjoin_char(char *cmd, char c);
 char	*ft_strcut(char *str, int i_start, int i_end);
@@ -58,7 +58,7 @@ int	ft_test_export(t_token *token);
 int	ft_find_occ_free(char **env, char *var);
 int	is_dpipe(t_token *token);
 int check_export(t_token *token);
-void	ft_print_env(t_node *params, char **env);
+void	ft_print_env(char **env);
 int	ft_wait_all_pid(t_node *params);
 int	ft_start(t_node *params, t_token *token, t_list **lst);
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
@@ -189,7 +189,7 @@ void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 /*                         FILE = srcs/exec/ft_echo.c                         */
 /* -------------------------------------------------------------------------- */
 int	is_args(char *cmd);
-void	ft_echo(t_node *params, char **cmd);
+void	ft_echo(char **cmd);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/exec/main_exec.c                        */
@@ -200,7 +200,7 @@ int	ft_main_exec(t_node *params, t_list **lst);
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/exec/open_io_utils.c                      */
 /* -------------------------------------------------------------------------- */
-void	ft_print_io_error_choice(t_node *params, char *str);
+void	ft_print_io_error_choice(char *str);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/is_builtin.c                        */
@@ -299,7 +299,7 @@ char	*ft_backslash(char *token);
 /* -------------------------------------------------------------------------- */
 int	ft_is_in(char **var_lst, char *var);
 int	ft_need(char **env, char **var_lst);
-char	**ft_unset(t_node *params, char **env, char **var);
+char	**ft_unset(char **env, char **var);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/env/utils_error.c                        */
