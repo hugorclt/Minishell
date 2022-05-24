@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 12:00:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:28:47 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	ft_is_charset(char cara, char *charset)
 
 int	ft_vld(char *var)
 {
-	int	i;
+	int			i;
 
 	i = 0;
-	if (!ft_is_charset(var[i], SPEC_CHAR))
+	if (!ft_is_charset(var[i], SPEC_CHAR) || ft_isdigit(var[i]))
 		return (ft_print_error(var), -1);
 	while (var[i] && i < ft_strlen_exp(var))
 	{
