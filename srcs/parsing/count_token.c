@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 01:16:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 01:22:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	ft_sweep(char *cmd, int *i, int *total)
 {
 	while (cmd[(*i)])
 	{
-		printf("%c\n", cmd[*i]);
 		if (ft_is_quote(cmd[(*i)]))
 		{
 			(*i)++;

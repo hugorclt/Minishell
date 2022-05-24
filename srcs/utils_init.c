@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:24:16 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:30:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 01:23:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	ft_init_env(char **env, t_node *params)
 		params->env = ft_dup_tab(env);
 	else
 	{
-		printf("y'a pas d'env\n");
 		params->env = ft_no_env(); 
 	}
 	if (!params->env)
