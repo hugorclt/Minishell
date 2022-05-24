@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 18:29:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:18:57 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_is_builtin(char *cmd)
 	return (0);
 }
 
-int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst)
+int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst_to_free)
 {
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		ft_change_dir(params, cmd[1]);
@@ -64,6 +64,6 @@ int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst)
 	else if (ft_strcmp(cmd[0], "env") == 0)
 		ft_print_env(params->env);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		return (ft_exit_choice(params, lst, cmd[1]), -1);
+		return (ft_exit_choice(params, lst_to_free, cmd[1]), -1);
 	return (1);
 }

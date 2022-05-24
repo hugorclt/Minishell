@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 18:34:57 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:19:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void	ft_print_io_error_choice(char *str);
 /* -------------------------------------------------------------------------- */
 void	ft_exit_choice(t_node *params, t_list **start, char *args);
 int	ft_is_builtin(char *cmd);
-int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst);
+int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/exec_utils.c                        */
