@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 00:30:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:35:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,9 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 	token->token = ft_expand(token, params);
 	if (!token->token)
 		return (ft_free(token->token), -1);
-	if (ft_main_check_quote(token->token) == -1)
+	if (ft_main_check(token->token) == -1)
+		return (ft_free(token->token), -2);
+	if (ft_check_token(token) == -1)
 		return (ft_free(token->token), -2);
 	return (0);
 }

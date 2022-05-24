@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 10:31:08 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:37:46 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int	ft_check(char *token)
 	return (0);
 }*/
 
-int	ft_main_check_quote(char **token)
+int	ft_main_check(char **token)
 {
 	int	i;
 
@@ -134,22 +134,6 @@ int	ft_check_quote(char *token)
 	return (0);
 }
 
-/*
-int	ft_check_quote(char *token)
-{
-	if (ft_theres_quotes(token))
-	{
-		if (ft_theres_two_types(token) == 2)
-		{
-			if (ft_check(token) == -1)
-				return (-1);
-		}
-		else if (ft_theres_two_types(token) == 0)
-			return (-1);
-	}
-	return (1);
-}
-*/
 int	ft_is_operator(char *token)
 {
 	if (ft_strcmp(token, "|") == 0)
@@ -180,7 +164,6 @@ int	ft_check_token(t_token *token)
 		if (ft_is_operator(token->token[i]) == 1 && token->token[i + 1] && 
 				ft_is_operator(token->token[i + 1]) == 1)
 		{
-			if (!ft_strcmp(token->token[i], token->token[i + 1]))
 				return (ft_print_error(token->token[i + 1]), -1);
 		}
 		++i;

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:30:06 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:33:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int	ft_total_unquote(t_list **lst);
 /*                     FILE = srcs/parsing/token_check.c                      */
 /* -------------------------------------------------------------------------- */
 int	ft_theres_quotes(char *token);
-int	ft_main_check_quote(char **token);
+int	ft_main_check(char **token);
 int	ft_check_quote(char *token);
 int	ft_check_quote(char *token);
 int	ft_is_operator(char *token);
