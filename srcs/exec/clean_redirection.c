@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/17 21:33:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:56:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	skip_io_filename(t_list **lst, int *i)
 	return (0);
 }
 
-static int	is_redirect(t_list **lst, int *i)
+int	is_redirect(t_list **lst, int *i)
 {
 	t_list	*tmp;
 

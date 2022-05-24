@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/24 22:29:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 23:06:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ int	ft_start(t_node *params, t_token *token, t_list **lst)
 	*lst = NULL;
 	params->have_pid = 0;
 	token->token = NULL;
+	params->io_env = NULL;
 	params->save_in = dup(0);
 	params->save_out = dup(1);
 	return (0);
@@ -252,7 +253,52 @@ void	sig_choice()
 	signal(SIGINT, SIG_IGN);
 }
 
+int	is_sentences(char *str)
+{
+	int	i;
 
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	is_redirect(char *str)
+{
+	if (ft_strcmp(str, ">") == 0
+		|| ft_strcmp(str, ">>") == 0
+		|| ft_strcmp(str, "<") == 0
+		|| ft_strcmp(str, "<<") == 0)
+		return (1);
+	return (0);
+}
+
+int	ft_count_redirect(char **tab)
+{
+	int	i;
+	int	total;
+
+	i = 0;
+	total = 0;
+	while (tab[i])
+	{
+		if (is_redirect(tab[i]) == 1)
+			total++;
+		i++;
+	}
+	return (total);
+}
+
+int	init_tab_env_redirect(t_node *params, t_token *token)
+{
+	params->io_env = malloc(sizeof(char *) * (ft_count_redirect(token->token) + 1));
+	if (!params->io_env)
+		return (-1);
+}
 
 int	main(int ac, char **av, char **env)
 {
