@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/19 18:14:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:25:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	ft_change_dir(t_node *params, char *path)
 	ft_attrib_path(params, path, &ret);
 	if (ret == -1)
 	{
-		params->last_status = 1;
+		g_last_status = 1;
 		return (free(save_old), printf("bash: cd: %s: Not a directory\n", path), 0);
 	}
 	ft_change_var(params->env, save_old, ft_find_occ(params->env, "OLDPWD"));
@@ -107,6 +107,6 @@ int	ft_change_dir(t_node *params, char *path)
 	free(path_cat);
 	if (!params->env)
 		return (free(save_old), -1);
-	params->last_status = 0;
+	g_last_status = 0;
 	return (free(save_old), 0);
 }

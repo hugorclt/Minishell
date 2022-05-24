@@ -6,7 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/05/23 20:14:24 by yobougre         ###   ########.fr       */
+=======
+/*   Updated: 2022/05/24 15:23:08 by hrecolet         ###   ########.fr       */
+>>>>>>> 1e442b399fdf582d41473a8716fb4ba188c19f9b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +37,6 @@ void	ft_free_params(t_node *params, int flag)
 	{
 		free(params->fd);
 		params->fd = NULL;
-	}
-	if (params->prompt)
-	{
-		free(params->prompt);
-		params->prompt = NULL;
 	}
 	if (params->root && flag == 0)
 	{
@@ -66,9 +65,11 @@ void	ft_free_outfile(t_list *tmp)
 
 void	ft_free_list(t_list **start)
 {
+	int		i;
 	t_list	*tmp;
 
 	tmp = (*start);
+	i = 0;
 	while (tmp)
 	{
 		if (sizeof(tmp->token))
@@ -84,6 +85,7 @@ void	ft_free_list(t_list **start)
 			free(tmp->file_out);
 		}
 		tmp = tmp->next;
+		i++;
 	}
 }
 
@@ -114,7 +116,7 @@ void	ft_exit(t_node *params, t_list **start, int value)
 	}
 	if (params->have_pid == 0)
 		write(1, "exit\n", 6);
-	params->last_status = value;
+	g_last_status = value;
 	exit(value);
 }
 
