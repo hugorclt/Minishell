@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/24 15:23:08 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 23:30:44 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	ft_free_params(t_node *params, int flag)
 	{
 		free(params->root);
 		params->root = NULL;
+	}
+	if (params->io_env)
+	{
+		ft_free(params->io_env);
+		params->io_env = NULL;
 	}
 }
 

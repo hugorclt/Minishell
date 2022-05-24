@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/24 22:56:37 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:10:04 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	**ft_clean_redirection(t_list **lst)
 			break ;
 		if (is_redirect(&(*lst), &i) == 0)
 		{
-			ret[j++] = ft_strdup((*lst)->token[i]);
+			ret[j] = ft_strdup((*lst)->token[i]);
+			j++;
 			i++;
 		}
 		else

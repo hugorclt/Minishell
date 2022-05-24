@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/24 22:56:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 23:50:41 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ int	ft_main_exec(t_node *params, t_list **lst);
 /*                      FILE = srcs/exec/open_io_utils.c                      */
 /* -------------------------------------------------------------------------- */
 void	ft_print_io_error_choice(char *str);
+int	is_sentences(char *str);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/is_builtin.c                        */
@@ -317,6 +318,7 @@ char	*ft_unquote(char *var);
 char	**ft_add_var(char *var, char **env);
 int	ft_find_occ(char **env, char *var);
 int ft_change_var(char **env, char *var, int j);
+int	init_tab_env_redirect(t_node *params, t_token *token);
 int	ft_theres_dquotes(char *token);
 char	*ft_quote(char *token);
 int	ft_need_unquote(char *var);
