@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 18:25:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:06:06 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_get_last_dir(char *str)
 	return (free(str), ret);
 }
 
-static char	*ft_cat_path(char *var, char *path)
+char	*ft_cat_path(char *var, char *path)
 {
 	int		i;
 	int		j;
@@ -79,7 +79,12 @@ static char	*ft_cat_path(char *var, char *path)
 static void	ft_attrib_path(t_node *params, char *path, int *ret)
 {
 	if (!path)
-		*ret = chdir(params->root);
+	{
+		if (params->root)
+			*ret = chdir(params->root);
+		else
+			ft_putstr_fd("Minishell: cd: HOME not set\n", 2);
+	}
 	else
 		*ret = chdir(path);
 }

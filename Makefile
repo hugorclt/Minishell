@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/21 10:10:33 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/05/24 23:25:37 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,10 @@ SRCS 		=	srcs/main.c\
 				srcs/exit/exit.c\
 				srcs/exec/open_io_utils.c\
 				srcs/expand/expand_utils_2.c\
-				srcs/utils/utils_3.c
+				srcs/utils_print.c\
+				srcs/signal/signal.c\
+				srcs/utils/utils_3.c\
+				srcs/utils_init.c
 
 OBJS		=		$(SRCS:.c=.o)
 
