@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 18:40:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:10:41 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include "struct.h"
+# include <stddef.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>

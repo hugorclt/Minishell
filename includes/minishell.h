@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/24 23:50:41 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:30:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include "../libft/libft.h"
 # include "struct.h"
 # include "includes.h"
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/signal/signal.c                         */
+/* -------------------------------------------------------------------------- */
+void	ft_sign_handle(int signo);
+void	sig_choice();
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_3.c                         */
@@ -51,16 +57,9 @@ char	*ft_strcut(char *str, int i_start, int i_end);
 /* -------------------------------------------------------------------------- */
 /*                             FILE = srcs/main.c                             */
 /* -------------------------------------------------------------------------- */
-void	ft_init_node(t_node *params);
-void	ft_print_lst(t_list *lst);
-void	ft_print_tab(char **tokens);
-int	ft_test_export(t_token *token);
 int	ft_find_occ_free(char **env, char *var);
 int	is_dpipe(t_token *token);
-int check_export(t_token *token);
-void	ft_print_env(char **env);
 int	ft_wait_all_pid(t_node *params);
-int	ft_start(t_node *params, t_token *token, t_list **lst);
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 int	main(int ac, char **av, char **env);
 
@@ -142,6 +141,14 @@ char	**ft_split_path(char const *s, char c);
 int	ft_get_output(t_list **lst, char **tab, int *k, int i);
 int	ft_add_file_in(t_list **lst, int i, int *j, char **tab);
 int	ft_get_input(t_list **lst, char **tab);
+int	init_shlvl(t_node *params);
+
+/* -------------------------------------------------------------------------- */
+/*                          FILE = srcs/utils_init.c                          */
+/* -------------------------------------------------------------------------- */
+void	ft_init_node(t_node *params);
+int	ft_init_env(char **env, t_node *params);
+int	ft_start(t_node *params, t_token *token, t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/count_token.c                      */
@@ -184,6 +191,13 @@ void	ft_free_list(t_list **start);
 void	ft_free_lst(t_list **start);
 void	ft_exit(t_node *params, t_list **start, int value);
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
+
+/* -------------------------------------------------------------------------- */
+/*                         FILE = srcs/utils_print.c                          */
+/* -------------------------------------------------------------------------- */
+void	ft_print_lst(t_list *lst);
+void	ft_print_tab(char **tokens);
+void	ft_print_env(char **env);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/ft_echo.c                         */
@@ -326,6 +340,10 @@ char	*ft_simple_unquote(char *var);
 int	ft_export(t_node *params, char *token);
 
 /* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/env/check_args.c                        */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/env/export.c                          */
 /* -------------------------------------------------------------------------- */
 int	ft_var_len(char *var);
@@ -338,6 +356,7 @@ int	ft_export_alph(char **env);
 /* -------------------------------------------------------------------------- */
 int	ft_get_last_word(char *str, int len);
 char	*ft_get_last_dir(char *str);
+char	*ft_cat_path(char *var, char *path);
 int	ft_change_dir(t_node *params, char *path);
 
 
