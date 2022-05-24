@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/24 21:54:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:42:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,22 @@ int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
 	return (0);
 }
 
+int	do_expandable(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '"')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_heredoc(t_list **lst, int *i, t_node *params)
 {
 	int		fd;
@@ -82,7 +98,10 @@ int	ft_heredoc(t_list **lst, int *i, t_node *params)
 		ft_putstr_fd("heredoc$>", 1);
 		line = get_next_line(0);
 		line = ft_cut_tail(line);
-		ft_verif_dollars(&line_after_expand, line, params);
+		if (do_expandable((*lst)->limiter) == 0)
+			ft_verif_dollars(&line_after_expand, line, params);
+		else
+			line_after_expand = ft_strdup(line);
 		if (!line_after_expand)
 			ft_putstr_fd("\n", 1);
 		if (!ft_strcmp(line_after_expand, (*lst)->limiter) || !line_after_expand)
