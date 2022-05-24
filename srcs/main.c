@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/24 21:17:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:29:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,26 @@ int	ft_find_occ_free(char **env, char *var)
 	return (ft_free(tmp), -1);
 }
 
+int	init_shlvl(t_node *params)
+{
+	int		occ;
+	int		shlvl;
+	char	*var;
+	
+	occ = ft_find_occurence(params->env, "SHLVL");
+	if (occ == -1)
+		return (0);
+	shlvl = ft_atoi(params->env[occ] + 6);
+	shlvl++;
+	var = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+	if (!var)
+		return (-1);
+	if (ft_change_var(params->env, var, occ) == -1)
+		return (free(var), -1);
+	free(var);
+	return (0);
+}
+
 static int	ft_init_env(char **env, t_node *params)
 {
 	int		index;
@@ -122,6 +142,8 @@ static int	ft_init_env(char **env, t_node *params)
 		if (!params->root)
 			return (-1);
 	}
+	if (init_shlvl(params) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -229,6 +251,8 @@ void	sig_choice()
 	signal(SIGQUIT, ft_sign_handle);
 	signal(SIGINT, SIG_IGN);
 }
+
+
 
 int	main(int ac, char **av, char **env)
 {
