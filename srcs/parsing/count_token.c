@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/17 09:46:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 01:16:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ static void	ft_sweep(char *cmd, int *i, int *total)
 {
 	while (cmd[(*i)])
 	{
+		printf("%c\n", cmd[*i]);
 		if (ft_is_quote(cmd[(*i)]))
 		{
 			(*i)++;
 			while (!ft_is_quote(cmd[(*i)]) && cmd[(*i)])
 				(*i)++;
+			(*i)--;
 		}
 		if (is_operator(cmd[(*i)]) == 1)
 			return (ft_token_count(cmd, i, total));
@@ -71,8 +73,6 @@ int	ft_total_token(char *cmd)
 
 	total = 0;
 	i = 0;
-	//if (ft_check_quote(cmd) == -1)
-	//	return (ft_print_ofpc(), -2);
 	while (i < ft_strlen(cmd))
 	{
 		if (ft_isspace(cmd[i]) == 1)

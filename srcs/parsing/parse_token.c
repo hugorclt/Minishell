@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/16 15:54:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 01:18:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	ft_pass_quote(char *cmd, int *j)
 	(*j)++;
 	while (ft_is_quote(cmd[(*j)]) != 1 && cmd[(*j)])
 		(*j)++;
+	(*j)--;
 }
 
 static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)

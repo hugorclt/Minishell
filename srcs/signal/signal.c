@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:17:12 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/24 23:41:23 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:54:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	ft_sign_handle(int signo)
 {
-	if (signo == SIGINT)
-	{
-		rl_replace_line("\n", 0);
-		write(1, "\nMinishell$>", 13);
-		g_last_status = 131;
-	}
+	(void)signo;
+	printf("test\n");
+	rl_replace_line("\n", 0);
+	write(1, "\nMinishell$>", 13);
+	g_last_status = 131;
 }
 
 void	sig_choice()
