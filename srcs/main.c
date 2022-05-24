@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/24 23:37:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:24:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	init_shlvl(t_node *params)
 	
 	occ = ft_find_occurence(params->env, "SHLVL");
 	if (occ == -1)
-		return (0);
+		return (ft_add_var("SHLVL=2", params->env), 0);
 	shlvl = ft_atoi(params->env[occ] + 6);
 	shlvl++;
 	c_shlvl = ft_itoa(shlvl);

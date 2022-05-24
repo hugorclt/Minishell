@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 00:21:52 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:26:05 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	error_ambiguous(char *file)
 	ft_putstr_fd(": ambiguous redirect\n", 2);
 }
 
-static int	ft_open_output(t_list **lst, t_node *params)
+static int	ft_open_output(t_list **lst)
 {
 	int	i;
 
@@ -99,7 +99,7 @@ int	ft_open_io(t_list **lst, t_node *params)
 {
 	if (ft_open_input(lst, params) == -1)
 		return (-1);
-	if (ft_open_output(lst, params) == -1)
+	if (ft_open_output(lst) == -1)
 		return (-1);
 	return (0);
 }
