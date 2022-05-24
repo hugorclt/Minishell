@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 19:48:59 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:09:58 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stddef.h>
 # include "../includes/struct.h"
 # include "../includes/minishell.h"
 # define BUFFER_SIZE 1000000
