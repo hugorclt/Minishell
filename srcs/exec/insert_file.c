@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 14:30:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:57:21 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_save_out(t_list **lst, int *i, int *j)
 {
 	if (ft_strcmp((*lst)->token[*i], ">") == 0)
 	{
-		(*lst)->file_out[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		(*lst)->file_out[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_out[*j].file)
 			return (-1);
 		(*lst)->file_out[*j].flag = 0;
@@ -48,7 +48,7 @@ static int	ft_save_out(t_list **lst, int *i, int *j)
 	}
 	if (ft_strcmp((*lst)->token[*i], ">>") == 0)
 	{
-		(*lst)->file_out[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		(*lst)->file_out[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_out[*j].file)
 			return (-1);
 		(*lst)->file_out[*j].flag = 1;
@@ -61,7 +61,7 @@ static int	ft_save_in(t_list **lst, int *i, int *j)
 {
 	if (ft_strcmp((*lst)->token[*i], "<") == 0)
 	{
-		(*lst)->file_in[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		(*lst)->file_in[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_in[*j].file)
 			return (-1);
 		(*lst)->file_in[*j].flag = 0;
@@ -69,7 +69,7 @@ static int	ft_save_in(t_list **lst, int *i, int *j)
 	}
 	if (ft_strcmp((*lst)->token[*i], "<<") == 0)
 	{
-		(*lst)->file_in[*j].file = ft_strdup((*lst)->token[(*i) + 1]);
+		(*lst)->file_in[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_in[*j].file)
 			return (-1);
 		(*lst)->file_in[*j].flag = 1;

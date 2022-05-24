@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/24 15:19:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 21:15:15 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ int	ft_get_input(t_list **lst, char **tab);
 /* -------------------------------------------------------------------------- */
 int	ft_find_len_env(char *str);
 char	*ft_strjoin_expand(char *token, char **env);
-int	ft_expand_utils(char **ret, t_node *par, int *i);
+int	ft_expand_utils(char **ret, int *i);
 int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p);
 
 /* -------------------------------------------------------------------------- */

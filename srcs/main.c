@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 18:43:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 21:17:36 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int g_last_status = 0;
+int	g_last_status = 0;
 
 void	ft_init_node(t_node *params)
 {
