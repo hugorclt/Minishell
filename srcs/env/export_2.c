@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/24 15:36:59 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:37:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,30 +215,23 @@ int	ft_export(t_node *params, char *token)
 {
 	char	*str;
 	char	**tmp;
-	int		i;
 
-	i = 1;
 	tmp = ft_split_space(token);
 	if (!tmp || !token)
 		return (-1);
+	str = ft_to_str_without_free(tmp + 1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (ft_free(tmp), ft_export_alph(params->env));
-	str = ft_to_str(*tmp + 1);
-	printf("%s\n", str);
+		return (free(str), ft_free(tmp), ft_export_alph(params->env));
 	else
 	{
-		while (tmp[i])
-		{
-			if (ft_find_occ_free(params->env, tmp[i]) == -1 && !ft_vld(tmp[i]))
-				params->env = ft_add_var(tmp[i], params->env);
-			else if (!ft_vld(tmp[i]))
-				ft_change_var(params->env, tmp[i], 
-						ft_find_occ_free(params->env, tmp[i]));
-			if (!params->env)
-				return (ft_free(tmp), -1);
-			++i;
-		}
+		if (ft_find_occ_free(params->env, str) == -1 && !ft_vld(str))
+			params->env = ft_add_var(str, params->env);
+		else if (!ft_vld(str))
+			ft_change_var(params->env, str, 
+				ft_find_occ_free(params->env, str));
+		if (!params->env)
+			return (free(str), ft_free(tmp), -1);
 	}
 	g_last_status = 0;
-	return (ft_free(tmp), 0);
+	return (free(str), ft_free(tmp), 0);
 }
