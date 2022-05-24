@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 18:25:03 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:36:59 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,16 +213,18 @@ char	*ft_simple_unquote(char *var)
 
 int	ft_export(t_node *params, char *token)
 {
+	char	*str;
 	char	**tmp;
 	int		i;
 
 	i = 1;
-	printf("token : %s\n", token);
 	tmp = ft_split_space(token);
 	if (!tmp || !token)
 		return (-1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
 		return (ft_free(tmp), ft_export_alph(params->env));
+	str = ft_to_str(*tmp + 1);
+	printf("%s\n", str);
 	else
 	{
 		while (tmp[i])

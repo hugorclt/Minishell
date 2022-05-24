@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/24 15:15:59 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:23:08 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,6 @@ void	ft_free_list(t_list **start)
 	i = 0;
 	while (tmp)
 	{
-		printf("-------------");
-		printf("token->nb : %d\n", i);
-		ft_print_tab(tmp->token);
-		printf("-------------");
 		if (sizeof(tmp->token))
 			ft_free(tmp->token);
 		if (tmp->file_in)
