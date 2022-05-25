@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   utils_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:25:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:26:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:55:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	ft_find_occ_free_help(char *var, char ***tmp)
+{
+	if (ft_need_cat(var))
+		*tmp = ft_split(var, '+');
+	else
+		*tmp = ft_split(var, '=');
+	if (!*tmp)
+		return (-1);
+	return (0);
+}
 
 int	ft_find_occ_free(char **env, char *var)
 {
@@ -20,11 +31,7 @@ int	ft_find_occ_free(char **env, char *var)
 	tmp = NULL;
 	if (ft_check_equal(var) > 0)
 	{
-		if (ft_need_cat(var))
-			tmp = ft_split(var, '+');
-		else
-			tmp = ft_split(var, '=');
-		if (!tmp)
+		if (ft_find_occ_free_help(var, &tmp) == -1)
 			return (-1);
 		if (ft_find_occurence(env, tmp[0]) != -1)
 		{
