@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 04:05:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:47:45 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static int	ft_expand_ext(char **ret, char *token, int *i)
 static int	ft_expand_line(char *token, char **ret, int *i, t_node *par)
 {
 	if (token[*i] == '$'
-		&& ((par->quoter->nb_dquotes % 2 == 0 && par->quoter->nb_quotes % 2 == 0)
-		|| (par->quoter->nb_dquotes % 2 != 0 && par->quoter->first_quotes == '"')))
+		&& ((par->quoter->nb_dquotes % 2 == 0
+				&& par->quoter->nb_quotes % 2 == 0)
+			|| (par->quoter->nb_dquotes % 2 != 0
+				&& par->quoter->first_quotes == '"')))
 	{
 		if (token[(*i) + 1] == '?')
 		{

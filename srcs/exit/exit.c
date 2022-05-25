@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:24:13 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 05:30:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:34:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,6 @@ void	ft_free_params(t_node *params, int flag)
 	ft_free_params_2(params, flag);
 }
 
-void	ft_free_infile(t_list *tmp)
-{
-	int	i;
-
-	i = 0;
-	while (i < tmp->nb_infile)
-		free(tmp->file_in[i++].file);
-}
-
-void	ft_free_outfile(t_list *tmp)
-{
-	int	i;
-
-	i = 0;
-	while (i < tmp->nb_outfile)
-		free(tmp->file_out[i++].file);
-}
-
 void	ft_free_list(t_list **start)
 {
 	int		i;
@@ -93,19 +75,6 @@ void	ft_free_list(t_list **start)
 		tmp = tmp->next;
 		i++;
 	}
-}
-
-void	ft_free_lst(t_list **start)
-{
-	t_list	*tmp;
-	
-	while ((*start))
-	{
-		tmp = (*start);
-		(*start) = (*start)->next;
-		free(tmp);
-	}
-	free(*start);
 }
 
 void	ft_exit(t_node *params, t_list **start, int value)

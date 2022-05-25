@@ -6,34 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 04:05:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:43:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	is_file_of_var(char *file, t_node *params)
-{
-	int	i;
-
-	i = 0;
-	while (params->io_env[i])
-	{
-		if (ft_strcmp(file, params->io_env[i]) == 0
-			&& is_sentences(params->io_env[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	error_ambiguous(char *file)
-{
-	g_last_status = 1;
-	ft_putstr_fd("bash: ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": ambiguous redirect\n", 2);
-}
 
 static int	ft_open_output(t_list **lst)
 {
@@ -62,12 +39,20 @@ static int	ft_open_output(t_list **lst)
 	return (0);
 }
 
+static void	ft_open_last_in(t_list **lst, int i)
+{
+	if (i == 0)
+		(*lst)->last_infile = 0;
+	else
+		(*lst)->last_infile = (*lst)->file_in[i - 1].fd;
+}
+
 static int	ft_open_input(t_list **lst, t_node *params)
 {
 	int	i;
 
-	i = 0;
-	while (i < (*lst)->nb_infile)
+	i = -1;
+	while (++i < (*lst)->nb_infile)
 	{
 		if ((*lst)->file_in[i].file)
 		{
@@ -84,12 +69,8 @@ static int	ft_open_input(t_list **lst, t_node *params)
 			if ((*lst)->file_in[i].fd == -1)
 				ft_print_io_error_choice((*lst)->file_in[i].file);
 		}
-		i++;
 	}
-	if (i == 0)
-		(*lst)->last_infile = 0;
-	else
-		(*lst)->last_infile = (*lst)->file_in[i - 1].fd;
+	ft_open_last_in(lst, i);
 	return (0);
 }
 
