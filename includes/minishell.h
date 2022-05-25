@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:33:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:52:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	ft_free(char **tab);
 /* -------------------------------------------------------------------------- */
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_init_pipe(t_node *params);
-int	ft_heredoc_help(int	*fd, t_list **lst, int *i);
 int	ft_heredoc(t_list **lst, int *i, t_node *params);
 
 /* -------------------------------------------------------------------------- */
@@ -101,6 +100,9 @@ void	ft_command_nt_found(char *cmd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_close(void);
 int	ft_heredoc_infile(t_list **lst, int *i);
+void	ft_iamcrying(t_list **lst, char **line_ex, char *line, t_node *params);
+int	init_heredoc(int *fd, char **line_expand);
+int	do_expandable(char *str);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/pipes/join.c                          */

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/18 16:09:13 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:54:55 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	char	*output;
 	size_t	i;
 	size_t	j;
-
 
 	if (!s1)
 		s1 = ft_strdup_pimp("\0");
@@ -41,21 +40,6 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	output[i + j] = 0;
 	return (free(s1), output);
 }
-/*
-int	ft_initialisation(t_node *params, char **av, int ac, int i)
-{
-	params->infile_name = NULL;
-	params->outfile_name = NULL;
-	params->cmd = NULL;
-	params->cmd_args = NULL;
-	if (ft_init_pid(params) < 0)
-		return (-1);
-	if (ft_fill_cmd_name(params, av, ac) < 0)
-		return (-1);
-	if (ft_init_pipe(params) < 0 || n(params, av[1], av[ac - 1], i) < 0)
-		return (-1);
-	return (1);
-}*/
 
 int	ft_args(int ac, char **av)
 {
