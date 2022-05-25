@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 00:11:11 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:45:58 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_find_occ(char **env, char *var)
 	return (ft_free(tmp), -1);
 }
 
-int ft_change_var(char **env, char *var, int j)
+int	ft_change_var(char **env, char *var, int j)
 {
 	int	i;
 
@@ -123,115 +123,4 @@ int ft_change_var(char **env, char *var, int j)
 		i++;
 	}
 	return (0);
-}
-
-int	ft_theres_dquotes(char *token)
-{
-	int	i;
-
-	i = 0;
-	while (token[i])
-	{
-		if (token[i] == '"')
-			return (1);
-		++i;
-	}
-	return (0);
-}
-
-char	*ft_quote(char *token)
-{
-	int		i;
-	int		j;
-	char	*output;
-
-	i = 0;
-	j = 0;
-	if (!ft_check_equal(token))
-		return (token);
-	output = malloc(sizeof(char) * (ft_strlen(token) + 3));
-	if (!output)
-		return (NULL);
-	while (token[i] != '=' && token[i])
-		output[j++] = token[i++];
-	output[j] = token[i];
-	ft_increm(&i, &j);
-	output[j] = '"';
-	++j;
-	if (token[i])
-	{
-		while (token[i])
-			output[j++] = token[i++];
-	}
-	output[j] = '"';
-	output[j + 1] = 0;
-	return (free(token), output);
-}
-
-int	ft_need_unquote(char *var)
-{
-	int	i;
-
-	i = 0;
-	while (var[i])
-	{
-		if (var[i] == '"')
-			return (0);
-		if (var[i] == '\'')
-			return (1);
-		++i;
-	}
-	return (0);
-}
-
-char	*ft_simple_unquote(char *var)
-{
-	int		i;
-	int		j;
-	char	*output;
-
-	if (!ft_need_unquote(var))
-		return (var);
-	output = malloc(sizeof(char) * (ft_strlen(var)));
-	if (!output)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (var[i])
-	{
-		if (var[i] == '\'')
-		{
-			if (!var[i + 1])
-				break ;
-			++i;
-		}
-		output[j++] = var[i++];
-	}
-	output[j] = 0;
-	return (output);
-}
-
-int	ft_export(t_node *params, char *token)
-{
-	char	*str;
-	char	**tmp;
-
-	tmp = ft_split_space(token);
-	if (!tmp || !token)
-		return (-1);
-	str = ft_to_str_without_free(tmp + 1);
-	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (free(str), ft_free(tmp), ft_export_alph(params->env));
-	else
-	{
-		if (ft_find_occ_free(params->env, str) == -1 && !ft_vld(str))
-			params->env = ft_add_var(str, params->env);
-		else if (!ft_vld(str))
-			ft_change_var(params->env, str, 
-				ft_find_occ_free(params->env, str));
-		if (!params->env)
-			return (free(str), ft_free(tmp), -1);
-	}
-	g_last_status = 0;
-	return (free(str), ft_free(tmp), 0);
 }

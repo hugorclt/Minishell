@@ -6,25 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:26:00 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 11:04:22 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:45:57 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	ft_var_len(char *var)
-{
-	int	i;
-
-	i = 0;
-	while (var[i])
-	{
-		if (var[i] == '+' || var[i] == '=')
-			break ;
-		++i;
-	}
-	return (i);
-}
 
 int	ft_find_occurence(char **env, char *cmd)
 {

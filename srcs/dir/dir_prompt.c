@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 00:06:06 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:49:25 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_cat_path(char *var, char *path)
 	int		i;
 	int		j;
 	char	*output;
-	
+
 	if (!path)
 		return (NULL);
 	output = malloc(sizeof(char) * (ft_strlen(var) + ft_strlen(path) + 1));
@@ -95,14 +95,14 @@ int	ft_change_dir(t_node *params, char *path)
 	char	*save_old;
 	char	*path_cat;
 
-	save_old = ft_cat_path("OLDPWD=", get_pwd()); 
+	save_old = ft_cat_path("OLDPWD=", get_pwd());
 	if (!save_old)
 		return (-1);
 	ft_attrib_path(params, path, &ret);
 	if (ret == -1)
 	{
 		g_last_status = 1;
-		return (free(save_old), printf("bash: cd: %s: Not a directory\n", path), 0);
+		return (free(save_old), ft_err_cd(path), 0);
 	}
 	ft_change_var(params->env, save_old, ft_find_occ(params->env, "OLDPWD"));
 	if (!params->env)

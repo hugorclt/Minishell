@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/23 18:28:47 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:40:58 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_is_charset(char cara, char *charset)
 	i = 0;
 	while (charset[i])
 	{
-		if (charset[i] ==  cara)
+		if (charset[i] == cara)
 			return (0);
 		++i;
 	}
