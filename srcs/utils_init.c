@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:24:16 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:07:40 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:15:57 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int	ft_init_env(char **env, t_node *params)
 	if (ft_tab_size(env) > 1)
 		params->env = ft_dup_tab(env);
 	else
-	{
-		printf("y'a pas d'env\n");
 		params->env = ft_no_env(); 
-	}
 	if (!params->env)
 		return (-1);
 	index = ft_find_occ_free(env, "HOME=");

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 04:55:14 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:15:57 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_refacto(t_node *params, t_list **lst, t_token *token, int flag)
 
 	while (1)
 	{
-		if (ft_refacto_start(params, lst, token) < 0)
+		if (ft_refacto_start(params, lst, token, &cmd) < 0)
 			return (-1);
 		if (cmd[0] == '\0')
 		{
@@ -71,7 +71,8 @@ static int	ft_refacto(t_node *params, t_list **lst, t_token *token, int flag)
 			return (free(cmd), -1);
 		else if (flag == -2 || ft_check_token(token) == -1)
 		{
-			ft_refacto_help(params, lst, token, flag);
+			ft_refacto_help(token, flag);
+			ft_refacto_free(params, cmd, lst);
 			continue ;
 		}
 		if (ft_refacto_exec(params, lst, token, cmd) < 0)
@@ -88,6 +89,7 @@ int	main(int ac, char **av, char **env)
 	int		flag;
 
 	(void)av;
+	flag = 0;
 	if (ac == 1)
 	{
 		if (ft_init_env(env, &params) < 0)

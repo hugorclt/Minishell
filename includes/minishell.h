@@ -72,8 +72,8 @@ int	main(int ac, char **av, char **env);
 /* -------------------------------------------------------------------------- */
 void	ft_we_dont();
 void	ft_refacto_free(t_node *params, char *cmd, t_list **lst);
-void	ft_refacto_help(t_node *params, t_list **lst, t_token *token, int flag);
-int	ft_refacto_start(t_node *params, t_list **lst, t_token *token);
+void	ft_refacto_help(t_token *token, int flag);
+int	ft_refacto_start(t_node *params, t_list **lst, t_token *token, char **cmd);
 int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 
 /* -------------------------------------------------------------------------- */

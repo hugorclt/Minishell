@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:42:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 04:51:16 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:14:34 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ void	ft_refacto_free(t_node *params, char *cmd, t_list **lst)
 	free(cmd);
 }
 
-void	ft_refacto_help(t_node *params, t_list **lst, t_token *token, int flag)
+void	ft_refacto_help(t_token *token, int flag)
 {
 	if (flag != -2)
 		ft_free(token->token);
-	ft_refacto_free(params, cmd, lst);
 }
 
-int	ft_refacto_start(t_node *params, t_list **lst, t_token *token)
+int	ft_refacto_start(t_node *params, t_list **lst, t_token *token, char **cmd)
 {
 	if (ft_start(params, token, lst) == -1)
 		return (-1);
 	sig_choice();
-	cmd = readline("Minishell$>");
-	if (!cmd)
-		return (ft_free_after_cmd(params, lst, 0), free(cmd), -1);
+	(*cmd) = readline("Minishell$>");
+	if (!(*cmd))
+		return (ft_free_after_cmd(params, lst, 0), free(*cmd), -1);
 	return (0);
 }
 
@@ -45,7 +44,7 @@ int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 {
 	int flag;
 
-	flag = ft_launch_exec(params, lst, &token, cmd);
+	flag = ft_launch_exec(params, lst, token, cmd);
 	if (flag == -1)
 		return (-1);
 	else if (flag == -2)
