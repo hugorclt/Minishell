@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 01:18:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:18:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
+int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 {
 	int	flag;
 
@@ -29,7 +29,7 @@ static int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 	return (0);
 }
 
-static void	ft_pass_quote(char *cmd, int *j)
+void	ft_pass_quote(char *cmd, int *j)
 {
 	(*j)++;
 	while (ft_is_quote(cmd[(*j)]) != 1 && cmd[(*j)])
@@ -37,7 +37,7 @@ static void	ft_pass_quote(char *cmd, int *j)
 	(*j)--;
 }
 
-static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
+int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 {
 	int	new_j;
 
@@ -66,15 +66,15 @@ static int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 	return (0);
 }
 
-static void	ft_pass_space(char *cmd, int *j)
+void	ft_pass_space(char *cmd, int *j)
 {
 	while (ft_isspace(cmd[(*j)]) == 1 && cmd[(*j)])
 		(*j)++;
 }
 
-static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
+int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 {
-	if (cmd[(*j) + 1] && cmd[(*j + 1)] ==  cmd[(*j)])
+	if (cmd[(*j) + 1] && cmd[(*j + 1)] == cmd[(*j)])
 	{
 		token->token[(*i)] = ft_substr(cmd, *j, 2);
 		if (!token->token[(*i)])
@@ -92,41 +92,4 @@ static int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 	}
 	ft_pass_space(cmd, j);
 	return (0);
-}
-
-void	ft_error_mess(char *token)
-{
-	if (!ft_strcmp(token, "|"))
-		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
-	else
-		ft_putstr_fd("bash: syntax error near unexpected token `newline'\n", 2);
-}
-
-int	ft_parse_tokens(t_token *token, char *cmd, int flag)
-{
-	int		i;
-	int		j;
-	
-	if (is_operator(cmd[0]) == 1 && ft_isspace(cmd[1]) && ft_strlen(cmd) < 3)
-		return (ft_error_mess(cmd),  0);
-	flag = ft_init_n_malloc(token, cmd, &i, &j);
-	if (flag < 0)
-		return (flag);
-	while (cmd[j])
-	{
-		if (ft_isspace(cmd[j]) == 1)
-			ft_pass_space(cmd, &j);
-		if (is_operator(cmd[j]) == 1)
-		{
-			if (ft_get_operator(token, cmd, &i, &j) == -1)
-				return (-1);
-		}
-		else if (is_operator(cmd[j]) != 1 && ft_isspace(cmd[j]) != 1)
-		{
-			if (ft_dup_token(token, cmd, &i, &j) == -1)
-				return (-1);
-		}
-	}
-	token->token[i] = NULL;
-	return (1);
 }

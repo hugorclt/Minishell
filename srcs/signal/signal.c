@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:17:12 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 03:47:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:00:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_sign_handle(int signo)
 	g_last_status = 130;
 }
 
-void	sig_choice()
+void	sig_choice(void)
 {
 	signal(SIGINT, ft_sign_handle);
 	signal(SIGQUIT, SIG_IGN);

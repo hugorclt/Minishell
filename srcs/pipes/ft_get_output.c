@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:07:24 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/10 13:35:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:59:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_get_output(t_list **lst, char **tab, int *k, int i)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst);
 	if (ft_strcmp(tab[i], ">>") == 0)
@@ -38,7 +38,7 @@ int	ft_get_output(t_list **lst, char **tab, int *k, int i)
 
 int	ft_add_file_in(t_list **lst, int i, int *j, char **tab)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst);
 	tmp->file_in[*j].file = ft_strdup(tab[i + 1]);
@@ -51,12 +51,10 @@ int	ft_add_file_in(t_list **lst, int i, int *j, char **tab)
 
 int	ft_get_input(t_list **lst, char **tab)
 {
-	t_list	*tmp;
 	int		i;
 	int		j;
 	int		k;
-	
-	tmp = (*lst);
+
 	i = 0;
 	j = 0;
 	k = 0;
@@ -66,10 +64,10 @@ int	ft_get_input(t_list **lst, char **tab)
 			ft_add_file_in(lst, i, &j, tab);
 		else if (ft_strcmp(tab[i], "<<") == 0)
 		{
-			tmp->file_in[j].file = ft_strdup(tab[i + 1]);
-			if (!tmp->file_in[j].file)
+			(*lst)->file_in[j].file = ft_strdup(tab[i + 1]);
+			if (!(*lst)->file_in[j].file)
 				return (-1);
-			tmp->file_in[j].flag = 1;
+			(*lst)->file_in[j].flag = 1;
 			j++;
 		}
 		if (ft_get_output(lst, tab, &k, i) == -1)

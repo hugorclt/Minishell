@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 04:52:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:20:47 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ void	ft_free(char **tab);
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_init_pipe(t_node *params);
 int	ft_heredoc(t_list **lst, int *i, t_node *params);
+int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j);
+void	ft_pass_quote(char *cmd, int *j);
+int	ft_dup_token(t_token *token, char *cmd, int *i, int *j);
+void	ft_pass_space(char *cmd, int *j);
+int	ft_get_operator(t_token *token, char *cmd, int *i, int *j);
+void	ft_token_count(char *cmd, int *i, int *total);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/pipes/error.c                          */

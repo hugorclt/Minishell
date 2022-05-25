@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/09 11:17:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:56:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,11 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && (s1[i] == s2[i]))
 		++i;
 	return (s1[i] - s2[i]);
+}
+
+void	ft_wrong_args(void)
+{
+	ft_putstr_fd("wrong arguments\n", 2);
+	ft_close();
+	exit(EXIT_FAILURE);
 }

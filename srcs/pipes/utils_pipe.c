@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/23 20:13:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:56:45 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,4 @@ int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac)
 		params->limiter = ft_strdup(av[2]);
 		return (1);
 	}
-}
-
-void	ft_wrong_args(void)
-{
-	ft_putstr_fd("wrong arguments\n", 2);
-	ft_close();
-	exit(EXIT_FAILURE);
 }
