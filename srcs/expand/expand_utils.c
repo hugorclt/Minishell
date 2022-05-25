@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 11:03:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:44:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:31:01 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,19 @@ int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p)
 {
 	char	*to_add;
 
-	to_add = ft_strjoin_expand(token + (*i) + 1, p->env);
+	if (token[*i + 1] == ' ' || token[*i + 1] == '\0')
+	{
+		to_add = ft_strdup("$");
+		(*i)++;
+	}
+	else
+	{
+		to_add = ft_strjoin_expand(token + (*i) + 1, p->env);
+		(*i) += ft_find_len_env(token + (*i) + 1) + 1;
+	}
 	(*ret) = ft_strjoin_pimp((*ret), to_add);
 	if (!(*ret) && to_add[0] != '\0')
 		return (free(to_add), -1);
-	(*i) += ft_find_len_env(token + (*i) + 1) + 1;
 	if (to_add[0] == '\0')
 		return (0);
 	else
