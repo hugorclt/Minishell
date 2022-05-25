@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:24:16 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 01:23:51 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:29:52 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**ft_no_env(void)
 
 	output = malloc(sizeof(char *) * 3);
 	if (!output)
-		return (NULL);	
+		return (NULL);
 	output[0] = ft_cat_path("PWD=", get_pwd());
 	if (!output[0])
 		return (NULL);
@@ -46,9 +46,7 @@ int	ft_init_env(char **env, t_node *params)
 	if (ft_tab_size(env) > 1)
 		params->env = ft_dup_tab(env);
 	else
-	{
-		params->env = ft_no_env(); 
-	}
+		params->env = ft_no_env();
 	if (!params->env)
 		return (-1);
 	index = ft_find_occ_free(env, "HOME=");
