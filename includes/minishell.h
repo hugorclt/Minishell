@@ -55,13 +55,26 @@ char	*ft_strjoin_char(char *cmd, char c);
 char	*ft_strcut(char *str, int i_start, int i_end);
 
 /* -------------------------------------------------------------------------- */
-/*                             FILE = srcs/main.c                             */
+/*                          FILE = srcs/utils_main.c                          */
 /* -------------------------------------------------------------------------- */
 int	ft_find_occ_free(char **env, char *var);
 int	is_dpipe(t_token *token);
 int	ft_wait_all_pid(t_node *params);
+
+/* -------------------------------------------------------------------------- */
+/*                             FILE = srcs/main.c                             */
+/* -------------------------------------------------------------------------- */
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 int	main(int ac, char **av, char **env);
+
+/* -------------------------------------------------------------------------- */
+/*                           FILE = srcs/refacto.c                            */
+/* -------------------------------------------------------------------------- */
+void	ft_we_dont();
+void	ft_refacto_free(t_node *params, char *cmd, t_list **lst);
+void	ft_refacto_help(t_node *params, t_list **lst, t_token *token, int flag);
+int	ft_refacto_start(t_node *params, t_list **lst, t_token *token);
+int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
