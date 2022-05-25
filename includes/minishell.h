@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 16:27:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sig_choice(int a);
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_4.c                         */
 /* -------------------------------------------------------------------------- */
-int		ft_close_redirect(t_list **lst);
+int	ft_close_redirect(t_list **lst);
 void	ft_quoted(t_token *token, char c);
 
 /* -------------------------------------------------------------------------- */
@@ -54,7 +54,7 @@ void	ft_increm(int *i, int *j);
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
 char	**ft_dup_tab(char **tab);
-int		print_pwd(void);
+int	print_pwd(void);
 char	*get_pwd(void);
 char	*ft_strjoin_char(char *cmd, char c);
 char	*ft_strcut(char *str, int i_start, int i_end);
@@ -62,6 +62,7 @@ char	*ft_strcut(char *str, int i_start, int i_end);
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_main.c                          */
 /* -------------------------------------------------------------------------- */
+int	ft_find_occ_free_help(char *var, char ***tmp);
 int	ft_find_occ_free(char **env, char *var);
 int	is_dpipe(t_token *token);
 int	ft_wait_all_pid(t_node *params);
@@ -70,9 +71,6 @@ int	ft_wait_all_pid(t_node *params);
 /*                             FILE = srcs/main.c                             */
 /* -------------------------------------------------------------------------- */
 int	init_shlvl(t_node *params);
-int	is_sentences(char *str);
-int	ft_count_redirect(char **tab);
-int	init_tab_env_redirect(t_node *params, t_token *token);
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 int	main(int ac, char **av, char **env);
 
@@ -198,11 +196,16 @@ int	ft_total_unquote(t_list **lst);
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/token_check.c                      */
 /* -------------------------------------------------------------------------- */
-int	ft_theres_quotes(char *token);
 int	ft_main_check(char **token);
 int	ft_check_quote(char *token);
 int	ft_is_operator(char *token);
 int	ft_check_token(t_token *token);
+
+/* -------------------------------------------------------------------------- */
+/*                  FILE = srcs/parsing/utils_token_check.c                   */
+/* -------------------------------------------------------------------------- */
+int	ft_is_redire(char *token);
+int	ft_check_next(t_token *token, int i);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/parsing/count_token_2.c                     */
@@ -229,12 +232,16 @@ int	ft_get_operator(t_token *token, char *cmd, int *i, int *j);
 /* -------------------------------------------------------------------------- */
 void	ft_free_params_2(t_node *params, int flag);
 void	ft_free_params(t_node *params, int flag);
-void	ft_free_infile(t_list *tmp);
-void	ft_free_outfile(t_list *tmp);
 void	ft_free_list(t_list **start);
-void	ft_free_lst(t_list **start);
 void	ft_exit(t_node *params, t_list **start, int value);
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
+
+/* -------------------------------------------------------------------------- */
+/*                         FILE = srcs/exit/exit_2.c                          */
+/* -------------------------------------------------------------------------- */
+void	ft_free_infile(t_list *tmp);
+void	ft_free_outfile(t_list *tmp);
+void	ft_free_lst(t_list **start);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils_print.c                          */
@@ -288,8 +295,6 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int	is_file_of_var(char *file, t_node *params);
-void	error_ambiguous(char *file);
 int	ft_open_io(t_list **lst, t_node *params);
 
 /* -------------------------------------------------------------------------- */

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 05:20:36 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:13:29 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	is_operator(char c)
 
 void	ft_token_count(char *cmd, int *i, int *total)
 {
+	int	flag;
+
+	flag = 0;
 	if (cmd[(*i) + 1] && cmd[(*i) + 1] == cmd[(*i)])
 	{
 		(*i)++;
@@ -38,8 +41,12 @@ void	ft_token_count(char *cmd, int *i, int *total)
 		(*total)++;
 	(*i)++;
 	while (ft_isspace(cmd[(*i)]) && cmd[(*i)])
+	{		
 		(*i)++;
-	(*i)--;
+		flag = 1;
+	}
+	if (flag)
+		(*i)--;
 }
 
 int	ft_is_quote(char c)
