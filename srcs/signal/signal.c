@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:17:12 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 01:30:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 03:47:28 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void	ft_sign_handle(int signo)
 {
 	(void)signo;
-	write(1, "\nMinishell$>", 13);
-	g_last_status = 131;
+	rl_on_new_line();
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_redisplay();
+	g_last_status = 130;
 }
 
 void	sig_choice()

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 00:26:05 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 04:05:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	is_file_of_var(char *file, t_node *params)
 	i = 0;
 	while (params->io_env[i])
 	{
-		printf("%s, %s\n", file, params->io_env[i]);
-		printf("%d %d\n", ft_strcmp(file, params->io_env[i]), is_sentences(params->io_env[i]));
 		if (ft_strcmp(file, params->io_env[i]) == 0
 			&& is_sentences(params->io_env[i]))
 			return (1);
