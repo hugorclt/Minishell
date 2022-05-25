@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/25 05:57:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sig_choice(void);
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_4.c                         */
 /* -------------------------------------------------------------------------- */
-int	ft_close_redirect(t_list **lst);
+int		ft_close_redirect(t_list **lst);
 void	ft_quoted(t_token *token, char c);
 
 /* -------------------------------------------------------------------------- */
@@ -54,7 +54,7 @@ void	ft_increm(int *i, int *j);
 /*                         FILE = srcs/utils/utils.c                          */
 /* -------------------------------------------------------------------------- */
 char	**ft_dup_tab(char **tab);
-int	print_pwd(void);
+int		print_pwd(void);
 char	*get_pwd(void);
 char	*ft_strjoin_char(char *cmd, char c);
 char	*ft_strcut(char *str, int i_start, int i_end);

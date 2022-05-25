@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:43:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 16:15:04 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_open_output(t_list **lst)
 				(*lst)->file_out[i].fd = open((*lst)->file_out[i].file,
 						O_CREAT | O_WRONLY | O_APPEND, 0644);
 			if ((*lst)->file_out[i].fd == -1)
-				ft_print_io_error_choice((*lst)->file_in[i].file);
+				ft_print_io_error_choice((*lst)->file_out[i].file);
 		}
 		i++;
 	}
