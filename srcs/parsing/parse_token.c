@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 05:18:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:17:44 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 
 void	ft_pass_quote(char *cmd, int *j)
 {
+	int	flag;
+
+	flag = 0;
 	(*j)++;
 	while (ft_is_quote(cmd[(*j)]) != 1 && cmd[(*j)])
+	{
 		(*j)++;
-	(*j)--;
+		flag = 1;
+	}
+	if (flag == 1)
+		(*j)--;
 }
 
 int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)

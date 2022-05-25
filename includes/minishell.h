@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 19:12:58 by yobougre         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /*                        FILE = srcs/signal/signal.c                         */
 /* -------------------------------------------------------------------------- */
 void	ft_sign_handle(int signo);
-void	sig_choice(void);
+void	sig_choice(int a);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_4.c                         */
@@ -196,11 +196,15 @@ int	ft_total_unquote(t_list **lst);
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/token_check.c                      */
 /* -------------------------------------------------------------------------- */
-int	ft_theres_quotes(char *token);
 int	ft_main_check(char **token);
 int	ft_check_quote(char *token);
 int	ft_is_operator(char *token);
 int	ft_check_token(t_token *token);
+
+/* -------------------------------------------------------------------------- */
+/*                  FILE = srcs/parsing/utils_token_check.c                   */
+/* -------------------------------------------------------------------------- */
+int	ft_check_next(t_token *token, int i);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/parsing/count_token_2.c                     */
@@ -266,21 +270,21 @@ void	ft_print_io_error_choice(char *str);
 /*                       FILE = srcs/exec/is_builtin.c                        */
 /* -------------------------------------------------------------------------- */
 void	ft_exit_choice(t_node *params, t_list **start, char *args);
-int		ft_is_builtin(char *cmd);
-int		ft_exec_builtin(t_node *params, char **cmd, t_list **lst_to_free);
+int	ft_is_builtin(char *cmd);
+int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/exec_utils.c                        */
 /* -------------------------------------------------------------------------- */
-int		ft_prepare_cmd(t_list **lst);
-int		ft_execute_one_builtin(t_node *params, t_list **lst);
-int		ft_execute_one_binaries(t_node *params, t_list **lst);
-int		ft_exec_one(t_node *params, t_list **lst);
+int	ft_prepare_cmd(t_list **lst);
+int	ft_execute_one_builtin(t_node *params, t_list **lst);
+int	ft_execute_one_binaries(t_node *params, t_list **lst);
+int	ft_exec_one(t_node *params, t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/insert_file.c                       */
 /* -------------------------------------------------------------------------- */
-int		ft_save_file(t_list **lst);
+int	ft_save_file(t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/create_list.c                       */
@@ -290,12 +294,12 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int		ft_open_io(t_list **lst, t_node *params);
+int	ft_open_io(t_list **lst, t_node *params);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/exec/clean_redirection.c                    */
 /* -------------------------------------------------------------------------- */
-int		is_redirect(t_list **lst, int *i);
+int	is_redirect(t_list **lst, int *i);
 char	**ft_clean_redirection(t_list **lst);
 
 /* -------------------------------------------------------------------------- */
