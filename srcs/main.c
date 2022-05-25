@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:53:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:36:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	g_last_status = 0;
 int	init_shlvl(t_node *params)
 {
 	int		occ;
-	int		shlvl;
 	char	*var;
 	char	*c_shlvl;
 
@@ -27,9 +26,9 @@ int	init_shlvl(t_node *params)
 		params->env = ft_add_var("SHLVL=2", params->env);
 		return (0);
 	}
-	shlvl = ft_atoi(params->env[occ] + 6);
-	shlvl++;
-	c_shlvl = ft_itoa(shlvl);
+	params->shlvl = ft_atoi(params->env[occ] + 6);
+	params->shlvl++;
+	c_shlvl = ft_itoa(params->shlvl);
 	if (!c_shlvl)
 		return (-1);
 	var = ft_strjoin("SHLVL=", c_shlvl);

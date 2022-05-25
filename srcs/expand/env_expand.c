@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 16:10:41 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:47:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:19:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_verif_dollars(char **ret, char *cmd, t_node *params)
 	while (cmd[i])
 	{
 		ft_quoted_expand(&token, cmd[i]);
-		if (cmd[i] == '$')
+		if (cmd[i] == '$' && cmd[i + 1] != ' ')
 		{
 			flag = ft_quote_expand(&token, ret, params, cmd);
 			if (flag == -1)

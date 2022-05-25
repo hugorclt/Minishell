@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:25:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 05:55:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:12:33 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ int	ft_wait_all_pid(t_node *params)
 			return (-1);
 		i++;
 	}
-	g_last_status = WEXITSTATUS(status);
+	if (status == 131)
+	{
+		g_last_status = status;
+		write(2, "Quit (core dumped)\n", 19);
+	}
+	else
+		g_last_status = WEXITSTATUS(status);
 	return (0);
 }

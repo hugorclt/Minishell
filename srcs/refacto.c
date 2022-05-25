@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:42:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 05:29:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:20:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ int	ft_refacto_start(t_node *params, t_list **lst, t_token *token, char **cmd)
 {
 	if (ft_start(params, token, lst) == -1)
 		return (-1);
-	sig_choice();
+	sig_choice(1);
 	(*cmd) = readline("Minishell$>");
 	if (!(*cmd))
+	{
+		write(1, "\n", 1);
 		return (ft_free_after_cmd(params, lst, 0), free(*cmd), -1);
+	}
 	return (0);
 }
 
@@ -44,6 +47,7 @@ int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 {
 	int	flag;
 
+	sig_choice(0);
 	flag = ft_launch_exec(params, lst, token, cmd);
 	if (flag == -1)
 		return (-1);

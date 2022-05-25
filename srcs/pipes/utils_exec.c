@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 04:37:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:10:32 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	char	*path;
-
+	
+	sig_choice(2);
 	if (ft_is_builtin((*lst)->token[0]) == 1)
 	{
 		ft_close_redirect(lst);
