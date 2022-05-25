@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:12:36 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/17 16:04:13 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/25 05:37:50 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_dup_addon(char *var)
 	return (output);
 }
 
-int ft_cat_var(char **env, char *var, int j)
+int	ft_cat_var(char **env, char *var, int j)
 {
 	int		i;
 	char	*addon;

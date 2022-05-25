@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 14:45:28 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/18 10:55:31 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/05/25 05:45:58 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,43 @@ int	ft_nb_bs(char *token)
 
 char	*ft_backslash(char *token)
 {
-	int		i;
-	int		j;
+	t_help	help;
 	char	*output;
 
-	i = 0;
+	help.i = 0;
 	output = malloc(sizeof(char) * (ft_strlen(token) + ft_nb_bs(token) + 1));
 	if (!output)
 		return (NULL);
-	j = 0;
-	while (token[i])
+	help.j = 0;
+	while (token[help.i])
 	{
-		if (token[i + 1] == '$' || token[i + 1] == '"')
+		if (token[help.i + 1] == '$' || token[help.i + 1] == '"')
 		{
-			output[j] = token[i];
-			ft_increm(&i, &j);
-			output[j] = '\\';
-			++j;
+			output[help.j] = token[help.i];
+			ft_increm(&help.i, &help.j);
+			output[help.j] = '\\';
+			++help.j;
 		}
 		else
 		{
-			output[j] = token[i];
-			ft_increm(&i, &j);
+			output[help.j] = token[help.i];
+			ft_increm(&help.i, &help.j);
 		}
 	}
-	output[j] = 0;
+	output[help.j] = 0;
 	return (free(token), output);
+}
+
+int	ft_var_len(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '+' || var[i] == '=')
+			break ;
+		++i;
+	}
+	return (i);
 }
