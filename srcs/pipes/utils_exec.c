@@ -6,17 +6,29 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 19:10:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:57:10 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+void	ft_close_forked(t_node *params, t_list **lst)
+{
+	ft_close_redirect(lst);
+	close(params->save_in);
+	close(params->save_out);
+}
+
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	char	*path;
-	
+
 	sig_choice(2);
+	if (!(*lst)->token)
+	{
+		ft_close_forked(params, lst);
+		ft_exit(params, lst_to_free, 1);
+	}
 	if (ft_is_builtin((*lst)->token[0]) == 1)
 	{
 		ft_close_redirect(lst);
@@ -27,15 +39,13 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 	else
 	{
 		path = check_path(get_path_lst(params->env), (*lst)->token[0]);
-		ft_close_redirect(lst);
 		if (!path)
 		{
 			free(path);
 			ft_exit(params, lst_to_free, 127);
 			return (-1);
 		}
-		close(params->save_in);
-		close(params->save_out);
+		ft_close_forked(params, lst);
 		if (execve(path, (*lst)->token, params->env) == -1)
 			return (free(path), ft_exit(params, lst_to_free, 1), -1);
 	}
