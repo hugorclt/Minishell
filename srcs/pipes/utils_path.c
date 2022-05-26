@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/18 16:10:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:28:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_cmd(char *path, char *cmd)
 	char	*output;
 
 	output = ft_strjoin(path, cmd);
+	if (!output)
+		return (NULL);
 	return (output);
 }
 
@@ -68,7 +70,7 @@ char	*check_path(char **path_lst, char *cmd)
 	if (flag == -2)
 		return (NULL);
 	if (!path_lst || flag == -1)
-		return (ft_command_nt_found(cmd), NULL);
+		return (ft_command_nt_found(cmd), ft_free(path_lst), NULL);
 	while (path_lst[i])
 	{
 		output = ft_strjoin(path_lst[i], cmd);

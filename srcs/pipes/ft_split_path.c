@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 13:44:12 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:22:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	**ft_split_path(char const *s, char c)
 
 	if (!s)
 		return (NULL);
+	printf("%s\n", s);
 	output = malloc(sizeof(char *) * ((ft_count(s, c) + 1)));
 	if (!output)
 		return (NULL);
