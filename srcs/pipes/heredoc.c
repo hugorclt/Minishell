@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 13:28:05 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:42:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ static int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd)
 	return (0);
 }
 
-int	ft_heredoc(t_list **lst, int *i, t_node *params)
+int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 {
 	int		fd;
 	char	*line;
 	char	*line_expand;
 
-	sig_choice(2);
+	sig_choice(1);
 	if (init_heredoc(&fd, &line_expand) == -1)
 		return (-1);
 	while (1)
@@ -74,13 +74,12 @@ int	ft_heredoc(t_list **lst, int *i, t_node *params)
 		line = readline("> ");
 		if (!line)
 		{
-			close(.heredoc_temp);
-			unlink(.heredoc_temp);
-			ft_exit(params, lst, 0);
+			close(fd);
+			unlink(".heredoc_temp");
+			ft_close_all(params);
+			ft_exit(params, lst_to_free, 0);
 		}
 		ft_iamcrying(lst, &line_expand, line, params);
-		printf("%d\n", ft_strcmp(line_expand, (*lst)->limiter));
-		printf("oui : %s, %s\n", line_expand, (*lst)->limiter);
 		if (!line_expand)
 			ft_putstr_fd("\n", 1);
 		if (!ft_strcmp(line_expand, (*lst)->limiter) || !line_expand)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:35:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ char	**ft_split_path(char const *s, char c);
 /*                        FILE = srcs/pipes/heredoc.c                         */
 /* -------------------------------------------------------------------------- */
 int	do_expandable(char *str);
-int	ft_heredoc(t_list **lst, int *i, t_node *params);
+int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/ft_get_output.c                      */
@@ -295,7 +295,7 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int	ft_open_io(t_list **lst, t_node *params);
+int	ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/exec/clean_redirection.c                    */

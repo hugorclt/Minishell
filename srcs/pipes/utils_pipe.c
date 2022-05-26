@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 13:01:33 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:35:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_fork(t_node *params, t_list **lst, t_list **lst_to_free)
 	params->pid[params->index] = fork();
 	if (params->pid[params->index] == 0)
 	{
-		if (ft_open_io(lst, params) == -1)
+		if (ft_open_io(lst, params, lst_to_free) == -1)
 			return (-1);
 		if (ft_help(params, lst) == -1)
 			return (-1);
