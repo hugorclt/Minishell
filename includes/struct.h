@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 19:20:38 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:12:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_list
 	int				heredoc;
 	struct s_list	*next;
 	int				is_builtin;
+	int				fd_doc;
 }	t_list;
 
 typedef struct s_node

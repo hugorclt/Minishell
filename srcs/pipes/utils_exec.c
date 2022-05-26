@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 14:41:30 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:15:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 
 	path = check_path(get_path_lst(params->env), (*lst)->token[0]);
 	ft_close_forked(params, lst);
+	if ((*lst)->fd_doc != -1)
+		close((*lst)->fd_doc);
 	if (!path)
 	{
 		free(path);
@@ -41,6 +43,8 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 	sig_choice(2);
 	if ((*lst)->token[0] == NULL)
 	{
+		if ((*lst)->fd_doc != -1)
+			close((*lst)->fd_doc);
 		ft_close_forked(params, lst);
 		ft_exit(params, lst_to_free, 1);
 	}
