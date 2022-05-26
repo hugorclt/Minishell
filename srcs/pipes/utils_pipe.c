@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 04:56:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 05:58:45 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ static int	ft_help(t_node *params, t_list **lst)
 		if ((*lst)->last_infile < 0)
 			return (perror((*lst)->file_in[(*lst)->nb_infile - 1].file), -1);
 		if ((*lst)->last_outfile == 1)
+		{
+			printf("ici ca marche : %s\n", (*lst)->token[0]);
 			ft_dup2((*lst)->last_infile, params->fd[1]);
+			printf("ici ca marche pas : %s\n", (*lst)->token[0]);
+		}
 		else
 			ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 	}

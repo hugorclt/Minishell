@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:11:13 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 20:56:19 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/25 23:31:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int	ft_close_redirect(t_list **lst)
 	int		i;
 
 	i = 0;
+	printf("test\n");
 	while (i < (*lst)->nb_infile)
 	{
-		printf("test\n");
 		if ((*lst)->file_in[i].fd != -1)
 		{
+			printf("%s\n", (*lst)->file_in[i].file);
 			if (close((*lst)->file_in[i].fd) == -1)
 				return (-1);
 			if ((*lst)->file_in[i].flag == 1)
