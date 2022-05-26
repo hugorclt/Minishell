@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 13:47:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:38:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,24 @@ void	ft_close_forked(t_node *params, t_list **lst)
 	close(params->save_out);
 }
 
-int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
+int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	char	*path;
 
+	path = check_path(get_path_lst(params->env), (*lst)->token[0]);
+	ft_close_forked(params, lst);
+	if (!path)
+	{
+		free(path);
+		ft_exit(params, lst_to_free, 127);
+		return (-1);
+	}
+	if (execve(path, (*lst)->token, params->env) == -1)
+		return (free(path), ft_exit(params, lst_to_free, 1), -1);
+}
+
+int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
+{
 	sig_choice(2);
 	if ((*lst)->token[0] == NULL)
 	{
@@ -37,18 +51,7 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		ft_exit(params, lst_to_free, 1);
 	}
 	else
-	{
-		path = check_path(get_path_lst(params->env), (*lst)->token[0]);
-		ft_close_forked(params, lst);
-		if (!path)
-		{
-			free(path);
-			ft_exit(params, lst_to_free, 127);
-			return (-1);
-		}
-		if (execve(path, (*lst)->token, params->env) == -1)
-			return (free(path), ft_exit(params, lst_to_free, 1), -1);
-	}
+		ft_exec_2(params, lst, lst_to_free);
 	return (1);
 }
 
