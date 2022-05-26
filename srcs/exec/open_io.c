@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 13:34:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:15:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
 	int	i;
 
 	i = -1;
+	(*lst)->fd_doc = -1;
 	while (++i < (*lst)->nb_infile)
 	{
 		if ((*lst)->file_in[i].file)
