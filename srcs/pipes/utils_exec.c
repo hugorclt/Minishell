@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 17:32:24 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:48:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	is_directory(char *str)
 	i = 0;
 	if (str[i] != '.' && str[i] != '/')
 		return (0);
-	check_if_is_file(str);
 	while (str[i])
 	{
 		if (str[i] != '.' && str[i] != '/')
