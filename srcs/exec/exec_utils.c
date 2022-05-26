@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:15:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:59:38 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 	if (params->pid[0] == 0)
 	{
 		if (ft_open_io(lst, params, lst) == -1)
-			return (ft_exit(params, lst, 0), -1);
-		if (!(*lst)->token[0])
 			return (ft_exit(params, lst, 0), -1);
 		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 		close((*lst)->fd_doc);
