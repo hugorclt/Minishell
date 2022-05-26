@@ -6,17 +6,44 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 19:10:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:41:30 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
+void	ft_close_forked(t_node *params, t_list **lst)
+{
+	ft_close_redirect(lst);
+	close(params->save_in);
+	close(params->save_out);
+}
+
+int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	char	*path;
-	
+
+	path = check_path(get_path_lst(params->env), (*lst)->token[0]);
+	ft_close_forked(params, lst);
+	if (!path)
+	{
+		free(path);
+		ft_exit(params, lst_to_free, 127);
+		return (-1);
+	}
+	if (execve(path, (*lst)->token, params->env) == -1)
+		return (free(path), ft_exit(params, lst_to_free, 1), -1);
+	return (0);
+}
+
+int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
+{
 	sig_choice(2);
+	if ((*lst)->token[0] == NULL)
+	{
+		ft_close_forked(params, lst);
+		ft_exit(params, lst_to_free, 1);
+	}
 	if (ft_is_builtin((*lst)->token[0]) == 1)
 	{
 		ft_close_redirect(lst);
@@ -25,20 +52,7 @@ int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 		ft_exit(params, lst_to_free, 1);
 	}
 	else
-	{
-		path = check_path(get_path_lst(params->env), (*lst)->token[0]);
-		ft_close_redirect(lst);
-		if (!path)
-		{
-			free(path);
-			ft_exit(params, lst_to_free, 127);
-			return (-1);
-		}
-		close(params->save_in);
-		close(params->save_out);
-		if (execve(path, (*lst)->token, params->env) == -1)
-			return (free(path), ft_exit(params, lst_to_free, 1), -1);
-	}
+		ft_exec_2(params, lst, lst_to_free);
 	return (1);
 }
 

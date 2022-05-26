@@ -88,6 +88,7 @@ int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 /* -------------------------------------------------------------------------- */
 void	ft_iamcrying(t_list **lst, char **line_ex, char *line, t_node *params);
 int	init_heredoc(int *fd, char **line_expand);
+int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
@@ -116,6 +117,8 @@ void	ft_free(char **tab);
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
+void	ft_close_forked(t_node *params, t_list **lst);
+int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_init_pipe(t_node *params);
 
@@ -159,10 +162,17 @@ int	ft_child_exec(t_node *params, t_list **lst);
 char	**ft_split_path(char const *s, char c);
 
 /* -------------------------------------------------------------------------- */
+/*                     FILE = srcs/pipes/utils_heredoc.c                      */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/pipes/heredoc.c                         */
 /* -------------------------------------------------------------------------- */
+int	ft_heredoc_help(int	*fd, t_list **lst, int *i);
 int	do_expandable(char *str);
-int	ft_heredoc(t_list **lst, int *i, t_node *params);
+void	ft_free_heredoc(char *line, char *line_after_expand);
+int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd);
+int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/ft_get_output.c                      */
@@ -295,7 +305,7 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int	ft_open_io(t_list **lst, t_node *params);
+int	ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/exec/clean_redirection.c                    */

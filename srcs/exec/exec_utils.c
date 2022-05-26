@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/24 22:50:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:35:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_prepare_cmd(t_list **lst)
 int	ft_execute_one_builtin(t_node *params, t_list **lst)
 {
 	params->have_pid = 0;
-	if (ft_open_io(lst, params) == -1)
+	if (ft_open_io(lst, params, lst) == -1)
 		return (-1);
 	ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
 	if (ft_exec_builtin(params, (*lst)->token, lst) == -1)
@@ -55,7 +55,7 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 	params->pid[0] = fork();
 	if (params->pid[0] == 0)
 	{
-		if (ft_open_io(lst, params) == -1)
+		if (ft_open_io(lst, params, lst) == -1)
 			return (ft_exit(params, lst, 0), -1);
 		if (!(*lst)->token[0])
 			return (ft_exit(params, lst, 0), -1);
@@ -70,7 +70,7 @@ int	ft_exec_one(t_node *params, t_list **lst)
 {
 	if (!(*lst)->token && ((*lst)->nb_infile || (*lst)->nb_outfile))
 	{
-		if (ft_open_io(lst, params) == -1)
+		if (ft_open_io(lst, params, lst) == -1)
 			return (-1);
 	}
 	else if (ft_is_builtin((*lst)->token[0]))

@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 04:52:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:49:05 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
+int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
 {
 	close(*fd);
 	if (ft_heredoc_infile(lst, i) == -1)
@@ -38,19 +38,15 @@ int	do_expandable(char *str)
 	return (0);
 }
 
-static void	ft_free_heredoc(char *line, char *line_after_expand)
+void	ft_free_heredoc(char *line, char *line_after_expand)
 {
 	if (line)
-	{
 		free(line);
-	}
 	if (line_after_expand)
-	{
 		free(line_after_expand);
-	}
 }
 
-static int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd)
+int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd)
 {
 	line_after_expand = ft_strjoin_char(line_after_expand, '\n');
 	if (!line_after_expand)
@@ -60,31 +56,12 @@ static int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd)
 	return (0);
 }
 
-int	ft_heredoc(t_list **lst, int *i, t_node *params)
+int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 {
-	int		fd;
-	char	*line;
-	char	*line_expand;
-
-	if (init_heredoc(&fd, &line_expand) == -1)
+	if (ft_refacto_rl(lst, i, params, lst_to_free) < 0)
 		return (-1);
-	while (1)
-	{
-		ft_putstr_fd("heredoc$>", 1);
-		line = get_next_line(0);
-		line = ft_cut_tail(line);
-		ft_iamcrying(lst, &line_expand, line, params);
-		if (!line_expand)
-			ft_putstr_fd("\n", 1);
-		if (!ft_strcmp(line_expand, (*lst)->limiter) || !line_expand)
-			break ;
-		if (ft_heredoc_help_2(line, line_expand, fd) == -1)
-			return (-1);
-	}
-	if (ft_heredoc_help(&fd, lst, i) == -1)
-		return (free(line), free(line_expand), -1);
-	ft_free_heredoc(line, line_expand);
 	if ((*lst)->file_in[*i].fd < 0)
 		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
+	sig_choice(0);
 	return (1);
 }
