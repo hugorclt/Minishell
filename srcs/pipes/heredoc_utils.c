@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:51:33 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:30:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:04:35 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	init_heredoc(char **line_expand, t_list **lst)
 
 static void	ft_refacto_exit(t_list **lst_f, int fd, t_list **lst, t_node *params)
 {
+	ft_putstr_fd("\n", 1);
 	free((*lst)->limiter);
 	close(fd);
 	unlink(".heredoc_temp");

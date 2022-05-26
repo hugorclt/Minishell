@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 16:15:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:59:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free)
 {
 	sig_choice(2);
+
 	if ((*lst)->token[0] == NULL)
 	{
 		if ((*lst)->fd_doc != -1)
