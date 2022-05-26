@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:51:33 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 15:49:05 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:17:12 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 	if (ft_heredoc_help(&fd, lst, i) == -1)
 		return (free(line), free(line_expand), -1);
 	ft_free_heredoc(line, line_expand);
-	close(fd);
 	return (0);
 }
