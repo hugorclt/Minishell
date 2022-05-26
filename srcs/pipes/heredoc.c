@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 22:48:21 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:28:05 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,21 @@ int	ft_heredoc(t_list **lst, int *i, t_node *params)
 	char	*line;
 	char	*line_expand;
 
+	sig_choice(2);
 	if (init_heredoc(&fd, &line_expand) == -1)
 		return (-1);
 	while (1)
-	{
-		ft_putstr_fd("heredoc$>", 1);
-		line = get_next_line(0);
-		line = ft_cut_tail(line);
+	{	
+		line = readline("> ");
+		if (!line)
+		{
+			close(.heredoc_temp);
+			unlink(.heredoc_temp);
+			ft_exit(params, lst, 0);
+		}
 		ft_iamcrying(lst, &line_expand, line, params);
+		printf("%d\n", ft_strcmp(line_expand, (*lst)->limiter));
+		printf("oui : %s, %s\n", line_expand, (*lst)->limiter);
 		if (!line_expand)
 			ft_putstr_fd("\n", 1);
 		if (!ft_strcmp(line_expand, (*lst)->limiter) || !line_expand)
@@ -86,5 +93,6 @@ int	ft_heredoc(t_list **lst, int *i, t_node *params)
 	ft_free_heredoc(line, line_expand);
 	if ((*lst)->file_in[*i].fd < 0)
 		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
+	sig_choice(0);
 	return (1);
 }
