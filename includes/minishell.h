@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2021/10/19 15:08:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:20:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_refacto_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 /*                     FILE = srcs/pipes/heredoc_utils.c                      */
 /* -------------------------------------------------------------------------- */
 void	ft_iamcrying(t_list **lst, char **line_ex, char *line, t_node *params);
-int	init_heredoc(int *fd, char **line_expand);
+int	init_heredoc(char **line_expand, t_list **lst);
 int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
@@ -168,7 +168,7 @@ char	**ft_split_path(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/pipes/heredoc.c                         */
 /* -------------------------------------------------------------------------- */
-int	ft_heredoc_help(int	*fd, t_list **lst, int *i);
+int	ft_heredoc_help(t_list **lst, int *i);
 int	do_expandable(char *str);
 void	ft_free_heredoc(char *line, char *line_after_expand);
 int	ft_heredoc_help_2(char *line, char *line_after_expand, int fd);

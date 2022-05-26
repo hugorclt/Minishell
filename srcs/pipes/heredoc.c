@@ -6,15 +6,15 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:17:12 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:30:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_heredoc_help(int	*fd, t_list **lst, int *i)
+int	ft_heredoc_help(t_list **lst, int *i)
 {
-	close(*fd);
+	close((*lst)->fd_doc);
 	if (ft_heredoc_infile(lst, i) == -1)
 		return (-1);
 	free((*lst)->limiter);
