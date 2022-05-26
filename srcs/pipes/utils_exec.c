@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 16:59:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:32:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,32 @@ void	ft_close_forked(t_node *params, t_list **lst)
 	ft_close_redirect(lst);
 	close(params->save_in);
 	close(params->save_out);
+}
+
+void	directory_error(char *str)
+{
+	ft_putstr_fd("bash: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": Is a directory\n", 2);
+	g_last_status = 126;
+}
+
+int	is_directory(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] != '.' && str[i] != '/')
+		return (0);
+	check_if_is_file(str);
+	while (str[i])
+	{
+		if (str[i] != '.' && str[i] != '/')
+			return (0);
+		i++;
+	}
+	directory_error(str);
+	return (-1);
 }
 
 int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
@@ -33,7 +59,9 @@ int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 		ft_exit(params, lst_to_free, 127);
 		return (-1);
 	}
-	if (execve(path, (*lst)->token, params->env) == -1)
+	if (is_directory((*lst)->token[0]) == -1)
+		return (free(path), ft_exit(params, lst_to_free, 126), -1);
+	else if (execve(path, (*lst)->token, params->env) == -1)
 		return (free(path), ft_exit(params, lst_to_free, 1), -1);
 	return (0);
 }
