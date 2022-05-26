@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:11:13 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 15:49:03 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:44:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_close_redirect(t_list **lst)
 			if (close((*lst)->file_out[i++].fd) == -1)
 				return (-1);
 		}
-		i++;
 	}
 	return (0);
 }
