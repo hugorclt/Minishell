@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 11:07:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:19:20 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_quote(char *token)
 			while (token[i] != c)
 			{
 				if (!token[i])
-					return (-1);
+					return (ft_print_error_c(c), -1);
 				i++;
 			}
 		}

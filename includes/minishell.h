@@ -38,6 +38,7 @@ char	*ft_cut_tail(char *str);
 /*                         FILE = srcs/utils/error.c                          */
 /* -------------------------------------------------------------------------- */
 void	ft_print_error(char *token);
+void	ft_print_error_c(char c);
 void	ft_print_ofpc(void);
 void	ft_err_cd(char *path);
 
