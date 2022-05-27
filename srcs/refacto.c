@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:42:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 20:31:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:32:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_we_dont(void)
 {
 	ft_putstr_fd("omg no a '||' too difficult for me\n", 2);
+	g_last_status = 2;
 }
 
 void	ft_refacto_free(t_node *params, char *cmd, t_list **lst)

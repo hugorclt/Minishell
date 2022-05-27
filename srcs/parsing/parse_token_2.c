@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:18:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 13:09:17 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:32:31 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 void	ft_error_mess(char *token)
 {
 	if (!ft_strcmp(token, "|"))
-		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+		g_last_status = 2;
+	}
 	else
-		ft_putstr_fd("bash: syntax error near unexpected token `newline'\n", 2);
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
+		g_last_status = 2;
+	}
 }
 
 int	ft_sub_token(char **dest, char *cmd, int *j, int new_j)

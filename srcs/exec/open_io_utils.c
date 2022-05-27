@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:54:40 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/23 18:29:57 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:34:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	ft_print_file_not_found(char *str)
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
+	g_last_status = 2;
 }
 
 void	ft_print_io_error_choice(char *str)

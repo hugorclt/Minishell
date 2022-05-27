@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:54:54 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:07:40 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:28:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_print_tab(char **tokens)
 	if (!*tokens)
 		return ;
 	while (tokens[i])
-		dprintf(2, "|%s|\n", tokens[i++]);
+		printf("|%s|\n", tokens[i++]);
 }
 
 void	ft_print_env(char **env)

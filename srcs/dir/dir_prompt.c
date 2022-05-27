@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 13:38:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:49:25 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:33:51 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ static void	ft_attrib_path(t_node *params, char *path, int *ret)
 		if (params->root)
 			*ret = chdir(params->root);
 		else
+		{
 			ft_putstr_fd("Minishell: cd: HOME not set\n", 2);
+			g_last_status = 1;
+		}
 	}
 	else
 		*ret = chdir(path);
