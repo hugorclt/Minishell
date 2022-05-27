@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:18:56 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 15:40:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:39:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_str_is_digit(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == 0)
+		if (ft_isdigit(str[i]) == 0 && str[i] != '-')
 			return (-1);
 		i++;
 	}

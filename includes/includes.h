@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 14:00:10 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:32:30 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define PROG_NAME "Minishell"
 # define PERM_DENIED ": permission denied"
 # define SPEC_CHAR "~`!@#$%^&*(){}[]="
+# define EXPAND_CHAR "' \"$=,:.*!?-#@%="
 
 extern int	g_last_status;
 

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 11:03:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 11:50:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:33:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	ft_find_len_env(char *str)
 	i = 0;
 	if (!str[i])
 		return (0);
-	while (str[i] && (str[i] != '\'' && str[i] != ' '
-			&& str[i] != '"' && str[i] != '$'
-			&& str[i] != '=' && str[i] != ','))
+	while (str[i] && (ft_strchr(EXPAND_CHAR, str[i]) == NULL))
 		i++;
 	return (i);
 }
