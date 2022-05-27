@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:18:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 20:20:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:09:17 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	ft_error_mess(char *token)
 		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
 	else
 		ft_putstr_fd("bash: syntax error near unexpected token `newline'\n", 2);
+}
+
+int	ft_sub_token(char **dest, char *cmd, int *j, int new_j)
+{
+	*dest = ft_substr(cmd, *j, new_j - (*j));
+	if (!*dest)
+		return (-1);
+	return (0);
 }
 
 int	ft_parse_tokens(t_token *token, char *cmd, int flag)

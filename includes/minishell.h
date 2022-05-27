@@ -231,6 +231,7 @@ void	ft_refact_incr(int *i, int *j, int new_j);
 /*                    FILE = srcs/parsing/parse_token_2.c                     */
 /* -------------------------------------------------------------------------- */
 void	ft_error_mess(char *token);
+int	ft_sub_token(char **dest, char *cmd, int *j, int new_j);
 int	ft_parse_tokens(t_token *token, char *cmd, int flag);
 
 /* -------------------------------------------------------------------------- */
