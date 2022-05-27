@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 20:13:29 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 10:45:49 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_token_count(char *cmd, int *i, int *total)
 	}
 	else
 		(*total)++;
-	(*i)++;
 	while (ft_isspace(cmd[(*i)]) && cmd[(*i)])
 	{		
 		(*i)++;

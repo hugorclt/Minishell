@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 20:59:25 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:07:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	ft_check_token(t_token *token)
 		return (-1);
 	if (!ft_strcmp(token->token[i], "|"))
 		return (ft_print_error(token->token[i]), -1);
+	if (is_dpipe(token) < 0)
+		return (ft_print_error("||"), -1);
 	while (token->token[i])
 	{
 		if (ft_check_next(token, i) < 0)

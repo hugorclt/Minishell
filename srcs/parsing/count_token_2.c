@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:13:37 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 20:16:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:03:39 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 static void	ft_sweep(char *cmd, int *i, int *total)
 {
-	while (cmd[(*i)])
+	if (cmd[(*i)])
 	{
-		if (ft_is_quote(cmd[(*i)]))
+		while (cmd[(*i)])
 		{
-			(*i)++;
-			while (!ft_is_quote(cmd[(*i)]) && cmd[(*i)])
+			if (ft_is_quote(cmd[(*i)]) && cmd[(*i)])
+			{
 				(*i)++;
+				while (!ft_is_quote(cmd[(*i)]) && cmd[(*i)])
+					(*i)++;
+				if (!cmd[(*i)])
+					return ;
+			}
+			if (cmd[(*i)] && is_operator(cmd[(*i)]) == 1)
+				return (ft_token_count(cmd, i, total));
+			(*i)++;
 		}
-		if (is_operator(cmd[(*i)]) == 1)
-			return (ft_token_count(cmd, i, total));
-		(*i)++;
 	}
 }
 
@@ -52,4 +57,10 @@ int	ft_total_token(char *cmd)
 		++i;
 	}
 	return (total);
+}
+
+void	ft_refact_incr(int *i, int *j, int new_j)
+{
+	(*i)++;
+	(*j) += new_j - (*j);
 }
