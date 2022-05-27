@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:41:47 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 05:43:34 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:46:13 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int	ft_export(t_node *params, char *token)
 		else if (!ft_vld(str))
 			ft_change_var(params->env, str,
 				ft_find_occ_free(params->env, str));
+		if(ft_vld(str))
+			ft_err_var(str);
 		if (!params->env)
 			return (free(str), ft_free(tmp), -1);
 	}
