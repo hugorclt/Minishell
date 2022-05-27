@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 11:03:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:04:04 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 		if (ft_is_quote(cmd[new_j]) == 1)
 			ft_pass_quote(cmd, &new_j);
 		if (!cmd[new_j])
+		{
+			token->token[(*i)] = ft_substr(cmd, *j, new_j - (*j));
 			return (ft_refact_incr(i, j , new_j), 0);
+		}
 		if (is_operator(cmd[new_j]) == 1 && cmd[new_j])
 		{
 			ft_pass_space_reverse(cmd, &new_j);
