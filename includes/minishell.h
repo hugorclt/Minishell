@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 10:56:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:17:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	ft_free(char **tab);
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_forked(t_node *params, t_list **lst);
+void	directory_error(char *str);
+int	is_directory(char *str);
 int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 int	ft_init_pipe(t_node *params);
@@ -223,6 +225,7 @@ int	ft_check_next(t_token *token, int i);
 /*                    FILE = srcs/parsing/count_token_2.c                     */
 /* -------------------------------------------------------------------------- */
 int	ft_total_token(char *cmd);
+void	ft_refact_incr(int *i, int *j, int new_j);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/parsing/parse_token_2.c                     */
@@ -284,6 +287,7 @@ void	ft_print_io_error_choice(char *str);
 /* -------------------------------------------------------------------------- */
 void	ft_exit_choice(t_node *params, t_list **start, char *args);
 int	ft_is_builtin(char *cmd);
+void	ft_cd_many_args_check(char **cmd, t_node *params);
 int	ft_exec_builtin(t_node *params, char **cmd, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */

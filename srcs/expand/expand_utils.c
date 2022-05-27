@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 11:03:11 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 19:31:01 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 11:50:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	ft_expand_utils_2(char **ret, char *token, int *i, t_node *p)
 {
 	char	*to_add;
 
-	if (token[*i + 1] == ' ' || token[*i + 1] == '\0')
+	if (token[*i + 1] == ' ' || token[*i + 1] == '\0'
+		|| token[*i + 1] == '$' || token[*i + 1] == '"')
 	{
 		to_add = ft_strdup("$");
 		(*i)++;
