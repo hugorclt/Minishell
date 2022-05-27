@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:55:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 13:40:53 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:46:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	ft_err_var(char *var)
 {
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(var, 2);
-	ft_putstr_fd("'\n", 2)
+	ft_putstr_fd("': not a valid identifier\n", 2);
 	g_last_status = 1;
 }

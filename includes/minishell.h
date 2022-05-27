@@ -41,6 +41,7 @@ void	ft_print_error(char *token);
 void	ft_print_error_c(char c);
 void	ft_print_ofpc(void);
 void	ft_err_cd(char *path);
+void	ft_err_var(char *var);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_2.c                         */

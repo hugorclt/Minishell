@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 13:40:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:46:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int	ft_vld(char *var)
 
 	i = 0;
 	if (!ft_is_charset(var[i], SPEC_CHAR) || ft_isdigit(var[i]))
-		return (ft_print_error(var), -1);
+		return (-1);
 	while (var[i] && i < ft_strlen_exp(var))
 	{
 		if (var[i] == '+' && var[i + 1] && var[i + 1] == '=')
 			break ;
 		if (!ft_is_charset(var[i], SPEC_CHAR))
-			return (ft_print_error(var), -1);
+			return (-1);
 		++i;
 	}
 	return (0);
