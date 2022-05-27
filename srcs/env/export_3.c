@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:41:47 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 13:46:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:34:28 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 int	ft_theres_dquotes(char *token)
 {
-	int	i;
+	int		i;
+	char	c;
 
 	i = 0;
 	while (token[i])
 	{
-		if (token[i] == '"')
-			return (1);
+		if (token[i] == '"' || token[i] == '\'')
+		{
+			c = token[i];
+			++i;
+			while (token[i] && token[i] != c)
+				++i;
+			if (!token[i])
+				return (0);
+			return (c);
+		}
 		++i;
 	}
 	return (0);
@@ -100,27 +109,28 @@ char	*ft_simple_unquote(char *var)
 
 int	ft_export(t_node *params, char *token)
 {
-	char	*str;
 	char	**tmp;
+	int		i;
 
 	tmp = ft_split_space(token);
+	i = 1;
 	if (!tmp || !token)
 		return (-1);
-	str = ft_to_str_without_free(tmp + 1);
 	if (ft_tab_size(tmp) < 2 && !ft_strcmp("export", tmp[0]))
-		return (free(str), ft_free(tmp), ft_export_alph(params->env));
-	else
+		return (ft_free(tmp), ft_export_alph(params->env));
+	while (tmp[i])
 	{
-		if (ft_find_occ_free(params->env, str) == -1 && !ft_vld(str))
-			params->env = ft_add_var(str, params->env);
-		else if (!ft_vld(str))
-			ft_change_var(params->env, str,
-				ft_find_occ_free(params->env, str));
-		if(ft_vld(str))
-			ft_err_var(str);
+		if (ft_find_occ_free(params->env, tmp[i]) == -1 && !ft_vld(tmp[i]))
+			params->env = ft_add_var(ft_unquote(tmp, i), params->env);
+		else if (!ft_vld(tmp[i]))
+			ft_change_var(params->env, ft_unquote(tmp, i),
+				ft_find_occ_free(params->env, tmp[i]));
+		if (ft_vld(tmp[i]))
+			ft_err_var(tmp[i]);
 		if (!params->env)
-			return (free(str), ft_free(tmp), -1);
+			return (ft_free(tmp), -1);
+		++i;
 	}
 	g_last_status = 0;
-	return (free(str), ft_free(tmp), 0);
+	return (ft_free(tmp), 0);
 }

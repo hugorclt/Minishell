@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:17:12 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 10:53:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:38:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	ft_sign_handle(int signo)
 	}
 }
 
+void	ft_sign_heredoc(int signo)
+{
+	(void)signo;
+	close(STDIN_FILENO);
+	open("/dev/stdin", O_RDWR);
+	g_last_status = 6122002;
+}
+
 void	sig_choice(int a)
 {
 	if (a == 1)
@@ -44,5 +52,10 @@ void	sig_choice(int a)
 	{
 		signal(SIGINT, ft_sign_handle);
 		signal(SIGQUIT, ft_sign_handle);
+	}
+	else if (a == 3)
+	{
+		signal(SIGINT, ft_sign_heredoc);
+		signal(SIGQUIT, SIG_IGN);
 	}
 }

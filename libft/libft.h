@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:40:53 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 00:09:58 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:42:41 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@
 # include "../includes/minishell.h"
 # define BUFFER_SIZE 1000000
 
-
-
-//char		*ft_strdup_pimp(char *s);
 char		*get_next_line(int fd);
-//char		*ft_strjoin_pimp(char *s1, char *s2);
 char		*ft_next_line(char *line);
 int			ft_strchr_pimp(char *s, char c);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
@@ -43,6 +39,7 @@ int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
 int			ft_isdigit(int c);
+int			ft_str_is_digit(char *str);
 int			ft_isprint(int c);
 char		*ft_itoa(int n);
 void		*ft_memset(void *b, int c, size_t len);

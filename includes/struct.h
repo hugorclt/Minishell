@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 11:15:49 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:34:28 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 
 typedef struct s_help
 {
-	int	i;
-	int	j;
-	int	k;
-	int	p;
+	int		i;
+	int		j;
+	int		k;
+	int		p;
+	char	c;
 }	t_help;
 
 typedef struct s_token
@@ -63,7 +64,7 @@ typedef struct s_node
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
- 	int				index;
+	int				index;
 	int				heredoc;
 	char			*limiter;
 	int				fd_stdin;
@@ -84,6 +85,5 @@ typedef struct s_garb_col
 	int					flag;
 	struct s_garb_col	*next;
 }	t_garb;
-
 
 #endif

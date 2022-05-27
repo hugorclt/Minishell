@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 05:45:58 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:34:27 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,33 @@ int	ft_check_equal(char *token)
 	return (0);
 }
 
-char	*ft_unquote(char *var)
+char	*ft_unquote(char **tmp, int index)
 {
 	char	*output;
-	int		i;
-	int		j;
+	t_help	help;
 
-	i = 0;
-	j = 0;
-	if (!ft_theres_dquotes(var) || !var)
-		return (var);
-	output = malloc(sizeof(char) * (ft_strlen(var)));
+	ft_init_int(&help.i, &help.j);
+	help.c = ft_theres_dquotes(tmp[index]);
+	if (!help.c || !tmp[index])
+		return (tmp[index]);
+	output = malloc(sizeof(char) * (ft_strlen(tmp[index])));
 	if (!output)
 		return (NULL);
-	while (var[i])
+	while (tmp[index][help.i])
 	{
-		if (var[i] == '"')
+		if (tmp[index][help.i] == help.c)
 		{
-			if (!var[i + 1])
+			if (!tmp[index][help.i + 1])
 				break ;
-			++i;
+			++help.i;
 		}
-		output[j++] = var[i++];
+		output[help.j++] = tmp[index][help.i++];
 	}
-	output[j] = 0;
-	return (output);
+	output[help.j] = 0;
+	tmp[index] = ft_swap(tmp[index], output);
+	if (!tmp[index])
+		return (NULL);
+	return (tmp[index]);
 }
 
 char	**ft_add_var(char *var, char **env)

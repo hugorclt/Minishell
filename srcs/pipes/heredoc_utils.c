@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:51:33 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 10:54:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:39:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,22 @@ int	init_heredoc(char **line_expand, t_list **lst)
 
 static void	ft_refacto_exit(t_list **lst_f, int fd, t_list **lst, t_node *param)
 {
+	if (g_last_status != 6122002)
+	{
+		ft_putstr_fd("bash: warning: here-document at line ", 2);
+		ft_putstr_fd("1 delimited by end-of-file (wanted `", 2);
+		ft_putstr_fd((*lst)->limiter, 2);
+		ft_putstr_fd("')", 2);
+	}
 	ft_putstr_fd("\n", 1);
 	free((*lst)->limiter);
 	close(fd);
 	unlink(".heredoc_temp");
 	ft_close_all(param);
-	ft_exit(param, lst_f, 0);
+	if (g_last_status != 6122002)
+		ft_exit(param, lst_f, 0);
+	else
+		ft_exit(param, lst_f, 130);
 }
 
 int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
@@ -44,7 +54,7 @@ int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 	char	*line;
 	char	*line_expand;
 
-	sig_choice(1);
+	sig_choice(3);
 	if (init_heredoc(&line_expand, lst) == -1)
 		return (-1);
 	while (1)

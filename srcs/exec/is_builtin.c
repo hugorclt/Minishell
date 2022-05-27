@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 10:49:59 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:40:17 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@ void	ft_exit_choice(t_node *params, t_list **start, char *args)
 	if (!args)
 		ft_exit(params, start, 0);
 	else
-		ft_exit(params, start, ft_atoi(args));
+	{
+		if (ft_str_is_digit(args) == 0)
+			ft_exit(params, start, ft_atoi(args));
+		else
+		{
+			ft_putstr_fd("bash: exit: ", 2);
+			ft_putstr_fd(args, 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
+			ft_exit(params, start, 2);
+		}
+	}
 }
 
 int	ft_is_builtin(char *cmd)

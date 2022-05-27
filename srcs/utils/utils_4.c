@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:11:13 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 11:48:10 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:39:16 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void	ft_quoted(t_token *token, char c)
 		token->first_quotes = '\'';
 	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
 		token->first_quotes = '"';
+}
+
+void	ft_init_int(int *i, int *j)
+{
+	*i = 0;
+	*j = 0;
+}
+
+char	*ft_swap(char *var, char *output)
+{
+	free(var);
+	var = ft_strdup(output);
+	if (!var)
+		return (free(output), NULL);
+	free(output);
+	return (var);
 }
