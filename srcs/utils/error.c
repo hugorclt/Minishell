@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:55:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/25 05:49:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/27 13:19:20 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	ft_print_error(char *token)
 	ft_putstr_fd("'\n", 2);
 }
 
+void	ft_print_error_c(char c)
+{
+	ft_putstr_fd("bash: syntax error near unexpected token `", 2);
+	write(2, &c, 1);
+	ft_putstr_fd("'\n", 2);
+}
 void	ft_print_ofpc(void)
 {
 	ft_putstr_fd("déso on gere pas les quotes pas fermées\n", 2);
