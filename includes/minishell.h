@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/26 16:20:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 10:56:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 /* -------------------------------------------------------------------------- */
 int	ft_strlen(const char *s);
 char	*ft_strdup_pimp(char *s);
+void	directory_error(char *str);
 int	ft_strchr_pimp(char *s, char c);
+int	is_directory(char *str);
 int	ft_strcmp(char *s1, char *s2);
 void	ft_wrong_args(void);
 

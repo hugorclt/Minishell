@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:21:59 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:50:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/27 10:49:59 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	ft_is_builtin(char *cmd)
 void	ft_cd_many_args_check(char **cmd, t_node *params)
 {
 	if (ft_tab_size(cmd) > 2)
+	{
 		ft_putstr_fd("bash: cd: too many arguments\n", 2);
+		g_last_status = 1;
+	}
 	else
 		ft_change_dir(params, cmd[1]);
 }
