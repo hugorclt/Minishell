@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/30 13:34:05 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:11:27 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,22 @@ int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 	new_j = (*j);
 	while (cmd[new_j])
 	{
-		if (!ft_is_quote_sub(&(token->token[(*i)]), cmd, &new_j, j))
-			return (ft_refact_incr(i, j, new_j), 0);
-		if (!cmd[new_j])
+		if (ft_is_quote(cmd[new_j]))
+			ft_pass_quote(cmd, &new_j);
+		else if (!cmd[new_j])
 		{
 			if (ft_sub_token(&(token->token[(*i)]), cmd, j, new_j) < 0)
 				return (-1);
 			return (ft_refact_incr(i, j, new_j), 0);
 		}
-		if (is_operator(cmd[new_j]) == 1 && cmd[new_j])
+		else if (is_operator(cmd[new_j]) == 1 && cmd[new_j])
 		{
 			if (ft_pass_sub_token(&(token->token[(*i)]), cmd, &new_j, j) < 0)
 				return (-1);
 			return (ft_refact_incr(i, j, new_j), 0);
 		}
-		new_j++;
+		else
+			new_j++;
 	}
 	if (ft_sub_token(&(token->token[(*i)]), cmd, j, new_j) < 0)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 17:06:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:57:24 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*ft_fill(char *s, int size, int *index)
 		i++;
 		*index += 1;
 	}
-	output[i] = '\0';
+	output[i] = 0;
 	return (output);
 }
 
@@ -93,7 +93,7 @@ static char	**ft_dfill(char ***output, char *cmd, char c)
 			help.i++;
 	}
 	(*output)[help.p] = NULL;
-	return ((*output));
+	return (free(cmd), (*output));
 }
 
 char	**ft_split_space(char *cmd)
@@ -106,5 +106,5 @@ char	**ft_split_space(char *cmd)
 	if (!output)
 		return (NULL);
 	ft_dfill(&output, cmd, ' ');
-	return (free(cmd), output);
+	return (output);
 }
