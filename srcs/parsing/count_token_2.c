@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:13:37 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 12:07:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:32:34 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ static void	ft_sweep(char *cmd, int *i, int *total)
 				c = cmd[(*i)];
 				(*i)++;
 				while (cmd[(*i)] != c && cmd[(*i)])
-				{
 					(*i)++;
-				}
 				if (!cmd[(*i)])
 					return ;
+				(*i)++;
 			}
 			if (cmd[(*i)] && is_operator(cmd[(*i)]) == 1)
 				return (ft_token_count(cmd, i, total));
