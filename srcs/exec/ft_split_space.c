@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 16:22:21 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:57:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	*ft_fill(char *s, int size, int *index)
 		*index += 1;
 	}
 	printf("help : %d\n", *index);
-	output[i] = '\0';
+	output[i] = 0;
 	return (output);
 }
 
@@ -103,7 +103,6 @@ char	**ft_split_space(char *cmd)
 
 	if (!cmd)
 		return (NULL);
-	printf("%s\n%d\n", cmd, ft_strlen(cmd));
 	output = malloc(sizeof(char *) *(ft_count(cmd) + 1));
 	if (!output)
 		return (NULL);
