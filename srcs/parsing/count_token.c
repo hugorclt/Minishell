@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 09:33:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 11:17:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 09:20:29 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	ft_token_count(char *cmd, int *i, int *total)
 int	ft_is_quote(char c)
 {
 	if (c == '\'' || c == '"')
-		return (1);
+		return (c);
 	return (0);
 }
