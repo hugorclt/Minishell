@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:30:25 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:24:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 {
 	if (ft_refacto_rl(lst, i, params, lst_to_free) < 0)
 		return (-1);
-	if ((*lst)->file_in[*i].fd < 0)
+	if ((*lst)->fd_doc < 0)
 		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	sig_choice(0);
 	return (1);

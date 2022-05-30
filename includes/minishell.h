@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 15:39:15 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:21:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,7 @@ char	**ft_clean_redirection(t_list **lst);
 /* -------------------------------------------------------------------------- */
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
+int	ft_open_heredoc(t_node *params, t_list **lst, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/exec/ft_split_space.c                      */
