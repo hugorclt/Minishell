@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:13:37 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 10:30:10 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:26:02 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 static void	ft_sweep(char *cmd, int *i, int *total)
 {
-	char	c;
-
+	char c;
+	
 	if (cmd[(*i)])
 	{
 		while (cmd[(*i)])
 		{
 			if (ft_is_quote(cmd[(*i)]) && cmd[(*i)])
 			{
-				c = ft_is_quote(cmd[(*i)]);
+				c = cmd[(*i)];
 				(*i)++;
 				while (cmd[(*i)] != c && cmd[(*i)])
+				{
 					(*i)++;
-				*total += 1;
+				}
 				if (!cmd[(*i)])
 					return ;
 			}
