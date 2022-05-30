@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:13:37 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 16:45:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:54:16 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_total_token(char *cmd)
 		}
 		++i;
 	}
+	printf("%d\n", total);
 	return (total);
 }
 
