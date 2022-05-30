@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:13:37 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 13:10:46 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 10:50:42 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 static void	ft_sweep(char *cmd, int *i, int *total)
 {
+	char	c;
+
 	if (cmd[(*i)])
 	{
 		while (cmd[(*i)])
 		{
 			if (ft_is_quote(cmd[(*i)]) && cmd[(*i)])
 			{
+				c = ft_is_quote(cmd[(*i)]);
 				(*i)++;
-				while (!ft_is_quote(cmd[(*i)]) && cmd[(*i)])
+				while (cmd[(*i)] != c && cmd[(*i)])
 					(*i)++;
+				*total += 1;
 				if (!cmd[(*i)])
 					return ;
 			}
@@ -48,9 +52,7 @@ int	ft_total_token(char *cmd)
 				++i;
 		}
 		if (is_operator(cmd[i]) == 1)
-		{
 			ft_token_count(cmd, &i, &total);
-		}
 		else if (is_operator(cmd[i]) == -1)
 		{
 			ft_sweep(cmd, &i, &total);
@@ -58,6 +60,7 @@ int	ft_total_token(char *cmd)
 		}
 		++i;
 	}
+	printf("total : %d\n", total);
 	return (total);
 }
 

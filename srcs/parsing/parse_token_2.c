@@ -6,11 +6,30 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:18:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 13:59:03 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 10:50:43 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_is_quote_sub(char **token, char *cmd, int *new_j, int *j)
+{
+	if (ft_is_quote(cmd[(*new_j)]))
+		ft_pass_quote(cmd, new_j);
+	else
+		return (1);
+	if (ft_sub_token(token, cmd, j, *new_j) < 0)
+		return (-1);
+	return (0);
+}
+
+int	ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j)
+{
+	ft_pass_space_reverse(cmd, new_j);
+	if (ft_sub_token(token, cmd, j, *new_j) < 0)
+		return (-1);
+	return (0);
+}
 
 void	ft_error_mess(char *token)
 {
@@ -61,5 +80,6 @@ int	ft_parse_tokens(t_token *token, char *cmd, int flag)
 		}
 	}
 	token->token[i] = NULL;
+	ft_print_tab(token->token);
 	return (1);
 }
