@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/30 14:17:07 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:53:21 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,6 @@ void	ft_error_mess(char *token);
 int		ft_sub_token(char **dest, char *cmd, int *j, int new_j);
 int		ft_parse_tokens(t_token *token, char *cmd, int flag);
 int		ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j);
-int		ft_is_quote_sub(char **token, char *cmd, int *new_j, int *j);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/parse_token.c                      */
