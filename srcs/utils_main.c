@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:25:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 11:08:14 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:20:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_wait_all_pid(t_node *params)
 			return (-1);
 		i++;
 	}
+	unlink(".heredoc_temp");
 	if (status == 131)
 	{
 		g_last_status = status;
