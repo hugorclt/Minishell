@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 15:39:15 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:55:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int		ft_wait_all_pid(t_node *params);
 /* -------------------------------------------------------------------------- */
 int		init_shlvl(t_node *params);
 int		ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
-int		main(int ac, char **av, char **env);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/refacto.c                            */
@@ -237,6 +236,7 @@ void	ft_refact_incr(int *i, int *j, int new_j);
 void	ft_error_mess(char *token);
 int		ft_sub_token(char **dest, char *cmd, int *j, int new_j);
 int		ft_parse_tokens(t_token *token, char *cmd, int flag);
+int		ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/parse_token.c                      */
@@ -329,6 +329,7 @@ char	**ft_clean_redirection(t_list **lst);
 /* -------------------------------------------------------------------------- */
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
+int	ft_open_heredoc(t_node *params, t_list **lst, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/exec/ft_split_space.c                      */

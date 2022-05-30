@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 22:54:54 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 13:28:14 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:51:42 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_lst(t_list *lst)
 		i = 0;
 		while (tmp->token[i])
 		{
-			printf("%s", tmp->token[i]);
+			printf("|%s|", tmp->token[i]);
 			i++;
 		}
 		printf("\n");

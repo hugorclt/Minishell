@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 09:39:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:57:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 		s1 = ft_strdup_pimp("\0");
 	if (!s2)
 		return (s1);
-	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
 	if (!output)
 		return (free(s1), free(s2), NULL);
 	i = 0;

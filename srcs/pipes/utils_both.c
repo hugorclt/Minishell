@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:58:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/25 17:39:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:10:21 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,25 @@ int	ft_init_pid(t_node *params)
 	return (1);
 }
 
+int	ft_open_heredoc(t_node *params, t_list **lst, t_list **lst_to_free)
+{
+	int	i;
+
+	i = 0;
+	while (i < (*lst)->nb_infile)
+	{
+		if ((*lst)->file_in[i].flag == 1)
+		{
+			(*lst)->limiter = ft_strdup((*lst)->file_in[i].file);
+			if (!(*lst)->limiter)
+				return (-1);
+			ft_heredoc(lst, &i, params, lst_to_free);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	ft_child_exec(t_node *params, t_list **lst)
 {
 	int		i;
@@ -33,6 +52,7 @@ int	ft_child_exec(t_node *params, t_list **lst)
 	ft_init_pipe(params);
 	while (tmp)
 	{
+		ft_open_heredoc(params, &tmp, lst);
 		if (ft_fork(params, &tmp, lst) < 0)
 		{
 			ft_close();

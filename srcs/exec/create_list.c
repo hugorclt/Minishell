@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:57:23 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/18 10:29:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:45:50 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ t_list	*init_lst(t_token *token)
 		return (ft_free(token->token), NULL);
 	while (token->token[i])
 	{
-		if (token->token[i] && ft_is_pipe(token->token[i]) == 0)
+		if (token->token[i] && token->token[i][0] != '\0' && ft_is_pipe(token->token[i]) == 0)
 		{
 			while (token->token[i] && ft_is_pipe(token->token[i]) == 0)
 				i++;
 		}
-		else if (ft_is_pipe(token->token[i]) == 1)
+		else if (ft_is_pipe(token->token[i]) == 1 || !token->token[i] || token->token[i][0] == '\0')
 		{
 			i++;
 			start = i;

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 20:32:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:39:39 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "../libft/libft.h"
 # include "struct.h"
 # include <stddef.h>
+# include <sys/ioctl.h>
+# include <linux/media.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -30,6 +32,12 @@
 # define PERM_DENIED ": permission denied"
 # define SPEC_CHAR "~`!@#$%^&*(){}[]="
 # define EXPAND_CHAR "' \"$=,:.*!?-#@%="
+# define INFILE 1
+# define OUTFILE 2
+# define CMD 3
+# define OPE 4
+# define OPT 5
+# define EXP 6
 
 extern int	g_last_status;
 

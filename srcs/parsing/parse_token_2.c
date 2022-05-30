@@ -6,11 +6,19 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:18:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 13:59:03 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:55:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j)
+{
+	ft_pass_space_reverse(cmd, new_j);
+	if (ft_sub_token(token, cmd, j, *new_j) < 0)
+		return (-1);
+	return (0);
+}
 
 void	ft_error_mess(char *token)
 {
