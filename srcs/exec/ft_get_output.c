@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:07:24 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/13 15:11:21 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:09:53 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_get_input(t_list **lst, char **tab)
 			ft_add_file_in(lst, i, &j, tab);
 		else if (ft_strcmp(tab[i], "<<") == 0)
 		{
-			tmp->file_in[j++].file = ft_strdup(tab[i + 1]);
+			tmp->file_in[j++].limiter = ft_strdup(tab[i + 1]);
 			if (!tmp->file_in[j].file)
 				return (-1);
 			tmp->file_in[j].flag = 1;

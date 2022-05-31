@@ -6,12 +6,12 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:51:33 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 16:39:49 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:39:48 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 void	ft_iamcrying(t_list **lst, char **line_ex, char *line, t_node *params)
 {
 	if (do_expandable((*lst)->limiter) == 0)
@@ -74,4 +74,4 @@ int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 		return (free(line), free(line_expand), -1);
 	ft_free_heredoc(line, line_expand);
 	return (0);
-}
+}*/

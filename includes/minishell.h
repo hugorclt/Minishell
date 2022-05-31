@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 15:39:15 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:42:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,8 @@ int		ft_get_operator(t_token *token, char *cmd, int *i, int *j);
 void	ft_free_params_2(t_node *params, int flag);
 void	ft_free_params(t_node *params, int flag);
 void	ft_free_list(t_list **start);
+void	ft_hd_exit(t_node *params, t_list **start, int value);
+int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free);
 void	ft_exit(t_node *params, t_list **start, int value);
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 
@@ -316,7 +318,7 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int		ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free);
+int		ft_open_io(t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/exec/clean_redirection.c                    */

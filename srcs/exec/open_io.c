@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 16:15:58 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:42:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_open_last_in(t_list **lst, int i)
 		(*lst)->last_infile = (*lst)->file_in[i - 1].fd;
 }
 
-static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
+static int	ft_open_input(t_list **lst)
 {
 	int	i;
 
@@ -57,16 +57,8 @@ static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
 	{
 		if ((*lst)->file_in[i].file)
 		{
-			if ((*lst)->file_in[i].flag == 0)
-				(*lst)->file_in[i].fd = open((*lst)->file_in[i].file,
-						O_RDONLY, 0644);
-			else if ((*lst)->file_in[i].flag == 1)
-			{
-				(*lst)->limiter = ft_strdup((*lst)->file_in[i].file);
-				if (!(*lst)->limiter)
-					return (-1);
-				ft_heredoc(lst, &i, params, lst_to_free);
-			}
+			(*lst)->file_in[i].fd = open((*lst)->file_in[i].file,
+				O_RDONLY, 0644);
 			if ((*lst)->file_in[i].fd == -1)
 				ft_print_io_error_choice((*lst)->file_in[i].file);
 		}
@@ -75,9 +67,9 @@ static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
 	return (0);
 }
 
-int	ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free)
+int	ft_open_io(t_list **lst)
 {
-	if (ft_open_input(lst, params, lst_to_free) == -1)
+	if (ft_open_input(lst) == -1)
 		return (-1);
 	if (ft_open_output(lst) == -1)
 		return (-1);
