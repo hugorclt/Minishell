@@ -20,6 +20,11 @@
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/signal/signal.c                         */
 /* -------------------------------------------------------------------------- */
+char	*ft_second_cat(char *envi, char *addon);
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/signal/signal.c                         */
+/* -------------------------------------------------------------------------- */
 void	ft_sign_handle(int signo);
 void	sig_choice(int a);
 
@@ -30,6 +35,7 @@ int		ft_close_redirect(t_list **lst);
 void	ft_init_int(int *i, int *j);
 void	ft_quoted(t_token *token, char c);
 char	*ft_swap(char *var, char *output);
+int		ft_init_help(t_help *help, char *tmp);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_3.c                         */
@@ -43,7 +49,7 @@ void	ft_print_error(char *token);
 void	ft_print_error_c(char c);
 void	ft_print_ofpc(void);
 void	ft_err_cd(char *path);
-void	ft_err_var(char *var);
+void	ft_err_var(char *var, int flag);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_2.c                         */

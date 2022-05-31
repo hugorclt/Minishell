@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/30 20:11:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:41:20 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	ft_pass_quote(char *cmd, int *j)
 	c = ft_is_quote(cmd[(*j)]);
 	(*j)++;
 	while (cmd[(*j)] != c && cmd[(*j)])
-		(*j)++;
-	if (cmd[(*j)] && cmd[(*j)] == c)
 		(*j)++;
 }
 

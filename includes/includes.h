@@ -30,6 +30,8 @@
 # define PROG_NAME "Minishell"
 # define PERM_DENIED ": permission denied"
 # define SPEC_CHAR "~`!@#$%^&*(){}[]="
+# define SPEC_CHARS "~`!@#$%^&*(){}[]=-+"
+# define SPEC_UNSET ""
 # define EXPAND_CHAR "' \"$=,:.*!?-#@%="
 # define INFILE 1
 # define OUTFILE 2

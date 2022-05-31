@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:11:13 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 16:19:27 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:10:20 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ void	ft_quoted(t_token *token, char c)
 		token->first_quotes = '\'';
 	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
 		token->first_quotes = '"';
+}
+
+int	ft_init_help(t_help *help, char *tmp)
+{
+	(*help).i = 0;
+	(*help).j = 0;
+	(*help).c = ft_theres_dquotes(tmp);
+	if (!tmp || !(*help).c)
+		return (-1);
+	return (0);
 }
 
 void	ft_init_int(int *i, int *j)

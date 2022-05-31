@@ -76,7 +76,6 @@ int	ft_wait_all_pid(t_node *params)
 			return (-1);
 		i++;
 	}
-	unlink(".heredoc_temp");
 	if (status == 131)
 	{
 		g_last_status = status;

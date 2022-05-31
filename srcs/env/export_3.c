@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:41:47 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 16:34:28 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:55:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_theres_dquotes(char *token)
 	char	c;
 
 	i = 0;
+	if (!token)
+		return (0);
 	while (token[i])
 	{
 		if (token[i] == '"' || token[i] == '\'')
@@ -120,13 +122,13 @@ int	ft_export(t_node *params, char *token)
 		return (ft_free(tmp), ft_export_alph(params->env));
 	while (tmp[i])
 	{
+		if (ft_vld(tmp[i]))
+			ft_err_var(tmp[i], 1);
 		if (ft_find_occ_free(params->env, tmp[i]) == -1 && !ft_vld(tmp[i]))
 			params->env = ft_add_var(ft_unquote(tmp, i), params->env);
 		else if (!ft_vld(tmp[i]))
 			ft_change_var(params->env, ft_unquote(tmp, i),
 				ft_find_occ_free(params->env, tmp[i]));
-		if (ft_vld(tmp[i]))
-			ft_err_var(tmp[i]);
 		if (!params->env)
 			return (ft_free(tmp), -1);
 		++i;
