@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/31 14:05:38 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 19:44:56 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include "../libft/libft.h"
 # include "struct.h"
 # include "includes.h"
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/signal/signal.c                         */
+/* -------------------------------------------------------------------------- */
+char	*ft_second_cat(char *envi, char *addon);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/signal/signal.c                         */
@@ -44,7 +49,7 @@ void	ft_print_error(char *token);
 void	ft_print_error_c(char c);
 void	ft_print_ofpc(void);
 void	ft_err_cd(char *path);
-void	ft_err_var(char *var);
+void	ft_err_var(char *var, int flag);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_2.c                         */

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:19:23 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/30 16:39:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:08:49 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define PROG_NAME "Minishell"
 # define PERM_DENIED ": permission denied"
 # define SPEC_CHAR "~`!@#$%^&*(){}[]="
+# define SPEC_CHARS "~`!@#$%^&*(){}[]=-+"
+# define SPEC_UNSET ""
 # define EXPAND_CHAR "' \"$=,:.*!?-#@%="
 # define INFILE 1
 # define OUTFILE 2

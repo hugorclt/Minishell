@@ -6,11 +6,21 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 16:13:48 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/25 05:40:25 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:35:48 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static char	**ft_lil_malloc(int size)
+{
+	char	**output;
+
+	output = malloc(sizeof(char *) * size);
+	if (!output)
+		return (NULL);
+	return (output);
+}
 
 int	ft_is_in(char **var_lst, char *var)
 {
@@ -26,6 +36,22 @@ int	ft_is_in(char **var_lst, char *var)
 	return (0);
 }
 
+int	ft_vld_unset(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i])
+	{
+		if (!ft_is_charset(var[i], SPEC_CHARS))
+			return (-1);
+		if (ft_isspace(var[i]))
+			return (-1);
+		++i;
+	}
+	return (0);
+}
+
 int	ft_need(char **env, char **var_lst)
 {
 	int	i;
@@ -35,6 +61,12 @@ int	ft_need(char **env, char **var_lst)
 	while (var_lst[i])
 	{
 		j = 0;
+		if (ft_vld(var_lst[i]) || ft_vld_unset(var_lst[i]) < 0)
+		{
+			ft_err_var(var_lst[i], 0);
+			++i;
+			continue ;
+		}
 		while (env[j])
 		{
 			if (ft_strncmp(env[j], var_lst[i], ft_strlen(var_lst[i])) == 0)
@@ -44,16 +76,6 @@ int	ft_need(char **env, char **var_lst)
 		++i;
 	}
 	return (0);
-}
-
-static char	**ft_lil_malloc(int size)
-{
-	char	**output;
-
-	output = malloc(sizeof(char *) * size);
-	if (!output)
-		return (NULL);
-	return (output);
 }
 
 char	**ft_unset(char **env, char **var)

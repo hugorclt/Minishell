@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/31 14:10:18 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:17:32 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ int	ft_change_var(char **env, char *var, int j)
 		return (-1);
 	if (ft_need_cat(var))
 		return (ft_cat_var(env, var, j));
+	if (!ft_check_equal(var))
+		return (0);
 	while (env[i])
 	{
 		if (i == j)

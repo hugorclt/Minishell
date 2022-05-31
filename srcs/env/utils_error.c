@@ -6,10 +6,9 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:11:50 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 13:46:14 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 19:14:11 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../../includes/minishell.h"
 
 int	ft_strlen_exp(char *s)
@@ -62,12 +61,35 @@ int	ft_is_charset(char cara, char *charset)
 	return (1);
 }
 
+static int	ft_varlen(char *var)
+{
+	int	i;
+
+	i = 0;
+	if (!var)
+		return (0);
+	while (var[i])
+	{
+		if (var[i] == '+')
+		{
+			if (var[i + 1] && var[i + 1] == '=')
+				break ;
+		}
+		if (var[i] == '=')
+			break ;
+		++i;
+	}
+	return (i);
+}
+
 int	ft_vld(char *var)
 {
 	int			i;
 
 	i = 0;
-	if (!ft_is_charset(var[i], SPEC_CHAR) || ft_isdigit(var[i]))
+	if (!ft_is_charset(var[i], SPEC_CHARS) || ft_isdigit(var[i]))
+		return (-1);
+	if (!ft_is_charset(var[ft_varlen(var) -1], SPEC_CHARS))
 		return (-1);
 	while (var[i] && i < ft_strlen_exp(var))
 	{

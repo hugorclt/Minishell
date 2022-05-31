@@ -6,7 +6,7 @@
 /*   By: yuro4ka <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:12:36 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 14:38:23 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 19:44:55 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,21 @@ int	ft_cat_var(char **env, char *var, int j)
 
 	i = 0;
 	addon = ft_dup_addon(var);
-	if (!addon)
-		return (-1);
 	while (env[i])
 	{
 		if (i == j)
 		{
-			env[i] = ft_strjoin_pimp(env[i], addon);
-			if (!env[i])
-				return (ft_free(env), free(addon), -1);
+			if (ft_check_equal(env[i]))
+			{
+				env[i] = ft_strjoin_pimp(env[i], addon);
+				if (!env[i])
+					return (ft_free(env), free(addon), -1);
+			}
+			else
+				env[i] = ft_second_cat(env[i], addon);
 			free(addon);
-			addon = NULL;
+			if (!env[i])
+				return (-1);
 		}
 		++i;
 	}
