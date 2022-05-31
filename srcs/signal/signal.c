@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:17:12 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 16:38:39 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:19:00 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	ft_sign_handle(int signo)
 		g_last_status = 130;
 	}
 	else if (signo == SIGQUIT)
-	{
 		g_last_status = 131;
-	}
 }
 
 void	ft_sign_heredoc(int signo)

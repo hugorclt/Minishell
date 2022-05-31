@@ -6,61 +6,46 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 14:38:22 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:08:55 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_count(t_token *token, char *cmd, char c)
+static int	ft_count(char *cmd)
 {
-	int	i;
-	int	count;
+	int		total;
+	int		i;
 
 	i = 0;
-	count = 0;
+	total = 0;
 	while (cmd[i])
 	{
-		ft_quoted(token, cmd[i]);
-		if (cmd[i] != c)
+		if (!ft_isspace(cmd[i]))
 		{
-			while (cmd[i] && cmd[i] != c)
+			while (!ft_isspace(cmd[i]) && cmd[i])
 			{
-				i++;
-				ft_quoted(token, cmd[i]);
+				if (ft_is_quote(cmd[i]))
+					ft_pass_quote(cmd, &i);
+				else
+					++i;
 			}
-			if (token->nb_dquotes % 2 == 0 || token->nb_quotes % 2 == 0)
-				count++;
+			total++;
 		}
 		else
-			i++;
+			++i;
 	}
-	return (count);
+	return (total);
 }
 
-static int	is_quoted(char *cmd, int i)
+static void	ft_pass_quote_sp(char *cmd, int i, int *j)
 {
-	int	j;
-	int	count_d;
-	int	count;
+	char	c;
 
-	count_d = 0;
-	count = 0;
-	j = 0;
-	if (!cmd)
-		return (0);
-	while (j < i)
-	{
-		if (cmd[j] == '"')
-			count_d++;
-		else if (cmd[j] == '\'')
-			count++;
-		j++;
-	}
-	if (count_d % 2 != 0 || count % 2 != 0)
-		return (1);
-	else
-		return (0);
+	c = ft_is_quote(cmd[i + (*j)]);
+	(*j)++;
+	while (cmd[i + (*j)] != c && cmd[i + (*j)])
+		(*j)++;
 }
 
 static char	*ft_fill(char *s, int size, int *index)
@@ -78,62 +63,62 @@ static char	*ft_fill(char *s, int size, int *index)
 		i++;
 		*index += 1;
 	}
-	output[i] = '\0';
+	output[i] = 0;
 	return (output);
 }
 
-static char	**ft_dfill(char ***output, char *s, char c)
+static char	**ft_dfill(char ***output, char *cmd, char c)
 {
-	int	i;
-	int	j;
-	int	p;
+	t_help	help;
 
-	i = 0;
-	p = 0;
-	while (s[i])
+	help.i = 0;
+	help.p = 0;
+	while (cmd[help.i])
 	{
-		if (s[i] != c && s[i])
+		if (cmd[help.i] != c)
 		{
-			j = 0;
-			while ((s[i + j] && s[i + j] != c) || (s[i + j] == c
-					&& is_quoted(s, i + j) == 1))
-					j++;
-			(*output)[p] = ft_fill(s, j, &i);
-			if (!(*output)[p])
-				return (ft_free(*output), NULL);
-			p++;
+			help.j = 0;
+			while (cmd[help.i + help.j] != c && cmd[help.i + help.j])
+			{
+				if (ft_is_quote(cmd[help.i + help.j]))
+					ft_pass_quote_sp(cmd, help.i, &help.j);
+				++help.j;
+			}
+			(*output)[help.p] = ft_fill(cmd, help.j, &help.i);
+			if (!(*output))
+				return (ft_free((*output)), NULL);
+			help.p++;
 		}
 		else
-			i++;
+			help.i++;
 	}
-	(*output)[p] = NULL;
-	return (free(s), *output);
+	(*output)[help.p] = NULL;
+	return (free(cmd), (*output));
+}
+
+static int	ft_is_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (-1);
+		i++;
+	}
+	return (1);
 }
 
 char	**ft_split_space(char *cmd)
 {
-	char	**ret;
-	t_token	token;
-	int		count;
+	char	**output;
 
-	if (!cmd)
-	{
-		ret = malloc(sizeof(char *));
-		ret[0] = NULL;
-		return (ret);
-	}
-	ft_reset_quotes(&token);
-	if (!cmd)
-		return (NULL);
-	count = ft_count(&token, cmd, ' ');
-	if (count <= 0)
-		return (NULL);
-	ft_reset_quotes(&token);
-	ret = malloc(sizeof(char *) * (count + 1));
-	ft_reset_quotes(&token);
-	if (!ret)
-		return (NULL);
-	ft_reset_quotes(&token);
-	ft_dfill(&ret, cmd, ' ');
-	return (ret);
+	if (!cmd || ft_is_space(cmd) == 1)
+		return (free(cmd), NULL);
+	output = malloc(sizeof(char *) *(ft_count(cmd) + 1));
+	if (!output)
+		return (free(cmd), NULL);
+	ft_dfill(&output, cmd, ' ');
+	return (output);
 }

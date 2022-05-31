@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 13:12:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:06:54 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int	ft_exec_parsing(t_token *token, char *cmd, t_node *params)
 
 int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 {
+	//ft_print_tab(token->token);
 	*lst = init_lst(token);
 	if (!lst)
 		return (free(cmd), -1);

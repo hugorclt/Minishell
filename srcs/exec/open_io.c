@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 21:42:07 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:48:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@ static void	ft_open_last_in(t_list **lst, int i)
 static int	ft_open_input(t_list **lst)
 {
 	int	i;
-
+	
 	i = -1;
-	(*lst)->fd_doc = -1;
 	while (++i < (*lst)->nb_infile)
 	{
 		if ((*lst)->file_in[i].file)

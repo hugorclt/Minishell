@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 21:09:29 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:46:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct s_help
 	int		p;
 	char	c;
 }	t_help;
+
+typedef struct s_tok
+{
+	char	*token;
+	char	*before_expand;
+	int		type;
+}	t_tok;
 
 typedef struct s_token
 {
