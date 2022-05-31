@@ -25,8 +25,6 @@ int	ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free)
 
 	path = check_path(get_path_lst(params->env), (*lst)->token[0]);
 	ft_close_forked(params, lst);
-	if ((*lst)->fd_doc != -1)
-		close((*lst)->fd_doc);
 	if (!path)
 	{
 		free(path);

@@ -177,7 +177,7 @@ char	**ft_split_path(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 int		ft_heredoc_help(t_list **lst, int *i);
 int		do_expandable(char *str);
-void	ft_free_heredoc(char *line, char *line_after_expand);
+void	ft_hd_free(char *line, char *line_after_expand);
 int		ft_heredoc_help_2(char *line, char *line_after_expand, int fd);
 int		ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
 

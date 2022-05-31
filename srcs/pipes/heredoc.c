@@ -48,11 +48,9 @@ void	ft_hd_free(char *line, char *line_after_expand)
 
 int	ft_hd_write_fd(char *line, char *line_after_expand, int fd)
 {
-	line_after_expand = ft_strjoin_char(line_after_expand, '\n');
-	if (!line_after_expand)
-		return (free(line), -1);
 	ft_putstr_fd(line_after_expand, fd);
-	ft_free_heredoc(line, line_after_expand);
+	ft_putstr_fd("\n", fd);
+	ft_hd_free(line, line_after_expand);
 	return (0);
 }
 /*
@@ -71,7 +69,7 @@ char	*ft_hd_create_name(char *str, int *j)
 	char	*nb;
 	char	*ret;
 
-	nb = ft_itoa(j);
+	nb = ft_itoa(*j);
 	if (!nb)
 		return (NULL);
 	ret = ft_strjoin(str, nb);
@@ -101,6 +99,7 @@ int	ft_hd_close(t_list **lst)
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
 int	ft_hd_open(t_list **lst, int *j)
@@ -119,12 +118,13 @@ int	ft_hd_open(t_list **lst, int *j)
 				tmp->file_in[i].file = ft_hd_create_name(".heredoc_temp", j);
 				if (!tmp->file_in[i].file)
 					return (-1);
-				tmp->file_in[i].fd = open(tmp->file_in[i].file, O_CREAT | O_TRUNC | O_WRONLY | 0644 );
+				tmp->file_in[i].fd = open(tmp->file_in[i].file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 			}
 			i++;
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
 void	ft_hd_expand(char *limiter, char **line_ex, char *line, t_node *params)
@@ -135,7 +135,7 @@ void	ft_hd_expand(char *limiter, char **line_ex, char *line, t_node *params)
 		*line_ex = ft_strdup(line);
 }
 
-int	ft_hd_quit_fork(t_list **lst, t_node *params, t_list **lst_to_free)
+void	ft_hd_quit_fork(t_node *params, t_list **lst_to_free)
 {
 	ft_putstr_fd("\n", 1);
 	ft_hd_close(lst_to_free);
@@ -148,6 +148,7 @@ void	ft_hd_error(char *limiter)
 	ft_putstr_fd("1 delimited by end-of-file (wanted `", 2);
 	ft_putstr_fd(limiter, 2);
 	ft_putstr_fd("')", 2);
+	ft_putstr_fd("\n", 2);
 }
 
 int	ft_hd_writefile(t_list **lst, t_node *params, t_list **lst_to_free, int *i)
@@ -159,11 +160,11 @@ int	ft_hd_writefile(t_list **lst, t_node *params, t_list **lst_to_free, int *i)
 	line_expand = NULL;
 	while (1)
 	{
-		line = readline(" >");
+		line = readline("> ");
 		if (!line && g_last_status == 6122002)
 		{
-			ft_free_heredoc(line, line_expand);
-			ft_hd_quit_fork(lst, params, lst_to_free);
+			ft_hd_free(line, line_expand);
+			ft_hd_quit_fork(params, lst_to_free);
 		}
 		if (!line)
 		{
@@ -177,7 +178,7 @@ int	ft_hd_writefile(t_list **lst, t_node *params, t_list **lst_to_free, int *i)
 			break ;
 		ft_hd_write_fd(line, line_expand, (*lst)->file_in[*i].fd);
 	}
-	ft_free_heredoc(line, line_expand);
+	ft_hd_free(line, line_expand);
 	return (0);
 }
 
@@ -210,8 +211,10 @@ int	ft_hd_write(t_list **lst, t_node *params, t_list **lst_to_free)
 		while (tmp)
 		{
 			if (ft_hd_write_node(&tmp, params, lst_to_free) == -1)
+				return (ft_hd_exit(params, lst_to_free, 0), -1);
 			tmp = tmp->next;
 		}
+		ft_hd_close(lst_to_free);
 		ft_hd_exit(params, lst_to_free, 0);
 	}
 	else
@@ -223,6 +226,7 @@ int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free)
 {
 	static int	i = 0;
 
+	sig_choice(3);
 	if (ft_hd_open(lst, &i) == -1)
 		return (-1);
 	if (ft_hd_write(lst, params, lst_to_free) == -1)
@@ -230,4 +234,5 @@ int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free)
 	if (ft_hd_close(lst) == -1)
 		return (-1);
 	return (0);
+	sig_choice(0);
 }

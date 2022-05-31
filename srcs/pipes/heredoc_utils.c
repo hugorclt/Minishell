@@ -72,6 +72,6 @@ int	ft_refacto_rl(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
 	}
 	if (ft_heredoc_help(lst, i) == -1)
 		return (free(line), free(line_expand), -1);
-	ft_free_heredoc(line, line_expand);
+	ft_hd_free(line, line_expand);
 	return (0);
 }*/

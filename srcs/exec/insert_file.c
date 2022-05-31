@@ -69,8 +69,8 @@ static int	ft_save_in(t_list **lst, int *i, int *j)
 	}
 	if (ft_strcmp((*lst)->token[*i], "<<") == 0)
 	{
-		(*lst)->file_in[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
-		if (!(*lst)->file_in[*j].file)
+		(*lst)->file_in[*j].limiter = ft_strdup_pimp((*lst)->token[(*i) + 1]);
+		if (!(*lst)->file_in[*j].limiter)
 			return (-1);
 		(*lst)->file_in[*j].flag = 1;
 		(*j)++;

@@ -66,8 +66,9 @@ int	ft_get_input(t_list **lst, char **tab)
 			ft_add_file_in(lst, i, &j, tab);
 		else if (ft_strcmp(tab[i], "<<") == 0)
 		{
+			printf("%s\n", tab[i + 1]);
 			tmp->file_in[j++].limiter = ft_strdup(tab[i + 1]);
-			if (!tmp->file_in[j].file)
+			if (!tmp->file_in[j].limiter)
 				return (-1);
 			tmp->file_in[j].flag = 1;
 		}

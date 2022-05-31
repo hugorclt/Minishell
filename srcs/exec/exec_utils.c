@@ -55,8 +55,6 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 		if (ft_open_io(lst) == -1)
 			return (ft_exit(params, lst, 0), -1);
 		ft_dup2((*lst)->last_infile, (*lst)->last_outfile);
-		if ((*lst)->fd_doc != -1)
-			close((*lst)->fd_doc);
 		if (ft_execute(params, lst, lst) == -1)
 			return (ft_exit(params, lst, 0), -1);
 	}
