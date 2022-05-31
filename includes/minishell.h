@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/30 19:55:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:05:38 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_close_redirect(t_list **lst);
 void	ft_init_int(int *i, int *j);
 void	ft_quoted(t_token *token, char c);
 char	*ft_swap(char *var, char *output);
+int		ft_init_help(t_help *help, char *tmp);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_3.c                         */

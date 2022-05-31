@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 16:34:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:10:18 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ char	*ft_unquote(char **tmp, int index)
 {
 	char	*output;
 	t_help	help;
-
-	ft_init_int(&help.i, &help.j);
-	help.c = ft_theres_dquotes(tmp[index]);
-	if (!help.c || !tmp[index])
+	
+	if (ft_init_help(&help, tmp[index]) < 0)
 		return (tmp[index]);
-	output = malloc(sizeof(char) * (ft_strlen(tmp[index])));
+	output = malloc(sizeof(char) * (ft_strlen(tmp[index]) + 1));
 	if (!output)
 		return (NULL);
 	while (tmp[index][help.i])
@@ -46,7 +44,8 @@ char	*ft_unquote(char **tmp, int index)
 				break ;
 			++help.i;
 		}
-		output[help.j++] = tmp[index][help.i++];
+		else
+			output[help.j++] = tmp[index][help.i++];
 	}
 	output[help.j] = 0;
 	tmp[index] = ft_swap(tmp[index], output);
