@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 19:56:00 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:08:19 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@ int	ft_prepare_cmd(t_list **lst)
 
 	tmp = (*lst);
 	tmp->token = ft_split_space(ft_to_str(tmp->token));
-	if (!tmp->token)
-		return (-1);
-	if (ft_save_file(&tmp) == -1)
-		return (-1);
+	ft_save_file(&tmp);
 	tmp->token = ft_clean_redirection(&tmp);
 	if (!tmp->token)
-		return (-1);
+		return (0);
 	tmp->token = ft_split_space(ft_to_str(tmp->token));
 	if (tmp->token != NULL)
 	{
@@ -72,12 +69,14 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 
 int	ft_exec_one(t_node *params, t_list **lst)
 {
-	if (!(*lst)->token && ((*lst)->nb_infile || (*lst)->nb_outfile))
+	if (!(*lst)->token)
 	{
+		if (ft_open_heredoc(params, lst, lst) == -1)
+			return (-1);
 		if (ft_open_io(lst, params, lst) == -1)
 			return (-1);
 	}
-	else if (ft_is_builtin((*lst)->token[0]))
+	if (ft_is_builtin((*lst)->token[0]))
 	{
 		if (ft_execute_one_builtin(params, lst) == -1)
 			return (-1);

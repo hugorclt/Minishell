@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 16:10:53 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:06:00 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
 
 int	ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free)
 {
+	if (!(*lst)->token)
+		return (-1);
 	if (ft_open_input(lst, params, lst_to_free) == -1)
 		return (-1);
 	if (ft_open_output(lst) == -1)

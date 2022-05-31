@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/26 13:19:09 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:54:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ int	ft_save_file(t_list **lst)
 	i = 0;
 	j = 0;
 	k = 0;
+	if (!(*lst)->token)
+	{
+		(*lst)->nb_infile = 0;
+		(*lst)->nb_outfile = 0;
+		return (0);
+	}
 	if (ft_prepare_file(lst) == -1)
 		return (-1);
 	while ((*lst)->token[i])
