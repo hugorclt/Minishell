@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/06/01 09:55:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:33:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ int		ft_main_exec(t_node *params, t_list **lst);
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/exec/open_io_utils.c                      */
 /* -------------------------------------------------------------------------- */
-void	ft_print_io_error_choice(char *str);
+void	ft_print_io_error_choice(char *str, t_node *params, t_list **lst_f);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/is_builtin.c                        */
@@ -324,7 +324,7 @@ t_list	*init_lst(t_token *token);
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/open_io.c                         */
 /* -------------------------------------------------------------------------- */
-int		ft_open_io(t_list **lst);
+int		ft_open_io(t_list **lst, t_node *params, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/exec/clean_redirection.c                    */

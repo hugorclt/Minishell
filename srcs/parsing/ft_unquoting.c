@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:19:55 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/27 15:45:23 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:13:07 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_total_unquote(t_list **lst)
 	int	i;
 
 	i = 0;
-	if (!(*lst)->token[0])
+	if (!(*lst)->token)
 		return (0);
 	while ((*lst)->token[i])
 	{
