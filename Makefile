@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/06/01 13:22:45 by yobougre         ###   ########.fr        #
+#    Updated: 2022/06/01 14:01:05 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,10 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/utils_token_check.c\
 				srcs/dir/dir_error.c\
 				srcs/env/utils_export_2.c\
-				srcs/env/export_3.c
+				srcs/pipes/utils_heredoc.c\
+				srcs/env/export_3.c\
+				srcs/exec/utils_split_space.c\
+				srcs/pipes/utils_heredoc_2.c
 
 OBJS		=		$(SRCS:.c=.o)
 

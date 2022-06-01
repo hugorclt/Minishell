@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:33:19 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 18:59:49 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:43:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ void	ft_free_lst(t_list **start)
 		free(tmp);
 	}
 	free(*start);
+}
+
+void	ft_free_after_cmd(t_node *params, t_list **start, int flag)
+{
+	if (params->save_in)
+		close(params->save_in);
+	if (params->save_out)
+		close(params->save_out);
+	ft_free_params(params, flag);
+	if (start)
+	{
+		ft_free_list(start);
+		ft_free_lst(start);
+	}
 }

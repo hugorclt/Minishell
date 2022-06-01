@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:58:22 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 13:17:16 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:46:38 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	ft_open_output(t_list **lst, t_node *params, t_list **lst_to_free)
 				(*lst)->file_out[i].fd = open((*lst)->file_out[i].file,
 						O_CREAT | O_WRONLY | O_APPEND, 0644);
 			if ((*lst)->file_out[i].fd == -1)
-				ft_print_io_error_choice((*lst)->file_out[i].file, params, lst_to_free);
+				ft_print_io_error_choice((*lst)->file_out[i].file, params,
+					lst_to_free);
 		}
 		i++;
 	}
@@ -50,16 +51,17 @@ static void	ft_open_last_in(t_list **lst, int i)
 static int	ft_open_input(t_list **lst, t_node *params, t_list **lst_to_free)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < (*lst)->nb_infile)
 	{
 		if ((*lst)->file_in[i].file)
 		{
 			(*lst)->file_in[i].fd = open((*lst)->file_in[i].file,
-				O_RDONLY, 0644);
+					O_RDONLY, 0644);
 			if ((*lst)->file_in[i].fd == -1)
-				ft_print_io_error_choice((*lst)->file_in[i].file, params, lst_to_free);
+				ft_print_io_error_choice((*lst)->file_in[i].file, params,
+					lst_to_free);
 		}
 	}
 	ft_open_last_in(lst, i);

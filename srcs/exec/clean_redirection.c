@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 10:48:48 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:49:50 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,29 @@ int	is_redirect(t_list **lst, int *i)
 
 char	**ft_clean_redirection(t_list **lst)
 {
-	int		i;
 	char	**ret;
-	int		j;
+	t_help	help;
 
-	i = 0;
-	j = 0;
+	ft_init_int(&help.i, &help.j);
 	if (!(*lst)->token)
 		return (NULL);
 	ret = malloc(sizeof(char *) * (ft_tab_size((*lst)->token)
 				- (((*lst)->nb_infile + (*lst)->nb_outfile) * 2) + 1));
 	if (!ret)
 		return (NULL);
-	while ((*lst)->token[i])
+	while ((*lst)->token[help.i])
 	{
-		skip_io_filename(lst, &i);
-		if (!(*lst)->token[i])
+		skip_io_filename(lst, &help.i);
+		if (!(*lst)->token[help.i])
 			break ;
-		if (is_redirect(&(*lst), &i) == 0)
+		if (is_redirect(&(*lst), &help.i) == 0)
 		{
-			ret[j] = ft_strdup((*lst)->token[i]);
-			ft_increm(&i, &j);
+			ret[help.j] = ft_strdup((*lst)->token[help.i]);
+			ft_increm(&help.i, &help.j);
 		}
 		else
-			i += 2;
+			help.i += 2;
 	}
-	ret[j] = NULL;
+	ret[help.j] = NULL;
 	return (ft_free((*lst)->token), ret);
 }
