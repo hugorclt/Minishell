@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:00:57 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/31 15:17:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:43:05 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_unquote(char **tmp, int index)
 {
 	char	*output;
 	t_help	help;
-	
+
 	if (ft_init_help(&help, tmp[index]) < 0)
 		return (tmp[index]);
 	output = malloc(sizeof(char) * (ft_strlen(tmp[index]) + 1));

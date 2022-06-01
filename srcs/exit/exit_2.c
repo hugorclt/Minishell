@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:33:19 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 18:59:49 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:22:17 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	ft_free_outfile(t_list *tmp)
 
 	i = 0;
 	while (i < tmp->nb_outfile)
-		free(tmp->file_out[i++].file);
+	{
+		if (tmp->file_out[i].file)
+			free(tmp->file_out[i].file);
+		i++;
+	}
 }
 
 void	ft_free_lst(t_list **start)

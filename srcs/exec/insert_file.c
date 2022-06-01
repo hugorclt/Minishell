@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 09:40:40 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:38:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,39 @@ static int	ft_prepare_file(t_list **lst)
 	return (0);
 }
 
+static void	ft_file_init_all(t_list **lst)
+{
+	int		i;
+	t_list	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		i = 0;
+		while (i < tmp->nb_infile)
+		{
+			tmp->file_in[i].file = NULL;
+			tmp->file_in[i].limiter = NULL;
+			i++;
+		}
+		i = 0;
+		while (i < tmp->nb_outfile)
+		{
+			tmp->file_out[i].file = NULL;
+			tmp->file_out[i].limiter = NULL;
+			i++;
+		}
+		tmp = tmp->next;
+	}
+}
+
 static int	ft_save_out(t_list **lst, int *i, int *j)
 {
 	if (ft_strcmp((*lst)->token[*i], ">") == 0)
 	{
+		if (!(*lst)->token[*i + 1] || ft_strcmp((*lst)->token[*i + 1], ">") == 0
+			|| ft_strcmp((*lst)->token[(*i) + 1], ">>") == 0)
+			return (printf("bash: : ambiguous redirect\n"), -1);
 		(*lst)->file_out[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_out[*j].file)
 			return (-1);
@@ -48,6 +77,9 @@ static int	ft_save_out(t_list **lst, int *i, int *j)
 	}
 	if (ft_strcmp((*lst)->token[*i], ">>") == 0)
 	{
+		if (!(*lst)->token[*i + 1] || ft_strcmp((*lst)->token[*i + 1], ">") == 0
+			|| ft_strcmp((*lst)->token[(*i) + 1], ">>") == 0)
+			return (printf("bash: : ambiguous redirect\n"), -1);
 		(*lst)->file_out[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_out[*j].file)
 			return (-1);
@@ -61,7 +93,6 @@ static int	ft_save_in(t_list **lst, int *i, int *j)
 {
 	if (ft_strcmp((*lst)->token[*i], "<") == 0)
 	{
-		(*lst)->file_in[*j].limiter = NULL;
 		(*lst)->file_in[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_in[*j].file)
 			return (-1);
@@ -96,6 +127,7 @@ int	ft_save_file(t_list **lst)
 	}
 	if (ft_prepare_file(lst) == -1)
 		return (-1);
+	ft_file_init_all(lst);
 	while ((*lst)->token[i])
 	{
 		if (ft_save_in(lst, &i, &j) == -1)
