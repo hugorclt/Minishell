@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/06/01 09:55:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:22:18 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ char	*check_path(char **path_lst, char *cmd);
 /* -------------------------------------------------------------------------- */
 int		ft_tab_size(char **tab);
 void	ft_free(char **tab);
+void	ft_free_t(t_tok *token);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_exec.c                       */
@@ -242,7 +243,7 @@ void	ft_refact_incr(int *i, int *j, int new_j);
 void	ft_error_mess(char *token);
 int		ft_sub_token(char **dest, char *cmd, int *j, int new_j);
 int		ft_parse_tokens(t_token *token, char *cmd, int flag);
-int		ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j);
+int		ft_pass_sub(t_tok *token, char *cmd, int *new_j, int *j);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/parse_token.c                      */
@@ -260,7 +261,7 @@ void	ft_free_params_2(t_node *params, int flag);
 void	ft_free_params(t_node *params, int flag);
 void	ft_free_list(t_list **start);
 void	ft_hd_exit(t_node *params, t_list **start, int value);
-int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free);
+int		ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free);
 void	ft_exit(t_node *params, t_list **start, int value);
 void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 

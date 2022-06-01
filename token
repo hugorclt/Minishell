@@ -1,0 +1,60 @@
+srcs/exec/create_list.c:	if (!token->token || ft_init_var(&lst, &i, &start) == -1)
+srcs/exec/create_list.c:		return (ft_free(token->token), NULL);
+srcs/exec/create_list.c:	while (token->token[i])
+srcs/exec/create_list.c:		if (token->token[i] && token->token[i][0] != '\0' && ft_is_pipe(token->token[i]) == 0)
+srcs/exec/create_list.c:			while (token->token[i] && ft_is_pipe(token->token[i]) == 0)
+srcs/exec/create_list.c:		else if (ft_is_pipe(token->token[i]) == 1 || !token->token[i] || token->token[i][0] == '\0')
+srcs/exec/create_list.c:		if (ft_to_add(&lst, token->token, start, i) == -1)
+srcs/exec/create_list.c:			return (ft_free(token->token), NULL);
+srcs/exec/create_list.c:	return (ft_free(token->token), lst);
+srcs/expand/env_expand.c:	ret = malloc(sizeof(char *) * (ft_tab_size(token->token) + 1));
+srcs/expand/env_expand.c:	while (token->token[i])
+srcs/expand/env_expand.c:		if (ft_verif_dollars(&ret[i], token->token[i], params) == -1)
+srcs/expand/env_expand.c:	return (ft_free(token->token), ret);
+srcs/expand/expand_utils_2.c:		token->nb_quotes++;
+srcs/expand/expand_utils_2.c:		token->nb_dquotes++;
+srcs/expand/expand_utils_2.c:	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 != 0)
+srcs/expand/expand_utils_2.c:		token->first_quotes = '\'';
+srcs/expand/expand_utils_2.c:	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
+srcs/expand/expand_utils_2.c:		token->first_quotes = '"';
+srcs/expand/expand_utils_2.c:	else if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 == 0)
+srcs/expand/expand_utils_2.c:		token->first_quotes = ' ';
+srcs/expand/expand_utils_2.c:	if ((token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 == 0)
+srcs/expand/expand_utils_2.c:		|| (token->nb_dquotes % 2 != 0 && token->first_quotes == '"'))
+srcs/parsing/ft_unquoting.c:			if (c == token->first_quotes
+srcs/parsing/ft_unquoting.c:				|| (token->old_first_quotes && token->old_first_quotes == c))
+srcs/parsing/ft_unquoting.c:				token->old_first_quotes = c;
+srcs/parsing/ft_unquoting.c:	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 == 0)
+srcs/parsing/parse_token_2.c:	token->token[i] = NULL;
+srcs/parsing/parse_token.c:	token->token = malloc(sizeof(char *) * (ft_total_token(cmd) + 1));
+srcs/parsing/parse_token.c:	if (!token->token)
+srcs/parsing/parse_token.c:			if (ft_sub_token(&(token->token[(*i)]), cmd, j, new_j) < 0)
+srcs/parsing/parse_token.c:			if (ft_pass_sub_token(&(token->token[(*i)]), cmd, &new_j, j) < 0)
+srcs/parsing/parse_token.c:	if (ft_sub_token(&(token->token[(*i)]), cmd, j, new_j) < 0)
+srcs/parsing/parse_token.c:		token->token[(*i)] = ft_substr(cmd, *j, 2);
+srcs/parsing/parse_token.c:		if (!token->token[(*i)])
+srcs/parsing/parse_token.c:		token->token[(*i)] = ft_substr(cmd, *j, 1);
+srcs/parsing/parse_token.c:		if (!token->token[(*i)])
+srcs/parsing/token_check.c:	if (!token->token)
+srcs/parsing/token_check.c:	if (!ft_strcmp(token->token[i], "|"))
+srcs/parsing/token_check.c:		return (ft_print_error(token->token[i]), -1);
+srcs/parsing/token_check.c:	while (token->token[i])
+srcs/parsing/utils_token_check.c:	if (ft_is_operator(token->token[i]) == 1)
+srcs/parsing/utils_token_check.c:		if (token->token[i + 1] && ft_is_operator(token->token[i + 1]))
+srcs/parsing/utils_token_check.c:			if (!ft_strcmp(token->token[i], token->token[i + 1]))
+srcs/parsing/utils_token_check.c:				return (ft_print_error(token->token[i + 1]), -1);
+srcs/parsing/utils_token_check.c:	if (ft_is_redire(token->token[i]) > 0)
+srcs/parsing/utils_token_check.c:		if (!token->token[i + 1])
+srcs/parsing/utils_token_check.c:		else if (token->token[i + 1] && ft_is_operator(token->token[i + 1]) > 0)
+srcs/parsing/utils_token_check.c:			return (ft_print_error(token->token[i + 1]), -1);
+srcs/parsing/utils_token_check.c:	if (!ft_strcmp(token->token[i], "|"))
+srcs/parsing/utils_token_check.c:		if (!token->token[i + 1])
+srcs/utils/utils_2.c:	token->nb_dquotes = 0;
+srcs/utils/utils_2.c:	token->nb_quotes = 0;
+srcs/utils/utils_2.c:	token->old_first_quotes = 0;
+srcs/utils/utils_4.c:		token->nb_quotes++;
+srcs/utils/utils_4.c:		token->nb_dquotes++;
+srcs/utils/utils_4.c:	if (token->nb_dquotes % 2 == 0 && token->nb_quotes % 2 != 0)
+srcs/utils/utils_4.c:		token->first_quotes = '\'';
+srcs/utils/utils_4.c:	else if (token->nb_dquotes % 2 != 0 && token->nb_quotes % 2 == 0)
+srcs/utils/utils_4.c:		token->first_quotes = '"';

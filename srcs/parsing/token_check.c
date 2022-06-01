@@ -6,20 +6,20 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 15:37:01 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/27 13:40:20 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:24:00 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_main_check(char **token)
+int	ft_main_check(t_tok *token)
 {
 	int	i;
 
 	i = 0;
-	while (token[i])
+	while (token[i]->tk)
 	{
-		if (ft_check_quote(token[i]) == -1)
+		if (ft_check_quote(token[i]->tk) == -1)
 			return (-1);
 		i++;
 	}
@@ -71,13 +71,13 @@ int	ft_check_token(t_token *token)
 	int	i;
 
 	i = 0;
-	if (!token->token)
+	if (!token->token->tk)
 		return (-1);
-	if (!ft_strcmp(token->token[i], "|"))
-		return (ft_print_error(token->token[i]), -1);
+	if (!ft_strcmp(token->token[i]->tk, "|"))
+		return (ft_print_error(token->token[i]->tk), -1);
 	if (is_dpipe(token) < 0)
 		return (ft_print_error("||"), -1);
-	while (token->token[i])
+	while (token->token[i]->tk)
 	{
 		if (ft_check_next(token, i) < 0)
 			return (-1);

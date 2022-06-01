@@ -6,16 +6,16 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 05:18:18 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 20:23:01 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:20:16 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j)
+int	ft_pass_sub(t_tok *token, char *cmd, int *new_j, int *j)
 {
 	ft_pass_space_reverse(cmd, new_j);
-	if (ft_sub_token(token, cmd, j, *new_j) < 0)
+	if (ft_sub_token(&(token->tk), cmd, j, *new_j) < 0)
 		return (-1);
 	return (0);
 }
@@ -68,6 +68,6 @@ int	ft_parse_tokens(t_token *token, char *cmd, int flag)
 				return (-1);
 		}
 	}
-	token->token[i] = NULL;
+	token->token[i]->tk = NULL;
 	return (1);
 }

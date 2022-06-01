@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:31:42 by yuro4ka           #+#    #+#             */
-/*   Updated: 2022/05/31 13:41:20 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:20:07 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_init_n_malloc(t_token *token, char *cmd, int *i, int *j)
 		return (-1);
 	if (flag == -2)
 		return (-2);
-	token->token = malloc(sizeof(char *) * (ft_total_token(cmd) + 1));
+	token->token = malloc(sizeof(t_tok) * (ft_total_token(cmd) + 1));
 	if (!token->token)
 		return (-1);
 	(*i) = 0;
@@ -56,7 +56,7 @@ int	ft_dup_token(t_token *token, char *cmd, int *i, int *j)
 		}
 		else if (is_operator(cmd[new_j]) == 1 && cmd[new_j])
 		{
-			if (ft_pass_sub_token(&(token->token[(*i)]), cmd, &new_j, j) < 0)
+			if (ft_pass_sub(&(token->token[(*i)]->tk), cmd, &new_j, j) < 0)
 				return (-1);
 			return (ft_refact_incr(i, j, new_j), 0);
 		}
@@ -78,16 +78,16 @@ int	ft_get_operator(t_token *token, char *cmd, int *i, int *j)
 {
 	if (cmd[(*j) + 1] && cmd[(*j + 1)] == cmd[(*j)])
 	{
-		token->token[(*i)] = ft_substr(cmd, *j, 2);
-		if (!token->token[(*i)])
+		token->token[(*i)]->tk = ft_substr(cmd, *j, 2);
+		if (!token->token[(*i)]->tk)
 			return (-1);
 		(*i)++;
 		(*j) += 2;
 	}
 	else
 	{
-		token->token[(*i)] = ft_substr(cmd, *j, 1);
-		if (!token->token[(*i)])
+		token->token[(*i)]->tk = ft_substr(cmd, *j, 1);
+		if (!token->token[(*i)]->tk)
 			return (-1);
 		(*i)++;
 		(*j)++;

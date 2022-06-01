@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 23:24:16 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 11:15:47 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:10:19 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_start(t_node *params, t_token *token, t_list **lst)
 	*lst = NULL;
 	params->have_pid = 0;
 	token->token = NULL;
+	token->token->tk = NULL;
+	token->token->before_expand = NULL;
 	token->env = NULL;
 	token->nb_quotes = 0;
 	token->nb_dquotes = 0;

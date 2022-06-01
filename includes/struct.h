@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 11:51:52 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 10:53:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:04:19 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_tok
 
 typedef struct s_token
 {
-	t_tok	**token;
+	t_tok	*token;
 	char	**env;
 	int		nb_quotes;
 	int		nb_dquotes;
@@ -50,7 +50,7 @@ typedef struct s_files
 
 typedef struct s_list
 {
-	t_tok			**token;
+	t_tok			*token;
 	t_files			*file_in;
 	t_files			*file_out;
 	int				nb_infile;

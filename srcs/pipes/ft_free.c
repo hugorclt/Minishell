@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/06/01 10:53:46 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:40:13 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,36 @@ void	ft_free(char **tab)
 	tab = NULL;
 }
 
-void	ft_free_t()
+void	ft_free_t(t_tok *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (token[i]->tk)
+		{
+			free(token[i]->tk);
+			token[i]->tk = NULL;
+		}
+		if (token[i]->before_expand)
+		{
+			free(token[i]->before_expand);
+			token[i]->tk = NULL;
+		}
+		++i;
+	}
+}
+
+char	**ft_tab_exec(t_tok *token)
+{
+	int		i;
+	char	*output;
+
+	i = 0;
+	outp
+	while (token[i]->tk)
+	{
+
+	}
+}

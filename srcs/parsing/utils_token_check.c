@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:27:42 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 13:19:21 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:40:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ int	ft_is_redire(char *token)
 
 int	ft_check_next(t_token *token, int i)
 {
-	if (ft_is_operator(token->token[i]) == 1)
+	if (ft_is_operator(token->token[i]->tk) == 1)
 	{
-		if (token->token[i + 1] && ft_is_operator(token->token[i + 1]))
+		if (token->token[i + 1]->tk && ft_is_operator(token->token[i + 1]->tk))
 		{
-			if (!ft_strcmp(token->token[i], token->token[i + 1]))
-				return (ft_print_error(token->token[i + 1]), -1);
+			if (!ft_strcmp(token->token[i]->tk, token->token[i + 1]->tk))
+				return (ft_print_error(token->token[i + 1]->tk), -1);
 		}
 	}
-	if (ft_is_redire(token->token[i]) > 0)
+	if (ft_is_redire(token->token[i]->tk) > 0)
 	{
-		if (!token->token[i + 1])
+		if (!token->token[i + 1]->tk)
 			return (ft_print_error("newline"), -1);
-		else if (token->token[i + 1] && ft_is_operator(token->token[i + 1]) > 0)
-			return (ft_print_error(token->token[i + 1]), -1);
+		else if (token->token[i + 1] && ft_is_operator(token->token[i + 1]->tk) > 0)
+			return (ft_print_error(token->token[i + 1]->tk), -1);
 	}
-	if (!ft_strcmp(token->token[i], "|"))
+	if (!ft_strcmp(token->token[i]->tk, "|"))
 	{
-		if (!token->token[i + 1])
+		if (!token->token[i + 1]->tk)
 			return (ft_print_error("|"), -1);
 	}
 	return (0);
