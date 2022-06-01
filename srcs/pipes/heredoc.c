@@ -6,22 +6,12 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 04:36:31 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 21:46:17 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:51:18 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-/*
-int	ft_heredoc_help(t_list **lst, int *i)
-{
-	close((*lst)->fd_doc);
-	if (ft_heredoc_infile(lst, i) == -1)
-		return (-1);
-	free((*lst)->limiter);
-	(*lst)->limiter = NULL;
-	return (0);
-}
-*/
+
 int	do_expandable(char *str)
 {
 	int	i;
@@ -53,16 +43,6 @@ int	ft_hd_write_fd(char *line, char *line_after_expand, int fd)
 	ft_hd_free(line, line_after_expand);
 	return (0);
 }
-/*
-int	ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free)
-{
-	if (ft_refacto_rl(lst, i, params, lst_to_free) < 0)
-		return (-1);
-	if ((*lst)->fd_doc < 0)
-		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
-	sig_choice(0);
-	return (1);
-}*/
 
 char	*ft_hd_create_name(char *str, int *j)
 {
@@ -208,12 +188,14 @@ int	ft_hd_write(t_list **lst, t_node *params, t_list **lst_to_free)
 	pid = fork();
 	if (pid == 0)
 	{
+		sig_choice(3);
 		while (tmp)
 		{
 			if (ft_hd_write_node(&tmp, params, lst_to_free) == -1)
 				return (ft_hd_exit(params, lst_to_free, 0), -1);
 			tmp = tmp->next;
 		}
+		sig_choice(0);
 		ft_hd_close(lst_to_free);
 		ft_hd_exit(params, lst_to_free, 0);
 	}
@@ -224,9 +206,9 @@ int	ft_hd_write(t_list **lst, t_node *params, t_list **lst_to_free)
 
 int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free)
 {
-	static int	i = 0;
+	int	i;
 
-	sig_choice(3);
+	i = 0;
 	if (ft_hd_open(lst, &i) == -1)
 		return (-1);
 	if (ft_hd_write(lst, params, lst_to_free) == -1)
@@ -234,5 +216,4 @@ int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free)
 	if (ft_hd_close(lst) == -1)
 		return (-1);
 	return (0);
-	sig_choice(0);
 }

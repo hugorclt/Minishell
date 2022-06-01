@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 13:54:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:40:40 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static int	ft_save_out(t_list **lst, int *i, int *j)
 
 static int	ft_save_in(t_list **lst, int *i, int *j)
 {
-	(*lst)->file_in[*j].limiter = NULL;
 	if (ft_strcmp((*lst)->token[*i], "<") == 0)
 	{
+		(*lst)->file_in[*j].limiter = NULL;
 		(*lst)->file_in[*j].file = ft_strdup_pimp((*lst)->token[(*i) + 1]);
 		if (!(*lst)->file_in[*j].file)
 			return (-1);

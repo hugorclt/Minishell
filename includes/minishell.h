@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/31 21:46:40 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:55:34 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strcut(char *str, int i_start, int i_end);
 int		ft_find_occ_free_help(char *var, char ***tmp);
 int		ft_find_occ_free(char **env, char *var);
 int		is_dpipe(t_token *token);
-int		ft_wait_all_pid(t_node *params);
+int		ft_wait_all_pid(t_node *params, t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                             FILE = srcs/main.c                             */

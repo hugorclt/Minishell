@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/05/31 19:38:21 by yobougre         ###   ########.fr        #
+#    Updated: 2022/06/01 09:37:59 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ SRCS 		=	srcs/main.c\
 				srcs/signal/signal.c\
 				srcs/utils/utils_3.c\
 				srcs/pipes/heredoc.c\
-				srcs/pipes/heredoc_utils.c\
 				srcs/utils/utils_4.c\
 				srcs/parsing/count_token_2.c\
 				srcs/parsing/parse_token_2.c\

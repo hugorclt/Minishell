@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:29:14 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 15:05:15 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:55:05 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd)
 	ft_close_all(params);
 	if (params->have_pid > 0)
 	{
-		if (ft_wait_all_pid(params) == -1)
+		if (ft_wait_all_pid(params, lst) == -1)
 			return (-1);
 	}
 	ft_free_after_cmd(params, lst, 1);
