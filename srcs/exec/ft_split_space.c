@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 10:51:31 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:07:03 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	ft_count(char *cmd)
 			while (!ft_isspace(cmd[i]) && cmd[i])
 			{
 				if (ft_is_quote(cmd[i]))
+				{
 					ft_pass_quote(cmd, &i);
+					i++;
+				}
 				else
 					++i;
 			}

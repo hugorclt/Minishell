@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:04:17 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 10:45:30 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:28:11 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	ft_execute_one_binaries(t_node *params, t_list **lst)
 
 int	ft_exec_one(t_node *params, t_list **lst)
 {
-	printf("test : %p\n", (*lst)->token);
 	if (!(*lst)->token)
 	{
 		if (ft_open_io(lst) == -1)
