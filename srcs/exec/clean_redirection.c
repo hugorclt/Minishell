@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:27:57 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 13:55:42 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:47:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	**ft_clean_redirection(t_list **lst)
 
 	i = 0;
 	j = 0;
+	printf("test: %s\n", (*lst)->token[0]);
 	if (!(*lst)->token)
 		return (NULL);
 	ret = malloc(sizeof(char *) * (ft_tab_size((*lst)->token)

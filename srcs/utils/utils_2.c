@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:19:51 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 16:20:50 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:07:26 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ char	*ft_to_str(char **str)
 
 	i = 0;
 	ret = NULL;
+	if (str[0] == NULL)
+		return (NULL);
 	if (ft_tab_size(str) == 1)
 		ret = ft_strdup(str[0]);
 	else
