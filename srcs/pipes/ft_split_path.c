@@ -6,13 +6,13 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/27 11:18:42 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:55:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	ft_count(char const *str, char c)
+static int	ft_count_split(char const *str, char c)
 {
 	int	i;
 	int	size;
@@ -86,7 +86,7 @@ char	**ft_split_path(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	output = malloc(sizeof(char *) * ((ft_count(s, c) + 1)));
+	output = malloc(sizeof(char *) * ((ft_count_split(s, c) + 1)));
 	if (!output)
 		return (NULL);
 	return (ft_dfill(output, s, c));

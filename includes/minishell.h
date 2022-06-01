@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/06/01 12:33:34 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:33:20 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,18 @@
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/signal/signal.c                         */
 /* -------------------------------------------------------------------------- */
-char	*ft_second_cat(char *envi, char *addon);
-
-/* -------------------------------------------------------------------------- */
-/*                        FILE = srcs/signal/signal.c                         */
-/* -------------------------------------------------------------------------- */
 void	ft_sign_handle(int signo);
+void	ft_sign_heredoc(int signo);
 void	sig_choice(int a);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_4.c                         */
 /* -------------------------------------------------------------------------- */
 int		ft_close_redirect(t_list **lst);
-void	ft_init_int(int *i, int *j);
 void	ft_quoted(t_token *token, char c);
-char	*ft_swap(char *var, char *output);
 int		ft_init_help(t_help *help, char *tmp);
+void	ft_init_int(int *i, int *j);
+char	*ft_swap(char *var, char *output);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/utils/utils_3.c                         */
@@ -75,6 +71,7 @@ char	*ft_strcut(char *str, int i_start, int i_end);
 int		ft_find_occ_free_help(char *var, char ***tmp);
 int		ft_find_occ_free(char **env, char *var);
 int		is_dpipe(t_token *token);
+int		ft_hd_delete(t_list **lst);
 int		ft_wait_all_pid(t_node *params, t_list **lst);
 
 /* -------------------------------------------------------------------------- */
@@ -82,6 +79,7 @@ int		ft_wait_all_pid(t_node *params, t_list **lst);
 /* -------------------------------------------------------------------------- */
 int		init_shlvl(t_node *params);
 int		ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
+int		main(int ac, char **av, char **env);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/refacto.c                            */
@@ -89,24 +87,15 @@ int		ft_launch_exec(t_node *params, t_list **lst, t_token *token, char *cmd);
 void	ft_we_dont(void);
 void	ft_refacto_free(t_node *params, char *cmd, t_list **lst);
 void	ft_refacto_help(t_token *token, int flag);
-int		ft_refacto_start(t_node *param, t_list **lst, t_token *tkn, char **cmd);
-int		ft_refacto_exec(t_node *param, t_list **lst, t_token *tkn, char *cmd);
-
-/* -------------------------------------------------------------------------- */
-/*                     FILE = srcs/pipes/heredoc_utils.c                      */
-/* -------------------------------------------------------------------------- */
-void	ft_iamcrying(t_list **lst, char **line_ex, char *line, t_node *params);
-int		init_heredoc(char **line_expand, t_list **lst);
-int		ft_refacto_rl(t_list **lst, int *i, t_node *param, t_list **lsttofree);
+int		ft_refacto_start(t_node *parm, t_list **lst, t_token *tokn, char **cmd);
+int		ft_refacto_exec(t_node *params, t_list **lst, t_token *tokn, char *cmd);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/pipes/utils_str.c                        */
 /* -------------------------------------------------------------------------- */
 int		ft_strlen(const char *s);
 char	*ft_strdup_pimp(char *s);
-void	directory_error(char *str);
 int		ft_strchr_pimp(char *s, char c);
-int		is_directory(char *str);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_wrong_args(void);
 
@@ -129,8 +118,6 @@ void	ft_free(char **tab);
 /*                       FILE = srcs/pipes/utils_exec.c                       */
 /* -------------------------------------------------------------------------- */
 void	ft_close_forked(t_node *params, t_list **lst);
-void	directory_error(char *str);
-int		is_directory(char *str);
 int		ft_exec_2(t_node *params, t_list **lst, t_list **lst_to_free);
 int		ft_execute(t_node *params, t_list **lst, t_list **lst_to_free);
 int		ft_init_pipe(t_node *params);
@@ -141,7 +128,6 @@ int		ft_init_pipe(t_node *params);
 void	ft_command_nt_found(char *cmd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_close(void);
-int		ft_heredoc_infile(t_list **lst, int *i);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/pipes/join.c                          */
@@ -157,6 +143,14 @@ void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, t_list **lst, t_list **lst_to_free);
 void	ft_dup2(int in, int out);
 int		ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
+
+/* -------------------------------------------------------------------------- */
+/*                    FILE = srcs/pipes/utils_heredoc_2.c                     */
+/* -------------------------------------------------------------------------- */
+int		ft_hd_open(t_list **lst, int *j);
+void	ft_hd_expand(char *limiter, char **line_ex, char *line, t_node *params);
+void	ft_hd_quit_fork(t_node *params, t_list **lst_to_free);
+int		ft_hd_writefile(t_list **lst, t_node *pars, t_list **lst_free, int *i);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/pipes/ft_split.c                        */
@@ -177,15 +171,19 @@ char	**ft_split_path(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/utils_heredoc.c                      */
 /* -------------------------------------------------------------------------- */
+int		do_expandable(char *str);
+void	ft_hd_free(char *line, char *line_after_expand);
+int		ft_hd_write_fd(char *line, char *line_after_expand, int fd);
+char	*ft_hd_create_name(char *str, int *j);
+int		ft_hd_close(t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/pipes/heredoc.c                         */
 /* -------------------------------------------------------------------------- */
-int		ft_heredoc_help(t_list **lst, int *i);
-int		do_expandable(char *str);
-void	ft_hd_free(char *line, char *line_after_expand);
-int		ft_heredoc_help_2(char *line, char *line_after_expand, int fd);
-int		ft_heredoc(t_list **lst, int *i, t_node *params, t_list **lst_to_free);
+int		ft_hd_write(t_list **lst, t_node *params, t_list **lst_to_free);
+int		ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free);
+int		ft_hd_write_node(t_list **lst, t_node *params, t_list **lst_to_free);
+void	ft_hd_error(char *limiter);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/pipes/ft_get_output.c                      */
@@ -239,10 +237,10 @@ void	ft_refact_incr(int *i, int *j, int new_j);
 /* -------------------------------------------------------------------------- */
 /*                    FILE = srcs/parsing/parse_token_2.c                     */
 /* -------------------------------------------------------------------------- */
+int		ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j);
 void	ft_error_mess(char *token);
 int		ft_sub_token(char **dest, char *cmd, int *j, int new_j);
 int		ft_parse_tokens(t_token *token, char *cmd, int flag);
-int		ft_pass_sub_token(char **token, char *cmd, int *new_j, int *j);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/parsing/parse_token.c                      */
@@ -260,9 +258,7 @@ void	ft_free_params_2(t_node *params, int flag);
 void	ft_free_params(t_node *params, int flag);
 void	ft_free_list(t_list **start);
 void	ft_hd_exit(t_node *params, t_list **start, int value);
-int	ft_hd_start(t_list **lst, t_node *params, t_list **lst_to_free);
 void	ft_exit(t_node *params, t_list **start, int value);
-void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exit/exit_2.c                          */
@@ -270,6 +266,7 @@ void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 void	ft_free_infile(t_list *tmp);
 void	ft_free_outfile(t_list *tmp);
 void	ft_free_lst(t_list **start);
+void	ft_free_after_cmd(t_node *params, t_list **start, int flag);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/utils_print.c                          */
@@ -277,6 +274,11 @@ void	ft_free_lst(t_list **start);
 void	ft_print_lst(t_list *lst);
 void	ft_print_tab(char **tokens);
 void	ft_print_env(char **env);
+
+/* -------------------------------------------------------------------------- */
+/*                    FILE = srcs/exec/utils_split_space.c                    */
+/* -------------------------------------------------------------------------- */
+int		ft_count(char *cmd);
 
 /* -------------------------------------------------------------------------- */
 /*                         FILE = srcs/exec/ft_echo.c                         */
@@ -293,7 +295,7 @@ int		ft_main_exec(t_node *params, t_list **lst);
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/exec/open_io_utils.c                      */
 /* -------------------------------------------------------------------------- */
-void	ft_print_io_error_choice(char *str, t_node *params, t_list **lst_f);
+void	ft_print_io_error_choice(char *str, t_node *params, t_list **lst);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/exec/is_builtin.c                        */
@@ -337,7 +339,6 @@ char	**ft_clean_redirection(t_list **lst);
 /* -------------------------------------------------------------------------- */
 void	ft_count_in(char **token, t_list **lst);
 void	ft_count_out(char **token, t_list **lst);
-int	ft_open_heredoc(t_node *params, t_list **lst, t_list **lst_to_free);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/exec/ft_split_space.c                      */
@@ -349,7 +350,6 @@ char	**ft_split_space(char *cmd);
 /* -------------------------------------------------------------------------- */
 int		ft_get_output(t_list **lst, char **tab, int *k, int i);
 int		ft_add_file_in(t_list **lst, int i, int *j, char **tab);
-int		ft_get_input(t_list **lst, char **tab);
 
 /* -------------------------------------------------------------------------- */
 /*                     FILE = srcs/expand/expand_utils.c                      */
@@ -395,6 +395,7 @@ int		ft_var_len(char *var);
 /*                          FILE = srcs/env/unset.c                           */
 /* -------------------------------------------------------------------------- */
 int		ft_is_in(char **var_lst, char *var);
+int		ft_vld_unset(char *var);
 int		ft_need(char **env, char **var_lst);
 char	**ft_unset(char **env, char **var);
 
@@ -406,6 +407,11 @@ char	*ft_quote(char *token);
 int		ft_need_unquote(char *var);
 char	*ft_simple_unquote(char *var);
 int		ft_export(t_node *params, char *token);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/env/utils_export_2.c                      */
+/* -------------------------------------------------------------------------- */
+char	*ft_second_cat(char *envi, char *addon);
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/env/utils_error.c                        */
@@ -438,5 +444,11 @@ int		ft_get_last_word(char *str, int len);
 char	*ft_get_last_dir(char *str);
 char	*ft_cat_path(char *var, char *path);
 int		ft_change_dir(t_node *params, char *path);
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/dir/dir_error.c                         */
+/* -------------------------------------------------------------------------- */
+void	directory_error(char *str);
+int		is_directory(char *str);
 
 #endif

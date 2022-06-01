@@ -6,40 +6,11 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 12:36:38 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:01:16 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static int	ft_count(char *cmd)
-{
-	int		total;
-	int		i;
-
-	i = 0;
-	total = 0;
-	while (cmd[i])
-	{
-		if (!ft_isspace(cmd[i]))
-		{
-			while (!ft_isspace(cmd[i]) && cmd[i])
-			{
-				if (ft_is_quote(cmd[i]))
-				{
-					ft_pass_quote(cmd, &i);
-					++i;
-				}
-				else
-					++i;
-			}
-			total++;
-		}
-		else
-			++i;
-	}
-	return (total);
-}
 
 static void	ft_pass_quote_sp(char *cmd, int i, int *j)
 {

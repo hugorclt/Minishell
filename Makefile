@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:01:55 by hrecolet          #+#    #+#              #
-#    Updated: 2022/06/01 13:42:08 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/06/01 14:32:17 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,10 @@ SRCS 		=	srcs/main.c\
 				srcs/parsing/utils_token_check.c\
 				srcs/dir/dir_error.c\
 				srcs/env/utils_export_2.c\
-				srcs/env/export_3.c
+				srcs/pipes/utils_heredoc.c\
+				srcs/env/export_3.c\
+				srcs/exec/utils_split_space.c\
+				srcs/pipes/utils_heredoc_2.c
 
 OBJS		=		$(SRCS:.c=.o)
 
@@ -87,7 +90,7 @@ $(NAME): $(INC) $(OBJS)
 	@clear
 	@$(MAKE) -C libft
 	@echo "Minishell : Libft compiled"
-	@echo "\033[1;34m                                                                                                                     "
+	@echo "\033[1;34m"
 	@echo "Project name : $(NAME)"
 	@echo "\n\033[1;32mOn going compilation... ⌛\033[0;m\n"
 	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a -o $(NAME) -lreadline

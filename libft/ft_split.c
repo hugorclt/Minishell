@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 11:23:38 by yobougre          #+#    #+#             */
-/*   Updated: 2022/04/22 14:02:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:34:17 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count(char const *str, char c)
+static int	ft_count_split(char const *str, char c)
 {
 	int	i;
 	int	size;
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	output = malloc(sizeof(char *) * ((ft_count(s, c) + 1)));
+	output = malloc(sizeof(char *) * ((ft_count_split(s, c) + 1)));
 	if (!output)
 		return (NULL);
 	return (ft_dfill(output, s, c));

@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:25:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/06/01 09:55:56 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:27:18 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_hd_delete(t_list **lst)
 		{
 			if (tmp->file_in[i].flag == 1)
 				unlink(tmp->file_in[i].file);
-			i++;			
+			i++;
 		}
 		tmp = tmp->next;
 	}
