@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:41:39 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/30 13:39:06 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:04:58 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	ft_echo(char **cmd)
 
 	i = 1;
 	if (!cmd[1])
-		return ;
+	{
+		printf("\n");
+		return ;	
+	}
 	if (is_args(cmd[1]) == 1)
 	{
 		ft_echo_n(cmd);

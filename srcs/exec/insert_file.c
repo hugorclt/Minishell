@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:13:30 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/06/01 13:38:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:58:56 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,21 @@ static int	ft_prepare_file(t_list **lst)
 
 static void	ft_file_init_all(t_list **lst)
 {
-	int		i;
-	t_list	*tmp;
+	int	i;
 
-	tmp = *lst;
-	while (tmp)
+	i = 0;
+	while (i < (*lst)->nb_infile)
 	{
-		i = 0;
-		while (i < tmp->nb_infile)
-		{
-			tmp->file_in[i].file = NULL;
-			tmp->file_in[i].limiter = NULL;
-			i++;
-		}
-		i = 0;
-		while (i < tmp->nb_outfile)
-		{
-			tmp->file_out[i].file = NULL;
-			tmp->file_out[i].limiter = NULL;
-			i++;
-		}
-		tmp = tmp->next;
+		(*lst)->file_in[i].file = NULL;
+		(*lst)->file_in[i].limiter = NULL;
+		i++;
+	}
+	i = 0;
+	while (i < (*lst)->nb_outfile)
+	{
+		(*lst)->file_out[i].file = NULL;
+		(*lst)->file_out[i].limiter = NULL;
+		i++;
 	}
 }
 
