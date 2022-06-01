@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/05/16 17:22:11 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/06/01 10:53:46 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,5 @@ void	ft_free(char **tab)
 	free(tab);
 	tab = NULL;
 }
+
+void	ft_free_t()
