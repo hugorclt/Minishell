@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:15:03 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/05/31 14:08:55 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:20:36 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	ft_count(char *cmd)
 			while (!ft_isspace(cmd[i]) && cmd[i])
 			{
 				if (ft_is_quote(cmd[i]))
+				{
 					ft_pass_quote(cmd, &i);
+					++i;
+				}
 				else
 					++i;
 			}
@@ -119,6 +122,5 @@ char	**ft_split_space(char *cmd)
 	output = malloc(sizeof(char *) *(ft_count(cmd) + 1));
 	if (!output)
 		return (free(cmd), NULL);
-	ft_dfill(&output, cmd, ' ');
-	return (output);
+	return (ft_dfill(&output, cmd, ' '));
 }
